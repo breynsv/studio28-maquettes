@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio 28 — Danse, yoga, pilates · Bruxelles</title>
+<meta name="description" content="Studio 28, une adresse à Bruxelles. Yoga, pilates, cyclodanse, hip-hop, heels, salsa, bachata — une dizaine de professeurs indépendants, un seul horaire, un seul portefeuille de crédits.">
+<link rel="icon" href="assets/logo/logo-studio28-3.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:   { 900:'#12161C', 800:'#1A1F27', 700:'#262D38', 600:'#3A434F' },
+        blues: { 500:'#6B7078' },
+        oak:   { 300:'#E3C79C', 400:'#CFA974', 500:'#A8814D' },
+        cream: { 100:'#F7F3EA', 200:'#EDE6D9' },
+        terra: { 500:'#C05A34', 600:'#9C4526' },
+        coral: { 400:'#F0714B' },
+        fern:  { 600:'#4F6B52', 800:'#2C3B2F' }
+      },
+      fontFamily: {
+        display: ['"Bricolage Grotesque"', 'ui-sans-serif', 'system-ui'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui']
+      }
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+<style>
+  :root{
+    --ink-900:#12161C; --ink-800:#1A1F27; --ink-700:#262D38; --ink-600:#3A434F;
+    --bluestone:#6B7078;
+    --oak-300:#E3C79C; --oak-400:#CFA974; --oak-500:#A8814D;
+    --cream-100:#F7F3EA; --cream-200:#EDE6D9;
+    --terra-500:#C05A34; --terra-600:#9C4526; --coral-400:#F0714B;
+    --fern-600:#4F6B52; --fern-800:#2C3B2F;
+  }
+  html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+  body{
+    background:var(--cream-100); color:#171B21;
+    font-family:Inter, ui-sans-serif, system-ui;
+    font-size:17px; line-height:1.6; letter-spacing:-0.005em;
+    text-rendering:optimizeLegibility;
+  }
+  h1,h2,h3,h4,.display{ font-family:"Bricolage Grotesque", ui-sans-serif; letter-spacing:-0.025em; }
+  .tab{ font-variant-numeric:tabular-nums; font-feature-settings:"tnum" 1; }
+
+  /* ---- paper grain: the whole page is printed matter ---- */
+  .grain{ position:relative; }
+  .grain::after{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity:.16; mix-blend-mode:multiply;
+  }
+  .grain-dark::after{ mix-blend-mode:overlay; opacity:.09; }
+  .grain > *{ position:relative; z-index:2; }
+
+  /* ---- the Brussels enamel street plate ---- */
+  .enamel{
+    background:var(--ink-900); color:var(--cream-100); border-radius:4px;
+    box-shadow: inset 0 0 0 4px var(--ink-900), inset 0 0 0 5px rgba(247,243,234,.82), 0 1px 0 rgba(0,0,0,.25);
+  }
+  .enamel-oak{ background:var(--oak-500); box-shadow: inset 0 0 0 4px var(--oak-500), inset 0 0 0 5px rgba(247,243,234,.9); }
+  .enamel-fern{ background:var(--fern-800); box-shadow: inset 0 0 0 4px var(--fern-800), inset 0 0 0 5px rgba(247,243,234,.8); }
+
+  /* ---- hand-set signage: tight caps, oak underscore ---- */
+  .signage{ font-family:"Bricolage Grotesque"; text-transform:uppercase; letter-spacing:.14em; font-weight:600; }
+  .kicker{ font-size:12px; letter-spacing:.2em; text-transform:uppercase; font-weight:600; }
+
+  /* ---- ruled notebook paper ---- */
+  .ruled{
+    background-image:repeating-linear-gradient(to bottom, transparent 0, transparent 37px, rgba(168,129,77,.20) 37px, rgba(168,129,77,.20) 38px);
+  }
+  .hatched{
+    background-image:repeating-linear-gradient(45deg, rgba(168,129,77,.16) 0, rgba(168,129,77,.16) 1px, transparent 1px, transparent 7px);
+  }
+
+  /* ---- shopfront window frame ---- */
+  .window{
+    border:10px solid var(--ink-900);
+    box-shadow: 0 0 0 1px rgba(18,22,28,.25), 0 26px 60px -34px rgba(18,22,28,.75);
+    background:var(--cream-100);
+  }
+  @media (max-width:640px){ .window{ border-width:6px; } }
+
+  /* ---- links & focus ---- */
+  a{ color:inherit; }
+  .ulink{ text-decoration:none; box-shadow:inset 0 -1px 0 rgba(168,129,77,.65); transition:box-shadow .18s ease, color .18s ease; }
+  .ulink:hover{ color:var(--terra-600); box-shadow:inset 0 -2px 0 var(--terra-600); }
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--terra-500); outline-offset:3px; border-radius:2px;
+  }
+
+  /* ---- discipline row (the notice-board list) ---- */
+  .row-disc{ transition:background-color .22s ease; }
+  .row-disc:hover{ background:rgba(237,230,217,.75); }
+  .row-disc:hover .row-thumb img{ transform:scale(1.07); }
+  .row-disc:hover .row-arrow{ transform:translateX(6px); color:var(--terra-600); }
+  .row-thumb img{ transition:transform .5s cubic-bezier(.2,.7,.2,1); }
+  .row-arrow{ transition:transform .25s ease, color .25s ease; }
+
+  /* ---- doorbell nameplate ---- */
+  .bell{ transition:transform .2s ease, box-shadow .2s ease; }
+  .bell:hover{ transform:translateY(-2px); box-shadow:0 10px 24px -18px rgba(18,22,28,.9); }
+
+  /* ---- staggered load ---- */
+  @keyframes riseIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+  .rise{ animation:riseIn .8s cubic-bezier(.2,.7,.2,1) both; }
+  .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.23s}
+  .d4{animation-delay:.32s}.d5{animation-delay:.41s}.d6{animation-delay:.5s}
+  @media (prefers-reduced-motion: reduce){
+    .rise{ animation:none !important; }
+    html{ scroll-behavior:auto; }
+    *{ transition-duration:.01ms !important; }
+  }
+
+  /* ---- hand-drawn map ---- */
+  .maplabel{ font-family:"Bricolage Grotesque"; font-weight:600; text-transform:uppercase; letter-spacing:.1em; }
+  .map-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; }
+  .map-scroll svg{ min-width:660px; }
+  /* every map label gets a paper-coloured halo so nothing collides with the hatching */
+  #plan-quartier text{ paint-order:stroke; stroke:var(--cream-100); stroke-width:6px; stroke-linejoin:round; }
+  #plan-quartier text.solid{ stroke:none; }
+
+  details > summary{ list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker{ display:none; }
+  details[open] .faq-plus{ transform:rotate(45deg); }
+  .faq-plus{ transition:transform .25s ease; }
+
+  ::selection{ background:var(--oak-300); color:var(--ink-900); }
+  body{ padding-bottom:64px; }
+  @media (min-width:768px){ body{ padding-bottom:0; } }
+</style>
+</head>
+
+<body class="antialiased">
+
+
+<div class="bg-ink-900 text-cream-100">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <div class="flex items-center justify-between gap-4 py-2 text-[11px] sm:text-[12px] signage tracking-[.18em] text-oak-300">
+      <p class="truncate">Bruxelles · <span class="text-cream-100">Rue des Deux Églises 28</span> · Ouvert 7j/7</p>
+      <p class="hidden sm:block whitespace-nowrap">Métro <span class="text-cream-100">Madou</span> · Tram <span class="text-cream-100">Madou</span></p>
+    </div>
+  </div>
+</div>
+
+<header x-data="{ open:false }" class="sticky top-0 z-50 bg-cream-100/95 backdrop-blur-sm border-b border-oak-500/35">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <div class="flex items-center justify-between gap-6 py-3">
+
+      <a href="#" class="flex items-center gap-3 shrink-0">
+        <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="hidden sm:block h-11 w-auto">
+        <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="sm:hidden h-9 w-auto">
+        <span class="hidden lg:block border-l border-oak-500/45 pl-3 text-[11px] leading-[1.35] signage tracking-[.16em] text-ink-800/75">
+          Danse · Yoga<br>Pilates · Bruxelles
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6 text-[14.5px] font-medium">
+        <a href="#cours" class="ulink">Cours</a>
+        <a href="#horaire" class="ulink">Horaire</a>
+        <a href="#lieu" class="ulink">Le lieu</a>
+        <a href="#louer" class="ulink">Louer la salle</a>
+        <a href="#entreprises" class="ulink">Entreprises</a>
+        <a href="#venir" class="ulink">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-1 text-[12px] signage tracking-[.12em] text-ink-800/70">
+          <span class="px-1.5 py-0.5 bg-ink-900 text-cream-100 rounded-[2px]">FR</span>
+          <a href="#" class="px-1.5 py-0.5 hover:text-terra-600">EN</a>
+          <a href="#" class="px-1.5 py-0.5 hover:text-terra-600">NL</a>
+        </div>
+
+        <a href="#" aria-label="Écrivez-nous sur WhatsApp"
+           class="grid place-items-center h-10 w-10 rounded-full border border-oak-500/50 text-fern-600 hover:bg-fern-600 hover:text-cream-100 hover:border-fern-600 transition-colors">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.94.53 3.76 1.45 5.32L2 22l4.98-1.6a9.8 9.8 0 0 0 5.06 1.4c5.44 0 9.84-4.4 9.84-9.84S17.48 2 12.04 2Zm0 17.9c-1.6 0-3.1-.44-4.38-1.2l-.31-.19-2.95.95.96-2.88-.2-.32a7.98 7.98 0 0 1-1.24-4.28c0-4.44 3.62-8.06 8.07-8.06 4.44 0 8.06 3.62 8.06 8.06s-3.62 8.06-8.06 8.06Zm4.42-5.98c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.5.58.19 1.1.16 1.51.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/></svg>
+        </a>
+
+        <a href="#horaire" class="hidden sm:inline-flex items-center gap-2 rounded-[3px] bg-terra-600 px-4 py-2.5 text-[14px] font-semibold text-cream-100 hover:bg-ink-900 transition-colors">
+          Réserver
+        </a>
+
+        <button @click="open=!open" :aria-expanded="open" aria-label="Menu"
+                class="lg:hidden grid place-items-center h-10 w-10 rounded-[3px] border border-oak-500/50">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path x-show="!open" d="M3 6h18M3 12h18M3 18h18"/>
+            <path x-show="open" x-cloak d="M5 5l14 14M19 5L5 19"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    
+    <div x-show="open" x-cloak x-transition.opacity class="lg:hidden border-t border-oak-500/35 py-4">
+      <nav class="grid gap-1 text-[17px] font-medium">
+        <a href="#cours" @click="open=false" class="py-2 border-b border-oak-500/20">Cours</a>
+        <a href="#horaire" @click="open=false" class="py-2 border-b border-oak-500/20">Horaire</a>
+        <a href="#lieu" @click="open=false" class="py-2 border-b border-oak-500/20">Le lieu</a>
+        <a href="#louer" @click="open=false" class="py-2 border-b border-oak-500/20">Louer la salle</a>
+        <a href="#entreprises" @click="open=false" class="py-2 border-b border-oak-500/20">Entreprises</a>
+        <a href="#venir" @click="open=false" class="py-2 border-b border-oak-500/20">Contact</a>
+      </nav>
+      <div class="mt-4 flex items-center gap-2 text-[12px] signage tracking-[.12em]">
+        <span class="px-2 py-1 bg-ink-900 text-cream-100 rounded-[2px]">FR</span>
+        <a href="#" class="px-2 py-1 border border-oak-500/40 rounded-[2px]">EN</a>
+        <a href="#" class="px-2 py-1 border border-oak-500/40 rounded-[2px]">NL</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+
+<section class="relative grain grain-dark bg-ink-800 text-cream-100 overflow-hidden">
+  <div class="relative mx-auto max-w-[1320px] px-5 sm:px-8">
+    <div class="flex flex-col gap-7 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:gap-y-7 lg:items-start
+                pt-9 pb-12 lg:pt-16 lg:pb-20">
+
+      
+      <div class="order-1 lg:col-start-1 lg:col-span-5 lg:row-start-1">
+        <div class="rise d1 enamel inline-block px-6 py-4 sm:px-8 sm:py-5">
+          <p class="font-display text-[26px] sm:text-[34px] font-bold leading-none tracking-[.02em]">STUDIO 28</p>
+          <p class="mt-2 signage text-[10px] sm:text-[11px] text-oak-300 tracking-[.22em]">Danse · Yoga · Pilates</p>
+          <p class="mt-1 signage text-[10px] sm:text-[11px] text-cream-100/55 tracking-[.22em]">Bruxelles — Brussel</p>
+        </div>
+      </div>
+
+      
+      <div class="order-2 lg:col-start-6 lg:col-span-7 lg:row-start-1 lg:row-span-3 lg:self-center">
+
+        <p class="rise d2 flex items-center gap-3 mb-3 kicker text-oak-300">
+          <span class="whitespace-nowrap">Ce qui se passe derrière le verre</span>
+          <span class="h-px flex-1 bg-oak-500/40"></span>
+        </p>
+
+        
+        <div class="rise d3 rounded-[3px] bg-ink-900 p-[9px] sm:p-[11px] shadow-[0_34px_80px_-44px_rgba(0,0,0,.95)] outline outline-1 outline-oak-500/40 outline-offset-[3px]">
+
+          
+          <div class="flex items-center justify-between gap-3 px-0.5 pb-[7px]">
+            <p class="signage text-[9px] sm:text-[10.5px] tracking-[.2em] text-oak-300">Rue des Deux Églises 28</p>
+            <p class="signage text-[9px] sm:text-[10.5px] tracking-[.2em] text-cream-100/55">Ouvert 7j/7</p>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 md:grid-rows-3 gap-[5px] bg-ink-900
+                      auto-rows-[82px] sm:auto-rows-[112px] md:h-[430px] lg:h-[452px] xl:h-[548px]">
+
+            
+            <a href="#cours" class="group relative col-span-2 row-span-2 overflow-hidden bg-ink-800">
+              <img src="assets/img/ros_9403.jpg"
+                   alt="Un cours en pleine séance dans la grande salle du Studio 28"
+                   class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                   style="object-position:27% 46%;">
+              <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink-900/90 to-transparent"></div>
+              <div class="absolute left-3 bottom-2.5 sm:left-4 sm:bottom-3.5">
+                <span class="block signage text-[11px] sm:text-[13px] tracking-[.16em] text-cream-100">Ici, au 28</span>
+                <span class="block mt-0.5 text-[10.5px] sm:text-[12px] text-cream-100/70">Un cours, un mardi soir</span>
+              </div>
+            </a>
+
+            
+            <a href="#cours" class="group relative overflow-hidden bg-ink-800">
+              <img src="assets/img/ph-yoga.jpg"
+                   alt="Cours de yoga : postures debout sur tapis, lumière du jour"
+                   class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                   style="object-position:55% 55%;">
+              <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink-900/85 to-transparent"></div>
+              <span class="absolute left-2.5 bottom-2 sm:left-3 sm:bottom-2.5 signage text-[10px] sm:text-[11.5px] tracking-[.16em] text-cream-100">Yoga</span>
+            </a>
+
+            
+            <a href="#cours" class="group relative overflow-hidden bg-ink-800">
+              <img src="assets/img/ph-pilates.jpg"
+                   alt="Cours de pilates sur reformer dans un studio clair"
+                   class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                   style="object-position:45% 48%;">
+              <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink-900/85 to-transparent"></div>
+              <span class="absolute left-2.5 bottom-2 sm:left-3 sm:bottom-2.5 signage text-[10px] sm:text-[11.5px] tracking-[.16em] text-cream-100">Pilates</span>
+            </a>
+
+            
+            <a href="#cours" class="group relative col-span-2 overflow-hidden bg-ink-800">
+              <img src="assets/img/ph-cyclodanse.jpg"
+                   alt="Cours de cyclodanse : danseuses en fauteuil roulant et partenaires debout, main dans la main"
+                   class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                   style="object-position:50% 42%;">
+              <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink-900/85 to-transparent"></div>
+              <span class="absolute left-2.5 bottom-2 sm:left-3 sm:bottom-2.5 signage text-[10px] sm:text-[11.5px] tracking-[.16em] text-cream-100">Cyclodanse</span>
+            </a>
+
+            
+            <a href="#cours" class="group relative overflow-hidden bg-ink-800">
+              <img src="assets/img/ph-heels.jpg"
+                   alt="Cours de heels : danseuses en talons sur le parquet, face aux miroirs"
+                   class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                   style="object-position:58% 62%;">
+              <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink-900/85 to-transparent"></div>
+              <span class="absolute left-2.5 bottom-2 sm:left-3 sm:bottom-2.5 signage text-[10px] sm:text-[11.5px] tracking-[.16em] text-cream-100">Heels</span>
+            </a>
+
+            
+            <a href="#cours" class="group relative overflow-hidden bg-ink-900 hatched grid place-items-center px-2 text-center">
+              <span class="signage text-[11px] sm:text-[13px] tracking-[.16em] text-oak-300 group-hover:text-cream-100 transition-colors">Hip-hop</span>
+              <span class="absolute inset-x-0 bottom-1.5 signage text-[8px] sm:text-[9px] tracking-[.16em] text-cream-100/40">Photo à venir</span>
+            </a>
+
+            
+            <a href="#cours" class="group relative overflow-hidden bg-ink-900 hatched grid place-items-center px-2 text-center">
+              <span class="signage text-[11px] sm:text-[13px] tracking-[.16em] text-oak-300 group-hover:text-cream-100 transition-colors">Salsa</span>
+              <span class="absolute inset-x-0 bottom-1.5 signage text-[8px] sm:text-[9px] tracking-[.16em] text-cream-100/40">Photo à venir</span>
+            </a>
+
+            
+            <a href="#cours" class="group relative overflow-hidden bg-ink-800">
+              <img src="assets/img/ph-bachata.jpg"
+                   alt="Un couple qui danse la bachata dans une salle à miroirs"
+                   class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                   style="object-position:56% 52%;">
+              <div class="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink-900/85 to-transparent"></div>
+              <span class="absolute left-2.5 bottom-2 sm:left-3 sm:bottom-2.5 signage text-[10px] sm:text-[11.5px] tracking-[.16em] text-cream-100">Bachata</span>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="rise d4 mt-4 flex flex-wrap items-center gap-x-4 gap-y-2.5">
+          <span class="enamel-fern enamel inline-block px-3.5 py-2 rotate-[-1.2deg] signage text-[9.5px] sm:text-[10px] tracking-[.18em] text-cream-100">
+            Journée portes ouvertes · 29 août
+          </span>
+          <p class="text-[11px] leading-snug text-cream-100/50 max-w-[46ch]">
+            La grande vignette est une vraie classe au Studio 28. Les autres sont des photos
+            d'illustration, à remplacer après la séance du 29 août.
+          </p>
+        </div>
+      </div>
+
+      
+      <div class="order-3 lg:col-start-1 lg:col-span-5 lg:row-start-2">
+        <h1 class="rise d2 font-display font-semibold leading-[0.95] text-[40px] sm:text-[54px] lg:text-[42px] xl:text-[52px]">
+          Sept disciplines,<br>
+          <span class="text-oak-300">une seule adresse.</span>
+        </h1>
+
+        <p class="rise d3 mt-5 max-w-[44ch] text-[17.5px] leading-[1.55] text-cream-100/85">
+          Yoga, pilates, cyclodanse, hip-hop, heels, salsa, bachata — sept façons de bouger
+          derrière la même vitrine, <span class="text-oak-300">Rue des Deux Églises 28</span>, Bruxelles.
+        </p>
+
+        <p class="rise d4 mt-3 max-w-[44ch] text-[15px] leading-[1.5] text-cream-100/60">
+          Une dizaine de professeurs indépendants · un seul horaire · un seul portefeuille de crédits.
+        </p>
+      </div>
+
+      
+      <div class="order-4 lg:col-start-1 lg:col-span-5 lg:row-start-3">
+        <div class="rise d5 flex flex-col sm:flex-row gap-3">
+          <a href="#horaire" class="inline-flex justify-center items-center gap-2 whitespace-nowrap rounded-[3px] bg-oak-300 px-6 py-4 text-[16px] font-semibold text-ink-900 hover:bg-cream-100 transition-colors">
+            Voir l'horaire
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+          </a>
+          <a href="#agenda" class="inline-flex justify-center items-center text-center rounded-[3px] border border-cream-100/35 px-5 py-4 text-[15.5px] font-semibold hover:border-oak-300 hover:text-oak-300 transition-colors">
+            Portes ouvertes — samedi 29 août
+          </a>
+        </div>
+
+        <p class="rise d6 mt-6 flex items-start gap-2 text-[13.5px] text-cream-100/65">
+          <svg viewBox="0 0 24 24" class="h-4 w-4 mt-1 text-terra-500 shrink-0" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          <span>À <span class="tab">3</span> minutes du métro <span class="text-cream-100">Madou</span> · tram <span class="text-cream-100">Madou</span> devant la porte</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section class="grain bg-cream-200 border-y border-oak-500/40">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <dl class="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-oak-500/35">
+      <div class="py-6 sm:py-8 sm:pr-8">
+        <dt class="kicker text-terra-600">La maison</dt>
+        <dd class="mt-2 font-display text-[21px] sm:text-[23px] font-semibold leading-tight">10 professeurs et écoles indépendantes</dd>
+      </div>
+      <div class="py-6 sm:py-8 sm:px-8">
+        <dt class="kicker text-terra-600">Le principe</dt>
+        <dd class="mt-2 font-display text-[21px] sm:text-[23px] font-semibold leading-tight">Un seul portefeuille de crédits, toutes les disciplines</dd>
+      </div>
+      <div class="py-6 sm:py-8 sm:pl-8">
+        <dt class="kicker text-terra-600">L'adresse</dt>
+        <dd class="mt-2 font-display text-[21px] sm:text-[23px] font-semibold leading-tight">Rue des Deux Églises 28, Bruxelles — ouvert 7j/7</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+
+
+<section id="cours" class="grain scroll-mt-24 py-16 sm:py-24">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+
+    <div class="flex flex-wrap items-end justify-between gap-6 border-b-2 border-ink-900 pb-5">
+      <div>
+        <p class="kicker text-terra-600">Sept disciplines, une dizaine de professeurs</p>
+        <h2 class="mt-3 font-display text-[38px] sm:text-[54px] font-semibold leading-none">Les cours</h2>
+      </div>
+      <p class="max-w-[38ch] text-[15px] leading-relaxed text-ink-800/70">
+        Chaque discipline a son cours débutant. On commence quand on veut — pas seulement en septembre.
+      </p>
+    </div>
+
+    <ul class="mt-2">
+      
+      <li>
+        <a href="#horaire" class="row-disc grid grid-cols-[64px_1fr_auto] sm:grid-cols-[52px_112px_1fr_auto] items-center gap-4 sm:gap-6 border-b border-oak-500/35 py-5 sm:py-6 px-2 -mx-2">
+          <span class="hidden sm:block signage text-[12px] tracking-[.18em] text-oak-500 tab">01</span>
+          <span class="row-thumb block h-16 w-16 sm:h-[112px] sm:w-[112px] overflow-hidden rounded-[2px] bg-ink-800">
+            <img src="assets/img/ph-yoga.jpg" alt="Un cours de yoga : tapis au sol, posture debout, lumière naturelle" class="h-full w-full object-cover" style="object-position:50% 62%;" loading="lazy">
+          </span>
+          <span class="min-w-0">
+            <span class="block font-display text-[24px] sm:text-[32px] font-semibold leading-none">Yoga</span>
+            <span class="mt-1.5 block text-[14.5px] sm:text-[15.5px] leading-snug text-ink-800/70">Respirer, s'étirer, relâcher. Des cours doux et des cours plus toniques, tous ouverts aux débutants.</span>
+          </span>
+          <span class="row-arrow shrink-0 flex items-center gap-2 text-[13px] font-semibold text-ink-800">
+            <span class="hidden md:inline">Voir les horaires</span>
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+          </span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#horaire" class="row-disc grid grid-cols-[64px_1fr_auto] sm:grid-cols-[52px_112px_1fr_auto] items-center gap-4 sm:gap-6 border-b border-oak-500/35 py-5 sm:py-6 px-2 -mx-2">
+          <span class="hidden sm:block signage text-[12px] tracking-[.18em] text-oak-500 tab">02</span>
+          <span class="row-thumb block h-16 w-16 sm:h-[112px] sm:w-[112px] overflow-hidden rounded-[2px] bg-ink-800">
+            <img src="assets/img/ph-pilates.jpg" alt="Un cours de pilates sur reformer, dans un studio lumineux" class="h-full w-full object-cover" style="object-position:22% 60%;" loading="lazy">
+          </span>
+          <span class="min-w-0">
+            <span class="block font-display text-[24px] sm:text-[32px] font-semibold leading-none">Pilates</span>
+            <span class="mt-1.5 block text-[14.5px] sm:text-[15.5px] leading-snug text-ink-800/70">Renforcer le dos et le centre, en douceur et sans impact. Le cours idéal pour reprendre le mouvement.</span>
+          </span>
+          <span class="row-arrow shrink-0 flex items-center gap-2 text-[13px] font-semibold text-ink-800">
+            <span class="hidden md:inline">Voir les horaires</span>
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+          </span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#horaire" class="row-disc grid grid-cols-[64px_1fr_auto] sm:grid-cols-[52px_112px_1fr_auto] items-center gap-4 sm:gap-6 border-b border-oak-500/35 py-5 sm:py-6 px-2 -mx-2">
+          <span class="hidden sm:block signage text-[12px] tracking-[.18em] text-oak-500 tab">03</span>
+          <span class="row-thumb block h-16 w-16 sm:h-[112px] sm:w-[112px] overflow-hidden rounded-[2px] bg-ink-800">
+            <img src="assets/img/ph-cyclodanse.jpg" alt="Un cours de cyclodanse : vélos en salle, lumière colorée" class="h-full w-full object-cover" style="object-position:40% 45%;" loading="lazy">
+          </span>
+          <span class="min-w-0">
+            <span class="block font-display text-[24px] sm:text-[32px] font-semibold leading-none">Cyclodanse</span>
+            <span class="mt-1.5 block text-[14.5px] sm:text-[15.5px] leading-snug text-ink-800/70">Du vélo, mais en musique et en rythme. Le cours le plus cardio de la maison — et le moins cher.</span>
+          </span>
+          <span class="row-arrow shrink-0 flex items-center gap-2 text-[13px] font-semibold text-ink-800">
+            <span class="hidden md:inline">Voir les horaires</span>
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+          </span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#horaire" class="row-disc grid grid-cols-[64px_1fr_auto] sm:grid-cols-[52px_112px_1fr_auto] items-center gap-4 sm:gap-6 border-b border-oak-500/35 py-5 sm:py-6 px-2 -mx-2">
+          <span class="hidden sm:block signage text-[12px] tracking-[.18em] text-oak-500 tab">04</span>
+          <span class="row-thumb block h-16 w-16 sm:h-[112px] sm:w-[112px] overflow-hidden rounded-[2px] bg-ink-800">
+            <img src="assets/img/ros_9403.jpg" alt="Un cours en cours sur le plancher noir, mur de miroirs" class="h-full w-full object-cover" style="object-position:38% 42%;" loading="lazy">
+          </span>
+          <span class="min-w-0">
+            <span class="block font-display text-[24px] sm:text-[32px] font-semibold leading-none">Hip-hop</span>
+            <span class="mt-1.5 block text-[14.5px] sm:text-[15.5px] leading-snug text-ink-800/70">Du groove, de la technique et de la sueur. Cours réguliers, tous niveaux, dans la salle noire.</span>
+          </span>
+          <span class="row-arrow shrink-0 flex items-center gap-2 text-[13px] font-semibold text-ink-800">
+            <span class="hidden md:inline">Voir les horaires</span>
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+          </span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#horaire" class="row-disc grid grid-cols-[64px_1fr_auto] sm:grid-cols-[52px_112px_1fr_auto] items-center gap-4 sm:gap-6 border-b border-oak-500/35 py-5 sm:py-6 px-2 -mx-2">
+          <span class="hidden sm:block signage text-[12px] tracking-[.18em] text-oak-500 tab">05</span>
+          <span class="row-thumb block h-16 w-16 sm:h-[112px] sm:w-[112px] overflow-hidden rounded-[2px] bg-ink-800">
+            <img src="assets/img/ros_9403.jpg" alt="La salle noire et son mur de miroirs pendant un cours" class="h-full w-full object-cover" style="object-position:72% 52%;" loading="lazy">
+          </span>
+          <span class="min-w-0">
+            <span class="block font-display text-[24px] sm:text-[32px] font-semibold leading-none">Heels</span>
+            <span class="mt-1.5 block text-[14.5px] sm:text-[15.5px] leading-snug text-ink-800/70">La danse en talons : technique, présence, confiance. Aucun niveau requis, juste l'envie.</span>
+          </span>
+          <span class="row-arrow shrink-0 flex items-center gap-2 text-[13px] font-semibold text-ink-800">
+            <span class="hidden md:inline">Voir les horaires</span>
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+          </span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#horaire" class="row-disc grid grid-cols-[64px_1fr_auto] sm:grid-cols-[52px_112px_1fr_auto] items-center gap-4 sm:gap-6 border-b border-oak-500/35 py-5 sm:py-6 px-2 -mx-2">
+          <span class="hidden sm:block signage text-[12px] tracking-[.18em] text-oak-500 tab">06</span>
+          <span class="row-thumb block h-16 w-16 sm:h-[112px] sm:w-[112px] overflow-hidden rounded-[2px] bg-ink-800">
+            <img src="assets/img/ros_9203.jpg" alt="La salle en soirée, lumière tamisée" class="h-full w-full object-cover" style="object-position:50% 50%;" loading="lazy">
+          </span>
+          <span class="min-w-0">
+            <span class="block font-display text-[24px] sm:text-[32px] font-semibold leading-none">Salsa</span>
+            <span class="mt-1.5 block text-[14.5px] sm:text-[15.5px] leading-snug text-ink-800/70">Le rythme, les pas de base et beaucoup de monde. Venez seul·e : on change de partenaire.</span>
+          </span>
+          <span class="row-arrow shrink-0 flex items-center gap-2 text-[13px] font-semibold text-ink-800">
+            <span class="hidden md:inline">Voir les horaires</span>
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+          </span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#horaire" class="row-disc grid grid-cols-[64px_1fr_auto] sm:grid-cols-[52px_112px_1fr_auto] items-center gap-4 sm:gap-6 border-b border-oak-500/35 py-5 sm:py-6 px-2 -mx-2">
+          <span class="hidden sm:block signage text-[12px] tracking-[.18em] text-oak-500 tab">07</span>
+          <span class="row-thumb block h-16 w-16 sm:h-[112px] sm:w-[112px] overflow-hidden rounded-[2px] bg-ink-800">
+            <img src="assets/img/ph-bachata.jpg" alt="Un couple qui danse la bachata dans un studio, devant les miroirs" class="h-full w-full object-cover" style="object-position:60% 55%;" loading="lazy">
+          </span>
+          <span class="min-w-0">
+            <span class="block font-display text-[24px] sm:text-[32px] font-semibold leading-none">Bachata</span>
+            <span class="mt-1.5 block text-[14.5px] sm:text-[15.5px] leading-snug text-ink-800/70">La danse de couple la plus populaire du moment. Débutants bienvenus toute l'année.</span>
+          </span>
+          <span class="row-arrow shrink-0 flex items-center gap-2 text-[13px] font-semibold text-ink-800">
+            <span class="hidden md:inline">Voir les horaires</span>
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+
+<section class="relative">
+  <img src="assets/img/ros_9403.jpg" alt="Un cours en cours dans la salle noire du Studio 28, devant le mur de miroirs"
+       class="w-full h-[280px] sm:h-[420px] lg:h-[540px] object-cover" loading="lazy">
+  <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/15 to-transparent"></div>
+  <div class="absolute inset-x-0 bottom-0">
+    <div class="mx-auto max-w-[1320px] px-5 sm:px-8 pb-7 sm:pb-10">
+      <p class="signage text-[10px] tracking-[.22em] text-oak-300">Derrière la vitrine, un mardi à 20h15</p>
+      <p class="mt-2 font-display text-[26px] sm:text-[38px] font-semibold leading-tight text-cream-100 max-w-[24ch]">
+        La salle noire et son mur de miroirs.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="horaire" class="grain scroll-mt-24 bg-cream-200 border-y border-oak-500/40 py-16 sm:py-24"
+         x-data="{ f:'tous' }">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p class="kicker text-terra-600">Réservez votre place en deux clics</p>
+        <h2 class="mt-3 font-display text-[38px] sm:text-[54px] font-semibold leading-none">Cette semaine au Studio 28</h2>
+      </div>
+      <a href="#" class="ulink text-[15px] font-semibold">Horaire complet de la saison →</a>
+    </div>
+
+    
+    <div class="window mt-9 rounded-[3px]">
+
+      
+      <div class="bg-ink-900 text-cream-100 px-5 sm:px-8 py-5 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="enamel-fern enamel px-3 py-1.5">
+            <span class="signage text-[10px] tracking-[.2em]">Ouvert</span>
+          </div>
+          <div>
+            <p class="signage text-[12px] sm:text-[13px] tracking-[.2em] text-oak-300">Heures des cours</p>
+            <p class="text-[12.5px] text-cream-100/55">Semaine du <span class="tab">[date]</span> — 7j/7</p>
+          </div>
+        </div>
+        <p class="text-[11.5px] text-cream-100/45 max-w-[34ch] leading-snug">
+          Horaire de démonstration. Les créneaux définitifs sont <span class="text-oak-300">[à confirmer]</span>.
+        </p>
+      </div>
+
+      
+      <div class="bg-cream-200 border-b border-oak-500/35 px-4 sm:px-8 py-4">
+        <div class="flex flex-wrap gap-1.5 text-[12.5px] signage tracking-[.12em]">
+          <button @click="f='tous'" :class="f==='tous' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Tous</button>
+          <button @click="f='yoga'" :class="f==='yoga' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Yoga</button>
+          <button @click="f='pilates'" :class="f==='pilates' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Pilates</button>
+          <button @click="f='cyclo'" :class="f==='cyclo' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Cyclodanse</button>
+          <button @click="f='hiphop'" :class="f==='hiphop' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Hip-hop</button>
+          <button @click="f='heels'" :class="f==='heels' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Heels</button>
+          <button @click="f='salsa'" :class="f==='salsa' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Salsa</button>
+          <button @click="f='bachata'" :class="f==='bachata' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Bachata</button>
+        </div>
+      </div>
+
+      
+      <div class="bg-cream-100">
+
+        
+        <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
+          <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
+            <p class="signage text-[12px] tracking-[.18em] text-terra-600">Lundi</p>
+            <p class="text-[12px] text-ink-800/50 tab">[date]</p>
+          </div>
+          <div class="divide-y divide-oak-500/20">
+            <div x-show="f==='tous'||f==='pilates'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">12h30</span>
+              <span><span class="block font-semibold text-[16px]">Pilates — tous niveaux</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='yoga'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">18h30</span>
+              <span><span class="block font-semibold text-[16px]">Yoga doux — débutant·e·s</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='hiphop'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">20h00</span>
+              <span><span class="block font-semibold text-[16px]">Hip-hop — tous niveaux</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
+          <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
+            <p class="signage text-[12px] tracking-[.18em] text-terra-600">Mardi</p>
+            <p class="text-[12px] text-ink-800/50 tab">[date]</p>
+          </div>
+          <div class="divide-y divide-oak-500/20">
+            <div x-show="f==='tous'||f==='yoga'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">12h30</span>
+              <span><span class="block font-semibold text-[16px]">Yoga tonique</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='cyclo'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">19h00</span>
+              <span><span class="block font-semibold text-[16px]">Cyclodanse — aucune expérience nécessaire</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">[X] crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='bachata'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">20h15</span>
+              <span><span class="block font-semibold text-[16px]">Bachata — débutant·e·s</span><span class="block text-[13.5px] text-ink-800/55">[professeur] · venez seul·e</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
+          <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
+            <p class="signage text-[12px] tracking-[.18em] text-terra-600">Mercredi</p>
+            <p class="text-[12px] text-ink-800/50 tab">[date]</p>
+          </div>
+          <div class="divide-y divide-oak-500/20">
+            <div x-show="f==='tous'||f==='pilates'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">18h00</span>
+              <span><span class="block font-semibold text-[16px]">Pilates — dos et centre</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='heels'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">19h30</span>
+              <span><span class="block font-semibold text-[16px]">Heels — technique &amp; présence</span><span class="block text-[13.5px] text-ink-800/55">[professeur] · <span class="text-fern-600 font-medium">il reste 4 places</span></span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">30 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='salsa'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">21h00</span>
+              <span><span class="block font-semibold text-[16px]">Salsa — open level</span><span class="block text-[13.5px] text-ink-800/55">[professeur] · on change de partenaire</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
+          <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
+            <p class="signage text-[12px] tracking-[.18em] text-terra-600">Jeudi</p>
+            <p class="text-[12px] text-ink-800/50 tab">[date]</p>
+          </div>
+          <div class="divide-y divide-oak-500/20">
+            <div x-show="f==='tous'||f==='yoga'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">12h30</span>
+              <span><span class="block font-semibold text-[16px]">Yoga — pause de midi</span><span class="block text-[13.5px] text-ink-800/55">[professeur] · tapis fournis</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='heels'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">19h00</span>
+              <span><span class="block font-semibold text-[16px]">Heels — débutant·e·s</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">30 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='hiphop'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">20h30</span>
+              <span><span class="block font-semibold text-[16px]">Hip-hop — intermédiaire</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
+          <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
+            <p class="signage text-[12px] tracking-[.18em] text-terra-600">Vendredi</p>
+            <p class="text-[12px] text-ink-800/50 tab">[date]</p>
+          </div>
+          <div class="divide-y divide-oak-500/20">
+            <div x-show="f==='tous'||f==='cyclo'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">18h30</span>
+              <span><span class="block font-semibold text-[16px]">Cyclodanse</span><span class="block text-[13.5px] text-ink-800/55">[professeur] · le cours le moins cher du studio</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">[X] crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='salsa'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">19h30</span>
+              <span><span class="block font-semibold text-[16px]">Salsa — débutant·e·s</span><span class="block text-[13.5px] text-ink-800/55">[professeur] · <span class="text-fern-600 font-medium">il reste 6 places</span></span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='bachata'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">20h45</span>
+              <span><span class="block font-semibold text-[16px]">Bachata — intermédiaire</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
+          <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
+            <p class="signage text-[12px] tracking-[.18em] text-terra-600">Samedi</p>
+            <p class="text-[12px] text-ink-800/50 tab">[date]</p>
+          </div>
+          <div class="divide-y divide-oak-500/20">
+            <div x-show="f==='tous'||f==='yoga'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">10h00</span>
+              <span><span class="block font-semibold text-[16px]">Yoga — matin</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='pilates'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">11h30</span>
+              <span><span class="block font-semibold text-[16px]">Pilates — reprise en douceur</span><span class="block text-[13.5px] text-ink-800/55">[professeur] · tapis fournis</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='salsa'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">15h00</span>
+              <span><span class="block font-semibold text-[16px]">Salsa — atelier</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="grid sm:grid-cols-[132px_1fr]">
+          <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
+            <p class="signage text-[12px] tracking-[.18em] text-terra-600">Dimanche</p>
+            <p class="text-[12px] text-ink-800/50 tab">[date]</p>
+          </div>
+          <div class="divide-y divide-oak-500/20">
+            <div x-show="f==='tous'||f==='yoga'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">10h30</span>
+              <span><span class="block font-semibold text-[16px]">Yoga doux</span><span class="block text-[13.5px] text-ink-800/55">[professeur]</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">15 crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+            <div x-show="f==='tous'||f==='cyclo'" class="grid grid-cols-[62px_1fr] sm:grid-cols-[80px_1fr_120px_auto] items-center gap-x-4 gap-y-1 px-5 sm:px-8 py-4">
+              <span class="tab font-display text-[19px] sm:text-[21px] font-semibold text-terra-600">17h00</span>
+              <span><span class="block font-semibold text-[16px]">Cyclodanse</span><span class="block text-[13.5px] text-ink-800/55">[professeur] · aucune expérience nécessaire</span></span>
+              <span class="col-start-2 sm:col-start-3 text-[13.5px] tab text-ink-800/70">[X] crédits</span>
+              <a href="#" class="col-start-2 sm:col-start-4 justify-self-start rounded-[2px] border border-ink-900 px-3 py-1.5 text-[12.5px] font-semibold hover:bg-ink-900 hover:text-cream-100 transition-colors">Pré-inscription</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      
+      <div class="bg-ink-900 text-cream-100/70 px-5 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-3 text-[13px]">
+        <p>Pré-inscription — <span class="tab text-oak-300">13 €</span> au lieu de <span class="tab">15 €</span> <span class="text-cream-100/40">[à confirmer]</span></p>
+        <a href="#" class="ulink font-semibold text-cream-100" style="box-shadow:inset 0 -1px 0 rgba(227,199,156,.6)">Recevoir l'horaire chaque semaine</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="grain py-16 sm:py-24">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+
+      <div class="lg:col-span-4">
+        <p class="kicker text-terra-600">Pas d'abonnement. Des crédits.</p>
+        <h2 class="mt-3 font-display text-[38px] sm:text-[48px] font-semibold leading-[1.02]">Comment ça marche</h2>
+        <div class="mt-6 border-l-2 border-oak-500 pl-5 text-[15.5px] leading-relaxed text-ink-800/75">
+          <p>Un cours de danse : <span class="tab font-semibold text-ink-900">15 crédits</span>.<br>
+             Un cours de heels : <span class="tab font-semibold text-ink-900">30 crédits</span>.<br>
+             La cyclodanse est le cours le moins cher du studio. <span class="text-ink-800/45">[à confirmer]</span></p>
+        </div>
+      </div>
+
+      <ol class="lg:col-span-8 grid sm:grid-cols-3 gap-px bg-oak-500/40 border border-oak-500/40 rounded-[3px] overflow-hidden">
+        <li class="bg-cream-200 ruled p-6 sm:p-7">
+          <span class="enamel-oak enamel inline-grid place-items-center h-10 w-10 rounded-full font-display text-[17px] font-bold text-ink-900 tab">1</span>
+          <h3 class="mt-5 font-display text-[22px] font-semibold leading-tight">Achetez des crédits.</h3>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-ink-800/80">Un pack de <span class="tab">65 €</span> ou de <span class="tab">120 €</span>, ou un cours à l'unité. Pas d'abonnement, pas d'engagement. <span class="text-ink-800/45">[à confirmer]</span></p>
+        </li>
+        <li class="bg-cream-200 ruled p-6 sm:p-7">
+          <span class="enamel-oak enamel inline-grid place-items-center h-10 w-10 rounded-full font-display text-[17px] font-bold text-ink-900 tab">2</span>
+          <h3 class="mt-5 font-display text-[22px] font-semibold leading-tight">Choisissez votre cours.</h3>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-ink-800/80">Yoga lundi, heels jeudi, salsa samedi : vos crédits fonctionnent partout, chez tous les professeurs de la maison.</p>
+        </li>
+        <li class="bg-cream-200 ruled p-6 sm:p-7">
+          <span class="enamel-oak enamel inline-grid place-items-center h-10 w-10 rounded-full font-display text-[17px] font-bold text-ink-900 tab">3</span>
+          <h3 class="mt-5 font-display text-[22px] font-semibold leading-tight">Pré-inscrivez-vous.</h3>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-ink-800/80">Votre place est réservée et le cours vous coûte moins cher. Vous montrez votre QR code à l'entrée, c'est tout.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="lieu" class="grain scroll-mt-24 bg-ink-800 text-cream-100 grain-dark py-16 sm:py-24">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+
+    <div class="flex flex-wrap items-end justify-between gap-6 border-b border-cream-100/20 pb-5">
+      <div>
+        <p class="kicker text-oak-300">Du chêne, de la lumière, et un jardin</p>
+        <h2 class="mt-3 font-display text-[38px] sm:text-[54px] font-semibold leading-none">Le lieu</h2>
+      </div>
+      <p class="signage text-[11px] tracking-[.2em] text-cream-100/45">Derrière la vitrine — Rue des Deux Églises 28</p>
+    </div>
+
+    
+    <figure class="mt-10">
+      <img src="assets/img/studio-28-27.jpg" alt="La salle principale, parquet en chêne clair, murs sombres et le jardin visible par les fenêtres"
+           class="w-full h-[300px] sm:h-[520px] lg:h-[680px] object-cover rounded-[3px]" loading="lazy">
+      <figcaption class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 signage text-[10px] tracking-[.2em] text-cream-100/45">
+        <span>La salle, depuis l'entrée</span><span class="text-oak-300">Le jardin par les fenêtres</span>
+      </figcaption>
+    </figure>
+
+    <div class="mt-12 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <blockquote class="lg:col-span-4 font-display text-[23px] sm:text-[28px] leading-[1.28] font-medium text-oak-300">
+        « Un parquet en chêne clair, des murs sombres, un mur de miroirs et un plafond haut.
+        Derrière la salle, un vrai jardin : pergola en bois, pavés bleus, fougères et beaucoup de vert.
+        On y vient pour un cours. On y reste dix minutes de plus. »
+      </blockquote>
+
+      <figure class="lg:col-span-8">
+        <img src="assets/img/studio-28-10.jpg" alt="La salle vide : colonnes habillées de lattes de chêne, comptoir de bar et plancher noir au fond"
+             class="w-full h-[280px] sm:h-[400px] lg:h-[470px] object-cover rounded-[3px]" loading="lazy">
+        <figcaption class="mt-3 signage text-[10px] tracking-[.2em] text-cream-100/45">La salle, vide — [X] m²</figcaption>
+      </figure>
+    </div>
+
+    
+    <figure class="mt-12">
+      <img src="assets/img/studio-28-20.jpg" alt="La cour intérieure : pergola en bois, pavés bleus, pelouse, fougères et graminées"
+           class="w-full h-[300px] sm:h-[480px] lg:h-[620px] object-cover rounded-[3px]" loading="lazy">
+      <figcaption class="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+        <span class="signage text-[10px] tracking-[.2em] text-oak-300">Le jardin</span>
+        <span class="text-[14px] text-cream-100/60">Derrière la salle. Aucun autre studio à Bruxelles n'en a un.</span>
+      </figcaption>
+    </figure>
+
+    
+    <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+      <figure>
+        <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses" class="w-full h-[170px] sm:h-[230px] object-cover rounded-[3px]" loading="lazy">
+        <figcaption class="mt-2.5 signage text-[10px] tracking-[.2em] text-cream-100/45">La terrasse</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/ros_9188.jpg" alt="Colonne habillée de lattes de chêne, fenêtre sur la verdure" class="w-full h-[170px] sm:h-[230px] object-cover rounded-[3px]" loading="lazy">
+        <figcaption class="mt-2.5 signage text-[10px] tracking-[.2em] text-cream-100/45">Le chêne</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/ros_9184.jpg" alt="Détail : fleurs sur une table, mur bleu nuit" class="w-full h-[170px] sm:h-[230px] object-cover rounded-[3px]" loading="lazy">
+        <figcaption class="mt-2.5 signage text-[10px] tracking-[.2em] text-cream-100/45">Le détail</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/ros_9193.jpg" alt="Table près de la fenêtre, verdure du jardin au-delà" class="w-full h-[170px] sm:h-[230px] object-cover rounded-[3px]" loading="lazy">
+        <figcaption class="mt-2.5 signage text-[10px] tracking-[.2em] text-cream-100/45">La fenêtre</figcaption>
+      </figure>
+    </div>
+
+    <ul class="mt-12 grid sm:grid-cols-3 gap-px bg-cream-100/15 border border-cream-100/15 rounded-[3px] overflow-hidden text-[14.5px]">
+      <li class="bg-ink-800 p-5"><span class="signage block text-[10px] tracking-[.2em] text-oak-300">Surface</span><span class="mt-1.5 block tab text-cream-100/85">[X] m² · [X] personnes debout</span></li>
+      <li class="bg-ink-800 p-5"><span class="signage block text-[10px] tracking-[.2em] text-oak-300">Équipement</span><span class="mt-1.5 block text-cream-100/85">Parquet, miroirs, système son, vestiaires [à confirmer]</span></li>
+      <li class="bg-ink-800 p-5"><span class="signage block text-[10px] tracking-[.2em] text-oak-300">Accès</span><span class="mt-1.5 block text-cream-100/85">Métro Madou · tram Madou · parking [à confirmer]</span></li>
+    </ul>
+  </div>
+</section>
+
+
+
+<section class="grain py-16 sm:py-24">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+
+    <div class="flex flex-wrap items-end justify-between gap-6 border-b-2 border-ink-900 pb-5">
+      <div>
+        <p class="kicker text-terra-600">Chacun son école, une seule maison</p>
+        <h2 class="mt-3 font-display text-[38px] sm:text-[54px] font-semibold leading-none">Les professeurs et les écoles</h2>
+      </div>
+      <p class="max-w-[40ch] text-[15px] leading-relaxed text-ink-800/70">
+        Une dizaine de professeurs et de petites écoles indépendantes enseignent ici. Chacun garde son nom, sa page et ses élèves.
+      </p>
+    </div>
+
+    <p class="mt-6 signage text-[11px] tracking-[.2em] text-oak-500">Une porte, une dizaine de sonnettes</p>
+
+    <ul class="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+      
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Yoga · [école]</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Yoga · indépendant·e</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Pilates · [école]</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Pilates · indépendant·e</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Cyclodanse · [école]</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Hip-hop · [collectif]</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Hip-hop · indépendant·e</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Heels · [école]</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Salsa · [école]</span>
+        </span>
+      </li>
+      <li class="bell bg-cream-200 border border-oak-500/45 rounded-[3px] p-4 flex items-center gap-3.5">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full bg-ink-900 text-oak-300 font-display text-[13px] signage tracking-[.05em]">[ ]</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight truncate">[Nom]</span>
+          <span class="block text-[13px] text-ink-800/60">Bachata · [école]</span>
+        </span>
+      </li>
+
+      
+      <li class="col-span-2 bell rounded-[3px] p-4 flex items-center gap-3.5 border-2 border-dashed border-fern-600/55 bg-fern-600/[.07]">
+        <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full border-2 border-dashed border-fern-600/60 text-fern-600 text-[22px] leading-none">+</span>
+        <span class="min-w-0">
+          <span class="block font-display text-[16.5px] font-semibold leading-tight">Votre nom ici</span>
+          <span class="block text-[13px] text-ink-800/65">Une sonnette libre — <a href="#louer" class="ulink font-semibold text-fern-600">louer un créneau</a></span>
+        </span>
+      </li>
+    </ul>
+
+    <p class="mt-5 text-[13px] text-ink-800/50">Noms, portraits et logos des écoles partenaires — <span class="signage tracking-[.1em] text-oak-500">[à fournir]</span>.</p>
+  </div>
+</section>
+
+
+
+<section id="agenda" class="grain scroll-mt-24 bg-cream-200 border-y border-oak-500/40 py-14 sm:py-20">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 class="font-display text-[30px] sm:text-[38px] font-semibold leading-none">Ce qui se passe au studio</h2>
+      <p class="signage text-[11px] tracking-[.2em] text-oak-500">Affiché dans la vitrine</p>
+    </div>
+
+    <div class="mt-8 grid sm:grid-cols-3 gap-5">
+      <article class="bg-cream-100 border border-oak-500/45 rounded-[3px] p-6 rotate-[-0.6deg]">
+        <p class="signage text-[10px] tracking-[.2em] text-terra-600">Samedi 29 août</p>
+        <h3 class="mt-3 font-display text-[24px] font-semibold leading-tight">Journée portes ouvertes</h3>
+        <p class="mt-2.5 text-[15px] leading-relaxed text-ink-800/75">Toutes les disciplines, cours d'essai gratuits, la salle et le jardin ouverts toute la journée.</p>
+        <a href="#" class="ulink mt-4 inline-block text-[14px] font-semibold">Voir le programme →</a>
+      </article>
+      <article class="bg-cream-100 border border-oak-500/45 rounded-[3px] p-6 rotate-[0.4deg]">
+        <p class="signage text-[10px] tracking-[.2em] text-terra-600">[Date]</p>
+        <h3 class="mt-3 font-display text-[24px] font-semibold leading-tight">Soirée sociale</h3>
+        <p class="mt-2.5 text-[15px] leading-relaxed text-ink-800/75">On pousse les tables, on ouvre le jardin. Venez seul·e ou accompagné·e. <span class="text-ink-800/45">[à confirmer]</span></p>
+        <a href="#" class="ulink mt-4 inline-block text-[14px] font-semibold">Voir la date →</a>
+      </article>
+      <article class="bg-cream-100 border border-oak-500/45 rounded-[3px] p-6 rotate-[-0.3deg]">
+        <p class="signage text-[10px] tracking-[.2em] text-terra-600">[Date]</p>
+        <h3 class="mt-3 font-display text-[24px] font-semibold leading-tight">Atelier découverte</h3>
+        <p class="mt-2.5 text-[15px] leading-relaxed text-ink-800/75">Deux heures pour essayer une discipline sans rien connaître. <span class="text-ink-800/45">[à confirmer]</span></p>
+        <a href="#" class="ulink mt-4 inline-block text-[14px] font-semibold">S'inscrire →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="grain grain-dark bg-fern-800 text-cream-100 py-16 sm:py-24">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+
+    <div class="max-w-[52ch]">
+      <p class="kicker text-cream-100/55">Pour enseigner, pour se réunir, pour fêter</p>
+      <h2 class="mt-3 font-display text-[38px] sm:text-[54px] font-semibold leading-[1.0]">La salle est aussi la vôtre</h2>
+    </div>
+
+    <div class="mt-11 grid lg:grid-cols-2 gap-px bg-cream-100/20 border border-cream-100/20 rounded-[3px] overflow-hidden">
+
+      <div id="louer" class="scroll-mt-24 bg-fern-800 p-7 sm:p-10">
+        <p class="signage text-[10px] tracking-[.22em] text-cream-100/55">Porte 1</p>
+        <h3 class="mt-3 font-display text-[27px] sm:text-[32px] font-semibold leading-tight">Donner cours chez nous</h3>
+        <p class="mt-4 text-[16.5px] leading-relaxed text-cream-100/85 max-w-[46ch]">
+          Vous êtes professeur ou vous avez votre propre école ? Louez un créneau au Studio 28 : loyer fixe,
+          votre nom, votre page, vos photos — et <strong class="text-cream-100">vos élèves restent vos élèves</strong>.
+          La plateforme de réservation est comprise dans le loyer.
+        </p>
+        <ul class="mt-6 space-y-2 text-[14.5px] text-cream-100/75">
+          <li class="flex gap-2.5"><span class="text-oak-300">—</span> Loyer fixe, pas de pourcentage sur vos recettes</li>
+          <li class="flex gap-2.5"><span class="text-oak-300">—</span> Votre page, votre marque, vos photos</li>
+          <li class="flex gap-2.5"><span class="text-oak-300">—</span> Parquet, miroirs, système son, vestiaires <span class="text-cream-100/45">[à confirmer]</span></li>
+        </ul>
+        <a href="#" class="mt-8 inline-flex items-center gap-2 rounded-[3px] bg-cream-100 px-6 py-3.5 text-[15.5px] font-semibold text-fern-800 hover:bg-oak-300 transition-colors">
+          Proposer un cours
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div id="entreprises" class="scroll-mt-24 bg-fern-800 p-7 sm:p-10">
+        <p class="signage text-[10px] tracking-[.22em] text-cream-100/55">Porte 2</p>
+        <h3 class="mt-3 font-display text-[27px] sm:text-[32px] font-semibold leading-tight">Privatiser la salle</h3>
+        <p class="mt-4 text-[16.5px] leading-relaxed text-cream-100/85 max-w-[46ch]">
+          Team building, réunion, atelier, anniversaire, tournage. Une salle de <span class="tab">[X]</span> m²
+          pour <span class="tab">[X]</span> personnes, un jardin, un système son, des vestiaires — à
+          <span class="tab">3</span> minutes du métro <span class="text-cream-100">Madou</span>.
+          À partir de <span class="tab">[X]</span> €.
+        </p>
+        <figure class="mt-6">
+          <img src="assets/img/ros_9181.jpg" alt="La salle vue du côté fenêtres, verdure du jardin à l'extérieur" class="w-full h-[180px] sm:h-[210px] object-cover rounded-[3px]" loading="lazy">
+        </figure>
+        <a href="#" class="mt-8 inline-flex items-center gap-2 rounded-[3px] bg-cream-100 px-6 py-3.5 text-[15.5px] font-semibold text-fern-800 hover:bg-oak-300 transition-colors">
+          Demander une date
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <p class="mt-6 text-[14px] text-cream-100/60">
+      Une question ? Écrivez-nous sur WhatsApp — <span class="tab">[téléphone]</span>. On répond en général le jour même. <span class="text-cream-100/40">[à confirmer]</span>
+    </p>
+  </div>
+</section>
+
+
+
+<section class="grain py-16 sm:py-24">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-4">
+        <h2 class="font-display text-[38px] sm:text-[48px] font-semibold leading-[1.02]">Questions fréquentes</h2>
+        <p class="mt-4 text-[15.5px] leading-relaxed text-ink-800/70 max-w-[34ch]">
+          Les six qui arrivent le plus souvent dans notre boîte mail. Le reste passe par WhatsApp.
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 border-t border-oak-500/45">
+        <details class="group border-b border-oak-500/45">
+          <summary class="flex items-start justify-between gap-6 py-5 font-display text-[19px] sm:text-[22px] font-semibold leading-snug">
+            « Puis-je venir seul·e ? »
+            <span class="faq-plus mt-1 shrink-0 text-terra-600 text-[22px] leading-none">+</span>
+          </summary>
+          <p class="pb-6 pr-10 text-[16px] leading-relaxed text-ink-800/80 max-w-[62ch]">
+            Oui. Dans tous nos cours de danse, on change de partenaire régulièrement. Vous n'avez besoin de personne pour commencer.
+          </p>
+        </details>
+        <details class="group border-b border-oak-500/45">
+          <summary class="flex items-start justify-between gap-6 py-5 font-display text-[19px] sm:text-[22px] font-semibold leading-snug">
+            « Je n'ai jamais dansé / jamais fait de yoga. C'est un problème ? »
+            <span class="faq-plus mt-1 shrink-0 text-terra-600 text-[22px] leading-none">+</span>
+          </summary>
+          <p class="pb-6 pr-10 text-[16px] leading-relaxed text-ink-800/80 max-w-[62ch]">
+            Non. Chaque discipline a son cours débutant, et vous pouvez commencer à n'importe quel moment de l'année — pas seulement en septembre.
+          </p>
+        </details>
+        <details class="group border-b border-oak-500/45">
+          <summary class="flex items-start justify-between gap-6 py-5 font-display text-[19px] sm:text-[22px] font-semibold leading-snug">
+            « Faut-il un abonnement ? »
+            <span class="faq-plus mt-1 shrink-0 text-terra-600 text-[22px] leading-none">+</span>
+          </summary>
+          <p class="pb-6 pr-10 text-[16px] leading-relaxed text-ink-800/80 max-w-[62ch]">
+            Non. Vous achetez des crédits et vous les dépensez où vous voulez, quand vous voulez.
+          </p>
+        </details>
+        <details class="group border-b border-oak-500/45">
+          <summary class="flex items-start justify-between gap-6 py-5 font-display text-[19px] sm:text-[22px] font-semibold leading-snug">
+            « Êtes-vous ouverts pendant les vacances scolaires ? »
+            <span class="faq-plus mt-1 shrink-0 text-terra-600 text-[22px] leading-none">+</span>
+          </summary>
+          <p class="pb-6 pr-10 text-[16px] leading-relaxed text-ink-800/80 max-w-[62ch]">
+            Oui, avec un horaire allégé. Il est publié ici deux semaines à l'avance.
+          </p>
+        </details>
+        <details class="group border-b border-oak-500/45">
+          <summary class="flex items-start justify-between gap-6 py-5 font-display text-[19px] sm:text-[22px] font-semibold leading-snug">
+            « Que dois-je apporter ? »
+            <span class="faq-plus mt-1 shrink-0 text-terra-600 text-[22px] leading-none">+</span>
+          </summary>
+          <p class="pb-6 pr-10 text-[16px] leading-relaxed text-ink-800/80 max-w-[62ch]">
+            Une bouteille d'eau et des vêtements confortables. Les tapis sont fournis pour le yoga et le pilates ; pour la danse, prévoyez des chaussures propres.
+          </p>
+        </details>
+        <details class="group border-b border-oak-500/45">
+          <summary class="flex items-start justify-between gap-6 py-5 font-display text-[19px] sm:text-[22px] font-semibold leading-snug">
+            « Les tarifs et promotions en cours »
+            <span class="faq-plus mt-1 shrink-0 text-terra-600 text-[22px] leading-none">+</span>
+          </summary>
+          <p class="pb-6 pr-10 text-[16px] leading-relaxed text-ink-800/80 max-w-[62ch]">
+            Tous nos tarifs sont affichés sur la page Tarifs — ils sont toujours à jour.
+          </p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="venir" class="grain scroll-mt-24 bg-cream-200 border-t border-oak-500/40 py-16 sm:py-24">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+
+    <div class="flex flex-wrap items-end justify-between gap-6 border-b-2 border-ink-900 pb-5">
+      <div>
+        <p class="kicker text-terra-600">Le plan du quartier</p>
+        <h2 class="mt-3 font-display text-[38px] sm:text-[54px] font-semibold leading-none">Venir au Studio 28</h2>
+      </div>
+      <p class="max-w-[36ch] text-[15px] leading-relaxed text-ink-800/70">
+        Une porte au rez-de-chaussée, une vitrine sur le trottoir. Si vous passez devant, entrez.
+      </p>
+    </div>
+
+    <div class="mt-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+      
+      <div class="lg:col-span-8 min-w-0">
+        <div class="bg-cream-100 border border-oak-500/45 rounded-[3px] p-4 sm:p-6 min-w-0">
+          <div class="map-scroll max-w-full">
+            <svg id="plan-quartier" viewBox="0 0 960 600" role="img" aria-label="Plan dessiné à la main du quartier : le Studio 28, la station de métro, l'arrêt de tram et le square voisin"
+                 class="w-full h-auto" style="font-family:'Bricolage Grotesque',sans-serif;">
+              <defs>
+                <pattern id="hatch" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="8" stroke="#A8814D" stroke-width="1.1" opacity=".38"/>
+                </pattern>
+                <pattern id="hatchGreen" width="7" height="7" patternTransform="rotate(-45)" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="7" stroke="#4F6B52" stroke-width="1.3" opacity=".5"/>
+                </pattern>
+              </defs>
+
+              
+              <g stroke="#12161C" stroke-width="1.8" stroke-linejoin="round" fill="url(#hatch)">
+                <path d="M42 44 L268 39 L272 241 L46 246 Z"/>
+                <path d="M304 40 L618 45 L613 238 L299 234 Z"/>
+                <path d="M652 46 L918 40 L923 240 L648 235 Z"/>
+                <path d="M46 280 L268 275 L272 416 L50 421 Z"/>
+                <path d="M300 274 L616 279 L611 420 L297 414 Z"/>
+                <path d="M46 456 L270 451 L274 562 L50 566 Z"/>
+                <path d="M302 454 L618 459 L613 564 L298 558 Z"/>
+                <path d="M652 458 L918 452 L922 563 L648 568 Z"/>
+              </g>
+
+              
+              <path d="M652 280 L920 275 L924 418 L648 423 Z" fill="url(#hatchGreen)" stroke="#2C3B2F" stroke-width="1.8"/>
+              <text x="786" y="345" text-anchor="middle" class="maplabel" font-size="15" fill="#2C3B2F" letter-spacing="3">[Square]</text>
+              <text x="786" y="368" text-anchor="middle" font-size="12" fill="#2C3B2F" opacity=".75" font-family="Inter, sans-serif">à 2 min à pied</text>
+
+              
+              <path d="M420 330 L600 333 L598 412 L418 409 Z" fill="url(#hatchGreen)" stroke="#2C3B2F" stroke-width="1.6" stroke-dasharray="7 5"/>
+              <text x="509" y="378" text-anchor="middle" class="maplabel" font-size="12.5" fill="#2C3B2F" letter-spacing="2.4">Le jardin</text>
+
+              
+              <text x="62" y="266" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Rue du Studio] →</text>
+              <text x="62" y="443" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Rue]</text>
+              <text x="700" y="443" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Avenue]</text>
+              <g transform="rotate(-90 288 390)">
+                <text x="288" y="390" text-anchor="middle" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Boulevard]</text>
+              </g>
+              <g transform="rotate(-90 664 130)">
+                <text x="664" y="130" text-anchor="middle" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Chaussée]</text>
+              </g>
+
+              
+              <path d="M636 34 C 632 180, 640 400, 634 572" fill="none" stroke="#12161C" stroke-width="2.2" stroke-dasharray="12 7" opacity=".8"/>
+              <g stroke="#12161C" stroke-width="2" opacity=".55">
+                <line x1="626" y1="120" x2="646" y2="120"/><line x1="627" y1="200" x2="647" y2="200"/>
+                <line x1="628" y1="380" x2="648" y2="380"/><line x1="627" y1="480" x2="647" y2="480"/>
+              </g>
+              
+              <circle cx="637" cy="300" r="11" fill="#F7F3EA" stroke="#12161C" stroke-width="2.6"/>
+              <circle cx="637" cy="300" r="4.2" fill="#12161C"/>
+              <text x="616" y="296" text-anchor="end" class="maplabel" font-size="12.5" fill="#12161C" letter-spacing="2">Tram</text>
+              <text x="616" y="315" text-anchor="end" font-size="13" fill="#12161C" opacity=".7" font-family="Inter, sans-serif">Madou</text>
+
+              
+              <circle cx="286" cy="258" r="19" fill="#12161C"/>
+              <text x="286" y="266" text-anchor="middle" font-size="21" font-weight="700" fill="#F7F3EA" class="maplabel solid">M</text>
+              <text x="264" y="216" text-anchor="end" class="maplabel" font-size="12.5" fill="#12161C" letter-spacing="2">Métro</text>
+              <text x="264" y="235" text-anchor="end" font-size="13" fill="#12161C" opacity=".7" font-family="Inter, sans-serif">Madou</text>
+
+              
+              <path d="M306 264 C 340 276, 380 270, 422 273" fill="none" stroke="#C05A34" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
+              <text x="364" y="302" text-anchor="middle" font-size="12.5" fill="#9C4526" font-family="Inter, sans-serif">3 min à pied</text>
+
+              
+              <g>
+                <rect x="424" y="252" width="46" height="40" rx="3" fill="#9C4526"/>
+                <text x="447" y="280" text-anchor="middle" font-size="21" font-weight="700" fill="#F7F3EA" class="maplabel solid">28</text>
+                <line x1="447" y1="252" x2="447" y2="206" stroke="#12161C" stroke-width="1.8"/>
+                <circle cx="447" cy="206" r="3" fill="#12161C"/>
+                <rect x="330" y="106" width="264" height="94" rx="3" fill="#F7F3EA" stroke="#12161C" stroke-width="1.8"/>
+                <line x1="447" y1="200" x2="447" y2="206" stroke="#12161C" stroke-width="1.8"/>
+                <text x="350" y="139" class="maplabel solid" font-size="17" fill="#12161C" letter-spacing="2.4">Studio 28</text>
+                <text x="350" y="161" class="solid" font-size="13.5" fill="#12161C" opacity=".72" font-family="Inter, sans-serif">Rue des Deux Églises 28, 1000 Bruxelles</text>
+                <text x="350" y="181" class="solid" font-size="12.5" fill="#4F6B52" font-family="Inter, sans-serif">Vitrine sur rue · rez-de-chaussée</text>
+              </g>
+
+              
+              <g transform="translate(886,540)">
+                <path d="M0 -30 L9 8 L0 1 L-9 8 Z" fill="none" stroke="#12161C" stroke-width="1.8" stroke-linejoin="round"/>
+                <text x="0" y="26" text-anchor="middle" class="maplabel" font-size="12" fill="#12161C" letter-spacing="1.5">N</text>
+              </g>
+
+              
+              <g transform="translate(60,578)">
+                <line x1="0" y1="0" x2="90" y2="0" stroke="#12161C" stroke-width="2"/>
+                <line x1="0" y1="-5" x2="0" y2="5" stroke="#12161C" stroke-width="2"/>
+                <line x1="90" y1="-5" x2="90" y2="5" stroke="#12161C" stroke-width="2"/>
+                <text x="100" y="4" font-size="12" fill="#12161C" opacity=".65" font-family="Inter, sans-serif">≈ 100 m</text>
+              </g>
+            </svg>
+          </div>
+          <p class="lg:hidden mt-3 signage text-[10px] tracking-[.2em] text-oak-500">Faites glisser le plan →</p>
+          <p class="mt-4 text-[12.5px] text-ink-800/50">
+            Plan indicatif dessiné à la main. Adresse exacte, station et arrêt — <span class="signage tracking-[.1em] text-oak-500">[à confirmer]</span>.
+          </p>
+        </div>
+      </div>
+
+      
+      <div class="lg:col-span-4 grid gap-5">
+
+        <div class="enamel px-6 py-6">
+          <p class="signage text-[10px] tracking-[.22em] text-oak-300">L'adresse</p>
+          <p class="mt-3 font-display text-[26px] font-semibold leading-tight text-cream-100">Studio 28</p>
+          <p class="mt-1.5 text-[15.5px] leading-relaxed text-cream-100/80">
+            Rue des Deux Églises 28<br>1000 Bruxelles<br><span class="tab">[téléphone]</span>
+          </p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <a href="#" class="inline-flex items-center gap-2 rounded-[3px] bg-cream-100 px-4 py-2.5 text-[14px] font-semibold text-ink-900 hover:bg-oak-300 transition-colors">Itinéraire</a>
+            <a href="#" class="inline-flex items-center gap-2 rounded-[3px] border border-cream-100/40 px-4 py-2.5 text-[14px] font-semibold text-cream-100 hover:border-cream-100 transition-colors">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="bg-cream-100 border border-oak-500/45 rounded-[3px] px-6 py-6">
+          <p class="signage text-[10px] tracking-[.22em] text-terra-600">Heures d'ouverture</p>
+          <dl class="mt-4 text-[15px] tab divide-y divide-oak-500/25">
+            <div class="flex justify-between py-2"><dt>Lundi — vendredi</dt><dd class="text-ink-800/70">[h] – [h]</dd></div>
+            <div class="flex justify-between py-2"><dt>Samedi</dt><dd class="text-ink-800/70">[h] – [h]</dd></div>
+            <div class="flex justify-between py-2"><dt>Dimanche</dt><dd class="text-ink-800/70">[h] – [h]</dd></div>
+          </dl>
+          <p class="mt-4 text-[13.5px] text-ink-800/55">Ouvert 7j/7. Horaires précis <span class="signage tracking-[.1em] text-oak-500">[à confirmer]</span>.</p>
+        </div>
+
+        <figure class="overflow-hidden rounded-[3px] border border-oak-500/45">
+          <img src="assets/img/studio-28-1.jpg" alt="Le trottoir et la façade vitrée, vus de la rue"
+               class="w-full h-[170px] object-cover" style="object-position:6% 58%;" loading="lazy">
+          <figcaption class="bg-cream-100 px-4 py-2.5 text-[12px] text-ink-800/55">Le trottoir devant la porte.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="grain grain-dark bg-ink-900 text-cream-100 pt-14 pb-10">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="h-14 w-auto">
+        <p class="mt-4 signage text-[10.5px] tracking-[.2em] text-oak-300">Danse · Yoga · Pilates · Bruxelles</p>
+        <p class="mt-4 text-[15px] leading-relaxed text-cream-100/75">
+          Studio 28<br>Rue des Deux Églises 28<br>1000 Bruxelles<br>
+          <span class="tab">[téléphone]</span><br>
+          <a href="#" class="ulink" style="box-shadow:inset 0 -1px 0 rgba(227,199,156,.5)">[courriel]</a>
+        </p>
+      </div>
+
+      <div>
+        <p class="signage text-[10.5px] tracking-[.2em] text-oak-300">Les cours</p>
+        <ul class="mt-4 space-y-2 text-[15px] text-cream-100/75">
+          <li><a href="#" class="hover:text-oak-300 transition-colors">Cours de yoga à Bruxelles</a></li>
+          <li><a href="#" class="hover:text-oak-300 transition-colors">Cours de pilates à Bruxelles</a></li>
+          <li><a href="#" class="hover:text-oak-300 transition-colors">Cyclodanse à Bruxelles</a></li>
+          <li><a href="#" class="hover:text-oak-300 transition-colors">Cours de hip-hop à Bruxelles</a></li>
+          <li><a href="#" class="hover:text-oak-300 transition-colors">Cours de heels à Bruxelles</a></li>
+          <li><a href="#" class="hover:text-oak-300 transition-colors">Cours de salsa à Bruxelles</a></li>
+          <li><a href="#" class="hover:text-oak-300 transition-colors">Cours de bachata à Bruxelles</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="signage text-[10.5px] tracking-[.2em] text-oak-300">La maison</p>
+        <ul class="mt-4 space-y-2 text-[15px] text-cream-100/75">
+          <li><a href="#horaire" class="hover:text-oak-300 transition-colors">Horaire de la semaine</a></li>
+          <li><a href="#" class="hover:text-oak-300 transition-colors">Tarifs et crédits</a></li>
+          <li><a href="#lieu" class="hover:text-oak-300 transition-colors">Le lieu</a></li>
+          <li><a href="#louer" class="hover:text-oak-300 transition-colors">Louer la salle</a></li>
+          <li><a href="#entreprises" class="hover:text-oak-300 transition-colors">Entreprises</a></li>
+          <li><a href="#agenda" class="hover:text-oak-300 transition-colors">Agenda</a></li>
+          <li><a href="#venir" class="hover:text-oak-300 transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="signage text-[10.5px] tracking-[.2em] text-oak-300">Ouvert</p>
+        <dl class="mt-4 text-[15px] tab text-cream-100/75 space-y-1.5">
+          <div class="flex justify-between gap-4"><dt>Lun — ven</dt><dd>[h] – [h]</dd></div>
+          <div class="flex justify-between gap-4"><dt>Samedi</dt><dd>[h] – [h]</dd></div>
+          <div class="flex justify-between gap-4"><dt>Dimanche</dt><dd>[h] – [h]</dd></div>
+        </dl>
+
+        <div class="mt-6 flex items-center gap-2 text-[12px] signage tracking-[.14em]">
+          <span class="px-2 py-1 bg-cream-100 text-ink-900 rounded-[2px]">FR</span>
+          <a href="#" class="px-2 py-1 border border-cream-100/35 rounded-[2px] hover:border-cream-100">EN</a>
+          <a href="#" class="px-2 py-1 border border-cream-100/35 rounded-[2px] hover:border-cream-100">NL</a>
+        </div>
+
+        <div class="mt-5 flex gap-3">
+          <a href="#" aria-label="Instagram" class="grid place-items-center h-10 w-10 rounded-full border border-cream-100/30 hover:border-oak-300 hover:text-oak-300 transition-colors">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.07-1.1.05-1.7.24-2.1.4-.5.2-.9.44-1.3.83-.4.4-.63.8-.83 1.3-.16.4-.35 1-.4 2.1C2.6 9.9 2.6 10.3 2.6 12s0 2.1.07 3.3c.05 1.1.24 1.7.4 2.1.2.5.44.9.83 1.3.4.4.8.63 1.3.83.4.16 1 .35 2.1.4 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c1.1-.05 1.7-.24 2.1-.4.5-.2.9-.44 1.3-.83.4-.4.63-.8.83-1.3.16-.4.35-1 .4-2.1.07-1.2.07-1.6.07-3.3s0-2.1-.07-3.3c-.05-1.1-.24-1.7-.4-2.1-.2-.5-.44-.9-.83-1.3-.4-.4-.8-.63-1.3-.83-.4-.16-1-.35-2.1-.4C15.5 4 15.1 4 12 4Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 8a3.1 3.1 0 1 0 0-6.2 3.1 3.1 0 0 0 0 6.2Zm6.3-8.2a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0Z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="grid place-items-center h-10 w-10 rounded-full border border-cream-100/30 hover:border-oak-300 hover:text-oak-300 transition-colors">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3 0-1.3-.13-2.45-.13-2.42 0-4.08 1.48-4.08 4.2v2.23H7.5V13h2.67v8h3.33Z"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="grid place-items-center h-10 w-10 rounded-full border border-cream-100/30 hover:border-fern-600 hover:text-fern-600 transition-colors">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.94.53 3.76 1.45 5.32L2 22l4.98-1.6a9.8 9.8 0 0 0 5.06 1.4c5.44 0 9.84-4.4 9.84-9.84S17.48 2 12.04 2Zm4.42 13.92c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.5.58.19 1.1.16 1.51.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-cream-100/15 pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-[12.5px] text-cream-100/45">
+      <p>© 2026 Studio 28 — Rue des Deux Églises 28, 1000 Bruxelles. Nom, adresse et téléphone identiques à la fiche Google Business.</p>
+      <p class="flex flex-wrap gap-4">
+        <a href="#" class="hover:text-cream-100/80">Mentions légales</a>
+        <a href="#" class="hover:text-cream-100/80">Vie privée</a>
+        <a href="#" class="hover:text-cream-100/80">Collaboration — Latin Dance Evolution</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+
+<div class="md:hidden fixed bottom-0 inset-x-0 z-50 bg-ink-900 border-t border-oak-500/40">
+  <div class="grid grid-cols-[1fr_auto] gap-2 p-2.5">
+    <a href="#horaire" class="inline-flex justify-center items-center gap-2 rounded-[3px] bg-oak-300 px-4 py-3 text-[15px] font-semibold text-ink-900">
+      Voir l'horaire
+    </a>
+    <a href="#" aria-label="WhatsApp" class="grid place-items-center h-[46px] w-[52px] rounded-[3px] border border-cream-100/30 text-fern-600">
+      <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.94.53 3.76 1.45 5.32L2 22l4.98-1.6a9.8 9.8 0 0 0 5.06 1.4c5.44 0 9.84-4.4 9.84-9.84S17.48 2 12.04 2Zm4.42 13.92c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.5.58.19 1.1.16 1.51.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/></svg>
+    </a>
+  </div>
+</div>
+
+<style>[x-cloak]{display:none !important}</style>
+
+</body>
+</html>
+
+

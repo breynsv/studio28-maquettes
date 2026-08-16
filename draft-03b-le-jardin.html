@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio 28 — Danse, Yoga, Pilates · Bruxelles</title>
+<meta name="description" content="Sept disciplines, plusieurs écoles indépendantes, une seule porte. Une salle en chêne, un jardin derrière, à Bruxelles.">
+<link rel="icon" href="assets/logo/logo-studio28-3.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    { 900:'#12161C', 800:'#1A1F27', 700:'#262D38', 600:'#3A434F' },
+        stone:  { 500:'#6B7078' },
+        oak:    { 300:'#E3C79C', 400:'#CFA974', 500:'#A8814D' },
+        cream:  { 100:'#F7F3EA', 200:'#EDE6D9' },
+        terra:  { 500:'#C05A34', 600:'#9C4526' },
+        coral:  { 400:'#F0714B' },
+        fern:   { 600:'#4F6B52', 800:'#2C3B2F' },
+        body:   { DEFAULT:'#171B21', muted:'#5C636D' }
+      },
+      fontFamily: {
+        serif: ['"Instrument Serif"','Georgia','serif'],
+        sans:  ['"Instrument Sans"','ui-sans-serif','system-ui','sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { background:#F7F3EA; color:#171B21; -webkit-font-smoothing:antialiased; overflow-x: clip; }
+  ::selection { background:#4F6B52; color:#F7F3EA; }
+
+  /* hero geometry — kept out of Tailwind because calc() needs real spaces */
+  @media (max-width:1023.98px) { .hero-fb { margin-left:-1.25rem; margin-right:-1.25rem; } }
+  @media (min-width:768px) and (max-width:1023.98px) { .hero-fb { margin-left:-2rem; margin-right:-2rem; } }
+  @media (min-width:1024px) {
+    .hero-h    { min-height: calc(100vh - 84px); }
+    .hero-img  { height: calc(100vh - 84px); }
+    .hero-bleed{ margin-right: calc(-1 * max(2rem, (100vw - 1360px) / 2 + 2rem)); }
+  }
+
+  .tnum { font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1; }
+  .serif-tight { letter-spacing:-0.015em; line-height:0.98; }
+
+  /* paper grain, cream sections only */
+  .grain { position:relative; }
+  .grain > .grain-l {
+    content:''; position:absolute; inset:0; pointer-events:none; z-index:1; opacity:.5;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.20'/></svg>");
+  }
+
+  /* dappled light, drifting slowly — leaves over a wall */
+  .dapple { overflow: hidden; }
+  .dapple::before {
+    content:''; position:absolute; inset:-10%; pointer-events:none; z-index:0; opacity:.55;
+    background:
+      radial-gradient(38% 30% at 18% 22%, rgba(79,107,82,.13), transparent 70%),
+      radial-gradient(26% 22% at 72% 12%, rgba(207,169,116,.16), transparent 70%),
+      radial-gradient(30% 34% at 58% 78%, rgba(79,107,82,.10), transparent 70%),
+      radial-gradient(20% 18% at 90% 60%, rgba(232,214,180,.22), transparent 70%);
+    animation: drift 46s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { transform: translate3d(0,0,0) scale(1); }
+    50%  { transform: translate3d(-2.5%,1.8%,0) scale(1.06); }
+    100% { transform: translate3d(2%,-2.2%,0) scale(1.02); }
+  }
+
+  /* photographs: one grade across the whole page */
+  .grade { filter: saturate(.9) contrast(1.02) brightness(1.01); }
+
+  /* reveal on scroll */
+  .rv { opacity:0; transform: translateY(20px); transition: opacity 1.15s cubic-bezier(.2,.7,.2,1), transform 1.15s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { opacity:1; transform:none; }
+
+  /* hero load */
+  @keyframes riseIn { from { opacity:0; transform: translateY(22px); } to { opacity:1; transform:none; } }
+  .hs { opacity:0; animation: riseIn 1.15s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  .hf { opacity:0; animation: fadeIn 1.6s ease forwards; }
+
+  .rule-oak { border-color:#A8814D; }
+  .link-u { background-image:linear-gradient(#9C4526,#9C4526); background-size:0% 1px; background-repeat:no-repeat; background-position:0 100%; transition:background-size .45s cubic-bezier(.2,.7,.2,1); }
+  .link-u:hover { background-size:100% 1px; }
+
+  .card-img { transition: transform 1.4s cubic-bezier(.2,.7,.2,1); }
+  .card:hover .card-img { transform: scale(1.045); }
+
+  details > summary { list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker { display:none; }
+  details[open] .faq-plus { transform: rotate(45deg); }
+  .faq-plus { transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+
+  /* the seven pills */
+  .pill { transition: background-color .35s ease, color .35s ease, border-color .35s ease; }
+
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline:2px solid #C05A34; outline-offset:3px; border-radius:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .rv { opacity:1 !important; transform:none !important; transition:none !important; }
+    .hs, .hf { opacity:1 !important; animation:none !important; }
+    .dapple::before { animation:none !important; }
+    .card-img { transition:none !important; }
+  }
+</style>
+</head>
+
+<body class="font-sans antialiased text-[17px] leading-relaxed">
+
+
+<header x-data="{ open:false }" class="sticky top-0 z-50 bg-cream-100/90 backdrop-blur-sm border-b" style="border-bottom-color:rgba(168,129,77,.35)">
+  <div class="mx-auto max-w-[1360px] px-5 md:px-8">
+    <div class="flex items-center justify-between gap-6 h-[68px] md:h-[84px]">
+
+      
+      <a href="#" class="flex items-center gap-3 shrink-0">
+        <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="h-8 md:h-11 w-auto hidden sm:block">
+        <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="h-8 w-auto sm:hidden">
+        <span class="hidden xl:block text-[11px] uppercase tracking-[0.22em] text-body-muted border-l pl-3 leading-tight" style="border-color:rgba(168,129,77,.5)">
+          Danse · Yoga · Pilates<br>Bruxelles
+        </span>
+      </a>
+
+      
+      <nav class="hidden lg:flex items-center gap-7 text-[15px]">
+        <a href="#cours"    class="link-u">Cours</a>
+        <a href="#horaire"  class="link-u">Horaire</a>
+        <a href="#lieu"     class="link-u">Le lieu</a>
+        <a href="#la-salle" class="link-u">Louer la salle</a>
+        <a href="#la-salle" class="link-u">Entreprises</a>
+        <a href="#contact"  class="link-u">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3 md:gap-5">
+        <div class="hidden md:flex items-center gap-1.5 text-[13px] tracking-wide text-body-muted">
+          <span class="text-body font-medium">FR</span><span class="opacity-40">/</span>
+          <a href="#" class="hover:text-body">EN</a><span class="opacity-40">/</span>
+          <a href="#" class="hover:text-body">NL</a>
+        </div>
+        <a href="#contact" aria-label="Écrivez-nous sur WhatsApp" class="grid place-items-center h-9 w-9 rounded-full border transition hover:bg-fern-600 hover:text-cream-100 hover:border-fern-600" style="border-color:rgba(168,129,77,.55)">
+          <svg viewBox="0 0 24 24" class="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.65-1.23-1.46-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.65 4.2 3.71.59.25 1.04.4 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+        </a>
+        <a href="#horaire" class="hidden sm:inline-flex items-center h-10 px-5 text-[14px] tracking-wide text-cream-100 bg-terra-600 hover:bg-terra-500 transition rounded-full">Réserver</a>
+        <button @click="open=!open" class="lg:hidden grid place-items-center h-9 w-9" :aria-expanded="open" aria-label="Ouvrir le menu">
+          <span class="relative block w-5">
+            <span class="block h-px bg-body transition-transform" :class="open && 'translate-y-[3px] rotate-45'"></span>
+            <span class="block h-px bg-body mt-[6px] transition-transform" :class="open && '-translate-y-[3px] -rotate-45'"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  
+  <div x-show="open" x-collapse x-cloak class="lg:hidden border-t" style="border-color:rgba(168,129,77,.35)">
+    <nav class="mx-auto max-w-[1360px] px-5 py-6 grid gap-4 text-[19px] font-serif">
+      <a @click="open=false" href="#cours">Cours</a>
+      <a @click="open=false" href="#horaire">Horaire</a>
+      <a @click="open=false" href="#lieu">Le lieu</a>
+      <a @click="open=false" href="#la-salle">Louer la salle</a>
+      <a @click="open=false" href="#la-salle">Entreprises</a>
+      <a @click="open=false" href="#contact">Contact</a>
+      <div class="pt-4 mt-2 border-t flex items-center gap-2 text-[13px] tracking-wide" style="border-color:rgba(168,129,77,.35)">
+        <span class="font-medium">FR</span><span class="opacity-40">/</span><a href="#">EN</a><span class="opacity-40">/</span><a href="#">NL</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+
+<section class="relative grain dapple bg-cream-100">
+  <span class="grain-l"></span>
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8">
+    <div class="hero-h grid lg:grid-cols-[minmax(0,470px)_minmax(0,1fr)] gap-8 lg:gap-12 items-center py-8 lg:py-14">
+
+      
+      <div class="order-1 max-w-[560px]">
+        <p class="hs text-[11px] uppercase tracking-[0.28em] text-fern-600 flex items-center gap-3" style="animation-delay:.05s">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-fern-600"></span>
+          Sept façons de bouger, une seule adresse
+        </p>
+
+        <h1 class="hs font-serif serif-tight mt-6 text-[clamp(38px,4.4vw,54px)]" style="animation-delay:.14s">
+          Sept disciplines.<br>
+          Un même parquet.<br>
+          <span class="italic">Un jardin derrière.</span>
+        </h1>
+
+        <p class="hs mt-7 text-[18px] md:text-[19px] leading-[1.6] text-body-muted" style="animation-delay:.24s">
+          Yoga, pilates, cyclodanse, hip-hop, heels, salsa et bachata — tout se donne dans
+          la même salle en chêne, avec les mêmes crédits.
+        </p>
+
+        <div class="hs mt-9 flex flex-wrap items-center gap-3" style="animation-delay:.32s">
+          <a href="#horaire" class="inline-flex items-center gap-2 h-12 px-7 rounded-full bg-terra-600 text-cream-100 hover:bg-terra-500 transition text-[15px] tracking-wide">
+            Voir l'horaire
+            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 10h13M11 5l5 5-5 5"/></svg>
+          </a>
+          <a href="#contact" class="inline-flex items-center h-12 px-6 rounded-full border text-[15px] hover:border-fern-600 hover:text-fern-600 transition" style="border-color:rgba(168,129,77,.6)">
+            Journée portes ouvertes — samedi 29 août
+          </a>
+        </div>
+
+        <p class="hs mt-7 text-[13.5px] text-body-muted tnum" style="animation-delay:.5s">
+          Rue des Deux Églises 28, Bruxelles — à 3 min du métro Madou. Ouvert 7j/7.
+        </p>
+      </div>
+
+      
+      <div class="hf hero-bleed order-2 relative" style="animation-delay:.1s">
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 lg:gap-3">
+
+          
+          <figure class="card group relative col-span-2 sm:col-span-4 overflow-hidden bg-ink-900">
+            <img src="assets/img/ros_9403.jpg" alt="Un cours en train de se donner au Studio 28 : sol noir, mur de miroirs, la lumière du jour par les fenêtres."
+                 class="card-img grade w-full h-[170px] sm:h-[195px] lg:h-[210px] object-cover" style="object-position:35% 50%">
+            <figcaption class="absolute inset-x-0 bottom-0 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-4 pt-10 pb-4"
+                        style="background:linear-gradient(180deg, rgba(18,22,28,0) 0%, rgba(18,22,28,.75) 100%)">
+              <span class="font-serif text-cream-100 text-[20px] sm:text-[23px] leading-none">Un cours, un après-midi de semaine</span>
+              <span class="text-[10.5px] uppercase tracking-[0.22em] text-oak-300">Photographié ici, au 28</span>
+            </figcaption>
+          </figure>
+
+          
+          <a href="#cours" class="card group relative block overflow-hidden bg-cream-200 aspect-[4/5]">
+            <img src="assets/img/ph-yoga.jpg" alt="Un cours de yoga : tapis au sol, posture debout, lumière naturelle."
+                 class="card-img grade absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-x-0 bottom-0 px-3.5 pt-9 pb-3 font-serif text-cream-100 text-[19px] leading-none"
+                  style="background:linear-gradient(180deg, rgba(18,22,28,0) 0%, rgba(18,22,28,.7) 100%)">Yoga</span>
+          </a>
+
+          
+          <a href="#cours" class="card group relative block overflow-hidden bg-cream-200 aspect-[4/5]">
+            <img src="assets/img/ph-pilates.jpg" alt="Un cours de pilates sur reformer, dans un studio lumineux."
+                 class="card-img grade absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-x-0 bottom-0 px-3.5 pt-9 pb-3 font-serif text-cream-100 text-[19px] leading-none"
+                  style="background:linear-gradient(180deg, rgba(18,22,28,0) 0%, rgba(18,22,28,.7) 100%)">Pilates</span>
+          </a>
+
+          
+          <a href="#cours" class="card group relative block overflow-hidden bg-cream-200 aspect-[4/5]">
+            <img src="assets/img/ph-cyclodanse.jpg" alt="Un cours de cyclodanse, la danse en fauteuil roulant, dans un studio."
+                 class="card-img grade absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-x-0 bottom-0 px-3.5 pt-9 pb-3 font-serif text-cream-100 text-[19px] leading-none"
+                  style="background:linear-gradient(180deg, rgba(18,22,28,0) 0%, rgba(18,22,28,.7) 100%)">Cyclodanse</span>
+          </a>
+
+          
+          <a href="#cours" class="group relative block overflow-hidden bg-cream-200 aspect-[4/5] border transition hover:border-fern-600" style="border-color:rgba(168,129,77,.5)">
+            <span class="absolute inset-0 flex flex-col justify-between p-3.5">
+              <span class="block h-1.5 w-1.5 rounded-full bg-fern-600"></span>
+              <span class="block">
+                <span class="block font-serif text-[19px] leading-none">Hip-hop</span>
+                <span class="block mt-2 text-[11px] leading-snug text-body-muted">Le soir, en salle noire.<br>Photo à venir : nous photographions les cours le 29 août.</span>
+              </span>
+            </span>
+          </a>
+
+          
+          <a href="#cours" class="card group relative block overflow-hidden bg-cream-200 aspect-[4/5]">
+            <img src="assets/img/ph-heels.jpg" alt="Un cours de heels : danseuses en talons sur le parquet, face aux miroirs."
+                 class="card-img grade absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-x-0 bottom-0 px-3.5 pt-9 pb-3 font-serif text-cream-100 text-[19px] leading-none"
+                  style="background:linear-gradient(180deg, rgba(18,22,28,0) 0%, rgba(18,22,28,.7) 100%)">Heels</span>
+          </a>
+
+          
+          <a href="#cours" class="group relative block overflow-hidden bg-cream-200 aspect-[4/5] border transition hover:border-fern-600" style="border-color:rgba(168,129,77,.5)">
+            <span class="absolute inset-0 flex flex-col justify-between p-3.5">
+              <span class="block h-1.5 w-1.5 rounded-full bg-fern-600"></span>
+              <span class="block">
+                <span class="block font-serif text-[19px] leading-none">Salsa</span>
+                <span class="block mt-2 text-[11px] leading-snug text-body-muted">Débutants toute l'année.<br>Photo à venir : nous photographions les cours le 29 août.</span>
+              </span>
+            </span>
+          </a>
+
+          
+          <a href="#cours" class="card group relative block overflow-hidden bg-cream-200 aspect-[4/5]">
+            <img src="assets/img/ph-bachata.jpg" alt="Un couple qui danse la bachata dans un studio, devant les miroirs."
+                 class="card-img grade absolute inset-0 h-full w-full object-cover">
+            <span class="absolute inset-x-0 bottom-0 px-3.5 pt-9 pb-3 font-serif text-cream-100 text-[19px] leading-none"
+                  style="background:linear-gradient(180deg, rgba(18,22,28,0) 0%, rgba(18,22,28,.7) 100%)">Bachata</span>
+          </a>
+
+          
+          <a href="#horaire" class="group relative block overflow-hidden bg-fern-800 text-cream-100 aspect-[4/5]">
+            <span class="absolute inset-0 flex flex-col justify-between p-3.5">
+              <span class="block text-[10.5px] uppercase tracking-[0.22em] text-oak-300">Les sept</span>
+              <span class="block">
+                <span class="block font-serif text-[19px] leading-[1.1]">Jour<br>par jour</span>
+                <span class="mt-2 inline-flex items-center gap-2 text-[12px] text-oak-300 group-hover:gap-3.5 transition-all">
+                  Voir l'horaire
+                  <svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 10h13M11 5l5 5-5 5"/></svg>
+                </span>
+              </span>
+            </span>
+          </a>
+
+        </div>
+
+        
+        <figure class="mt-3 flex items-stretch gap-4">
+          <img src="assets/img/studio-28-20.jpg" alt="Le jardin du Studio 28 : pergola en bois, pavés bleus, fougères et graminées."
+               class="grade h-[74px] w-[120px] sm:w-[150px] shrink-0 object-cover" style="object-position:52% 55%">
+          <figcaption class="text-[12.5px] leading-snug text-body-muted self-center max-w-[420px]">
+            Et derrière la salle, le jardin. On vient pour un cours, on y reste dix minutes de plus.
+          </figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="relative bg-ink-800">
+  <figure class="relative">
+    <img src="assets/img/studio-28-27.jpg" alt="La grande salle du Studio 28, parquet en chêne clair, murs sombres, et le jardin visible à travers les fenêtres."
+         class="grade w-full h-[52vh] md:h-[62vh] object-cover" style="object-position:40% 60%">
+    <div class="absolute inset-0" style="background:linear-gradient(90deg, rgba(18,22,28,.72) 0%, rgba(18,22,28,.35) 45%, rgba(18,22,28,0) 75%)"></div>
+    <figcaption class="absolute inset-0 flex items-end">
+      <div class="mx-auto max-w-[1360px] w-full px-5 md:px-8 pb-10 md:pb-16">
+        <p class="rv font-serif text-cream-100 text-[clamp(26px,3.6vw,44px)] serif-tight max-w-[620px]">
+          Depuis la salle, on voit le jardin.<br class="hidden md:block">
+          <span class="italic text-oak-300">Depuis le jardin, on entend la musique.</span>
+        </p>
+      </div>
+    </figcaption>
+  </figure>
+</section>
+
+
+<section class="relative grain bg-cream-200">
+  <span class="grain-l"></span>
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-10 md:py-14">
+    <ul class="grid md:grid-cols-3 gap-8 md:gap-10">
+      <li class="rv flex gap-4">
+        <span class="mt-2 h-1.5 w-1.5 rounded-full bg-fern-600 shrink-0"></span>
+        <p class="text-[17px] leading-snug"><strong class="font-medium">10 professeurs et écoles indépendantes</strong><br><span class="text-body-muted text-[15px]">Chacun son école, une seule maison.</span></p>
+      </li>
+      <li class="rv flex gap-4" style="transition-delay:.12s">
+        <span class="mt-2 h-1.5 w-1.5 rounded-full bg-fern-600 shrink-0"></span>
+        <p class="text-[17px] leading-snug"><strong class="font-medium">Un seul portefeuille de crédits, toutes les disciplines</strong><br><span class="text-body-muted text-[15px]">Pas d'abonnement, pas d'engagement.</span></p>
+      </li>
+      <li class="rv flex gap-4" style="transition-delay:.24s">
+        <span class="mt-2 h-1.5 w-1.5 rounded-full bg-fern-600 shrink-0"></span>
+        <p class="text-[17px] leading-snug"><strong class="font-medium">Rue des Deux Églises 28, Bruxelles — ouvert 7j/7</strong><br><span class="text-body-muted text-[15px]">Une salle, un jardin, des vestiaires <span class="opacity-70">[à confirmer]</span>.</span></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<section id="cours" class="relative grain dapple bg-cream-100 scroll-mt-24">
+  <span class="grain-l"></span>
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-20 md:py-28">
+
+    <div class="rv flex flex-wrap items-end justify-between gap-6 border-b pb-6" style="border-color:rgba(168,129,77,.45)">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.28em] text-fern-600">01 — Les cours</p>
+        <h2 class="font-serif serif-tight mt-3 text-[clamp(34px,4.6vw,58px)]">Sept disciplines,<br>une dizaine de professeurs</h2>
+      </div>
+      <p class="text-body-muted max-w-[360px] text-[15.5px] leading-relaxed">
+        Tous les cours se donnent dans la même salle, avec les mêmes crédits. Vous pouvez commencer à n'importe quel moment de l'année.
+      </p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+
+      
+      <article class="card rv group">
+        <a href="#horaire" class="block">
+          <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
+            <img src="assets/img/ph-yoga.jpg" alt="Un cours de yoga : tapis au sol, posture debout, lumière naturelle" class="card-img grade absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div class="mt-4 flex items-baseline justify-between gap-3">
+            <h3 class="font-serif text-[27px] leading-none">Yoga</h3>
+            <span class="flex gap-1 shrink-0" aria-label="Intensité 1 sur 3">
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600/20 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600/20 not-italic"></i>
+            </span>
+          </div>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-body-muted">Respirer, s'étirer, relâcher. Des cours doux et des cours plus toniques, tous ouverts aux débutants.</p>
+          <p class="mt-4 text-[13.5px] text-terra-600 link-u inline-block">Voir les horaires</p>
+        </a>
+      </article>
+
+      
+      <article class="card rv group" style="transition-delay:.08s">
+        <a href="#horaire" class="block">
+          <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
+            <img src="assets/img/ph-pilates.jpg" alt="Un cours de pilates sur reformer, dans un studio lumineux" class="card-img grade absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div class="mt-4 flex items-baseline justify-between gap-3">
+            <h3 class="font-serif text-[27px] leading-none">Pilates</h3>
+            <span class="flex gap-1 shrink-0" aria-label="Intensité 2 sur 3">
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600/20 not-italic"></i>
+            </span>
+          </div>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-body-muted">Renforcer le dos et le centre, en douceur et sans impact. Le cours idéal pour reprendre le mouvement.</p>
+          <p class="mt-4 text-[13.5px] text-terra-600 link-u inline-block">Voir les horaires</p>
+        </a>
+      </article>
+
+      
+      <article class="card rv group" style="transition-delay:.16s">
+        <a href="#horaire" class="block">
+          <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
+            <img src="assets/img/ph-cyclodanse.jpg" alt="Un cours de cyclodanse : vélos en salle, lumière colorée" class="card-img grade absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div class="mt-4 flex items-baseline justify-between gap-3">
+            <h3 class="font-serif text-[27px] leading-none">Cyclodanse</h3>
+            <span class="flex gap-1 shrink-0" aria-label="Intensité 3 sur 3">
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+            </span>
+          </div>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-body-muted">Du vélo, mais en musique et en rythme. Le cours le plus cardio de la maison — et le moins cher.</p>
+          <p class="mt-4 text-[13.5px] text-terra-600 link-u inline-block">Voir les horaires</p>
+        </a>
+      </article>
+
+      
+      <article class="card rv group" style="transition-delay:.24s">
+        <a href="#horaire" class="block">
+          <div class="relative overflow-hidden bg-ink-900 aspect-[4/3]">
+            <img src="assets/img/ros_9403.jpg" alt="Un cours en cours dans la salle noire du Studio 28, devant le mur de miroirs." class="card-img grade absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div class="mt-4 flex items-baseline justify-between gap-3">
+            <h3 class="font-serif text-[27px] leading-none">Hip-hop</h3>
+            <span class="flex gap-1 shrink-0" aria-label="Intensité 3 sur 3">
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+            </span>
+          </div>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-body-muted">Du groove, de la technique et de la sueur. Cours réguliers, tous niveaux, dans la salle noire.</p>
+          <p class="mt-4 text-[13.5px] text-terra-600 link-u inline-block">Voir les horaires</p>
+        </a>
+      </article>
+
+      
+      <article class="card rv group">
+        <a href="#horaire" class="block">
+          <div class="relative overflow-hidden bg-ink-900 aspect-[4/3]">
+            <img src="assets/img/ros_9203.jpg" alt="La salle en éclairage de soirée, lumière colorée sur les murs sombres." class="card-img grade absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div class="mt-4 flex items-baseline justify-between gap-3">
+            <h3 class="font-serif text-[27px] leading-none">Heels</h3>
+            <span class="flex gap-1 shrink-0" aria-label="Intensité 3 sur 3">
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+            </span>
+          </div>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-body-muted">La danse en talons : technique, présence, confiance. Aucun niveau requis, juste l'envie.</p>
+          <p class="mt-4 text-[13.5px] text-terra-600 link-u inline-block">Voir les horaires</p>
+        </a>
+      </article>
+
+      
+      <article class="card rv group" style="transition-delay:.08s">
+        <a href="#horaire" class="block">
+          <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
+            <img src="assets/img/ros_9180.jpg" alt="La grande salle du Studio 28, vue d'ensemble, parquet en chêne et mur de miroirs au fond." class="card-img grade absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div class="mt-4 flex items-baseline justify-between gap-3">
+            <h3 class="font-serif text-[27px] leading-none">Salsa</h3>
+            <span class="flex gap-1 shrink-0" aria-label="Intensité 2 sur 3">
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600/20 not-italic"></i>
+            </span>
+          </div>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-body-muted">Le rythme, les pas de base et beaucoup de monde. Venez seul·e : on change de partenaire.</p>
+          <p class="mt-4 text-[13.5px] text-terra-600 link-u inline-block">Voir les horaires</p>
+        </a>
+      </article>
+
+      
+      <article class="card rv group" style="transition-delay:.16s">
+        <a href="#horaire" class="block">
+          <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
+            <img src="assets/img/ph-bachata.jpg" alt="Un couple qui danse la bachata dans un studio, devant les miroirs" class="card-img grade absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div class="mt-4 flex items-baseline justify-between gap-3">
+            <h3 class="font-serif text-[27px] leading-none">Bachata</h3>
+            <span class="flex gap-1 shrink-0" aria-label="Intensité 2 sur 3">
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600 not-italic"></i>
+              <i class="h-1.5 w-1.5 rounded-full bg-fern-600/20 not-italic"></i>
+            </span>
+          </div>
+          <p class="mt-2.5 text-[15px] leading-relaxed text-body-muted">La danse de couple la plus populaire du moment. Débutants bienvenus toute l'année.</p>
+          <p class="mt-4 text-[13.5px] text-terra-600 link-u inline-block">Voir les horaires</p>
+        </a>
+      </article>
+
+      
+      <article class="rv" style="transition-delay:.24s">
+        <a href="#horaire" class="group flex flex-col justify-between h-full min-h-[260px] bg-fern-800 text-cream-100 p-7">
+          <p class="text-[11px] uppercase tracking-[0.26em] text-oak-300">Toute la semaine</p>
+          <div>
+            <p class="font-serif text-[30px] leading-[1.05] serif-tight">L'horaire complet,<br><span class="italic">jour par jour</span></p>
+            <span class="mt-6 inline-flex items-center gap-2 text-[14px] text-oak-300 group-hover:gap-4 transition-all">
+              Voir l'horaire
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 10h13M11 5l5 5-5 5"/></svg>
+            </span>
+          </div>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="relative bg-ink-900">
+  <div class="relative">
+    <img src="assets/img/ros_9403.jpg" alt="Cours de danse dans la salle noire, mur de miroirs et éclairage de scène." class="grade w-full h-[58vh] md:h-[70vh] object-cover opacity-[0.62]" style="object-position:35% 50%">
+    <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(18,22,28,.55) 0%, rgba(18,22,28,.25) 40%, rgba(18,22,28,.88) 100%)"></div>
+    <div class="absolute inset-0 flex items-end">
+      <div class="mx-auto max-w-[1360px] w-full px-5 md:px-8 pb-12 md:pb-20">
+        <div class="max-w-[640px]">
+          <p class="rv text-[11px] uppercase tracking-[0.28em] text-coral-400">02 — L'autre température</p>
+          <h2 class="rv font-serif serif-tight mt-4 text-cream-100 text-[clamp(32px,4.4vw,56px)]">
+            Derrière le jardin,<br>il y a une salle noire.
+          </h2>
+          <p class="rv mt-5 text-[17px] leading-relaxed text-cream-100/80 max-w-[520px]">
+            Sol noir, mur de miroirs, un vrai système son. C'est là que se donnent le hip-hop et les heels, le soir, avec la musique fort. La maison est calme ; elle n'est pas endormie.
+          </p>
+          <div class="rv mt-7 flex flex-wrap gap-3">
+            <a href="#horaire" class="inline-flex items-center h-11 px-6 rounded-full bg-cream-100 text-ink-900 hover:bg-oak-300 transition text-[14.5px]">Hip-hop &amp; heels — voir les horaires</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="horaire" class="relative grain bg-cream-100 scroll-mt-24"
+  x-data="{ f:'all', has:{
+    lundi:['pilates','yoga','hiphop'],
+    mardi:['yoga','cyclo','salsa'],
+    mercredi:['pilates','bachata'],
+    jeudi:['yoga','heels','hiphop'],
+    vendredi:['cyclo','salsa'],
+    samedi:['yoga','pilates','heels'],
+    dimanche:['yoga','bachata']
+  } }">
+  <span class="grain-l"></span>
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-20 md:py-28">
+
+    <div class="rv flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.28em] text-fern-600">03 — L'horaire</p>
+        <h2 class="font-serif serif-tight mt-3 text-[clamp(34px,4.6vw,58px)]">Cette semaine au Studio 28</h2>
+      </div>
+      <p class="text-body-muted text-[15.5px] max-w-[330px] leading-relaxed">
+        Réservez votre place en deux clics. La pré-inscription vous garantit une place et coûte moins cher.
+      </p>
+    </div>
+
+    
+    <div class="rv mt-9 flex flex-wrap gap-2 text-[13.5px]">
+      <button @click="f='all'"    :class="f==='all'    ? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Tout</button>
+      <button @click="f='yoga'"   :class="f==='yoga'   ? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Yoga</button>
+      <button @click="f='pilates'":class="f==='pilates'? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Pilates</button>
+      <button @click="f='cyclo'"  :class="f==='cyclo'  ? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Cyclodanse</button>
+      <button @click="f='hiphop'" :class="f==='hiphop' ? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Hip-hop</button>
+      <button @click="f='heels'"  :class="f==='heels'  ? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Heels</button>
+      <button @click="f='salsa'"  :class="f==='salsa'  ? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Salsa</button>
+      <button @click="f='bachata'":class="f==='bachata'? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Bachata</button>
+    </div>
+
+    
+    <div class="hidden md:grid mt-10 grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 pb-3 border-b text-[11px] uppercase tracking-[0.18em] text-body-muted" style="border-color:rgba(168,129,77,.45)">
+      <span>Heure</span><span>Cours</span><span>Professeur·e</span><span>Niveau</span><span>Crédits</span><span></span>
+    </div>
+
+    
+    <div x-show="f==='all' || has.lundi.includes(f)" class="rv">
+      <h3 class="font-serif text-[26px] mt-9 md:mt-8 mb-1">Lundi</h3>
+      <div>
+        <div x-show="f==='all'||f==='pilates'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">12h30</span>
+          <span class="text-[17px]">Pilates — dos et centre</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Débutant·e</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='yoga'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">18h30</span>
+          <span class="text-[17px]">Yoga doux</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Tous niveaux</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='hiphop'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">20h00</span>
+          <span class="text-[17px]">Hip-hop — salle noire</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Tous niveaux</span>
+            <span class="tnum">15 cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div x-show="f==='all' || has.mardi.includes(f)" class="rv">
+      <h3 class="font-serif text-[26px] mt-9 mb-1">Mardi</h3>
+      <div>
+        <div x-show="f==='all'||f==='yoga'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">12h30</span>
+          <span class="text-[17px]">Yoga — pause de midi</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Tous niveaux</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='cyclo'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">19h00</span>
+          <span class="text-[17px]">Cyclodanse</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Aucune expérience</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='salsa'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">20h30</span>
+          <span class="text-[17px]">Salsa — niveau 1</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Débutant·e</span>
+            <span class="tnum">15 cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div x-show="f==='all' || has.mercredi.includes(f)" class="rv">
+      <h3 class="font-serif text-[26px] mt-9 mb-1">Mercredi</h3>
+      <div>
+        <div x-show="f==='all'||f==='pilates'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">18h30</span>
+          <span class="text-[17px]">Pilates</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Tous niveaux</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='bachata'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">20h00</span>
+          <span class="text-[17px]">Bachata — niveau 1</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Débutant·e</span>
+            <span class="tnum">15 cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div x-show="f==='all' || has.jeudi.includes(f)" class="rv">
+      <h3 class="font-serif text-[26px] mt-9 mb-1">Jeudi</h3>
+      <div>
+        <div x-show="f==='all'||f==='yoga'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">12h30</span>
+          <span class="text-[17px]">Yoga — pause de midi</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Tous niveaux</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='heels'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">19h00</span>
+          <span class="text-[17px]">Heels — salle noire</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Aucun niveau requis</span>
+            <span class="tnum">30 cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='hiphop'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">20h30</span>
+          <span class="text-[17px]">Hip-hop — intermédiaire</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Intermédiaire</span>
+            <span class="tnum">15 cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div x-show="f==='all' || has.vendredi.includes(f)" class="rv">
+      <h3 class="font-serif text-[26px] mt-9 mb-1">Vendredi</h3>
+      <div>
+        <div x-show="f==='all'||f==='cyclo'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">18h30</span>
+          <span class="text-[17px]">Cyclodanse</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Aucune expérience</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='salsa'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">20h00</span>
+          <span class="text-[17px]">Salsa — niveau 2</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Intermédiaire</span>
+            <span class="tnum">15 cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div x-show="f==='all' || has.samedi.includes(f)" class="rv">
+      <h3 class="font-serif text-[26px] mt-9 mb-1">Samedi</h3>
+      <div>
+        <div x-show="f==='all'||f==='yoga'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">10h30</span>
+          <span class="text-[17px]">Yoga — matin, portes du jardin ouvertes</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Tous niveaux</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='pilates'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">12h00</span>
+          <span class="text-[17px]">Pilates</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Débutant·e</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='heels'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">14h00</span>
+          <span class="text-[17px]">Heels — atelier</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Aucun niveau requis</span>
+            <span class="tnum">30 cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div x-show="f==='all' || has.dimanche.includes(f)" class="rv">
+      <h3 class="font-serif text-[26px] mt-9 mb-1">Dimanche</h3>
+      <div>
+        <div x-show="f==='all'||f==='yoga'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">11h00</span>
+          <span class="text-[17px]">Yoga doux</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Tous niveaux</span>
+            <span class="tnum">[X] cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+        <div x-show="f==='all'||f==='bachata'" class="grid grid-cols-[64px_1fr] md:grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 gap-y-1 py-4 border-t items-baseline" style="border-color:rgba(168,129,77,.3)">
+          <span class="tnum text-terra-600 text-[16px]">17h00</span>
+          <span class="text-[17px]">Bachata — pratique</span>
+          <div class="col-start-2 md:col-start-auto md:contents flex flex-wrap items-baseline gap-x-3 text-[14px] text-body-muted">
+            <span class="md:justify-self-start border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[prof·e]</span>
+            <span>Tous niveaux</span>
+            <span class="tnum">15 cr</span>
+            <a href="#" class="md:justify-self-end text-terra-600 link-u">Pré-inscription</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv mt-10 flex flex-wrap items-center justify-between gap-5 border-t pt-6" style="border-color:rgba(168,129,77,.45)">
+      <p class="text-[13.5px] text-body-muted max-w-[560px]">
+        Semaine d'exemple — l'horaire réel et les tarifs sont <span class="border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[à confirmer]</span>. Venir seul·e ne pose aucun problème : dans tous les cours de danse, on change de partenaire.
+      </p>
+      <a href="#" class="inline-flex items-center gap-2 text-[15px] text-terra-600 link-u">Voir l'horaire complet
+        <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 10h13M11 5l5 5-5 5"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="relative grain bg-cream-200">
+  <span class="grain-l"></span>
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-20 md:py-28">
+    <div class="rv max-w-[620px]">
+      <p class="text-[11px] uppercase tracking-[0.28em] text-fern-600">04 — Comment ça marche</p>
+      <h2 class="font-serif serif-tight mt-3 text-[clamp(34px,4.6vw,58px)]">Pas d'abonnement.<br><span class="italic">Des crédits.</span></h2>
+    </div>
+
+    <ol class="mt-14 grid md:grid-cols-3 gap-x-10 gap-y-12">
+      <li class="rv">
+        <div class="flex items-baseline gap-4 border-t pt-5" style="border-color:rgba(168,129,77,.55)">
+          <span class="font-serif text-[40px] text-fern-600 leading-none tnum">1</span>
+          <h3 class="font-serif text-[26px] leading-tight">Achetez des crédits</h3>
+        </div>
+        <p class="mt-4 text-[16px] leading-relaxed text-body-muted">Un pack de 65 € ou de 120 €, ou un cours à l'unité. Pas d'abonnement, pas d'engagement. <span class="opacity-70">[à confirmer]</span></p>
+      </li>
+      <li class="rv" style="transition-delay:.1s">
+        <div class="flex items-baseline gap-4 border-t pt-5" style="border-color:rgba(168,129,77,.55)">
+          <span class="font-serif text-[40px] text-fern-600 leading-none tnum">2</span>
+          <h3 class="font-serif text-[26px] leading-tight">Choisissez votre cours</h3>
+        </div>
+        <p class="mt-4 text-[16px] leading-relaxed text-body-muted">Yoga lundi, heels jeudi, salsa samedi : vos crédits fonctionnent partout, chez tous les professeurs de la maison.</p>
+      </li>
+      <li class="rv" style="transition-delay:.2s">
+        <div class="flex items-baseline gap-4 border-t pt-5" style="border-color:rgba(168,129,77,.55)">
+          <span class="font-serif text-[40px] text-fern-600 leading-none tnum">3</span>
+          <h3 class="font-serif text-[26px] leading-tight">Pré-inscrivez-vous</h3>
+        </div>
+        <p class="mt-4 text-[16px] leading-relaxed text-body-muted">Votre place est réservée et le cours vous coûte moins cher. Vous montrez votre QR code à l'entrée, c'est tout.</p>
+      </li>
+    </ol>
+
+    <div class="rv mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 bg-cream-100 px-6 md:px-9 py-7">
+      <p class="text-[16px] leading-relaxed max-w-[620px]">
+        Un cours de danse : <strong class="tnum font-medium">15 crédits</strong>. Un cours de heels : <strong class="tnum font-medium">30 crédits</strong>. La cyclodanse est le cours le moins cher du studio. <span class="text-body-muted">[à confirmer]</span>
+      </p>
+      <a href="#horaire" class="inline-flex items-center h-11 px-6 rounded-full bg-terra-600 text-cream-100 hover:bg-terra-500 transition text-[14.5px]">Essayer un premier cours</a>
+    </div>
+  </div>
+</section>
+
+
+<section id="lieu" class="relative grain dapple bg-cream-100 scroll-mt-24">
+  <span class="grain-l"></span>
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 pt-20 md:pt-28 pb-12">
+    <div class="rv grid lg:grid-cols-[1fr_minmax(0,520px)] gap-10 items-end">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.28em] text-fern-600">05 — Le lieu</p>
+        <h2 class="font-serif serif-tight mt-3 text-[clamp(34px,4.6vw,58px)]">Du chêne, de la lumière,<br><span class="italic">et un jardin</span></h2>
+      </div>
+      <blockquote class="font-serif text-[clamp(20px,2.1vw,26px)] leading-[1.35] text-body">
+        « Un parquet en chêne clair, des murs sombres, un mur de miroirs et un plafond haut. Derrière la salle, un vrai jardin : pergola en bois, pavés bleus, fougères et beaucoup de vert. On y vient pour un cours. On y reste dix minutes de plus. »
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 pb-20 md:pb-28">
+    <div class="grid gap-5 md:gap-6 md:grid-cols-12">
+      <figure class="rv md:col-span-8">
+        <img src="assets/img/studio-28-10.jpg" alt="La grande salle du Studio 28, vide, vue d'ensemble." class="grade w-full h-[320px] md:h-[520px] object-cover">
+        <figcaption class="mt-3 text-[13px] text-body-muted">La salle, vide. Parquet en chêne, colonnes en lattes, murs charbon.</figcaption>
+      </figure>
+      <figure class="rv md:col-span-4" style="transition-delay:.1s">
+        <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses" class="grade w-full h-[320px] md:h-[520px] object-cover" style="object-position:40% 60%">
+        <figcaption class="mt-3 text-[13px] text-body-muted">Le jardin, entre deux cours.</figcaption>
+      </figure>
+      <figure class="rv md:col-span-4" style="transition-delay:.05s">
+        <img src="assets/img/studio-28-20.jpg" alt="La pergola en bois, les graminées et les fougères au fond du jardin." class="grade w-full h-[240px] md:h-[300px] object-cover">
+        <figcaption class="mt-3 text-[13px] text-body-muted">La pergola, au fond du jardin.</figcaption>
+      </figure>
+      <figure class="rv md:col-span-4" style="transition-delay:.12s">
+        <img src="assets/img/ros_9184.jpg" alt="Détail : fleurs posées sur une table, mur bleu nuit." class="grade w-full h-[240px] md:h-[300px] object-cover">
+        <figcaption class="mt-3 text-[13px] text-body-muted">Un détail de la salle, dressée pour une soirée.</figcaption>
+      </figure>
+      <figure class="rv md:col-span-4" style="transition-delay:.19s">
+        <img src="assets/img/studio-28-1.jpg" alt="L'entrée du Studio 28 depuis la rue, à Bruxelles." class="grade w-full h-[240px] md:h-[300px] object-cover">
+        <figcaption class="mt-3 text-[13px] text-body-muted">La porte, Rue des Deux Églises 28, Bruxelles.</figcaption>
+      </figure>
+    </div>
+
+    <ul class="rv mt-14 grid sm:grid-cols-3 gap-8">
+      <li class="border-t pt-5" style="border-color:rgba(168,129,77,.55)">
+        <h3 class="font-serif text-[24px]">Le sol</h3>
+        <p class="mt-2 text-[15.5px] leading-relaxed text-body-muted">Chêne clair pour le yoga, le pilates et la danse ; sol noir pour la salle de performance. Tapis fournis.</p>
+      </li>
+      <li class="border-t pt-5" style="border-color:rgba(168,129,77,.55)">
+        <h3 class="font-serif text-[24px]">La lumière</h3>
+        <p class="mt-2 text-[15.5px] leading-relaxed text-body-muted">Une façade entière de fenêtres côté jardin, et de l'éclairage sur rail pour les cours du soir.</p>
+      </li>
+      <li class="border-t pt-5" style="border-color:rgba(168,129,77,.55)">
+        <h3 class="font-serif text-[24px]">Le jardin</h3>
+        <p class="mt-2 text-[15.5px] leading-relaxed text-body-muted">Une cour plantée avec pergola, pavés bleus et graminées. Ouverte avant et après les cours.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<section class="relative grain bg-cream-200">
+  <span class="grain-l"></span>
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-20 md:py-28">
+    <div class="rv flex flex-wrap items-end justify-between gap-6 border-b pb-6" style="border-color:rgba(168,129,77,.45)">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.28em] text-fern-600">06 — Les professeurs et les écoles</p>
+        <h2 class="font-serif serif-tight mt-3 text-[clamp(34px,4.6vw,58px)]">Chacun son école,<br><span class="italic">une seule maison</span></h2>
+      </div>
+      <p class="text-body-muted text-[15.5px] max-w-[380px] leading-relaxed">
+        Une dizaine de professeurs et d'écoles indépendantes enseignent au Studio 28. Chacun garde son nom, sa page et ses élèves.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid sm:grid-cols-2 lg:grid-cols-2 gap-x-14">
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Yoga · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Pilates · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Yoga · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Cyclodanse · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Hip-hop · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Heels · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Salsa · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Bachata · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Pilates · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+      <li class="rv flex items-center gap-5 py-5 border-b" style="border-color:rgba(168,129,77,.3)">
+        <span class="h-11 w-11 rounded-full border border-dashed shrink-0 grid place-items-center text-[10px] text-body-muted" style="border-color:rgba(168,129,77,.7)">photo</span>
+        <span class="flex-1 min-w-0"><span class="font-serif text-[22px]">[nom du professeur]</span><span class="block text-[14px] text-body-muted">Yoga · [nom de l'école]</span></span>
+        <a href="#" class="text-[13.5px] text-terra-600 link-u shrink-0">Sa page</a>
+      </li>
+    </ul>
+
+    <p class="rv mt-7 text-[13.5px] text-body-muted">Portraits, noms et logos des écoles <span class="border-b border-dashed" style="border-color:rgba(168,129,77,.7)">[à confirmer]</span>.</p>
+  </div>
+</section>
+
+
+<section id="la-salle" class="relative bg-fern-800 text-cream-100 scroll-mt-24 overflow-hidden">
+  <img src="assets/img/studio-28-22.jpg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-[0.13]">
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-20 md:py-28">
+    <div class="rv max-w-[640px]">
+      <p class="text-[11px] uppercase tracking-[0.28em] text-oak-300">07 — Pour enseigner, pour se réunir, pour fêter</p>
+      <h2 class="font-serif serif-tight mt-3 text-[clamp(34px,4.6vw,58px)]">La salle est aussi la vôtre</h2>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-2 gap-x-16 gap-y-12">
+      <div class="rv md:pr-10 md:border-r" style="border-color:rgba(247,243,234,.22)">
+        <h3 class="font-serif text-[30px]">Donner cours chez nous</h3>
+        <p class="mt-4 text-[16.5px] leading-relaxed text-cream-100/85">
+          Vous êtes professeur ou vous avez votre propre école ? Louez un créneau au Studio 28 : loyer fixe, votre nom, votre page, vos photos — et <strong class="font-medium text-cream-100">vos élèves restent vos élèves</strong>. La plateforme de réservation est comprise dans le loyer.
+        </p>
+        <ul class="mt-6 space-y-2 text-[15px] text-cream-100/75">
+          <li class="flex gap-3"><span class="text-oak-300">—</span> Loyer fixe, pas de pourcentage sur vos recettes</li>
+          <li class="flex gap-3"><span class="text-oak-300">—</span> Votre page, votre marque, vos photos</li>
+          <li class="flex gap-3"><span class="text-oak-300">—</span> Parquet en chêne, salle noire, miroirs, système son, vestiaires <span class="opacity-70">[à confirmer]</span></li>
+        </ul>
+        <a href="#contact" class="mt-8 inline-flex items-center h-12 px-7 rounded-full bg-cream-100 text-fern-800 hover:bg-oak-300 transition text-[15px]">Proposer un cours</a>
+      </div>
+
+      <div class="rv" style="transition-delay:.1s">
+        <h3 class="font-serif text-[30px]">Privatiser la salle</h3>
+        <p class="mt-4 text-[16.5px] leading-relaxed text-cream-100/85">
+          Team building, réunion, atelier, anniversaire, tournage. Une salle de [X] m² pour [X] personnes, un jardin, un système son, des vestiaires — à 3 min du métro Madou. À partir de [X] €.
+        </p>
+        <figure class="mt-6">
+          <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28, chemin en pavés et haies." class="grade w-full h-[190px] object-cover">
+          <figcaption class="mt-2 text-[13px] text-cream-100/60">Le jardin est compris. C'est souvent ce qui décide.</figcaption>
+        </figure>
+        <a href="#contact" class="mt-8 inline-flex items-center h-12 px-7 rounded-full border border-cream-100/60 hover:bg-cream-100 hover:text-fern-800 transition text-[15px]">Demander une date</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="relative grain bg-cream-100">
+  <span class="grain-l"></span>
+  <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-20 md:py-28">
+    <div class="grid lg:grid-cols-[minmax(0,360px)_1fr] gap-10 lg:gap-20">
+      <div class="rv">
+        <p class="text-[11px] uppercase tracking-[0.28em] text-fern-600">08 — Questions fréquentes</p>
+        <h2 class="font-serif serif-tight mt-3 text-[clamp(32px,4vw,50px)]">Les questions<br><span class="italic">qu'on nous pose</span></h2>
+        <p class="mt-6 text-[15.5px] text-body-muted leading-relaxed">Vous ne trouvez pas votre réponse ? Écrivez-nous sur WhatsApp, on répond dans la journée.</p>
+      </div>
+
+      <div class="rv">
+        <details class="group border-t py-5" style="border-color:rgba(168,129,77,.45)" open>
+          <summary class="flex items-start justify-between gap-6"><span class="font-serif text-[23px] leading-snug">Puis-je venir seul·e ?</span><span class="faq-plus mt-2 text-terra-600 text-[20px] leading-none">+</span></summary>
+          <p class="mt-3 pr-10 text-[16.5px] leading-relaxed text-body-muted">Oui. Dans tous nos cours de danse, on change de partenaire régulièrement. Vous n'avez besoin de personne pour commencer.</p>
+        </details>
+        <details class="group border-t py-5" style="border-color:rgba(168,129,77,.45)">
+          <summary class="flex items-start justify-between gap-6"><span class="font-serif text-[23px] leading-snug">Je n'ai jamais dansé / jamais fait de yoga. C'est un problème ?</span><span class="faq-plus mt-2 text-terra-600 text-[20px] leading-none">+</span></summary>
+          <p class="mt-3 pr-10 text-[16.5px] leading-relaxed text-body-muted">Non. Chaque discipline a son cours débutant, et vous pouvez commencer à n'importe quel moment de l'année — pas seulement en septembre.</p>
+        </details>
+        <details class="group border-t py-5" style="border-color:rgba(168,129,77,.45)">
+          <summary class="flex items-start justify-between gap-6"><span class="font-serif text-[23px] leading-snug">Faut-il un abonnement ?</span><span class="faq-plus mt-2 text-terra-600 text-[20px] leading-none">+</span></summary>
+          <p class="mt-3 pr-10 text-[16.5px] leading-relaxed text-body-muted">Non. Vous achetez des crédits et vous les dépensez où vous voulez, quand vous voulez.</p>
+        </details>
+        <details class="group border-t py-5" style="border-color:rgba(168,129,77,.45)">
+          <summary class="flex items-start justify-between gap-6"><span class="font-serif text-[23px] leading-snug">Êtes-vous ouverts pendant les vacances scolaires ?</span><span class="faq-plus mt-2 text-terra-600 text-[20px] leading-none">+</span></summary>
+          <p class="mt-3 pr-10 text-[16.5px] leading-relaxed text-body-muted">Oui, avec un horaire allégé. Il est publié ici deux semaines à l'avance.</p>
+        </details>
+        <details class="group border-t py-5" style="border-color:rgba(168,129,77,.45)">
+          <summary class="flex items-start justify-between gap-6"><span class="font-serif text-[23px] leading-snug">Que dois-je apporter ?</span><span class="faq-plus mt-2 text-terra-600 text-[20px] leading-none">+</span></summary>
+          <p class="mt-3 pr-10 text-[16.5px] leading-relaxed text-body-muted">Une bouteille d'eau et des vêtements confortables. Les tapis sont fournis pour le yoga et le pilates ; pour la danse, prévoyez des chaussures propres.</p>
+        </details>
+        <details class="group border-y py-5" style="border-color:rgba(168,129,77,.45)">
+          <summary class="flex items-start justify-between gap-6"><span class="font-serif text-[23px] leading-snug">Les tarifs et promotions en cours</span><span class="faq-plus mt-2 text-terra-600 text-[20px] leading-none">+</span></summary>
+          <p class="mt-3 pr-10 text-[16.5px] leading-relaxed text-body-muted">Tous nos tarifs sont affichés sur la page Tarifs — ils sont toujours à jour.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<footer id="contact" class="relative bg-ink-900 text-cream-100 scroll-mt-24">
+  <div class="mx-auto max-w-[1360px] px-5 md:px-8 pt-20 md:pt-24 pb-10">
+
+    <div class="grid lg:grid-cols-[1.15fr_1fr_1fr_1fr] gap-x-10 gap-y-12">
+      <div>
+        <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="h-12 w-auto">
+        <p class="mt-5 text-[11px] uppercase tracking-[0.24em] text-oak-300">Danse · Yoga · Pilates · Bruxelles</p>
+        <p class="mt-6 font-serif text-[26px] leading-tight max-w-[280px]">Venir au Studio 28</p>
+        <a href="#" class="mt-5 inline-flex items-center gap-2 h-12 px-6 rounded-full bg-cream-100 text-ink-900 hover:bg-oak-300 transition text-[15px]">
+          <svg viewBox="0 0 24 24" class="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm4.52 12c-.25-.13-1.47-.73-1.69-.82-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.65-1.23-1.46-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.65 4.2 3.71.59.25 1.04.4 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+          Une question ? Écrivez-nous
+        </a>
+      </div>
+
+      <div class="text-[15px] leading-relaxed">
+        <h3 class="text-[11px] uppercase tracking-[0.24em] text-stone-500 mb-4">Adresse</h3>
+        <p class="text-cream-100/85">
+          Studio 28<br>
+          Rue des Deux Églises 28<br>
+          1000 Bruxelles<br>
+          [téléphone]
+        </p>
+        <a href="#" class="mt-4 inline-block text-oak-300 link-u">Ouvrir dans Google Maps</a>
+        <p class="mt-5 text-cream-100/60 text-[14px] tnum">Ouvert 7j/7 — [horaires d'ouverture]</p>
+      </div>
+
+      <div class="text-[15px]">
+        <h3 class="text-[11px] uppercase tracking-[0.24em] text-stone-500 mb-4">Les cours</h3>
+        <ul class="space-y-2 text-cream-100/85">
+          <li><a href="#cours" class="link-u">Yoga</a></li>
+          <li><a href="#cours" class="link-u">Pilates</a></li>
+          <li><a href="#cours" class="link-u">Cyclodanse</a></li>
+          <li><a href="#cours" class="link-u">Hip-hop</a></li>
+          <li><a href="#cours" class="link-u">Heels</a></li>
+          <li><a href="#cours" class="link-u">Salsa</a></li>
+          <li><a href="#cours" class="link-u">Bachata</a></li>
+        </ul>
+      </div>
+
+      <div class="text-[15px]">
+        <h3 class="text-[11px] uppercase tracking-[0.24em] text-stone-500 mb-4">Le studio</h3>
+        <ul class="space-y-2 text-cream-100/85">
+          <li><a href="#horaire" class="link-u">Horaire</a></li>
+          <li><a href="#" class="link-u">Tarifs</a></li>
+          <li><a href="#lieu" class="link-u">Le lieu</a></li>
+          <li><a href="#la-salle" class="link-u">Louer la salle</a></li>
+          <li><a href="#la-salle" class="link-u">Entreprises</a></li>
+          <li><a href="#contact" class="link-u">Contact</a></li>
+        </ul>
+        <h3 class="text-[11px] uppercase tracking-[0.24em] text-stone-500 mt-8 mb-3">Suivre</h3>
+        <ul class="space-y-2 text-cream-100/85">
+          <li><a href="#" class="link-u">Instagram</a></li>
+          <li><a href="#" class="link-u">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    
+    <div class="mt-16 border-t pt-8 flex flex-wrap items-center justify-between gap-6" style="border-color:rgba(247,243,234,.16)">
+      <p class="font-serif text-[22px]">Recevoir l'horaire chaque semaine</p>
+      <form class="flex flex-wrap gap-3" onsubmit="return false">
+        <label class="sr-only" for="nl">Votre adresse e-mail</label>
+        <input id="nl" type="email" placeholder="Votre adresse e-mail" class="h-11 px-4 w-[240px] bg-transparent border text-cream-100 placeholder:text-cream-100/40 rounded-full text-[14.5px]" style="border-color:rgba(247,243,234,.3)">
+        <button class="h-11 px-6 rounded-full bg-terra-600 hover:bg-terra-500 transition text-[14.5px]">S'inscrire</button>
+      </form>
+    </div>
+
+    <div class="mt-10 pt-6 border-t flex flex-wrap items-center justify-between gap-4 text-[13px] text-cream-100/55" style="border-color:rgba(247,243,234,.16)">
+      <p>© 2026 Studio 28 — [mentions légales] · [politique de confidentialité]</p>
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1.5 tracking-wide"><span class="text-cream-100">FR</span><span class="opacity-40">/</span><a href="#" class="hover:text-cream-100">EN</a><span class="opacity-40">/</span><a href="#" class="hover:text-cream-100">NL</a></div>
+        <a href="#" class="opacity-60 hover:opacity-100">Collaboration — Latin Dance Evolution</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-cream-100/95 backdrop-blur border-t px-4 py-3 flex items-center gap-3" style="border-color:rgba(168,129,77,.4)">
+  <a href="#horaire" class="flex-1 inline-flex items-center justify-center h-11 rounded-full bg-terra-600 text-cream-100 text-[15px]">Voir l'horaire</a>
+  <a href="#contact" aria-label="WhatsApp" class="grid place-items-center h-11 w-11 rounded-full border shrink-0" style="border-color:rgba(168,129,77,.55)">
+    <svg viewBox="0 0 24 24" class="h-5 w-5 text-fern-600" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm4.52 12c-.25-.13-1.47-.73-1.69-.82-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.65-1.23-1.46-1.38-1.71-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.65 4.2 3.71.59.25 1.04.4 1.4.52.59.19 1.12.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+  </a>
+</div>
+<div class="md:hidden h-[74px]"></div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.rv');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function (el) { io.observe(el); });
+  });
+</script>
+<style>[x-cloak]{display:none !important}</style>
+
+</body>
+</html>
+
+

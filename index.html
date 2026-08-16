@@ -22,12 +22,13 @@
   <div class="max-w-[1600px] mx-auto px-6 py-4 flex flex-wrap items-center gap-4">
     <div>
       <h1 class="text-2xl font-semibold leading-none tracking-tight">Studio 28 — maquettes du site</h1>
-      <p class="text-sm text-[#1A1F27]/60 mt-1">Dix-sept maquettes : 10 structures (même style) puis 7 styles (même structure). Notez-les, laissez un commentaire, puis copiez le retour.</p>
+      <p class="text-sm text-[#1A1F27]/60 mt-1">Vingt-sept maquettes : 10 structures, 7 styles, et 10 variantes avec un hero sur les disciplines. Notez-les, laissez un commentaire, puis copiez le retour.</p>
     </div>
 
     <div class="ml-auto flex items-center gap-2 text-sm">
-      <button @click="round=0" :class="round===0 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Les 17</button>
+      <button @click="round=0" :class="round===0 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Les 27</button>
       <button @click="round=1" :class="round===1 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Structures</button>
+      <button @click="round=3" :class="round===3 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Hero activités</button>
       <button @click="round=2" :class="round===2 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Styles</button>
       <span class="w-px h-6 bg-[#1A1F27]/20 mx-1"></span>
       <button @click="filter='all'"   :class="filter==='all'   ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Tout <span class="opacity-60" x-text="drafts.length"></span></button>
@@ -50,6 +51,7 @@
       <article class="bg-white rounded-xl border border-[#1A1F27]/15 overflow-hidden flex flex-col shadow-sm"
                :class="{'ring-2 ring-[#4F6B52]': rating(d)==='yes', 'ring-2 ring-[#CFA974]': rating(d)==='maybe', 'opacity-55': rating(d)==='no'}">
 
+        
         <div class="thumb-wrap h-[300px] border-b border-[#1A1F27]/15 cursor-pointer group" @click="open(d)">
           <span class="absolute inset-0 z-0 grid place-items-center text-sm text-[#1A1F27]/40 bg-[#F7F3EA]">en cours…</span>
           <img class="relative z-10 w-full block transition-transform duration-300 group-hover:scale-[1.02]"
@@ -89,6 +91,7 @@
   <p x-show="!visible().length" class="text-center text-[#1A1F27]/50 py-20">Rien dans ce filtre.</p>
 
 </main>
+
 
 <div x-show="current" class="fixed inset-0 z-50 bg-[#1A1F27]/85 flex flex-col" @keydown.escape.window="current=null" x-cloak>
   <div class="flex items-center gap-3 p-3 text-white">
@@ -168,6 +171,36 @@ function picker() {
       { n:'18', r:2, file:'draft-18-terre-et-argile.html', title:'Terre et argile',
         concept:'La lecture la plus chaude et la plus attendue. Argile, sable, chêne. Le témoin de référence.',
         angle:'Fraunces + Inter · argile/avoine/chêne' },
+      { n:"01b", r:3, file:"draft-01b-le-plan-de-salle.html", title:"Le plan de salle \u2014 activit\u00e9s",
+        concept:"Le plan devient un tableau de sp\u00e9cimens : sept disciplines en plaques num\u00e9rot\u00e9es, chacune cliquable pour filtrer l'horaire.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"02b", r:3, file:"draft-02b-l-horaire.html", title:"L'horaire \u2014 activit\u00e9s",
+        concept:"Mosa\u00efque de huit tuiles \u00e0 c\u00f4t\u00e9 du texte \u2014 et le hero est plus court qu'avant, l'horaire atteint toujours le haut de page.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"03b", r:3, file:"draft-03b-le-jardin.html", title:"Le jardin \u2014 activit\u00e9s",
+        concept:"Mosa\u00efque de plates-bandes : un vrai cours en haut, huit plaques carr\u00e9es, le jardin comme sol.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"04b", r:3, file:"draft-04b-sept-portes.html", title:"Sept portes \u2014 activit\u00e9s",
+        concept:"Cinq portes sur sept montrent enfin l'activit\u00e9 ; hip-hop et salsa deviennent des panneaux en lattes de ch\u00eane.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"05b", r:3, file:"draft-05b-la-maison-des-profs.html", title:"La maison des profs \u2014 activit\u00e9s",
+        concept:"Le mur accroche les cours au lieu des portraits manquants, avec un vrai cours du Studio 28 en ancrage.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"06b", r:3, file:"draft-06b-matieres.html", title:"Mati\u00e8res \u2014 activit\u00e9s",
+        concept:"Les disciplines en planche-contact : huit plaques num\u00e9rot\u00e9es avec l\u00e9gendes techniques.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"07b", r:3, file:"draft-07b-ce-soir.html", title:"Ce soir \u2014 activit\u00e9s",
+        concept:"Mosa\u00efque \u00e0 cinq tuiles ; celle du cours en train de se donner s'allume avec un badge horaire en direct.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"08b", r:3, file:"draft-08b-un-seul-portefeuille.html", title:"Un seul portefeuille \u2014 activit\u00e9s",
+        concept:"\u00ab Ce que vos cr\u00e9dits ouvrent \u00bb : sept tuiles cliquables qui d\u00e9pensent depuis le portefeuille.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"09b", r:3, file:"draft-09b-carnet-de-quartier.html", title:"Carnet de quartier \u2014 activit\u00e9s",
+        concept:"La vitrine devient la mosa\u00efque : huit carreaux \u00e0 meneaux noirs sous une imposte dor\u00e9e.",
+        angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"10b", r:3, file:"draft-10b-silence-et-bruit.html", title:"Silence et bruit \u2014 activit\u00e9s",
+        concept:"Mosa\u00efque 3\u00d73 o\u00f9 les tuiles calmes c\u00f4toient les sombres \u2014 le contraste port\u00e9 par le m\u00e9lange lui-m\u00eame.",
+        angle:"M\u00eame design, hero sur les disciplines" },
     ],
     get drafts() { return this.all; },
     init() { try { this.state = JSON.parse(localStorage.getItem(this.KEY)) || {}; } catch { this.state = {}; } },
