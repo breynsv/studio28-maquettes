@@ -175,7 +175,7 @@ const HORAIRE_EXEMPLE = {
   ]
 };
 
-/* Ordre volontaire : le latin n’est jamais en tête (voir brief §0.2). */
+
 const DISCIPLINES = [
   { nom:'Yoga',       img:'assets/img/ph-yoga.jpg', ligne:'Respirer, s’étirer, relâcher. Des cours doux et des cours plus toniques, tous ouverts aux débutants.' },
   { nom:'Pilates',    img:'assets/img/ph-pilates.jpg', ligne:'Renforcer le dos et le centre, en douceur et sans impact. Le cours idéal pour reprendre le mouvement.' },
@@ -416,19 +416,7 @@ function studio28() {
       return 'assets/img/ros_9203.jpg';                   // le soir — la salle sous les LED chaudes
     },
 
-    /* ── LA MOSAÏQUE DU HERO ────────────────────────────────────────────────
-       Les disciplines sont visibles en photo dès la première seconde.
-
-       RÈGLE DE PHOTOGRAPHIE (brief §0.2 / §3) — à ne pas contourner :
-       • Salsa et hip-hop N’ONT PAS de photographie. On ne les illustre donc pas :
-         aucune image n’est réétiquetée pour les faire exister.
-       • Le latin (salsa, bachata) n’est jamais en tête de lecture, jamais en grand,
-         et n’est JAMAIS la tuile éclairée par l’horloge — voir `focusMosaique`.
-       • La grande tuile est ros_9403 : un vrai cours, dans la vraie salle du Studio 28.
-         Elle ne porte pas de nom de discipline, parce qu’on ne sait pas laquelle c’est.
-
-       Les cinq tuiles sont écrites en dur dans le HTML pour que chaque `src` existe même
-       sans JavaScript ; la liste ci-dessous ne sert qu’à décider laquelle s’allume. */
+    
     tuilesPhoto: ['Yoga','Pilates','Cyclodanse','Heels'],
 
     /* La tuile éclairée suit l’horloge : c’est la discipline réellement au programme.

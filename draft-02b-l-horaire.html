@@ -45,7 +45,7 @@ tailwind.config = {
     -webkit-font-smoothing:antialiased;
     font-feature-settings:"cv05" 1,"ss01" 1;
   }
-  /* Fraunces: soft, non-wonky — warm but not decorative (BRIEF §5.2) */
+  
   .font-display{ font-variation-settings:"SOFT" 32,"WONK" 0,"opsz" 96; letter-spacing:-0.014em; }
   .tnum{ font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1; }
 
@@ -55,7 +55,7 @@ tailwind.config = {
     opacity:.5; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
   }
-  /* One colour grade across every photograph — warm, slightly desaturated (BRIEF §5.3) */
+  
   .grade{ filter:saturate(.88) contrast(1.03) brightness(1.01); }
   .grade-wrap{ position:relative; }
   .grade-wrap::after{
