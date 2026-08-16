@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Studio 28 — maquettes du site</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .thumb-wrap { position:relative; overflow:hidden; background:#fff; }
+  [x-cloak] { display:none !important; }
+</style>
+</head>
+<body class="bg-[#F7F3EA] text-[#1A1F27]" x-data="picker()" x-cloak>
+
+<header class="sticky top-0 z-30 bg-[#F7F3EA]/95 backdrop-blur border-b border-[#1A1F27]/15">
+  <div class="max-w-[1600px] mx-auto px-6 py-4 flex flex-wrap items-center gap-4">
+    <div>
+      <h1 class="text-2xl font-semibold leading-none tracking-tight">Studio 28 — maquettes du site</h1>
+      <p class="text-sm text-[#1A1F27]/60 mt-1">Vingt maquettes : 10 structures (même style) puis 10 styles (même structure). Notez-les, laissez un commentaire, puis copiez le retour.</p>
+    </div>
+
+    <div class="ml-auto flex items-center gap-2 text-sm">
+      <button @click="round=0" :class="round===0 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Les 20</button>
+      <button @click="round=1" :class="round===1 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Structures</button>
+      <button @click="round=2" :class="round===2 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Styles</button>
+      <span class="w-px h-6 bg-[#1A1F27]/20 mx-1"></span>
+      <button @click="filter='all'"   :class="filter==='all'   ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Tout <span class="opacity-60" x-text="drafts.length"></span></button>
+      <button @click="filter='yes'"   :class="filter==='yes'   ? 'bg-[#4F6B52] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Retenu <span class="opacity-60" x-text="countBy('yes')"></span></button>
+      <button @click="filter='maybe'" :class="filter==='maybe' ? 'bg-[#CFA974] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Peut-être <span class="opacity-60" x-text="countBy('maybe')"></span></button>
+      <button @click="filter='none'"  :class="filter==='none'  ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Sans note <span class="opacity-60" x-text="countBy('')"></span></button>
+      <span class="w-px h-6 bg-[#1A1F27]/20 mx-1"></span>
+      <button @click="copyFeedback()" class="px-4 py-1.5 rounded-full bg-[#C05A34] text-white font-medium hover:bg-[#a94b2a]">
+        <span x-text="copied ? 'Copié — collez-le à Claude' : 'Copier tout le retour'"></span>
+      </button>
+      <button @click="reset()" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20 bg-white text-[#1A1F27]/50" title="Effacer les notes et commentaires">Reset</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-[1600px] mx-auto px-6 py-8">
+
+  <div class="grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(380px,1fr))]">
+    <template x-for="d in visible()" :key="d.file">
+      <article class="bg-white rounded-xl border border-[#1A1F27]/15 overflow-hidden flex flex-col shadow-sm"
+               :class="{'ring-2 ring-[#4F6B52]': rating(d)==='yes', 'ring-2 ring-[#CFA974]': rating(d)==='maybe', 'opacity-55': rating(d)==='no'}">
+
+        <div class="thumb-wrap h-[300px] border-b border-[#1A1F27]/15 cursor-pointer group" @click="open(d)">
+          <span class="absolute inset-0 z-0 grid place-items-center text-sm text-[#1A1F27]/40 bg-[#F7F3EA]">en cours…</span>
+          <img class="relative z-10 w-full block transition-transform duration-300 group-hover:scale-[1.02]"
+               :src="'thumbs/' + d.file.replace('.html','.jpg')" :alt="d.title" loading="lazy"
+               onerror="this.remove()">
+        </div>
+
+        <div class="p-4 flex-1 flex flex-col gap-3">
+          <div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-xs font-semibold text-[#1A1F27]/40" x-text="d.n"></span>
+              <h2 class="text-xl font-semibold leading-tight tracking-tight" x-text="d.title"></h2>
+            </div>
+            <p class="text-sm text-[#1A1F27]/70 mt-1" x-text="d.concept"></p>
+            <p class="text-xs text-[#1A1F27]/40 mt-1.5" x-text="d.angle"></p>
+          </div>
+
+          <div class="flex gap-2">
+            <button @click="setRating(d,'yes')"   :class="rating(d)==='yes'   ? 'bg-[#4F6B52] text-white border-[#4F6B52]' : 'bg-white border-[#1A1F27]/20 hover:border-[#4F6B52]'" class="flex-1 py-2 rounded-lg border text-sm font-medium">✓ Oui</button>
+            <button @click="setRating(d,'maybe')" :class="rating(d)==='maybe' ? 'bg-[#CFA974] text-white border-[#CFA974]' : 'bg-white border-[#1A1F27]/20 hover:border-[#CFA974]'" class="flex-1 py-2 rounded-lg border text-sm font-medium">? Peut-être</button>
+            <button @click="setRating(d,'no')"    :class="rating(d)==='no'    ? 'bg-[#1A1F27] text-white border-[#1A1F27]' : 'bg-white border-[#1A1F27]/20 hover:border-[#1A1F27]/50'" class="flex-1 py-2 rounded-lg border text-sm font-medium">✕ Non</button>
+          </div>
+
+          <textarea rows="2" placeholder="Ce qui marche, ce qui ne marche pas…"
+                    class="w-full text-sm border border-[#1A1F27]/20 rounded-lg p-2 resize-y focus:outline-none focus:ring-2 focus:ring-[#C05A34]"
+                    :value="note(d)" @input="setNote(d, $event.target.value)"></textarea>
+
+          <div class="flex gap-2 text-sm">
+            <button @click="open(d)" class="flex-1 py-2 rounded-lg bg-[#1A1F27] text-white font-medium">Ouvrir</button>
+            <a :href="d.file" target="_blank" class="py-2 px-3 rounded-lg border border-[#1A1F27]/20 text-[#1A1F27]/60">↗</a>
+          </div>
+        </div>
+      </article>
+    </template>
+  </div>
+
+  <p x-show="!visible().length" class="text-center text-[#1A1F27]/50 py-20">Rien dans ce filtre.</p>
+
+</main>
+
+<div x-show="current" class="fixed inset-0 z-50 bg-[#1A1F27]/85 flex flex-col" @keydown.escape.window="current=null" x-cloak>
+  <div class="flex items-center gap-3 p-3 text-white">
+    <span class="text-lg font-semibold" x-text="current?.title"></span>
+    <div class="ml-auto flex items-center gap-2 text-sm">
+      <button @click="vw=390"  :class="vw===390  ? 'bg-white text-[#1A1F27]':'bg-white/15'" class="px-3 py-1.5 rounded-full">Téléphone</button>
+      <button @click="vw=820"  :class="vw===820  ? 'bg-white text-[#1A1F27]':'bg-white/15'" class="px-3 py-1.5 rounded-full">Tablette</button>
+      <button @click="vw=1280" :class="vw===1280 ? 'bg-white text-[#1A1F27]':'bg-white/15'" class="px-3 py-1.5 rounded-full">Bureau</button>
+      <span class="w-px h-6 bg-white/25 mx-1"></span>
+      <button @click="current=null" class="px-4 py-1.5 rounded-full bg-white text-[#1A1F27] font-medium">Fermer</button>
+    </div>
+  </div>
+  <div class="flex-1 overflow-auto bg-[#1A1F27]/30 flex justify-center p-4">
+    <iframe :src="current?.file" class="bg-white shadow-2xl border-0 h-full" :style="`width:${vw}px`"></iframe>
+  </div>
+</div>
+
+<script>
+function picker() {
+  return {
+    KEY: 'studio28-drafts-v1',
+    state: {},
+    filter: 'all',
+    round: 0,
+    current: null,
+    vw: 1280,
+    copied: false,
+    all: [
+      { n:'01', r:1, file:'draft-01-le-plan-de-salle.html', title:'Le plan de salle',
+        concept:'La page est construite comme le bâtiment : la porte, la grande salle, le studio noir, le jardin. La navigation est spatiale.',
+        angle:'Architecture · l\'architecture devient l\'arborescence' },
+      { n:'02', r:1, file:'draft-02-l-horaire.html', title:'L\'horaire',
+        concept:'L\'horaire EST la page d\'accueil. La grille de la semaine, énorme, en haut. Le reste sert de preuve.',
+        angle:'Utilité radicale · l\'énergie d\'une salle de concert' },
+      { n:'03', r:1, file:'draft-03-le-jardin.html', title:'Le jardin',
+        concept:'Ouvre sur la cour, pas sur le studio. Une adresse calme à Bruxelles qui contient sept disciplines.',
+        angle:'Le calme · vend la pause, pas l\'effort' },
+      { n:'04', r:1, file:'draft-04-sept-portes.html', title:'Sept portes',
+        concept:'Sept panneaux égaux, une discipline chacun, chacun ouvrant sur son propre monde. La grille est la marque.',
+        angle:'Structure · empêche mathématiquement la domination latine' },
+      { n:'05', r:1, file:'draft-05-la-maison-des-profs.html', title:'La maison des profs',
+        concept:'Les gens d\'abord. Un mur de portraits en haut de page. Le lieu se définit par qui est dedans.',
+        angle:'Communauté · sert aussi de recrutement pour les écoles' },
+      { n:'06', r:1, file:'draft-06-matieres.html', title:'Matières',
+        concept:'Traitement magazine de décoration. Chêne, anthracite, pierre bleue, velours, miroir, fougère.',
+        angle:'Éditorial · le plus loin de tout le marché bruxellois' },
+      { n:'07', r:1, file:'draft-07-ce-soir.html', title:'Ce soir',
+        concept:'Une page vivante qui change avec l\'heure. « Ce soir, 19h — Pilates. Il reste 6 places. »',
+        angle:'Temps réel · construit autour de la pré-inscription' },
+      { n:'08', r:1, file:'draft-08-un-seul-portefeuille.html', title:'Un seul portefeuille',
+        concept:'Les crédits comme concept central : on achète, on dépense où l\'on veut, chez n\'importe quel prof.',
+        angle:'Produit · ce qu\'aucun concurrent ne peut copier vite' },
+      { n:'09', r:1, file:'draft-09-carnet-de-quartier.html', title:'Carnet de quartier',
+        concept:'Le studio comme adresse locale. La rue, la porte, le tram, les heures d\'ouverture, un plan dessiné.',
+        angle:'Hyper-local · vise Google Maps et les passants' },
+      { n:'10', r:1, file:'draft-10-silence-et-bruit.html', title:'Silence et bruit',
+        concept:'Deux températures assumées : crème et calme pour le yoga, sombre et contrasté pour les heels et les soirées.',
+        angle:'Contraste · le plus risqué, le plus haut plafond' },
+      { n:'11', r:2, file:'draft-11-suisse-editorial.html', title:'Suisse éditorial',
+        concept:'Grille visible, quasi monochrome, un seul vermillon. Rigueur typographique suisse.',
+        angle:'Archivo + Inter · papier/encre + vermillon' },
+      { n:'12', r:2, file:'draft-12-nuit-et-laiton.html', title:'Nuit et laiton',
+        concept:'Page sombre de bout en bout, laiton chaud et ivoire. Un club privé, pas une boîte de nuit.',
+        angle:'Cormorant + Jost · noir/laiton/ivoire' },
+      { n:'13', r:2, file:'draft-13-jardin-botanique.html', title:'Jardin botanique',
+        concept:'La palette de la cour appliquée à toute la page. Planches numérotées et légendes italiques.',
+        angle:'Lora + Karla · fougère/mousse/pierre bleue' },
+      { n:'14', r:2, file:'draft-14-deco-1928.html', title:'Déco 1928',
+        concept:'Le 28 lu comme une année. Art déco retenu : filets d\'or, formes étagées, symétrie.',
+        angle:'Poiret One + Raleway · crème/anthracite/or' },
+      { n:'15', r:2, file:'draft-15-nordique-clair.html', title:'Nordique clair',
+        concept:'Presque blanc, bois pâle, énormément d\'air. La lecture la plus calme du lieu.',
+        angle:'Instrument Serif + Manrope · neige/frêne/rouille' },
+      { n:'17', r:2, file:'draft-17-boutique-premium.html', title:'Boutique premium',
+        concept:'Le registre des salles boutique : anthracite, une couleur de marque décidée, cartes nettes.',
+        angle:'Space Grotesk + Inter · anthracite/corail' },
+      { n:'18', r:2, file:'draft-18-terre-et-argile.html', title:'Terre et argile',
+        concept:'La lecture la plus chaude et la plus attendue. Argile, sable, chêne. Le témoin de référence.',
+        angle:'Fraunces + Inter · argile/avoine/chêne' },
+    ],
+    get drafts() { return this.all; },
+    init() { try { this.state = JSON.parse(localStorage.getItem(this.KEY)) || {}; } catch { this.state = {}; } },
+    save()  { localStorage.setItem(this.KEY, JSON.stringify(this.state)); },
+    row(d)  { return this.state[d.file] ||= { rating:'', note:'' }; },
+    rating(d){ return this.state[d.file]?.rating || ''; },
+    note(d) { return this.state[d.file]?.note || ''; },
+    setRating(d, r) { const x = this.row(d); x.rating = (x.rating === r ? '' : r); this.save(); },
+    setNote(d, v)   { this.row(d).note = v; this.save(); },
+    countBy(r) { return this.drafts.filter(d => this.rating(d) === r).length; },
+    visible()  {
+      let list = this.round ? this.drafts.filter(d => d.r === this.round) : this.drafts;
+      return this.filter === 'all' ? list : list.filter(d => this.rating(d) === (this.filter === 'none' ? '' : this.filter));
+    },
+    open(d) { this.current = d; },
+    reset() { if (confirm('Effacer toutes les notes et commentaires ?')) { this.state = {}; this.save(); } },
+    copyFeedback() {
+      const lines = ['Studio 28 — retour sur les maquettes\n'];
+      for (const d of this.all) {
+        const r = this.rating(d), n = this.note(d);
+        if (!r && !n) continue;
+        lines.push(`${d.n} ${d.title} — ${r ? r.toUpperCase() : 'sans note'}${n ? '\n   ' + n : ''}`);
+      }
+      if (lines.length === 1) lines.push('(rien de noté pour l\'instant)');
+      const text = lines.join('\n');
+      const done = () => { this.copied = true; setTimeout(() => this.copied = false, 2000); };
+
+      // navigator.clipboard is unavailable when this file is opened straight
+      // from disk — file:// is not a secure context, so writeText throws
+      // "Write permission denied" and the button silently does nothing. Fall
+      // back to a hidden textarea + execCommand, which still works there, and
+      // to a prompt() if even that is blocked, so the text is never trapped.
+      const fallback = () => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch { ok = false; }
+        document.body.removeChild(ta);
+        if (ok) done();
+        else window.prompt('Copiez le retour ci-dessous (Cmd+C, puis Entrée) :', text);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(fallback);
+      } else {
+        fallback();
+      }
+    },
+  };
+}
+</script>
+</body>
+</html>

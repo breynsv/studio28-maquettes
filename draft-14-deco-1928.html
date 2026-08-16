@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio 28 — Danse · Yoga · Pilates · Bruxelles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cream:  '#F4EFE4',
+        cream2: '#EAE3D4',
+        cream3: '#DED5C2',
+        char:   '#22201D',
+        char2:  '#2E2B27',
+        char3:  '#3B3730',
+        gold:   '#B39247',
+        goldlt: '#C9AA63',
+        ox:     '#6E2B2B',
+        oxlt:   '#8A3A3A',
+        warm:   '#8A8377',
+        warmd:  '#6B6558'
+      },
+      fontFamily: {
+        display: ['"Poiret One"', 'ui-serif', 'serif'],
+        body:    ['Raleway', 'ui-sans-serif', 'system-ui', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<style>
+  :root{
+    --gold:#B39247;
+    --ox:#6E2B2B;
+  }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    background:#F4EFE4;
+    color:#22201D;
+    font-family:'Raleway',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  ::selection{ background:#B39247; color:#22201D; }
+
+  /* ---- Deco primitives ------------------------------------------------ */
+
+  .disp{ font-family:'Poiret One',serif; font-weight:400; letter-spacing:.055em; line-height:1.08; }
+  .disp-tight{ font-family:'Poiret One',serif; font-weight:400; letter-spacing:.03em; }
+
+  .smallcaps{
+    text-transform:uppercase;
+    letter-spacing:.34em;
+    font-weight:500;
+    font-size:.66rem;
+  }
+  @media (min-width:768px){ .smallcaps{ font-size:.7rem; } }
+
+  /* header nav — tighter tracking so the six items + language switch fit at 1280–1440 */
+  .navcaps{
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-weight:500;
+    font-size:.65rem;
+  }
+  @media (min-width:1536px){ .navcaps{ letter-spacing:.24em; font-size:.68rem; } }
+
+  .tnum{ font-variant-numeric:tabular-nums; font-feature-settings:"tnum" 1; }
+
+  /* thin double rule */
+  .rule2{ position:relative; height:4px; width:100%; }
+  .rule2::before,.rule2::after{ content:""; position:absolute; left:0; right:0; height:1px; background:var(--gold); }
+  .rule2::before{ top:0; }
+  .rule2::after{ bottom:0; opacity:.45; }
+  .rule2-dark::before,.rule2-dark::after{ background:var(--gold); }
+
+  /* single hairline */
+  .hair{ height:1px; background:var(--gold); opacity:.42; }
+
+  /* stepped ziggurat top corners */
+  .zig{
+    clip-path:polygon(
+      0 24px, 12px 24px, 12px 12px, 24px 12px, 24px 0,
+      calc(100% - 24px) 0, calc(100% - 24px) 12px, calc(100% - 12px) 12px, calc(100% - 12px) 24px, 100% 24px,
+      100% 100%, 0 100%);
+  }
+  .zig-sm{
+    clip-path:polygon(
+      0 14px, 7px 14px, 7px 7px, 14px 7px, 14px 0,
+      calc(100% - 14px) 0, calc(100% - 14px) 7px, calc(100% - 7px) 7px, calc(100% - 7px) 14px, 100% 14px,
+      100% 100%, 0 100%);
+  }
+  /* stepped both ends (lozenge-ish panel) */
+  .zig-both{
+    clip-path:polygon(
+      0 18px, 9px 18px, 9px 9px, 18px 9px, 18px 0,
+      calc(100% - 18px) 0, calc(100% - 18px) 9px, calc(100% - 9px) 9px, calc(100% - 9px) 18px, 100% 18px,
+      100% calc(100% - 18px), calc(100% - 9px) calc(100% - 18px), calc(100% - 9px) calc(100% - 9px), calc(100% - 18px) calc(100% - 9px), calc(100% - 18px) 100%,
+      18px 100%, 18px calc(100% - 9px), 9px calc(100% - 9px), 9px calc(100% - 18px), 0 calc(100% - 18px));
+  }
+
+  /* images: warm, unified grade */
+  .grade{ filter:sepia(.16) saturate(.86) contrast(1.03) brightness(.98); }
+  .grade-dark{ filter:sepia(.22) saturate(.7) contrast(1.06) brightness(.82); }
+
+  /* framed image: hairline offset frame behind */
+  .framed{ position:relative; }
+  .framed::before{
+    content:""; position:absolute; inset:-10px -10px 10px -10px;
+    border:1px solid var(--gold); opacity:.5; pointer-events:none;
+  }
+  @media (max-width:767px){ .framed::before{ inset:-6px -6px 6px -6px; } }
+
+  .link-gold{ color:#C9AA63; text-decoration:none; border-bottom:1px solid rgba(201,170,99,.4); padding-bottom:2px; transition:border-color .25s,color .25s; }
+  .link-gold:hover{ color:#E0C68A; border-color:#E0C68A; }
+  .link-ox{ color:#6E2B2B; text-decoration:none; border-bottom:1px solid rgba(110,43,43,.35); padding-bottom:2px; transition:border-color .25s,color .25s; }
+  .link-ox:hover{ border-color:#6E2B2B; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+    text-transform:uppercase; letter-spacing:.2em; font-size:.72rem; font-weight:500;
+    padding:.95rem 1.7rem; transition:background .25s,color .25s,border-color .25s; white-space:nowrap;
+  }
+  .btn-gold{ background:#B39247; color:#22201D; }
+  .btn-gold:hover{ background:#C9AA63; }
+  .btn-ox{ background:#6E2B2B; color:#F4EFE4; }
+  .btn-ox:hover{ background:#8A3A3A; }
+  .btn-ghost{ border:1px solid rgba(179,146,71,.6); color:#F4EFE4; }
+  .btn-ghost:hover{ border-color:#C9AA63; background:rgba(179,146,71,.14); }
+  .btn-ghost-dark{ border:1px solid rgba(110,43,43,.45); color:#22201D; }
+  .btn-ghost-dark:hover{ background:rgba(110,43,43,.07); border-color:#6E2B2B; }
+
+  .pill{
+    text-transform:uppercase; letter-spacing:.22em; font-size:.64rem; font-weight:500;
+    padding:.55rem .95rem; border:1px solid rgba(179,146,71,.45); color:#EDE4D2;
+    transition:border-color .25s,background .25s,color .25s;
+  }
+  .pill:hover{ border-color:#C9AA63; background:rgba(179,146,71,.12); color:#F4EFE4; }
+
+  .chip{
+    text-transform:uppercase; letter-spacing:.18em; font-size:.62rem; font-weight:500;
+    padding:.5rem .85rem; border:1px solid rgba(110,43,43,.28); color:#4A453C; background:transparent;
+    transition:all .2s; cursor:pointer;
+  }
+  .chip:hover{ border-color:#6E2B2B; }
+  .chip[aria-pressed="true"]{ background:#22201D; color:#F4EFE4; border-color:#22201D; }
+
+  details > summary{ list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker{ display:none; }
+  details[open] .faq-plus{ transform:rotate(45deg); }
+  .faq-plus{ transition:transform .3s; }
+
+  .card-hover{ transition:transform .4s cubic-bezier(.2,.7,.3,1); }
+  .card-hover:hover{ transform:translateY(-5px); }
+  .card-hover img{ transition:transform .7s cubic-bezier(.2,.7,.3,1); }
+  .card-hover:hover img{ transform:scale(1.045); }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .9s ease, transform .9s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .card-hover,.card-hover img{ transition:none !important; }
+  }
+
+  .watermark28{
+    font-family:'Poiret One',serif; line-height:.8; color:#B39247;
+    opacity:.09; user-select:none; pointer-events:none;
+  }
+
+</style>
+</head>
+
+<body x-data="{ menu:false, disc:'Tout' }" class="font-body antialiased">
+
+<header class="fixed top-0 inset-x-0 z-50 bg-char/95 backdrop-blur-sm">
+  <div class="max-w-[1360px] mx-auto px-5 md:px-10">
+    <div class="flex items-center justify-between h-[62px] md:h-[78px]">
+
+      
+      <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 navcaps text-cream/80 mr-auto">
+        <a href="#cours"   class="hover:text-gold transition-colors whitespace-nowrap">Cours</a>
+        <a href="#horaire" class="hover:text-gold transition-colors whitespace-nowrap">Horaire</a>
+        <a href="#lieu"    class="hover:text-gold transition-colors whitespace-nowrap">Le lieu</a>
+        <a href="#salle"   class="hover:text-gold transition-colors whitespace-nowrap">Louer la salle</a>
+        <a href="#salle"   class="hover:text-gold transition-colors whitespace-nowrap">Entreprises</a>
+        <a href="#venir"   class="hover:text-gold transition-colors whitespace-nowrap">Contact</a>
+      </nav>
+
+      <div class="hidden xl:flex items-center gap-4 2xl:gap-5 shrink-0">
+        <div class="navcaps text-warm flex items-center gap-2 whitespace-nowrap">
+          <span class="text-gold">FR</span><span class="text-warm/50">/</span>
+          <a href="#" class="hover:text-cream transition-colors">EN</a><span class="text-warm/50">/</span>
+          <a href="#" class="hover:text-cream transition-colors">NL</a>
+        </div>
+        <a href="#venir" aria-label="WhatsApp" class="text-cream/70 hover:text-gold transition-colors">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.71-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.23.24-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.59.18 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.47-.29Z"/></svg>
+        </a>
+        <a href="#horaire" class="btn btn-gold !px-5 !py-3 !tracking-[.16em]">Réserver</a>
+      </div>
+
+      <div class="flex xl:hidden items-center gap-4 mr-auto">
+        <a href="#venir" aria-label="WhatsApp" class="text-cream/70">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Z"/></svg>
+        </a>
+        <button @click="menu = !menu" :aria-expanded="menu" aria-label="Menu" class="text-cream p-1">
+          <svg width="24" height="18" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M0 1h24M0 9h24M0 17h24"/>
+          </svg>
+        </button>
+      </div>
+
+      <a href="#top" class="shrink-0 flex items-center ml-4 md:ml-7" aria-label="Studio 28 — accueil">
+        <img src="assets/logo/logo-studio28-1-gold.png" alt="Studio 28"
+             style="width:clamp(46px,5.2vw,64px);height:auto;display:block">
+      </a>
+    </div>
+  </div>
+  <div class="rule2"></div>
+
+  <div x-show="menu" x-cloak x-transition.opacity class="xl:hidden bg-char border-b border-gold/30">
+    <nav class="px-5 py-7 flex flex-col gap-5 smallcaps text-cream/85">
+      <a href="#cours"   @click="menu=false">Cours</a>
+      <div class="hair"></div>
+      <a href="#horaire" @click="menu=false">Horaire</a>
+      <div class="hair"></div>
+      <a href="#lieu"    @click="menu=false">Le lieu</a>
+      <div class="hair"></div>
+      <a href="#salle"   @click="menu=false">Louer la salle</a>
+      <div class="hair"></div>
+      <a href="#salle"   @click="menu=false">Entreprises</a>
+      <div class="hair"></div>
+      <a href="#venir"   @click="menu=false">Contact</a>
+      <div class="rule2 my-2"></div>
+      <div class="flex items-center gap-3 text-warm">
+        <span class="text-gold">FR</span><span>/</span><a href="#">EN</a><span>/</span><a href="#">NL</a>
+      </div>
+      <a href="#horaire" @click="menu=false" class="btn btn-gold mt-2">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" class="relative bg-char pt-[62px] md:pt-[78px]">
+  <div class="relative min-h-[640px] md:min-h-[92vh] flex items-center overflow-hidden">
+
+    <img src="assets/img/studio-28-27.jpg" alt="La grande salle du Studio 28 : parquet en chêne clair, murs sombres, et le jardin visible à travers les baies vitrées"
+         class="absolute inset-0 w-full h-full object-cover grade-dark">
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(34,32,29,.90) 0%,rgba(34,32,29,.70) 38%,rgba(34,32,29,.80) 72%,rgba(34,32,29,.97) 100%)"></div>
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at 50% 45%,rgba(34,32,29,0) 30%,rgba(34,32,29,.55) 100%)"></div>
+
+    <div class="absolute inset-4 md:inset-9 border border-gold/40 pointer-events-none"></div>
+    <div class="absolute inset-[22px] md:inset-[52px] border border-gold/20 pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-[1100px] mx-auto px-9 md:px-20 py-20 md:py-24 text-center">
+
+      <img src="assets/logo/logo-studio28-1-gold.png" alt="Studio 28"
+           class="mx-auto mb-7 md:mb-9" style="width:clamp(140px,17vw,186px);height:auto">
+
+      <p class="smallcaps text-gold mb-6 md:mb-8">Rue des Deux Églises 28 · 1000 Bruxelles</p>
+
+      <h1 class="disp text-cream text-[2.15rem] leading-[1.14] sm:text-[3rem] md:text-[4rem] lg:text-[4.6rem] md:leading-[1.08]">
+        Sept disciplines.<br>Plusieurs écoles.<br><span class="text-goldlt">Une seule porte.</span>
+      </h1>
+
+      <div class="rule2 max-w-[220px] mx-auto my-8 md:my-10"></div>
+
+      <p class="text-cream/85 text-[1.05rem] md:text-[1.2rem] font-light leading-relaxed max-w-[38ch] mx-auto">
+        Du chêne au sol, un jardin derrière, et un cours qui commence à 19h.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-9 md:mt-11">
+        <a href="#horaire" class="btn btn-gold w-full sm:w-auto">Voir l’horaire</a>
+        <a href="#agenda"  class="btn btn-ghost w-full sm:w-auto">Portes ouvertes — samedi 29 août</a>
+      </div>
+
+      <div class="mt-11 md:mt-14">
+        <div class="hair max-w-[420px] mx-auto mb-7 opacity-40"></div>
+        <ul class="flex flex-wrap items-center justify-center gap-2 md:gap-2.5">
+          <li><a href="#cours" class="pill block">Yoga</a></li>
+          <li><a href="#cours" class="pill block">Pilates</a></li>
+          <li><a href="#cours" class="pill block">Cyclodanse</a></li>
+          <li><a href="#cours" class="pill block">Hip-hop</a></li>
+          <li><a href="#cours" class="pill block">Heels</a></li>
+          <li><a href="#cours" class="pill block">Salsa</a></li>
+          <li><a href="#cours" class="pill block">Bachata</a></li>
+        </ul>
+      </div>
+
+      <p class="smallcaps text-warm mt-9 md:mt-11">Métro Madou — 3 minutes à pied</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-char2 border-t border-gold/30">
+  <div class="max-w-[1360px] mx-auto px-6 md:px-10">
+    <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gold/25">
+      <div class="py-8 md:py-10 md:px-10 text-center">
+        <p class="disp text-goldlt text-[2rem] md:text-[2.4rem] leading-none mb-3 tnum">10</p>
+        <p class="smallcaps text-cream/80">Professeurs et écoles indépendantes</p>
+      </div>
+      <div class="py-8 md:py-10 md:px-10 text-center">
+        <p class="disp text-goldlt text-[2rem] md:text-[2.4rem] leading-none mb-3">Un</p>
+        <p class="smallcaps text-cream/80">Seul portefeuille de crédits, toutes les disciplines</p>
+      </div>
+      <div class="py-8 md:py-10 md:px-10 text-center">
+        <p class="disp text-goldlt text-[2rem] md:text-[2.4rem] leading-none mb-3 tnum">7j/7</p>
+        <p class="smallcaps text-cream/80">Rue des Deux Églises 28, 1000 Bruxelles</p>
+      </div>
+    </div>
+  </div>
+  <svg class="w-full block" height="16" preserveAspectRatio="none" aria-hidden="true">
+    <defs><pattern id="chev1" width="28" height="16" patternUnits="userSpaceOnUse">
+      <path d="M0 13 L14 4 L28 13" fill="none" stroke="#B39247" stroke-width="1" opacity=".55"/>
+    </pattern></defs>
+    <rect width="100%" height="16" fill="url(#chev1)"/>
+  </svg>
+</section>
+
+<section id="cours" class="bg-cream py-20 md:py-28 relative overflow-hidden">
+  <div class="watermark28 absolute -right-6 top-8 text-[13rem] md:text-[22rem] hidden sm:block" aria-hidden="true">28</div>
+
+  <div class="max-w-[1360px] mx-auto px-6 md:px-10 relative">
+
+    <header class="text-center max-w-[720px] mx-auto mb-14 md:mb-20 reveal">
+      <p class="smallcaps text-ox mb-5">I · Le programme</p>
+      <h2 class="disp text-char text-[2.3rem] md:text-[3.4rem]">Les cours</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+      <p class="text-warmd text-[1.05rem] md:text-[1.12rem] font-light leading-relaxed">
+        Sept disciplines, une dizaine de professeurs. Les mêmes crédits fonctionnent partout,
+        chez tout le monde, sans abonnement.
+      </p>
+    </header>
+
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 md:gap-8">
+
+      <li class="reveal">
+        <a href="#horaire" class="card-hover block group">
+          <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
+            <img src="assets/img/ph-yoga.jpg" alt="Cours de yoga sur tapis, en lumière du jour" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <h3 class="disp-tight text-char text-[1.6rem] mb-2">Yoga</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed mb-4">Respirer, s’étirer, relâcher. Des cours doux et des cours plus toniques, tous ouverts aux débutants.</p>
+            <span class="smallcaps text-ox group-hover:text-oxlt transition-colors">Voir les horaires →</span>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="#horaire" class="card-hover block group">
+          <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
+            <img src="assets/img/ph-pilates.jpg" alt="Cours de pilates dans un studio lumineux" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <h3 class="disp-tight text-char text-[1.6rem] mb-2">Pilates</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed mb-4">Renforcer le dos et le centre, en douceur et sans impact. Le cours idéal pour reprendre le mouvement.</p>
+            <span class="smallcaps text-ox group-hover:text-oxlt transition-colors">Voir les horaires →</span>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="#horaire" class="card-hover block group">
+          <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
+            <img src="assets/img/ph-cyclodanse.jpg" alt="Cours de cyclodanse : vélos en salle, lumière colorée" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <h3 class="disp-tight text-char text-[1.6rem] mb-2">Cyclodanse</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed mb-4">Du vélo, mais en musique et en rythme. Le cours le plus cardio de la maison — et le moins cher.</p>
+            <span class="smallcaps text-ox group-hover:text-oxlt transition-colors">Voir les horaires →</span>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="#horaire" class="card-hover block group">
+          <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
+            <img src="assets/img/ros_9403.jpg" alt="Un cours en action sur le plancher noir du Studio 28, devant le mur de miroirs" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <h3 class="disp-tight text-char text-[1.6rem] mb-2">Hip-hop</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed mb-4">Du groove, de la technique et de la sueur. Cours réguliers, tous niveaux, dans la salle noire.</p>
+            <span class="smallcaps text-ox group-hover:text-oxlt transition-colors">Voir les horaires →</span>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="#horaire" class="card-hover block group">
+          <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
+            <img src="assets/img/ros_9203.jpg" alt="La salle du Studio 28 en éclairage de soirée" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <h3 class="disp-tight text-char text-[1.6rem] mb-2">Heels</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed mb-4">La danse en talons : technique, présence, confiance. Aucun niveau requis, juste l’envie.</p>
+            <span class="smallcaps text-ox group-hover:text-oxlt transition-colors">Voir les horaires →</span>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="#horaire" class="card-hover block group">
+          <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
+            <img src="assets/img/studio-28-10.jpg" alt="La grande salle du Studio 28, vide, parquet en chêne et colonnes en lattes de bois" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <h3 class="disp-tight text-char text-[1.6rem] mb-2">Salsa</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed mb-4">Le rythme, les pas de base et beaucoup de monde. Venez seul·e : on change de partenaire.</p>
+            <span class="smallcaps text-ox group-hover:text-oxlt transition-colors">Voir les horaires →</span>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="#horaire" class="card-hover block group">
+          <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
+            <img src="assets/img/ph-bachata.jpg" alt="Un couple danse la bachata dans une salle avec miroirs" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <h3 class="disp-tight text-char text-[1.6rem] mb-2">Bachata</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed mb-4">La danse de couple la plus populaire du moment. Débutants bienvenus toute l’année.</p>
+            <span class="smallcaps text-ox group-hover:text-oxlt transition-colors">Voir les horaires →</span>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal hidden xl:block">
+        <div class="zig-both h-full border border-gold/45 bg-cream2 flex flex-col items-center justify-center text-center px-8 py-12">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" class="mb-6" aria-hidden="true">
+            <path d="M30 4l26 26-26 26L4 30 30 4Z" stroke="#B39247" stroke-width="1"/>
+            <path d="M30 14l16 16-16 16-16-16 16-16Z" stroke="#B39247" stroke-width="1" opacity=".5"/>
+            <path d="M30 24l6 6-6 6-6-6 6-6Z" fill="#B39247" opacity=".7"/>
+          </svg>
+          <p class="smallcaps text-ox mb-4">Toutes disciplines</p>
+          <p class="text-warmd text-[.95rem] font-light leading-relaxed">
+            Un seul portefeuille de crédits. Yoga le lundi, heels le jeudi, salsa le samedi — sans abonnement.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="horaire" class="bg-cream2 py-20 md:py-28 border-y border-gold/35">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10">
+
+    <header class="text-center max-w-[720px] mx-auto mb-12 md:mb-16 reveal">
+      <p class="smallcaps text-ox mb-5">II · Le programme de la semaine</p>
+      <h2 class="disp text-char text-[2.1rem] md:text-[3.2rem]">Cette semaine au Studio 28</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+      <p class="text-warmd text-[1.05rem] font-light leading-relaxed">Réservez votre place en deux clics.</p>
+    </header>
+
+    <div class="flex flex-wrap justify-center gap-2 mb-10 md:mb-12 reveal">
+      <template x-for="d in ['Tout','Yoga','Pilates','Cyclodanse','Hip-hop','Heels','Salsa','Bachata']" :key="d">
+        <button class="chip" :aria-pressed="disc === d ? 'true' : 'false'" @click="disc = d" x-text="d"></button>
+      </template>
+    </div>
+
+    <div class="border border-gold/50 bg-cream px-4 sm:px-7 md:px-10 py-8 md:py-11">
+
+      <div class="mb-9" x-show="['Tout','Pilates','Yoga','Salsa'].includes(disc)">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="smallcaps text-char shrink-0">Lundi 24</span><div class="hair flex-1"></div>
+        </div>
+        <ul class="divide-y divide-gold/25">
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Pilates'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">12:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Pilates</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Laura · tous niveaux · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Yoga'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">18:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Yoga</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Nivram · débutant·e·s · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Salsa'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">20:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Salsa</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Caro · venez seul·e · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mb-9" x-show="['Tout','Yoga','Cyclodanse','Bachata'].includes(disc)">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="smallcaps text-char shrink-0">Mardi 25</span><div class="hair flex-1"></div>
+        </div>
+        <ul class="divide-y divide-gold/25">
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Yoga'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">12:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Yoga</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Laura · pause de midi · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Cyclodanse'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">19:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Cyclodanse</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Andy · aucune expérience nécessaire</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Bachata'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">20:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Bachata</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Ahmedy · débutant·e·s · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mb-9" x-show="['Tout','Pilates','Hip-hop'].includes(disc)">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="smallcaps text-char shrink-0">Mercredi 26</span><div class="hair flex-1"></div>
+        </div>
+        <ul class="divide-y divide-gold/25">
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Pilates'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">18:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Pilates</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Elena · dos et centre · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Hip-hop'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">19:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Hip-hop</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Jamel · salle noire · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mb-9" x-show="['Tout','Yoga','Heels','Salsa'].includes(disc)">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="smallcaps text-char shrink-0">Jeudi 27</span><div class="hair flex-1"></div>
+        </div>
+        <ul class="divide-y divide-gold/25">
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Yoga'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">12:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Yoga</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Nivram · doux · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Heels'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">19:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Heels</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Charline · aucun niveau requis · 30 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Salsa'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">20:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Salsa</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Caro · intermédiaire · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mb-9" x-show="['Tout','Cyclodanse','Bachata'].includes(disc)">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="smallcaps text-char shrink-0">Vendredi 28</span><div class="hair flex-1"></div>
+        </div>
+        <ul class="divide-y divide-gold/25">
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Cyclodanse'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">18:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Cyclodanse</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Andy · le cours le moins cher</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Bachata'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">20:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Bachata</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Ahmedy · suivi d’une soirée · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mb-9" x-show="['Tout','Yoga','Pilates','Heels'].includes(disc)">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="smallcaps text-char shrink-0">Samedi 29 — portes ouvertes</span><div class="hair flex-1"></div>
+        </div>
+        <ul class="divide-y divide-gold/25">
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Yoga'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">10:30</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Yoga</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Laura · cours d’essai gratuit</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Pilates'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">12:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Pilates</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Elena · cours d’essai gratuit</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Heels'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">15:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Heels</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Charline · démonstration ouverte</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+        </ul>
+      </div>
+
+      <div x-show="['Tout','Pilates','Hip-hop'].includes(disc)">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="smallcaps text-char shrink-0">Dimanche 30</span><div class="hair flex-1"></div>
+        </div>
+        <ul class="divide-y divide-gold/25">
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Pilates'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">11:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Pilates</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Laura · reprise en douceur · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+          <li class="grid grid-cols-[62px_1fr] sm:grid-cols-[92px_1fr_1fr_auto] items-baseline gap-x-4 gap-y-1 py-4" x-show="['Tout','Hip-hop'].includes(disc)">
+            <span class="tnum text-ox text-[1.05rem] sm:text-[1.15rem]">17:00</span>
+            <span class="disp-tight text-char text-[1.2rem] sm:text-[1.35rem]">Hip-hop</span>
+            <span class="col-start-2 sm:col-start-3 text-warmd text-[.9rem]">Jamel · tous niveaux · 15 crédits</span>
+            <a href="#" class="col-start-2 sm:col-start-4 smallcaps text-ox mt-2 sm:mt-0 justify-self-start sm:justify-self-end link-ox">Pré-inscription</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-5 mt-8">
+      <p class="text-warmd text-[.85rem] font-light text-center sm:text-left">
+        Pré-inscription : 13 € au lieu de 15 €. Tarifs et crédits <span class="text-ox">[à confirmer]</span>.
+      </p>
+      <a href="#" class="btn btn-ox">Horaire complet</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream py-20 md:py-28">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10">
+
+    <header class="text-center max-w-[720px] mx-auto mb-14 md:mb-18 reveal">
+      <p class="smallcaps text-ox mb-5">III · Le mode d’emploi</p>
+      <h2 class="disp text-char text-[2.1rem] md:text-[3.2rem]">Comment ça marche</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+      <p class="text-warmd text-[1.05rem] font-light">Pas d’abonnement. Des crédits.</p>
+    </header>
+
+    <ol class="grid md:grid-cols-3 gap-8 md:gap-6">
+      <li class="reveal">
+        <div class="zig-both h-full border border-gold/50 bg-cream2 px-7 md:px-8 py-11 text-center">
+          <p class="disp text-gold text-[2.6rem] leading-none mb-1">I</p>
+          <div class="hair max-w-[54px] mx-auto mb-6"></div>
+          <h3 class="disp-tight text-char text-[1.5rem] mb-4">Achetez des crédits</h3>
+          <p class="text-warmd text-[.97rem] font-light leading-relaxed">
+            Un pack de 65 € ou de 120 €, ou un cours à l’unité. Pas d’abonnement, pas d’engagement.
+            <span class="text-ox">[à confirmer]</span>
+          </p>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="zig-both h-full border border-gold/50 bg-cream2 px-7 md:px-8 py-11 text-center">
+          <p class="disp text-gold text-[2.6rem] leading-none mb-1">II</p>
+          <div class="hair max-w-[54px] mx-auto mb-6"></div>
+          <h3 class="disp-tight text-char text-[1.5rem] mb-4">Choisissez votre cours</h3>
+          <p class="text-warmd text-[.97rem] font-light leading-relaxed">
+            Yoga lundi, heels jeudi, salsa samedi : vos crédits fonctionnent partout, chez tous les
+            professeurs de la maison.
+          </p>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="zig-both h-full border border-gold/50 bg-cream2 px-7 md:px-8 py-11 text-center">
+          <p class="disp text-gold text-[2.6rem] leading-none mb-1">III</p>
+          <div class="hair max-w-[54px] mx-auto mb-6"></div>
+          <h3 class="disp-tight text-char text-[1.5rem] mb-4">Pré-inscrivez-vous</h3>
+          <p class="text-warmd text-[.97rem] font-light leading-relaxed">
+            Votre place est réservée et le cours vous coûte moins cher. Vous montrez votre QR code à
+            l’entrée, c’est tout.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <p class="text-center text-warmd font-light text-[1rem] mt-10 max-w-[62ch] mx-auto leading-relaxed reveal">
+      Un cours de danse : 15 crédits. Un cours de heels : 30 crédits. La cyclodanse est le cours
+      le moins cher du studio. <span class="text-ox">[à confirmer]</span><br>
+      <span class="text-char">Vos crédits ne sont liés à aucune discipline.</span>
+    </p>
+  </div>
+</section>
+
+<section id="lieu" class="bg-char text-cream pt-20 md:pt-28 pb-0">
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10">
+    <header class="text-center max-w-[760px] mx-auto mb-14 md:mb-18 reveal">
+      <p class="smallcaps text-gold mb-5">IV · L’adresse</p>
+      <h2 class="disp text-cream text-[2.3rem] md:text-[3.4rem]">Le lieu</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+      <p class="text-cream/75 text-[1.05rem] md:text-[1.15rem] font-light leading-relaxed">
+        Du chêne, de la lumière, et un jardin.
+      </p>
+    </header>
+  </div>
+
+  <figure class="relative reveal">
+    <img src="assets/img/studio-28-16.jpg" alt="La grande salle vide du Studio 28 : parquet en chêne clair, murs charbon, colonnes habillées de lattes de bois"
+         class="w-full h-[52vh] md:h-[76vh] object-cover grade">
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(34,32,29,.40) 0%,rgba(34,32,29,.05) 38%,rgba(34,32,29,.55) 78%,rgba(34,32,29,.92) 100%)"></div>
+    <div class="absolute inset-5 md:inset-10 border border-gold/35 pointer-events-none"></div>
+    <figcaption class="absolute bottom-9 md:bottom-14 inset-x-0 text-center px-8">
+      <p class="smallcaps text-gold">La grande salle — chêne, miroirs, plafond haut</p>
+    </figcaption>
+  </figure>
+
+  <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-16 md:py-20">
+    <div class="grid md:grid-cols-3 gap-10 md:gap-8 text-center">
+      <div class="reveal">
+        <p class="smallcaps text-gold mb-4">Le sol</p>
+        <p class="text-cream/80 font-light leading-relaxed">Un parquet en chêne clair, posé sur toute la longueur — et un plancher noir pour la salle de scène.</p>
+      </div>
+      <div class="reveal">
+        <p class="smallcaps text-gold mb-4">La lumière</p>
+        <p class="text-cream/80 font-light leading-relaxed">Des murs sombres, un mur de miroirs, un plafond haut et des baies vitrées sur toute la façade.</p>
+      </div>
+      <div class="reveal">
+        <p class="smallcaps text-gold mb-4">Le jardin</p>
+        <p class="text-cream/80 font-light leading-relaxed">Derrière la salle, un vrai jardin : pergola en bois, pavés bleus, fougères et beaucoup de vert.</p>
+      </div>
+    </div>
+  </div>
+
+  <svg class="w-full block" height="18" preserveAspectRatio="none" aria-hidden="true">
+    <defs><pattern id="chev2" width="32" height="18" patternUnits="userSpaceOnUse">
+      <path d="M0 14 L16 5 L32 14" fill="none" stroke="#B39247" stroke-width="1" opacity=".5"/>
+    </pattern></defs>
+    <rect width="100%" height="18" fill="url(#chev2)"/>
+  </svg>
+
+  <figure class="relative reveal">
+    <img src="assets/img/studio-28-20.jpg" alt="Le jardin intérieur du Studio 28 : pergola en bois sombre, pavés en pierre bleue, fougères, graminées et haies denses"
+         class="w-full h-[58vh] md:h-[84vh] object-cover grade">
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(34,32,29,.55) 0%,rgba(34,32,29,.30) 25%,rgba(34,32,29,.62) 55%,rgba(34,32,29,.90) 100%)"></div>
+    <div class="absolute inset-5 md:inset-10 border border-gold/35 pointer-events-none"></div>
+    <figcaption class="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
+      <svg width="120" height="22" viewBox="0 0 120 22" fill="none" class="mb-6" aria-hidden="true">
+        <path d="M0 11h44M76 11h44" stroke="#B39247" stroke-width="1"/>
+        <path d="M60 0l8 11-8 11-8-11 8-11Z" stroke="#B39247" stroke-width="1"/>
+      </svg>
+      <p class="disp text-cream text-[1.9rem] sm:text-[2.6rem] md:text-[3.4rem] max-w-[20ch] leading-[1.15]">
+        On y vient pour un cours.<br>On y reste dix minutes de plus.
+      </p>
+      <p class="smallcaps text-gold mt-7">Le jardin — pergola, pierre bleue, fougères</p>
+    </figcaption>
+  </figure>
+
+  <div class="max-w-[1360px] mx-auto px-6 md:px-10 py-16 md:py-24">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+      <figure class="reveal">
+        <div class="zig-sm overflow-hidden aspect-[3/4]">
+          <img src="assets/img/ros_9188.jpg" alt="Colonne habillée de lattes de chêne, au premier plan de la salle" class="w-full h-full object-cover grade">
+        </div>
+        <figcaption class="smallcaps text-warm mt-4 text-center">Chêne — lattes</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="zig-sm overflow-hidden aspect-[3/4]">
+          <img src="assets/img/ros_9193.jpg" alt="Table haute contre la baie vitrée, verdure du jardin à l’extérieur" class="w-full h-full object-cover grade">
+        </div>
+        <figcaption class="smallcaps text-warm mt-4 text-center">La façade — plein sud</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="zig-sm overflow-hidden aspect-[3/4]">
+          <img src="assets/img/studio-28-23.jpg" alt="Le jardin du Studio 28 : pavés en pierre bleue, mobilier en teck et haies" class="w-full h-full object-cover grade">
+        </div>
+        <figcaption class="smallcaps text-warm mt-4 text-center">Pierre bleue — la cour</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="profs" class="bg-cream py-20 md:py-28">
+  <div class="max-w-[1360px] mx-auto px-6 md:px-10">
+
+    <header class="text-center max-w-[720px] mx-auto mb-14 md:mb-18 reveal">
+      <p class="smallcaps text-ox mb-5">V · La maison</p>
+      <h2 class="disp text-char text-[2.1rem] md:text-[3.2rem]">Les professeurs et les écoles</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+      <p class="text-warmd text-[1.05rem] font-light leading-relaxed">
+        Chacun son école, une seule maison. Ils enseignent ici sous leur propre nom, avec leurs propres
+        élèves — et vous les payez avec les mêmes crédits.
+      </p>
+    </header>
+
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-7">
+
+      <li class="reveal"><div class="border border-gold/45 bg-cream2 zig-both px-4 py-8 md:py-10 text-center h-full">
+        <p class="disp text-gold text-[3rem] leading-none mb-3">L</p>
+        <div class="hair max-w-[40px] mx-auto mb-4"></div>
+        <p class="disp-tight text-char text-[1.35rem] mb-2">Laura</p>
+        <p class="smallcaps text-warmd">Yoga · Pilates</p>
+      </div></li>
+
+      <li class="reveal"><div class="border border-gold/45 bg-cream2 zig-both px-4 py-8 md:py-10 text-center h-full">
+        <p class="disp text-gold text-[3rem] leading-none mb-3">N</p>
+        <div class="hair max-w-[40px] mx-auto mb-4"></div>
+        <p class="disp-tight text-char text-[1.35rem] mb-2">Nivram</p>
+        <p class="smallcaps text-warmd">Yoga</p>
+      </div></li>
+
+      <li class="reveal"><div class="border border-gold/45 bg-cream2 zig-both px-4 py-8 md:py-10 text-center h-full">
+        <p class="disp text-gold text-[3rem] leading-none mb-3">C</p>
+        <div class="hair max-w-[40px] mx-auto mb-4"></div>
+        <p class="disp-tight text-char text-[1.35rem] mb-2">Caro</p>
+        <p class="smallcaps text-warmd">Salsa · Bachata</p>
+      </div></li>
+
+      <li class="reveal"><div class="border border-gold/45 bg-cream2 zig-both px-4 py-8 md:py-10 text-center h-full">
+        <p class="disp text-gold text-[3rem] leading-none mb-3">E</p>
+        <div class="hair max-w-[40px] mx-auto mb-4"></div>
+        <p class="disp-tight text-char text-[1.35rem] mb-2">Elena</p>
+        <p class="smallcaps text-warmd">Pilates <span class="text-ox">°</span></p>
+      </div></li>
+
+      <li class="reveal"><div class="border border-gold/45 bg-cream2 zig-both px-4 py-8 md:py-10 text-center h-full">
+        <p class="disp text-gold text-[3rem] leading-none mb-3">A</p>
+        <div class="hair max-w-[40px] mx-auto mb-4"></div>
+        <p class="disp-tight text-char text-[1.35rem] mb-2">Andy</p>
+        <p class="smallcaps text-warmd">Cyclodanse <span class="text-ox">°</span></p>
+      </div></li>
+
+      <li class="reveal"><div class="border border-gold/45 bg-cream2 zig-both px-4 py-8 md:py-10 text-center h-full">
+        <p class="disp text-gold text-[3rem] leading-none mb-3">C</p>
+        <div class="hair max-w-[40px] mx-auto mb-4"></div>
+        <p class="disp-tight text-char text-[1.35rem] mb-2">Charline</p>
+        <p class="smallcaps text-warmd">Heels <span class="text-ox">°</span></p>
+      </div></li>
+
+      <li class="reveal"><div class="border border-gold/45 bg-cream2 zig-both px-4 py-8 md:py-10 text-center h-full">
+        <p class="disp text-gold text-[3rem] leading-none mb-3">J</p>
+        <div class="hair max-w-[40px] mx-auto mb-4"></div>
+        <p class="disp-tight text-char text-[1.35rem] mb-2">Jamel</p>
+        <p class="smallcaps text-warmd">Hip-hop <span class="text-ox">°</span></p>
+      </div></li>
+
+      <li class="reveal"><div class="border border-gold/45 bg-cream2 zig-both px-4 py-8 md:py-10 text-center h-full">
+        <p class="disp text-gold text-[3rem] leading-none mb-3">A</p>
+        <div class="hair max-w-[40px] mx-auto mb-4"></div>
+        <p class="disp-tight text-char text-[1.35rem] mb-2">Ahmedy</p>
+        <p class="smallcaps text-warmd">Salsa · Bachata</p>
+      </div></li>
+    </ul>
+
+    <p class="text-center text-warmd text-[.87rem] font-light mt-9 max-w-[70ch] mx-auto leading-relaxed reveal">
+      Portraits photographiés le 29 août — les monogrammes tiennent la place jusque-là.
+      <span class="text-ox">°</span> disciplines à confirmer.
+    </p>
+  </div>
+</section>
+
+<section id="agenda" class="bg-cream2 py-20 md:py-28 border-y border-gold/35">
+  <div class="max-w-[1360px] mx-auto px-6 md:px-10">
+
+    <header class="text-center max-w-[720px] mx-auto mb-14 reveal">
+      <p class="smallcaps text-ox mb-5">VI · L’agenda</p>
+      <h2 class="disp text-char text-[2.1rem] md:text-[3.2rem]">Ce qui se passe au studio</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+    </header>
+
+    <ul class="grid md:grid-cols-3 gap-7 md:gap-8">
+      <li class="reveal">
+        <article class="card-hover h-full flex flex-col">
+          <div class="zig-sm overflow-hidden aspect-[16/10] bg-char2">
+            <img src="assets/img/ros_9180.jpg" alt="La grande salle du Studio 28 en journée, prête à accueillir du monde" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <p class="smallcaps text-ox mb-3 tnum">Samedi 29 août</p>
+            <h3 class="disp-tight text-char text-[1.45rem] mb-3">Journée portes ouvertes</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed">
+              Toutes les disciplines en démonstration, cours d’essai gratuits, et le jardin ouvert
+              toute la journée.
+            </p>
+          </div>
+        </article>
+      </li>
+      <li class="reveal">
+        <article class="card-hover h-full flex flex-col">
+          <div class="zig-sm overflow-hidden aspect-[16/10] bg-char2">
+            <img src="assets/img/ros_9203.jpg" alt="La salle en configuration soirée, éclairage coloré" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <p class="smallcaps text-ox mb-3">Un vendredi sur deux</p>
+            <h3 class="disp-tight text-char text-[1.45rem] mb-3">La soirée sociale</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed">
+              Après le dernier cours, la salle reste ouverte. Venez seul·e : c’est fait pour ça.
+            </p>
+          </div>
+        </article>
+      </li>
+      <li class="reveal">
+        <article class="card-hover h-full flex flex-col">
+          <div class="zig-sm overflow-hidden aspect-[16/10] bg-char2">
+            <img src="assets/img/studio-28-1.jpg" alt="La façade du Studio 28, rue des Deux Églises à Bruxelles" class="w-full h-full object-cover grade">
+          </div>
+          <div class="pt-5">
+            <div class="hair mb-4"></div>
+            <p class="smallcaps text-ox mb-3">Toute l’année</p>
+            <h3 class="disp-tight text-char text-[1.45rem] mb-3">Ateliers et stages</h3>
+            <p class="text-warmd text-[.95rem] font-light leading-relaxed">
+              Des professeurs invités, des week-ends thématiques, des stages courts — annoncés ici
+              deux semaines à l’avance.
+            </p>
+          </div>
+        </article>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="salle" class="bg-char text-cream py-20 md:py-28 relative overflow-hidden">
+  <div class="watermark28 absolute -left-8 bottom-0 text-[15rem] md:text-[24rem] hidden sm:block" aria-hidden="true">28</div>
+
+  <div class="max-w-[1360px] mx-auto px-6 md:px-10 relative">
+    <header class="text-center max-w-[720px] mx-auto mb-14 md:mb-18 reveal">
+      <p class="smallcaps text-gold mb-5">VII · Pour enseigner, pour se réunir, pour fêter</p>
+      <h2 class="disp text-cream text-[2.1rem] md:text-[3.2rem]">La salle est aussi la vôtre</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+    </header>
+
+    <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+
+      <article class="reveal border border-gold/40 bg-char2 flex flex-col">
+        <div class="overflow-hidden aspect-[16/9]">
+          <img src="assets/img/studio-28-10.jpg" alt="La salle vide du Studio 28, prête pour un cours" class="w-full h-full object-cover grade-dark">
+        </div>
+        <div class="p-7 md:p-10 flex flex-col flex-1">
+          <p class="smallcaps mb-4" style="color:#B87B7B">Professeurs et écoles</p>
+          <h3 class="disp-tight text-cream text-[1.75rem] md:text-[2.1rem] mb-5">Donner cours chez nous</h3>
+          <div class="hair mb-6" style="opacity:.35"></div>
+          <p class="text-cream/75 font-light leading-relaxed mb-7 flex-1">
+            Vous êtes professeur ou vous avez votre propre école ? Louez un créneau au Studio 28 :
+            loyer fixe, votre nom, votre page, vos photos — et <span class="text-cream">vos élèves restent vos élèves</span>.
+            La plateforme de réservation est comprise dans le loyer.
+          </p>
+          <ul class="smallcaps text-warm space-y-3 mb-8">
+            <li class="flex items-start gap-3"><span style="color:#B87B7B">◆</span> Loyer fixe, jamais un pourcentage</li>
+            <li class="flex items-start gap-3"><span style="color:#B87B7B">◆</span> Votre page, votre marque</li>
+            <li class="flex items-start gap-3"><span style="color:#B87B7B">◆</span> Réservations incluses</li>
+          </ul>
+          <a href="#venir" class="btn w-full" style="background:#6E2B2B;color:#F4EFE4">Proposer un cours</a>
+        </div>
+      </article>
+
+      <article class="reveal border border-gold/40 bg-char2 flex flex-col">
+        <div class="overflow-hidden aspect-[16/9]">
+          <img src="assets/img/ros_9197.jpg" alt="La salle du Studio 28 en configuration réception d’entreprise" class="w-full h-full object-cover grade-dark">
+        </div>
+        <div class="p-7 md:p-10 flex flex-col flex-1">
+          <p class="smallcaps mb-4" style="color:#B87B7B">Entreprises et privés</p>
+          <h3 class="disp-tight text-cream text-[1.75rem] md:text-[2.1rem] mb-5">Privatiser la salle</h3>
+          <div class="hair mb-6" style="opacity:.35"></div>
+          <p class="text-cream/75 font-light leading-relaxed mb-7 flex-1">
+            Team building, réunion, atelier, anniversaire, tournage. Une salle de
+            <span class="text-cream tnum">[X]</span> m² pour <span class="text-cream tnum">[X]</span> personnes,
+            un jardin, un système son, des vestiaires — à 3 minutes du métro Madou.
+            À partir de <span class="text-cream tnum">[X]</span> €.
+          </p>
+          <ul class="smallcaps text-warm space-y-3 mb-8">
+            <li class="flex items-start gap-3"><span style="color:#B87B7B">◆</span> Capacité <span class="text-cream/70">[à confirmer]</span></li>
+            <li class="flex items-start gap-3"><span style="color:#B87B7B">◆</span> Jardin privatif</li>
+            <li class="flex items-start gap-3"><span style="color:#B87B7B">◆</span> Facture et TVA</li>
+          </ul>
+          <a href="#venir" class="btn w-full" style="background:#6E2B2B;color:#F4EFE4">Demander une date</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream py-20 md:py-28">
+  <div class="max-w-[880px] mx-auto px-6 md:px-10">
+
+    <header class="text-center mb-14 reveal">
+      <p class="smallcaps text-ox mb-5">VIII</p>
+      <h2 class="disp text-char text-[2.1rem] md:text-[3.2rem]">Questions fréquentes</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+    </header>
+
+    <div class="reveal">
+      <div class="rule2 mb-1"></div>
+
+      <details class="group border-b border-gold/35 py-6">
+        <summary class="flex items-start justify-between gap-6">
+          <h3 class="disp-tight text-char text-[1.25rem] md:text-[1.45rem]">Puis-je venir seul·e ?</h3>
+          <span class="faq-plus text-gold text-xl leading-none mt-1 shrink-0">+</span>
+        </summary>
+        <p class="text-warmd font-light leading-relaxed mt-5 max-w-[62ch]">
+          Oui. Dans tous nos cours de danse, on change de partenaire régulièrement. Vous n’avez besoin
+          de personne pour commencer.
+        </p>
+      </details>
+
+      <details class="group border-b border-gold/35 py-6">
+        <summary class="flex items-start justify-between gap-6">
+          <h3 class="disp-tight text-char text-[1.25rem] md:text-[1.45rem]">Je n’ai jamais dansé / jamais fait de yoga. C’est un problème ?</h3>
+          <span class="faq-plus text-gold text-xl leading-none mt-1 shrink-0">+</span>
+        </summary>
+        <p class="text-warmd font-light leading-relaxed mt-5 max-w-[62ch]">
+          Non. Chaque discipline a son cours débutant, et vous pouvez commencer à n’importe quel moment
+          de l’année — pas seulement en septembre.
+        </p>
+      </details>
+
+      <details class="group border-b border-gold/35 py-6">
+        <summary class="flex items-start justify-between gap-6">
+          <h3 class="disp-tight text-char text-[1.25rem] md:text-[1.45rem]">Faut-il un abonnement ?</h3>
+          <span class="faq-plus text-gold text-xl leading-none mt-1 shrink-0">+</span>
+        </summary>
+        <p class="text-warmd font-light leading-relaxed mt-5 max-w-[62ch]">
+          Non. Vous achetez des crédits et vous les dépensez où vous voulez, quand vous voulez.
+        </p>
+      </details>
+
+      <details class="group border-b border-gold/35 py-6">
+        <summary class="flex items-start justify-between gap-6">
+          <h3 class="disp-tight text-char text-[1.25rem] md:text-[1.45rem]">Êtes-vous ouverts pendant les vacances scolaires ?</h3>
+          <span class="faq-plus text-gold text-xl leading-none mt-1 shrink-0">+</span>
+        </summary>
+        <p class="text-warmd font-light leading-relaxed mt-5 max-w-[62ch]">
+          Oui, avec un horaire allégé. Il est publié ici deux semaines à l’avance.
+        </p>
+      </details>
+
+      <details class="group border-b border-gold/35 py-6">
+        <summary class="flex items-start justify-between gap-6">
+          <h3 class="disp-tight text-char text-[1.25rem] md:text-[1.45rem]">Que dois-je apporter ?</h3>
+          <span class="faq-plus text-gold text-xl leading-none mt-1 shrink-0">+</span>
+        </summary>
+        <p class="text-warmd font-light leading-relaxed mt-5 max-w-[62ch]">
+          Une bouteille d’eau et des vêtements confortables. Les tapis sont fournis pour le yoga et le
+          pilates ; pour la danse, prévoyez des chaussures propres.
+        </p>
+      </details>
+
+      <details class="group border-b border-gold/35 py-6">
+        <summary class="flex items-start justify-between gap-6">
+          <h3 class="disp-tight text-char text-[1.25rem] md:text-[1.45rem]">Les tarifs et promotions en cours</h3>
+          <span class="faq-plus text-gold text-xl leading-none mt-1 shrink-0">+</span>
+        </summary>
+        <p class="text-warmd font-light leading-relaxed mt-5 max-w-[62ch]">
+          Tous nos tarifs sont affichés sur la page Tarifs — ils sont toujours à jour.
+        </p>
+      </details>
+
+      <div class="rule2 mt-1"></div>
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <p class="text-warmd font-light mb-5">Une autre question ?</p>
+      <a href="#venir" class="btn btn-ghost-dark">Écrivez-nous sur WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer id="venir" class="bg-char text-cream pt-20 md:pt-24 pb-28 md:pb-12">
+  <svg class="w-full block mb-16" height="18" preserveAspectRatio="none" aria-hidden="true">
+    <defs><pattern id="chev3" width="32" height="18" patternUnits="userSpaceOnUse">
+      <path d="M0 14 L16 5 L32 14" fill="none" stroke="#B39247" stroke-width="1" opacity=".45"/>
+    </pattern></defs>
+    <rect width="100%" height="18" fill="url(#chev3)"/>
+  </svg>
+
+  <div class="max-w-[1360px] mx-auto px-6 md:px-10">
+
+    <header class="text-center max-w-[720px] mx-auto mb-14 md:mb-18">
+      <p class="smallcaps text-gold mb-5">IX</p>
+      <h2 class="disp text-cream text-[2.1rem] md:text-[3.2rem]">Venir au Studio 28</h2>
+      <div class="rule2 max-w-[160px] mx-auto my-6"></div>
+    </header>
+
+    <div class="grid md:grid-cols-4 gap-12 md:gap-10 mb-16">
+
+      <div>
+        <p class="smallcaps text-gold mb-5">L’adresse</p>
+        <address class="not-italic text-cream/80 font-light leading-relaxed">
+          Studio 28<br>
+          Rue des Deux Églises 28<br>
+          1000 Bruxelles<br>
+          Belgique
+        </address>
+        <p class="text-cream/60 font-light text-[.92rem] mt-4">Métro Madou — 3 minutes à pied</p>
+        <a href="https://maps.google.com/?q=Rue+des+Deux+%C3%89glises+28,+1000+Bruxelles" class="link-gold smallcaps inline-block mt-5">Voir sur la carte</a>
+      </div>
+
+      <div>
+        <p class="smallcaps text-gold mb-5">Horaires</p>
+        <ul class="text-cream/80 font-light space-y-2 tnum">
+          <li class="flex justify-between gap-4"><span>Lun — Ven</span><span>09:00 — 22:30</span></li>
+          <li class="flex justify-between gap-4"><span>Samedi</span><span>10:00 — 20:00</span></li>
+          <li class="flex justify-between gap-4"><span>Dimanche</span><span>10:00 — 19:00</span></li>
+        </ul>
+        <p class="text-cream/60 font-light text-[.92rem] mt-4">Ouvert 7j/7</p>
+        <p class="text-cream/60 font-light text-[.92rem] mt-4">Téléphone <span class="text-gold">[à confirmer]</span></p>
+      </div>
+
+      <div>
+        <p class="smallcaps text-gold mb-5">Les cours</p>
+        <ul class="text-cream/80 font-light space-y-2.5">
+          <li><a href="#cours" class="hover:text-gold transition-colors">Cours de yoga à Bruxelles</a></li>
+          <li><a href="#cours" class="hover:text-gold transition-colors">Cours de pilates à Bruxelles</a></li>
+          <li><a href="#cours" class="hover:text-gold transition-colors">Cyclodanse à Bruxelles</a></li>
+          <li><a href="#cours" class="hover:text-gold transition-colors">Cours de hip-hop à Bruxelles</a></li>
+          <li><a href="#cours" class="hover:text-gold transition-colors">Cours de heels à Bruxelles</a></li>
+          <li><a href="#cours" class="hover:text-gold transition-colors">Cours de salsa à Bruxelles</a></li>
+          <li><a href="#cours" class="hover:text-gold transition-colors">Cours de bachata à Bruxelles</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="smallcaps text-gold mb-5">Nous écrire</p>
+        <a href="#" class="btn btn-gold w-full mb-4">Une question ? WhatsApp</a>
+        <a href="#horaire" class="btn btn-ghost w-full mb-7">Voir l’horaire</a>
+
+        <p class="smallcaps text-gold mb-4">Recevoir l’horaire chaque semaine</p>
+        <form class="flex" onsubmit="return false">
+          <label class="sr-only" for="nl">Votre adresse e-mail</label>
+          <input id="nl" type="email" placeholder="votre@email.be"
+                 class="flex-1 min-w-0 bg-transparent border border-gold/40 px-4 py-3 text-cream placeholder:text-warm/70 text-sm focus:outline-none focus:border-gold">
+          <button class="btn btn-gold px-5">OK</button>
+        </form>
+
+        <div class="flex gap-5 mt-7 smallcaps text-cream/70">
+          <a href="#" class="hover:text-gold transition-colors">Instagram</a>
+          <a href="#" class="hover:text-gold transition-colors">Facebook</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule2 mb-8"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="flex items-center gap-5">
+        <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="h-11 w-auto">
+        <div>
+          <p class="disp text-cream text-[1.35rem] leading-none">STUDIO 28</p>
+          <p class="smallcaps text-warm mt-2">Danse · Yoga · Pilates · Bruxelles</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 smallcaps text-warm">
+        <span class="text-gold">FR</span><span class="text-warm/50">/</span>
+        <a href="#" class="hover:text-cream transition-colors">EN</a><span class="text-warm/50">/</span>
+        <a href="#" class="hover:text-cream transition-colors">NL</a>
+      </div>
+    </div>
+
+    <div class="hair my-8" style="opacity:.25"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-[.78rem] text-warm/70 font-light text-center">
+      <p>© 2026 Studio 28 — Rue des Deux Églises 28, 1000 Bruxelles</p>
+      <div class="flex items-center gap-5">
+        <a href="#" class="hover:text-warm transition-colors">Conditions</a>
+        <a href="#" class="hover:text-warm transition-colors">Vie privée</a>
+        <a href="#" class="hover:text-warm transition-colors">Collaboration — Latin Dance Evolution</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-char border-t border-gold/50 flex">
+  <a href="#horaire" class="flex-1 btn btn-gold rounded-none py-4">Voir l’horaire</a>
+  <a href="#venir" aria-label="WhatsApp" class="w-16 flex items-center justify-center text-gold border-l border-gold/40">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Z"/></svg>
+  </a>
+</div>
+
+<script>
+  // staggered reveal on scroll
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry, i) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          setTimeout(function () { el.classList.add('in'); }, Math.min(i * 80, 320));
+          io.unobserve(el);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+
+<style>[x-cloak]{display:none !important}</style>
+
+</body>
+</html>

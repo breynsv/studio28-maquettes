@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio 28 — Danse · Yoga · Pilates · Bruxelles</title>
+<meta name="description" content="Sept disciplines, une dizaine de professeurs indépendants, une seule salle à Bruxelles. Yoga, pilates, cyclodanse, hip-hop, heels, salsa, bachata. Sans abonnement.">
+<link rel="icon" href="assets/logo/logo-studio28-3.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:       { 900:'#12161C', 800:'#1A1F27', 700:'#262D38', 600:'#3A434F' },
+        bluestone: { 500:'#6B7078' },
+        oak:       { 300:'#E3C79C', 400:'#CFA974', 500:'#A8814D' },
+        cream:     { 100:'#F7F3EA', 200:'#EDE6D9' },
+        terra:     { 500:'#C05A34', 600:'#9C4526' },
+        coral:     { 400:'#F0714B' },
+        fern:      { 600:'#4F6B52', 700:'#3D5541', 800:'#2C3B2F' }
+      },
+      fontFamily: {
+        display: ['Fraunces','Georgia','serif'],
+        sans:    ['Inter','system-ui','-apple-system','sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  :root { --oak-line: #A8814D; }
+  html { scroll-behavior: smooth; }
+  body { background:#F7F3EA; color:#171B21; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  [x-cloak] { display:none !important; }
+
+  .font-display { font-variation-settings: 'SOFT' 30, 'WONK' 0; letter-spacing:-0.012em; }
+  .tnum { font-variant-numeric: tabular-nums; font-feature-settings:'tnum' 1; }
+
+  /* one colour grade across every photograph — the "same photographer, same afternoon" trick */
+  .grade { filter: saturate(0.78) contrast(1.03) brightness(0.98); }
+
+  .grain { position:relative; }
+  .grain::after {
+    content:''; position:absolute; inset:0; pointer-events:none; opacity:.14; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  }
+
+  @keyframes pulseDot {
+    0%,100% { opacity:1; transform:scale(1); box-shadow:0 0 0 0 rgba(192,90,52,.55); }
+    70%     { opacity:.65; transform:scale(1); box-shadow:0 0 0 7px rgba(192,90,52,0); }
+  }
+  .live-dot { animation: pulseDot 2.4s cubic-bezier(.4,0,.6,1) infinite; }
+
+  @keyframes nowGlow {
+    0%,100% { opacity:.85 }
+    50%     { opacity:.35 }
+  }
+  .now-line { animation: nowGlow 2.4s ease-in-out infinite; }
+
+  @keyframes riseIn {
+    from { opacity:0; transform:translateY(14px); }
+    to   { opacity:1; transform:none; }
+  }
+  .rise { opacity:0; animation: riseIn .85s cubic-bezier(.16,.84,.44,1) forwards; }
+
+  .rule-oak { background-image:linear-gradient(90deg,var(--oak-line) 0 38px, rgba(168,129,77,.28) 38px 100%); height:2px; }
+
+  /* discipline card hover */
+  .disc-card img { transition: transform 1.1s cubic-bezier(.16,.84,.44,1), filter .6s ease; }
+  .disc-card:hover img { transform: scale(1.055); }
+  .disc-card .sweep { transform: scaleX(0); transform-origin:left; transition: transform .5s cubic-bezier(.16,.84,.44,1); }
+  .disc-card:hover .sweep { transform: scaleX(1); }
+
+  .link-u { background-image:linear-gradient(currentColor,currentColor); background-size:0% 1px; background-repeat:no-repeat; background-position:0 100%; transition:background-size .35s ease; }
+  .link-u:hover { background-size:100% 1px; }
+
+  ::selection { background:#A8814D; color:#F7F3EA; }
+
+  /* free-slot hatch in the timeline rail */
+  .hatch {
+    background-image: repeating-linear-gradient(135deg, rgba(168,129,77,.16) 0 5px, transparent 5px 11px);
+  }
+
+  input[type="radio"]:focus-visible + span, a:focus-visible, button:focus-visible {
+    outline:2px solid #C05A34; outline-offset:3px; border-radius:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto }
+    .rise { animation:none; opacity:1 }
+    .live-dot, .now-line { animation:none }
+    .disc-card img, .disc-card .sweep, .link-u { transition:none }
+  }
+</style>
+</head>
+
+<body class="font-sans antialiased">
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════
+   ⚠  DONNÉES D’EXEMPLE — SAMPLE DATA ONLY  ⚠
+   Horaires, prénoms des professeurs et places restantes sont INVENTÉS.
+   Ils existent uniquement pour démontrer la structure « temps réel » de la page.
+   À remplacer par le flux de pré-inscriptions du CRM avant toute mise en ligne.
+   Aucun tarif, avis, témoignage ou nom d’école concurrente n’est inventé ici.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const OUVERTURE = { debut: '07:00', fin: '22:30' };   // exemple
+
+/* clé = index JS du jour (0 = dimanche … 6 = samedi) */
+const HORAIRE_EXEMPLE = {
+  1: [ // lundi
+    { h:'07:30', duree:60, disc:'Yoga',       prof:'Laura', salle:'Grande salle', niveau:'Doux',         credits:15, places:18, restant:9  },
+    { h:'12:30', duree:45, disc:'Pilates',    prof:'Elena',   salle:'Grande salle', niveau:'Débutant·e',   credits:15, places:16, restant:4  },
+    { h:'17:30', duree:45, disc:'Cyclodanse', prof:'Andy',    salle:'Salle noire',  niveau:'Tous niveaux', credits:10, places:14, restant:11 },
+    { h:'18:45', duree:60, disc:'Yoga',       prof:'Laura', salle:'Grande salle', niveau:'Tous niveaux', credits:15, places:18, restant:6  },
+    { h:'19:00', duree:75, disc:'Hip-hop',    prof:'Jamel',   salle:'Salle noire',  niveau:'Intermédiaire',credits:15, places:20, restant:8  },
+    { h:'20:30', duree:60, disc:'Bachata',    prof:'Nadia',   salle:'Grande salle', niveau:'Débutant·e',   credits:15, places:24, restant:12 }
+  ],
+  2: [ // mardi
+    { h:'09:30', duree:60, disc:'Pilates',    prof:'Elena',   salle:'Grande salle', niveau:'Débutant·e',   credits:15, places:16, restant:7  },
+    { h:'12:30', duree:45, disc:'Yoga',       prof:'Nivram',    salle:'Grande salle', niveau:'Midi',         credits:15, places:18, restant:10 },
+    { h:'18:00', duree:75, disc:'Heels',      prof:'Jade',    salle:'Salle noire',  niveau:'Tous niveaux', credits:30, places:16, restant:3  },
+    { h:'19:15', duree:60, disc:'Pilates',    prof:'Elena',   salle:'Grande salle', niveau:'Tous niveaux', credits:15, places:16, restant:6  },
+    { h:'19:45', duree:75, disc:'Hip-hop',    prof:'Caro',     salle:'Salle noire',  niveau:'Débutant·e',   credits:15, places:20, restant:14 },
+    { h:'21:00', duree:60, disc:'Salsa',      prof:'Ahmedy',   salle:'Grande salle', niveau:'Débutant·e',   credits:15, places:24, restant:15 }
+  ],
+  3: [ // mercredi
+    { h:'08:00', duree:60, disc:'Yoga',       prof:'Laura', salle:'Grande salle', niveau:'Doux',         credits:15, places:18, restant:12 },
+    { h:'12:30', duree:45, disc:'Cyclodanse', prof:'Andy',    salle:'Salle noire',  niveau:'Tous niveaux', credits:10, places:14, restant:5  },
+    { h:'17:00', duree:60, disc:'Hip-hop',    prof:'Jamel',   salle:'Salle noire',  niveau:'Tous niveaux', credits:15, places:20, restant:9  },
+    { h:'18:30', duree:60, disc:'Yoga',       prof:'Nivram',    salle:'Grande salle', niveau:'Débutant·e',   credits:15, places:18, restant:7  },
+    { h:'19:00', duree:75, disc:'Heels',      prof:'Jade',    salle:'Salle noire',  niveau:'Débutant·e',   credits:30, places:16, restant:5  },
+    { h:'20:15', duree:60, disc:'Bachata',    prof:'Nadia',   salle:'Grande salle', niveau:'Intermédiaire',credits:15, places:24, restant:16 }
+  ],
+  4: [ // jeudi
+    { h:'07:30', duree:60, disc:'Pilates',    prof:'Elena',   salle:'Grande salle', niveau:'Tous niveaux', credits:15, places:16, restant:8  },
+    { h:'12:30', duree:45, disc:'Yoga',       prof:'Laura', salle:'Grande salle', niveau:'Midi',         credits:15, places:18, restant:11 },
+    { h:'18:00', duree:45, disc:'Cyclodanse', prof:'Andy',    salle:'Salle noire',  niveau:'Tous niveaux', credits:10, places:14, restant:2  },
+    { h:'19:00', duree:75, disc:'Heels',      prof:'Jade',    salle:'Salle noire',  niveau:'Tous niveaux', credits:30, places:16, restant:4  },
+    { h:'19:30', duree:60, disc:'Salsa',      prof:'Ahmedy',   salle:'Grande salle', niveau:'Tous niveaux', credits:15, places:24, restant:13 },
+    { h:'20:45', duree:60, disc:'Hip-hop',    prof:'Caro',     salle:'Salle noire',  niveau:'Intermédiaire',credits:15, places:20, restant:10 }
+  ],
+  5: [ // vendredi
+    { h:'09:00', duree:60, disc:'Yoga',       prof:'Nivram',    salle:'Grande salle', niveau:'Doux',         credits:15, places:18, restant:13 },
+    { h:'12:30', duree:45, disc:'Pilates',    prof:'Laura',    salle:'Grande salle', niveau:'Débutant·e',   credits:15, places:16, restant:6  },
+    { h:'17:30', duree:45, disc:'Cyclodanse', prof:'Andy',    salle:'Salle noire',  niveau:'Tous niveaux', credits:10, places:14, restant:7  },
+    { h:'18:30', duree:75, disc:'Hip-hop',    prof:'Jamel',   salle:'Salle noire',  niveau:'Tous niveaux', credits:15, places:20, restant:6  },
+    { h:'18:45', duree:60, disc:'Bachata',    prof:'Nadia',   salle:'Grande salle', niveau:'Débutant·e',   credits:15, places:24, restant:18 },
+    { h:'20:00', duree:60, disc:'Pilates',    prof:'Elena',   salle:'Grande salle', niveau:'Doux du soir', credits:15, places:16, restant:5  },
+    { h:'20:15', duree:75, disc:'Salsa',      prof:'Ahmedy',   salle:'Salle noire',  niveau:'Tous niveaux', credits:15, places:24, restant:11 }
+  ],
+  6: [ // samedi
+    { h:'10:00', duree:75, disc:'Yoga',       prof:'Laura', salle:'Grande salle', niveau:'Tous niveaux', credits:15, places:18, restant:5  },
+    { h:'11:30', duree:60, disc:'Pilates',    prof:'Elena',   salle:'Grande salle', niveau:'Débutant·e',   credits:15, places:16, restant:9  },
+    { h:'13:00', duree:90, disc:'Heels',      prof:'Jade',    salle:'Salle noire',  niveau:'Atelier',      credits:30, places:16, restant:2  },
+    { h:'15:00', duree:75, disc:'Hip-hop',    prof:'Jamel',   salle:'Salle noire',  niveau:'Tous niveaux', credits:15, places:20, restant:12 },
+    { h:'17:00', duree:60, disc:'Bachata',    prof:'Nadia',   salle:'Grande salle', niveau:'Tous niveaux', credits:15, places:24, restant:14 },
+    { h:'18:15', duree:60, disc:'Yoga',       prof:'Nivram',    salle:'Grande salle', niveau:'Doux',         credits:15, places:18, restant:6  },
+    { h:'18:30', duree:75, disc:'Salsa',      prof:'Ahmedy',   salle:'Salle noire',  niveau:'Débutant·e',   credits:15, places:24, restant:17 }
+  ],
+  0: [ // dimanche
+    { h:'10:00', duree:75, disc:'Yoga',       prof:'Nivram',    salle:'Grande salle', niveau:'Doux',         credits:15, places:18, restant:8  },
+    { h:'11:30', duree:60, disc:'Pilates',    prof:'Laura',    salle:'Grande salle', niveau:'Tous niveaux', credits:15, places:16, restant:10 },
+    { h:'16:00', duree:45, disc:'Cyclodanse', prof:'Andy',    salle:'Salle noire',  niveau:'Débutant·e',   credits:10, places:14, restant:9  },
+    { h:'17:30', duree:60, disc:'Hip-hop',    prof:'Jamel',   salle:'Salle noire',  niveau:'Débutant·e',   credits:15, places:20, restant:13 }
+  ]
+};
+
+
+const DISCIPLINES = [
+  { nom:'Yoga',       img:'assets/img/ph-yoga.jpg', ligne:'Respirer, s’étirer, relâcher. Des cours doux et des cours plus toniques, tous ouverts aux débutants.' },
+  { nom:'Pilates',    img:'assets/img/ph-pilates.jpg', ligne:'Renforcer le dos et le centre, en douceur et sans impact. Le cours idéal pour reprendre le mouvement.' },
+  { nom:'Cyclodanse', img:'assets/img/ph-cyclodanse.jpg', ligne:'Du vélo, mais en musique et en rythme. Le cours le plus cardio de la maison — et le moins cher.' },
+  { nom:'Hip-hop',    img:'assets/img/ros_9403.jpg',     ligne:'Du groove, de la technique et de la sueur. Cours réguliers, tous niveaux, dans la salle noire.' },
+  { nom:'Heels',      img:'assets/img/ros_9203.jpg',     ligne:'La danse en talons : technique, présence, confiance. Aucun niveau requis, juste l’envie.' },
+  { nom:'Salsa',      img:'assets/img/ros_9180.jpg',     ligne:'Le rythme, les pas de base et beaucoup de monde. Venez seul·e : on change de partenaire.' },
+  { nom:'Bachata',    img:'assets/img/ph-bachata.jpg',     ligne:'La danse de couple la plus populaire du moment. Débutants bienvenus toute l’année.' }
+];
+
+/* Prénoms d’exemple. Aucun portrait n’existe encore : monogrammes, pas de photos inventées. */
+const PROFS_EXEMPLE = [
+  { prenom:'Laura', disc:'Yoga' },      { prenom:'Nivram',  disc:'Yoga' },
+  { prenom:'Elena',   disc:'Pilates' },   { prenom:'Laura',  disc:'Pilates' },
+  { prenom:'Andy',    disc:'Cyclodanse'}, { prenom:'Jamel', disc:'Hip-hop' },
+  { prenom:'Caro',     disc:'Hip-hop' },   { prenom:'Jade',  disc:'Heels' },
+  { prenom:'Ahmedy',   disc:'Salsa' },     { prenom:'Nadia', disc:'Bachata' }
+];
+
+/* ═══════════════════ fin des données d’exemple ═══════════════════ */
+
+const JOURS      = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+const JOURS_ABBR = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+const SALLES     = ['Grande salle','Salle noire'];
+
+function toMin(hhmm){ const p = hhmm.split(':'); return (+p[0])*60 + (+p[1]); }
+function hm(m){ const h=Math.floor(m/60)%24, x=m%60; return h + 'h' + String(x).padStart(2,'0'); }
+function hmProse(m){ const h=Math.floor(m/60)%24, x=m%60; return x === 0 ? h + 'h' : h + 'h' + String(x).padStart(2,'0'); }
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+/* index des cours, calculé une fois */
+const INDEX = {};
+for (let d = 0; d < 7; d++) {
+  INDEX[d] = (HORAIRE_EXEMPLE[d] || []).map((c, i) => ({
+    ...c, id: d + '-' + i, jour: d,
+    debut: toMin(c.h), fin: toMin(c.h) + c.duree
+  })).sort((a,b) => a.debut - b.debut);
+}
+
+function studio28() {
+  return {
+    tick: Date.now(),
+    jourActif: new Date().getDay(),
+    filtre: 'Toutes',
+    faqOuvert: 1,
+    disciplines: DISCIPLINES,
+    profs: PROFS_EXEMPLE,
+    salles: SALLES,
+    joursAbbr: JOURS_ABBR,
+
+    faq: [
+      { q:'Puis-je venir seul·e ?',
+        r:'Oui. Dans tous nos cours de danse, on change de partenaire régulièrement. Vous n’avez besoin de personne pour commencer.' },
+      { q:'Je n’ai jamais dansé, jamais fait de yoga. C’est un problème ?',
+        r:'Non. Chaque discipline a son cours débutant, et vous pouvez commencer à n’importe quel moment de l’année — pas seulement en septembre.' },
+      { q:'Faut-il un abonnement ?',
+        r:'Non. Vous achetez des crédits et vous les dépensez où vous voulez, quand vous voulez.' },
+      { q:'Êtes-vous ouverts pendant les vacances scolaires ?',
+        r:'Oui, avec un horaire allégé. Il est publié ici deux semaines à l’avance.' },
+      { q:'Que dois-je apporter ?',
+        r:'Une bouteille d’eau et des vêtements confortables. Les tapis sont fournis pour le yoga et le pilates ; pour la danse, prévoyez des chaussures propres.' },
+      { q:'Les tarifs et promotions en cours',
+        r:'Tous nos tarifs sont affichés sur la page Tarifs — ils sont toujours à jour.' }
+    ],
+
+    init() {
+      setInterval(() => { this.tick = Date.now(); }, 1000);
+    },
+
+    /* ── horloge ───────────────────────────────────────────── */
+    /* NB : ne pas nommer ce getter « d » — x-for="d in disciplines" l’écraserait. */
+    get maintenant() { return new Date(this.tick); },
+    get jour() { return this.maintenant.getDay(); },
+    get min()  { const m = this.maintenant; return m.getHours()*60 + m.getMinutes(); },
+    get horloge() {
+      const m = this.maintenant;
+      return String(m.getHours()).padStart(2,'0') + ':' +
+             String(m.getMinutes()).padStart(2,'0') + ':' +
+             String(m.getSeconds()).padStart(2,'0');
+    },
+    get dateLongue() {
+      const m = this.maintenant;
+      return cap(JOURS[this.jour]) + ' ' + m.getDate() + ' ' +
+        ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'][m.getMonth()];
+    },
+    get ouvert() {
+      return this.min >= toMin(OUVERTURE.debut) && this.min < toMin(OUVERTURE.fin);
+    },
+
+    /* ── ce qui se passe maintenant / ensuite ──────────────── */
+    get enCours() {
+      return INDEX[this.jour].filter(c => c.debut <= this.min && this.min < c.fin);
+    },
+    get suite() {
+      const out = [];
+      for (let off = 0; off < 8 && out.length < 60; off++) {
+        const d = (this.jour + off) % 7;
+        for (const c of INDEX[d]) {
+          if (off === 0 && c.debut <= this.min) continue;
+          out.push({ c, offset: off, jour: d });
+        }
+      }
+      return out;
+    },
+    get prochain() { return this.suite[0] || null; },
+
+    prefixe(item) {
+      if (!item) return 'Bientôt,';
+      if (item.offset === 0) {
+        if (item.c.debut < 12*60) return 'Ce matin,';
+        if (item.c.debut < 17*60) return 'Cet après-midi,';
+        return 'Ce soir,';
+      }
+      if (item.offset === 1) return item.c.debut < 12*60 ? 'Demain matin,' : 'Demain,';
+      return cap(JOURS[item.jour]) + ',';
+    },
+    prefixeNu(item) { return this.prefixe(item).replace(',', ''); },
+
+    delai(item) {
+      if (!item) return '';
+      const mins = item.offset*1440 + item.c.debut - this.min;
+      if (mins <= 0)  return 'maintenant';
+      if (mins < 60)  return 'dans ' + mins + ' min';
+      if (mins < 1440){
+        const h = Math.floor(mins/60), r = mins%60;
+        return 'dans ' + h + ' h' + (r ? ' ' + String(r).padStart(2,'0') : '');
+      }
+      const j = Math.floor(mins/1440);
+      return 'dans ' + j + ' jour' + (j > 1 ? 's' : '');
+    },
+    resteEncore(c) {
+      const r = c.fin - this.min;
+      return r > 0 ? 'il reste ' + r + ' min' : '';
+    },
+
+    /* le titre H1 et la carte live suivent l’horloge */
+    get titreMoment() { return this.prefixe(this.prochain); },
+    /* le H1 dit « En ce moment » si un cours est en train de se donner */
+    get titreH1() { return this.enCours.length ? 'En ce moment,' : this.prefixe(this.prochain); },
+
+    /* ── la barre des trois prochaines heures ──────────────── */
+    get fenetre() {
+      const dansTroisH = INDEX[this.jour].filter(c => c.fin > this.min && c.debut < this.min + 180);
+      if (dansTroisH.length) {
+        return { jour: this.jour, debut: Math.floor(this.min/30)*30, titre: 'Les trois prochaines heures', vivant: true };
+      }
+      const p = this.prochain;
+      if (!p) return { jour: this.jour, debut: 9*60, titre: 'Cette semaine', vivant: false };
+      return { jour: p.jour, debut: Math.max(0, Math.floor((p.c.debut - 30)/30)*30), titre: this.prefixeNu(p), vivant: false };
+    },
+    get fenetreFin() { return this.fenetre.debut + 180; },
+
+    coursDeLaSalle(salle) {
+      const f = this.fenetre;
+      return INDEX[f.jour].filter(c => c.salle === salle && c.fin > f.debut && c.debut < f.debut + 180);
+    },
+    /* trous de 40 min ou plus → « libre », le pitch location montré et non dit */
+    videsDeLaSalle(salle) {
+      const f = this.fenetre, fin = f.debut + 180;
+      const occ = this.coursDeLaSalle(salle).map(c => [Math.max(c.debut, f.debut), Math.min(c.fin, fin)]);
+      const trous = []; let curseur = f.debut;
+      for (const [a,b] of occ) { if (a - curseur >= 40) trous.push([curseur, a]); curseur = Math.max(curseur, b); }
+      if (fin - curseur >= 40) trous.push([curseur, fin]);
+      return trous.map(t => ({ de:t[0], a:t[1] }));
+    },
+    pos(a, b) {
+      const f = this.fenetre;
+      const g = x => Math.min(100, Math.max(0, (x - f.debut) / 180 * 100));
+      return 'left:' + g(a).toFixed(3) + '%; width:' + Math.max(0.5, g(b) - g(a)).toFixed(3) + '%;';
+    },
+    get posMaintenant() {
+      const f = this.fenetre;
+      if (f.jour !== this.jour) return null;
+      const p = (this.min - f.debut) / 180 * 100;
+      return (p < 0 || p > 100) ? null : 'left:' + p.toFixed(3) + '%;';
+    },
+    get graduations() {
+      const f = this.fenetre, out = [];
+      for (let m = f.debut; m <= f.debut + 180; m += 30) out.push({ m, label: hm(m), pos: ((m - f.debut)/180*100) });
+      return out;
+    },
+    etatSalle(salle) {
+      const c = INDEX[this.jour].find(x => x.salle === salle && x.debut <= this.min && this.min < x.fin);
+      if (c) return { libre:false, texte:'occupée jusqu’à ' + hm(c.fin) };
+      const p = INDEX[this.jour].find(x => x.salle === salle && x.debut > this.min);
+      return { libre:true, texte: p ? 'libre jusqu’à ' + hm(p.debut) : 'libre' };
+    },
+
+    /* ── chiffres vivants, calculés sur les données ────────── */
+    get coursCetteSemaine() { return Object.values(INDEX).reduce((n,a) => n + a.length, 0); },
+    get nbProfs() { return new Set(Object.values(INDEX).flat().map(c => c.prof)).size; },
+    get placesCeSoir() {
+      return INDEX[this.jour].filter(c => c.debut > this.min).reduce((n,c) => n + c.restant, 0);
+    },
+    /* le plus long créneau libre des 48 h — l’argument location, en direct */
+    get creneauLibre() {
+      let best = null;
+      for (let off = 0; off < 2; off++) {
+        const d = (this.jour + off) % 7;
+        for (const salle of SALLES) {
+          const jourDebut = off === 0 ? Math.max(toMin(OUVERTURE.debut), this.min) : toMin(OUVERTURE.debut);
+          const jourFin = toMin(OUVERTURE.fin);
+          const occ = INDEX[d].filter(c => c.salle === salle && c.fin > jourDebut).map(c => [c.debut, c.fin]);
+          let curseur = jourDebut;
+          const test = (a,b) => { if (b - a > (best ? best.duree : 90)) best = { salle, jour:d, offset:off, de:a, a:b, duree:b-a }; };
+          for (const [a,b] of occ) { test(curseur, Math.min(a, jourFin)); curseur = Math.max(curseur, b); }
+          test(curseur, jourFin);
+        }
+      }
+      return best;
+    },
+    get creneauLibreTexte() {
+      const b = this.creneauLibre;
+      if (!b) return 'Écrivez-nous pour connaître les créneaux disponibles.';
+      const quand = b.offset === 0 ? 'aujourd’hui' : (b.offset === 1 ? 'demain' : cap(JOURS[b.jour]));
+      return 'La ' + b.salle.toLowerCase() + ' est libre ' + quand + ' de ' + hm(b.de) + ' à ' + hm(b.a) + '.';
+    },
+
+    /* ── horaire complet ───────────────────────────────────── */
+    get listeJour() {
+      return INDEX[this.jourActif].filter(c => this.filtre === 'Toutes' || c.disc === this.filtre);
+    },
+    passe(c) { return this.jourActif === this.jour && c.fin <= this.min; },
+    actif(c) { return this.jourActif === this.jour && c.debut <= this.min && this.min < c.fin; },
+
+    prochainDe(nom) {
+      const it = this.suite.find(x => x.c.disc === nom);
+      if (!it) return '—';
+      const q = it.offset === 0 ? 'aujourd’hui' : (it.offset === 1 ? 'demain' : cap(JOURS[it.jour]));
+      return q + ' ' + hmProse(it.c.debut);
+    },
+
+    /* la photo du hero suit l’heure */
+    get heroImg() {
+      const h = this.maintenant.getHours();
+      if (h < 11) return 'assets/img/studio-28-10.jpg';   // le matin — la salle vide
+      if (h < 18) return 'assets/img/studio-28-27.jpg';   // la journée — la salle et le jardin
+      return 'assets/img/ros_9203.jpg';                   // le soir — la salle sous les LED chaudes
+    },
+
+    hm, hmProse
+  };
+}
+</script>
+
+<div x-data="studio28()">
+
+<header class="sticky top-0 z-50 bg-ink-900/95 backdrop-blur-md border-b border-ink-600/70">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
+    <div class="flex items-center justify-between gap-6 h-[68px] lg:h-[76px]">
+
+      <a href="#" class="flex items-center gap-3 shrink-0">
+        <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="h-9 lg:h-10 w-auto">
+        <span class="hidden sm:block leading-tight">
+          <span class="block font-display text-cream-100 text-[17px] font-semibold tracking-[0.04em]">STUDIO 28</span>
+          <span class="block text-[10.5px] text-oak-400 tracking-[0.16em] uppercase">Danse · Yoga · Pilates · Bruxelles</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-7 text-[14px] text-cream-100/85">
+        <a href="#cours"    class="link-u hover:text-cream-100">Cours</a>
+        <a href="#horaire"  class="link-u hover:text-cream-100">Horaire</a>
+        <a href="#lieu"     class="link-u hover:text-cream-100">Le lieu</a>
+        <a href="#salle"    class="link-u hover:text-cream-100">Louer la salle</a>
+        <a href="#salle"    class="link-u hover:text-cream-100">Entreprises</a>
+        <a href="#venir"    class="link-u hover:text-cream-100">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3 lg:gap-5">
+        
+        <div class="hidden md:flex items-center gap-2 pr-1">
+          <span class="live-dot inline-block w-[7px] h-[7px] rounded-full bg-terra-500"></span>
+          <span class="text-[11px] uppercase tracking-[0.18em] text-bluestone-500">En direct</span>
+          <span class="tnum text-[14px] text-cream-100 font-medium" x-text="horloge">—</span>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-1.5 text-[12px] tracking-wide">
+          <a href="#" class="text-cream-100 font-semibold">FR</a>
+          <span class="text-ink-600">/</span>
+          <a href="#" class="text-bluestone-500 hover:text-cream-100">EN</a>
+          <span class="text-ink-600">/</span>
+          <a href="#" class="text-bluestone-500 hover:text-cream-100">NL</a>
+        </div>
+
+        <a href="#venir" aria-label="Écrivez-nous sur WhatsApp"
+           class="grid place-items-center w-9 h-9 rounded-full border border-ink-600 text-cream-100 hover:border-oak-500 hover:text-oak-300 transition">
+          <svg viewBox="0 0 24 24" class="w-[17px] h-[17px]" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.1c-.24.68-1.42 1.31-1.95 1.35-.5.05-.98.24-3.3-.69-2.79-1.1-4.55-3.94-4.69-4.13-.13-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34.18 0 .36 0 .52.01.17.01.39-.06.61.47.24.56.8 1.95.87 2.09.07.14.12.3.02.49-.09.19-.14.3-.28.47-.14.16-.29.36-.42.49-.14.14-.28.29-.12.56.16.27.72 1.18 1.54 1.92 1.06.94 1.95 1.23 2.22 1.37.27.14.43.12.59-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.11.07.66-.17 1.34Z"/></svg>
+        </a>
+
+        <a href="#horaire" class="hidden sm:inline-flex items-center h-9 lg:h-10 px-4 lg:px-5 rounded-full bg-terra-600 hover:bg-terra-500 text-cream-100 text-[13.5px] font-semibold tracking-wide transition">
+          Réserver
+        </a>
+
+        <button class="lg:hidden grid place-items-center w-9 h-9 text-cream-100" aria-label="Menu">
+          <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="relative bg-ink-900 grain overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="assets/img/studio-28-27.jpg" :src="heroImg" alt="La salle du Studio 28 — parquet en chêne clair, murs sombres, colonnes en lattes de bois"
+         class="w-full h-full object-cover grade opacity-[0.78] transition-opacity duration-700">
+    <div class="absolute inset-0 bg-gradient-to-r from-ink-900 via-ink-900/80 to-ink-900/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-ink-900/95 via-ink-900/15 to-ink-900/45"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1360px] px-5 lg:px-9 pt-12 pb-14 lg:pt-20 lg:pb-24">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+
+      <div class="lg:col-span-7">
+        <p class="rise text-[11px] uppercase tracking-[0.22em] text-oak-400 mb-6" style="animation-delay:.05s">
+          <span x-text="dateLongue">—</span> · Bruxelles · ouvert 7j/7
+        </p>
+
+        <h1 class="rise font-display text-cream-100 font-medium leading-[0.98] text-[44px] sm:text-[58px] lg:text-[76px]" style="animation-delay:.12s">
+          <span class="block text-oak-300" x-text="titreH1">Ce soir,</span>
+          <span class="block">la salle est ouverte.</span>
+        </h1>
+
+        <p class="rise mt-6 text-[17px] lg:text-[19px] leading-relaxed text-cream-100/80 max-w-[46ch]" style="animation-delay:.2s">
+          Sept disciplines, tous les niveaux, sans abonnement.
+          Une adresse à Bruxelles, plusieurs écoles indépendantes, un seul horaire.
+        </p>
+
+        <ul class="rise mt-8 flex flex-wrap gap-2" style="animation-delay:.28s">
+          <template x-for="d in disciplines" :key="d.nom">
+            <li>
+              <a href="#cours" class="inline-flex items-center gap-2 h-9 pl-3.5 pr-4 rounded-full border border-ink-600 hover:border-oak-500 text-cream-100/90 hover:text-oak-300 text-[13.5px] transition">
+                <span class="w-1 h-1 rounded-full bg-oak-500"></span>
+                <span x-text="d.nom"></span>
+              </a>
+            </li>
+          </template>
+        </ul>
+
+        <div class="rise mt-9 flex flex-wrap items-center gap-3" style="animation-delay:.36s">
+          <a href="#horaire" class="inline-flex items-center h-12 px-7 rounded-full bg-terra-600 hover:bg-terra-500 text-cream-100 font-semibold text-[15px] transition">
+            Voir l’horaire
+          </a>
+          <a href="#agenda" class="inline-flex items-center h-12 px-6 rounded-full border border-ink-600 hover:border-oak-500 text-cream-100 text-[15px] transition">
+            Journée portes ouvertes — samedi 29 août
+          </a>
+        </div>
+
+        <p class="rise mt-7 text-[13px] text-bluestone-500" style="animation-delay:.44s">
+          Rue des Deux Églises 28, 1000 Bruxelles — à 3 min du métro Madou.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5 rise" style="animation-delay:.3s">
+        <div class="rounded-2xl border border-ink-600 bg-ink-800/85 backdrop-blur-sm shadow-2xl shadow-black/40 overflow-hidden">
+
+          <div class="flex items-center justify-between px-5 py-3 border-b border-ink-600/80">
+            <div class="flex items-center gap-2">
+              <span class="live-dot inline-block w-[7px] h-[7px] rounded-full bg-terra-500"></span>
+              <span class="text-[10.5px] uppercase tracking-[0.2em] text-oak-400">Prochain cours</span>
+            </div>
+            <span class="tnum text-[13px] text-bluestone-500" x-text="horloge">—</span>
+          </div>
+
+          <template x-if="enCours.length">
+            <div class="px-5 pt-4 pb-3 border-b border-ink-600/60 flex items-start gap-3">
+              <span class="mt-1.5 live-dot inline-block w-[7px] h-[7px] rounded-full bg-fern-600 shrink-0"></span>
+              <p class="text-[13.5px] text-cream-100/75 leading-snug">
+                En ce moment :
+                <span class="text-cream-100 font-medium" x-text="enCours[0].disc + ' avec ' + enCours[0].prof"></span>,
+                <span x-text="enCours[0].salle.toLowerCase()"></span> — <span x-text="resteEncore(enCours[0])"></span>.
+              </p>
+            </div>
+          </template>
+
+          <div class="px-5 pt-5 pb-6" x-show="prochain">
+            <p class="text-[15px] text-oak-300">
+              <span x-text="titreMoment"></span>
+              <span class="tnum font-semibold" x-text="prochain ? hm(prochain.c.debut) : ''"></span>
+            </p>
+
+            <h2 class="font-display text-cream-100 text-[40px] leading-none mt-2 font-medium" x-text="prochain ? prochain.c.disc : ''">—</h2>
+
+            <p class="mt-2.5 text-[15px] text-cream-100/80">
+              avec <span class="text-cream-100" x-text="prochain ? prochain.c.prof : ''"></span>
+              <span class="text-ink-600 mx-1.5">·</span><span x-text="prochain ? prochain.c.salle : ''"></span>
+              <span class="text-ink-600 mx-1.5">·</span><span x-text="prochain ? prochain.c.niveau : ''"></span>
+            </p>
+
+            <p class="mt-4 inline-flex items-center gap-2 h-7 px-3 rounded-full bg-ink-700 border border-ink-600 text-[12.5px] text-oak-300 tnum" x-text="delai(prochain)"></p>
+
+            <div class="mt-6">
+              <div class="flex items-baseline justify-between mb-2">
+                <p class="text-[14px] text-cream-100">
+                  Il reste <span class="tnum font-semibold text-fern-600" x-text="prochain ? prochain.c.restant : ''"></span>
+                  places sur <span class="tnum" x-text="prochain ? prochain.c.places : ''"></span>
+                </p>
+                <p class="text-[12px] text-bluestone-500 tnum" x-text="prochain ? prochain.c.credits + ' crédits' : ''"></p>
+              </div>
+              <div class="h-1.5 rounded-full bg-ink-700 overflow-hidden">
+                <div class="h-full bg-fern-600 rounded-full transition-all duration-700"
+                     :style="prochain ? 'width:' + Math.round((prochain.c.places - prochain.c.restant) / prochain.c.places * 100) + '%' : 'width:0%'"></div>
+              </div>
+            </div>
+
+            <a href="#horaire" class="mt-6 flex items-center justify-center h-12 rounded-full bg-terra-600 hover:bg-terra-500 text-cream-100 font-semibold text-[14.5px] transition">
+              Pré-inscription — 13 € au lieu de 15 €
+            </a>
+            <p class="mt-3 text-center text-[12px] text-bluestone-500">
+              Sans abonnement. Annulable jusqu’à 2 h avant. <span class="text-oak-500">[tarifs à confirmer]</span>
+            </p>
+          </div>
+
+          <div class="border-t border-ink-600/70 divide-y divide-ink-600/50">
+            <template x-for="item in suite.slice(1,4)" :key="item.c.id + '-' + item.offset">
+              <a href="#horaire" class="flex items-center gap-4 px-5 py-3 hover:bg-ink-700/60 transition">
+                <span class="tnum text-[13.5px] text-oak-400 w-[46px] shrink-0" x-text="hm(item.c.debut)"></span>
+                <span class="text-[14px] text-cream-100 flex-1 truncate">
+                  <span x-text="item.c.disc"></span>
+                  <span class="text-cream-100/55" x-text="' · ' + item.c.prof"></span>
+                </span>
+                <span class="text-[12px] tnum shrink-0"
+                      :class="item.c.restant <= 4 ? 'text-terra-500' : 'text-fern-600'"
+                      x-text="item.c.restant + ' pl.'"></span>
+              </a>
+            </template>
+          </div>
+
+          <p class="px-5 py-2.5 bg-ink-900/70 text-[10.5px] uppercase tracking-[0.16em] text-bluestone-500 text-center">
+            Horaires et places — données d’exemple
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-ink-800 border-t border-ink-600/60 grain">
+  <div class="relative mx-auto max-w-[1360px] px-5 lg:px-9 py-10 lg:py-14">
+
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+      <div>
+        <h2 class="font-display text-cream-100 text-[26px] lg:text-[32px] font-medium" x-text="fenetre.titre">Les trois prochaines heures</h2>
+        <p class="mt-1.5 text-[13.5px] text-bluestone-500">
+          Deux salles, en direct. Les plages libres sont louables à l’heure.
+        </p>
+      </div>
+      <a href="#salle" class="link-u text-[13.5px] text-oak-300 hover:text-oak-400">Louer un créneau →</a>
+    </div>
+
+    <div class="hidden md:block">
+      <div class="relative pl-[132px]">
+        
+        <div class="relative h-6 mb-2">
+          <template x-for="g in graduations" :key="g.m">
+            <span class="absolute -translate-x-1/2 text-[11px] tnum text-bluestone-500" :style="'left:' + g.pos + '%'" x-text="g.label"></span>
+          </template>
+        </div>
+
+        <div class="relative">
+          
+          <template x-for="g in graduations" :key="'l'+g.m">
+            <span class="absolute top-0 bottom-0 w-px bg-ink-600/60" :style="'left:' + g.pos + '%'"></span>
+          </template>
+
+          <template x-if="posMaintenant">
+            <div class="absolute top-[-26px] bottom-[-6px] z-20 pointer-events-none" :style="posMaintenant">
+              <div class="now-line w-[2px] h-full bg-terra-500"></div>
+              <span class="absolute -top-1 -translate-x-1/2 left-[1px] px-2 py-0.5 rounded-full bg-terra-600 text-cream-100 text-[10px] uppercase tracking-[0.14em] whitespace-nowrap">Maintenant</span>
+            </div>
+          </template>
+
+          <template x-for="salle in salles" :key="salle">
+            <div class="relative h-[86px] mb-3 last:mb-0">
+              
+              <div class="absolute -left-[132px] top-0 w-[120px] h-full flex flex-col justify-center">
+                <p class="text-[13.5px] text-cream-100 font-medium" x-text="salle"></p>
+                <p class="text-[11.5px] mt-0.5" :class="etatSalle(salle).libre ? 'text-fern-600' : 'text-oak-400'" x-text="etatSalle(salle).texte"></p>
+              </div>
+
+              <div class="absolute inset-0 rounded-lg bg-ink-900/60 border border-ink-600/50"></div>
+
+              <template x-for="v in videsDeLaSalle(salle)" :key="salle + v.de">
+                <a href="#salle" class="absolute top-[9px] bottom-[9px] rounded-md hatch border border-dashed border-oak-500/45 hover:border-oak-500 flex items-center justify-center transition group"
+                   :style="pos(v.de, v.a)">
+                  <span class="text-[11px] text-oak-500 group-hover:text-oak-400 tracking-wide px-2 truncate">libre</span>
+                </a>
+              </template>
+
+              <template x-for="c in coursDeLaSalle(salle)" :key="c.id">
+                <a href="#horaire"
+                   class="absolute top-[7px] bottom-[7px] z-10 rounded-md px-3 py-2 overflow-hidden border transition hover:-translate-y-0.5"
+                   :class="(c.debut <= min && min < c.fin && fenetre.jour === jour)
+                            ? 'bg-oak-300 border-oak-300 text-ink-900'
+                            : 'bg-ink-700 border-ink-600 hover:border-oak-500 text-cream-100'"
+                   :style="pos(c.debut, c.fin)">
+                  <p class="text-[13px] font-semibold leading-tight truncate" x-text="c.disc"></p>
+                  <p class="text-[11.5px] leading-tight truncate opacity-75" x-text="hm(c.debut) + ' · ' + c.prof"></p>
+                  <p class="text-[11.5px] leading-tight truncate mt-0.5"
+                     :class="(c.debut <= min && min < c.fin && fenetre.jour === jour) ? 'text-fern-800 font-medium' : (c.restant <= 4 ? 'text-terra-500' : 'text-fern-600')"
+                     x-text="c.restant + ' places'"></p>
+                </a>
+              </template>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <div class="md:hidden space-y-2.5">
+      <template x-for="salle in salles" :key="'m'+salle">
+        <div>
+          <div class="flex items-baseline justify-between mb-2">
+            <p class="text-[13px] text-cream-100 font-medium" x-text="salle"></p>
+            <p class="text-[11.5px]" :class="etatSalle(salle).libre ? 'text-fern-600' : 'text-oak-400'" x-text="etatSalle(salle).texte"></p>
+          </div>
+          <div class="space-y-1.5 mb-5">
+            <template x-for="c in coursDeLaSalle(salle)" :key="'m'+c.id">
+              <a href="#horaire" class="flex items-center gap-3 rounded-lg border px-3 py-2.5"
+                 :class="(c.debut <= min && min < c.fin && fenetre.jour === jour) ? 'bg-oak-300 border-oak-300 text-ink-900' : 'bg-ink-700/70 border-ink-600 text-cream-100'">
+                <span class="tnum text-[13px] w-[44px] shrink-0 opacity-80" x-text="hm(c.debut)"></span>
+                <span class="flex-1 text-[14px] truncate"><span x-text="c.disc"></span><span class="opacity-60" x-text="' · ' + c.prof"></span></span>
+                <span class="text-[11.5px] tnum shrink-0"
+                      :class="(c.debut <= min && min < c.fin && fenetre.jour === jour) ? 'text-fern-800' : (c.restant <= 4 ? 'text-terra-500' : 'text-fern-600')"
+                      x-text="c.restant + ' pl.'"></span>
+              </a>
+            </template>
+            <template x-if="!coursDeLaSalle(salle).length">
+              <a href="#salle" class="block rounded-lg border border-dashed border-oak-500/45 hatch px-3 py-3 text-[12.5px] text-oak-500">
+                Salle libre sur cette plage — louable à l’heure
+              </a>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream-200 border-b border-oak-500/25">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
+    <div class="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-oak-500/25">
+      <div class="py-6 sm:py-7 sm:pr-8">
+        <p class="text-[16px] lg:text-[17px] leading-snug"><span class="font-semibold tnum" x-text="nbProfs"></span> professeurs et écoles indépendantes</p>
+        <p class="text-[13.5px] text-[#5C636D] mt-1"><span class="tnum" x-text="coursCetteSemaine"></span> cours cette semaine, deux salles</p>
+      </div>
+      <div class="py-6 sm:py-7 sm:px-8">
+        <p class="text-[16px] lg:text-[17px] leading-snug font-semibold">Un seul portefeuille de crédits, toutes les disciplines</p>
+        <p class="text-[13.5px] text-[#5C636D] mt-1">Pas d’abonnement, pas d’engagement</p>
+      </div>
+      <div class="py-6 sm:py-7 sm:pl-8">
+        <p class="text-[16px] lg:text-[17px] leading-snug font-semibold">Rue des Deux Églises 28, Bruxelles — ouvert 7j/7</p>
+        <p class="text-[13.5px] text-[#5C636D] mt-1 tnum">07h00 – 22h30 · métro Madou</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cours" class="bg-cream-100 py-16 lg:py-24">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
+
+    <div class="flex flex-wrap items-end justify-between gap-5 mb-10 lg:mb-14">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.2em] text-terra-600 mb-3">Sept disciplines, une dizaine de professeurs</p>
+        <h2 class="font-display text-[38px] lg:text-[52px] leading-none font-medium">Les cours</h2>
+        <div class="rule-oak w-[180px] mt-5"></div>
+      </div>
+      <p class="text-[15px] text-[#5C636D] max-w-[36ch]">
+        Toutes les disciplines coûtent les mêmes crédits et se réservent au même endroit.
+        Chaque cours indique quand il a lieu la prochaine fois.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-9">
+      <template x-for="d in disciplines" :key="d.nom">
+        <a href="#horaire" class="disc-card group block">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-ink-800">
+            <img :src="d.img" :alt="'Studio 28 — ' + d.nom" class="w-full h-full object-cover grade">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent"></div>
+            <span class="absolute left-3 bottom-3 inline-flex items-center h-6 px-2.5 rounded-full bg-cream-100/90 text-ink-900 text-[11px] tnum tracking-wide"
+                  x-text="'prochain : ' + prochainDe(d.nom)"></span>
+          </div>
+          <h3 class="font-display text-[24px] mt-4 font-medium leading-none" x-text="d.nom"></h3>
+          <div class="sweep h-[2px] bg-oak-500 mt-2.5 w-full"></div>
+          <p class="text-[14.5px] leading-relaxed text-[#5C636D] mt-3" x-text="d.ligne"></p>
+          <span class="inline-block mt-3 text-[13.5px] text-terra-600 link-u">Voir les horaires</span>
+        </a>
+      </template>
+
+      <div class="hidden lg:flex flex-col justify-center border-l border-oak-500/30 pl-6">
+        <p class="font-display text-[22px] leading-tight">Toutes les disciplines,<br>les mêmes crédits.</p>
+        <p class="text-[14px] text-[#5C636D] mt-3 leading-relaxed">
+          Yoga le lundi, heels le jeudi, salsa le samedi — vos crédits fonctionnent partout,
+          chez tous les professeurs de la maison.
+        </p>
+        <a href="#comment" class="text-[13.5px] text-terra-600 link-u mt-4 self-start">Comment ça marche</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative">
+  <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses"
+       class="w-full h-[52vh] lg:h-[76vh] object-cover grade">
+  <div class="absolute inset-0 bg-gradient-to-t from-ink-900/75 via-ink-900/10 to-transparent"></div>
+  <div class="absolute inset-x-0 bottom-0">
+    <div class="mx-auto max-w-[1360px] px-5 lg:px-9 pb-8 lg:pb-12">
+      <p class="text-[11px] uppercase tracking-[0.2em] text-oak-400 mb-3">Derrière la salle</p>
+      <p class="font-display text-cream-100 text-[26px] lg:text-[40px] leading-[1.15] max-w-[22ch] font-medium">
+        Un vrai jardin, à deux pas du cours.
+      </p>
+      <p class="text-cream-100/80 text-[15px] lg:text-[17px] mt-3 max-w-[46ch]">
+        Pergola en bois, pavés bleus, fougères. On y vient pour un cours. On y reste dix minutes de plus.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="horaire" class="bg-cream-200 py-16 lg:py-24 border-y border-oak-500/25">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
+
+    <div class="flex flex-wrap items-end justify-between gap-5 mb-9">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.2em] text-terra-600 mb-3">Réservez votre place en deux clics</p>
+        <h2 class="font-display text-[38px] lg:text-[52px] leading-none font-medium">Cette semaine au Studio 28</h2>
+        <div class="rule-oak w-[180px] mt-5"></div>
+      </div>
+      <p class="text-[13px] text-[#5C636D] tnum">
+        Horaire d’exemple · <span x-text="coursCetteSemaine"></span> cours ·
+        <span x-text="nbProfs"></span> professeurs
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-4">
+      <template x-for="(nom, i) in joursAbbr" :key="'j'+i">
+        <button @click="jourActif = i"
+                class="relative inline-flex items-center gap-2 h-10 px-4 rounded-full border text-[14px] transition"
+                :class="jourActif === i ? 'bg-ink-900 border-ink-900 text-cream-100' : 'bg-cream-100 border-oak-500/35 text-ink-900 hover:border-oak-500'">
+          <span x-text="nom"></span>
+          <span x-show="i === jour" class="w-1.5 h-1.5 rounded-full bg-terra-500"></span>
+        </button>
+      </template>
+      <span class="inline-flex items-center h-10 px-3 text-[12.5px] text-[#5C636D]">
+        <span class="w-1.5 h-1.5 rounded-full bg-terra-500 mr-2"></span> aujourd’hui
+      </span>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-8">
+      <button @click="filtre = 'Toutes'"
+              class="h-8 px-3.5 rounded-full border text-[13px] transition"
+              :class="filtre === 'Toutes' ? 'border-terra-600 text-terra-600 bg-cream-100' : 'border-oak-500/30 text-[#5C636D] hover:border-oak-500'">Toutes</button>
+      <template x-for="d in disciplines" :key="'f'+d.nom">
+        <button @click="filtre = d.nom"
+                class="h-8 px-3.5 rounded-full border text-[13px] transition"
+                :class="filtre === d.nom ? 'border-terra-600 text-terra-600 bg-cream-100' : 'border-oak-500/30 text-[#5C636D] hover:border-oak-500'"
+                x-text="d.nom"></button>
+      </template>
+    </div>
+
+    <div class="hidden lg:grid grid-cols-[86px_1.5fr_1fr_1fr_0.9fr_0.9fr_190px] gap-4 px-4 pb-3 border-b border-oak-500/40 text-[11px] uppercase tracking-[0.16em] text-[#5C636D]">
+      <span>Heure</span><span>Discipline</span><span>Professeur</span><span>Salle</span><span>Niveau</span><span>Places</span><span></span>
+    </div>
+
+    <ul class="divide-y divide-oak-500/20">
+      <template x-for="c in listeJour" :key="'r'+c.id">
+        <li class="px-1 lg:px-4 py-4 lg:py-4 transition"
+            :class="passe(c) ? 'opacity-40' : (actif(c) ? 'bg-cream-100 -mx-1 lg:-mx-4 px-2 lg:px-4 rounded-lg' : '')">
+          <div class="lg:grid lg:grid-cols-[86px_1.5fr_1fr_1fr_0.9fr_0.9fr_190px] lg:gap-4 lg:items-center">
+
+            <div class="flex items-center gap-3 lg:block">
+              <span class="tnum text-[17px] lg:text-[18px] font-medium" x-text="hm(c.debut)"></span>
+              <span class="text-[12px] text-[#5C636D] tnum lg:block" x-text="c.duree + ' min'"></span>
+            </div>
+
+            <div class="mt-1.5 lg:mt-0 flex items-center gap-2.5">
+              <span class="font-display text-[19px] font-medium" x-text="c.disc"></span>
+              <span x-show="actif(c)" class="inline-flex items-center gap-1.5 h-5 px-2 rounded-full bg-fern-600 text-cream-100 text-[10px] uppercase tracking-[0.12em]">en cours</span>
+              <span x-show="passe(c)" class="text-[11px] text-[#5C636D] uppercase tracking-[0.12em]">terminé</span>
+            </div>
+
+            <div class="text-[14.5px] text-[#5C636D] mt-1 lg:mt-0"><span class="lg:hidden">avec </span><span x-text="c.prof"></span></div>
+            <div class="text-[14px] text-[#5C636D] mt-0.5 lg:mt-0" x-text="c.salle"></div>
+            <div class="text-[14px] text-[#5C636D] mt-0.5 lg:mt-0" x-text="c.niveau"></div>
+
+            <div class="mt-2 lg:mt-0 flex items-center gap-2">
+              <span class="tnum text-[14px] font-medium" :class="c.restant <= 4 ? 'text-terra-600' : 'text-fern-600'" x-text="c.restant + ' / ' + c.places"></span>
+              <span class="hidden lg:block w-10 h-1 rounded-full bg-oak-500/25 overflow-hidden">
+                <span class="block h-full rounded-full" :class="c.restant <= 4 ? 'bg-terra-600' : 'bg-fern-600'"
+                      :style="'width:' + Math.round((c.places - c.restant)/c.places*100) + '%'"></span>
+              </span>
+            </div>
+
+            <div class="mt-3 lg:mt-0">
+              <a href="#" x-show="!passe(c)"
+                 class="inline-flex items-center justify-center h-10 w-full lg:w-auto px-4 rounded-full border border-ink-900 hover:bg-ink-900 hover:text-cream-100 text-[13.5px] font-medium transition">
+                Pré-inscription · <span class="tnum ml-1" x-text="c.credits + ' cr.'"></span>
+              </a>
+              <span x-show="passe(c)" class="text-[13px] text-[#5C636D]">—</span>
+            </div>
+          </div>
+        </li>
+      </template>
+      <template x-if="!listeJour.length">
+        <li class="py-10 text-center text-[15px] text-[#5C636D]">
+          Pas de cours de <span x-text="filtre.toLowerCase()"></span> ce jour-là. Essayez un autre jour, ou retirez le filtre.
+        </li>
+      </template>
+    </ul>
+
+    <div class="mt-8 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-oak-500/30">
+      <a href="#" class="link-u text-[14.5px] text-terra-600">Voir l’horaire complet du mois →</a>
+      <a href="#" class="link-u text-[14.5px] text-[#5C636D]">Recevoir l’horaire chaque semaine</a>
+    </div>
+
+    <div id="agenda" class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-oak-500/35 bg-cream-100 px-5 py-4">
+      <span class="inline-flex items-center h-6 px-2.5 rounded-full bg-fern-600 text-cream-100 text-[10.5px] uppercase tracking-[0.14em]">À l’agenda</span>
+      <p class="text-[15px]"><span class="font-semibold">Samedi 29 août — Journée portes ouvertes.</span> 11h–18h, entrée libre, toutes les disciplines à l’essai.</p>
+    </div>
+
+    <p class="mt-5 text-[12.5px] text-[#5C636D]">
+      Les horaires, prénoms et places affichés sur cette page sont des <strong>données d’exemple</strong>.
+      En production, ils viennent des pré-inscriptions en temps réel.
+    </p>
+  </div>
+</section>
+
+<section id="comment" class="bg-cream-100 py-16 lg:py-24">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
+    <div class="mb-10 lg:mb-14">
+      <p class="text-[11px] uppercase tracking-[0.2em] text-terra-600 mb-3">Pas d’abonnement. Des crédits.</p>
+      <h2 class="font-display text-[38px] lg:text-[52px] leading-none font-medium">Comment ça marche</h2>
+      <div class="rule-oak w-[180px] mt-5"></div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-x-8 gap-y-10">
+      <div class="border-t-2 border-oak-500 pt-5">
+        <p class="font-display text-[44px] leading-none text-oak-500 tnum">01</p>
+        <h3 class="font-display text-[23px] mt-3 font-medium">Achetez des crédits</h3>
+        <p class="text-[15.5px] leading-relaxed text-[#5C636D] mt-2.5">
+          Un pack de 65 € ou de 120 €, ou un cours à l’unité. Pas d’abonnement, pas d’engagement.
+          <span class="text-[12.5px] text-oak-500">[à confirmer]</span>
+        </p>
+      </div>
+      <div class="border-t-2 border-oak-500 pt-5">
+        <p class="font-display text-[44px] leading-none text-oak-500 tnum">02</p>
+        <h3 class="font-display text-[23px] mt-3 font-medium">Choisissez votre cours</h3>
+        <p class="text-[15.5px] leading-relaxed text-[#5C636D] mt-2.5">
+          Yoga lundi, heels jeudi, salsa samedi : vos crédits fonctionnent partout,
+          chez tous les professeurs de la maison.
+        </p>
+      </div>
+      <div class="border-t-2 border-terra-600 pt-5">
+        <p class="font-display text-[44px] leading-none text-terra-600 tnum">03</p>
+        <h3 class="font-display text-[23px] mt-3 font-medium">Pré-inscrivez-vous</h3>
+        <p class="text-[15.5px] leading-relaxed text-[#5C636D] mt-2.5">
+          Votre place est réservée et le cours vous coûte moins cher. Vous montrez votre QR code
+          à l’entrée, c’est tout.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 rounded-xl bg-cream-200 border border-oak-500/25 px-6 py-5">
+      <p class="text-[15.5px] tnum">Un cours de danse : <strong>15 crédits</strong></p>
+      <span class="hidden sm:block w-px h-5 bg-oak-500/35"></span>
+      <p class="text-[15.5px] tnum">Un cours de heels : <strong>30 crédits</strong></p>
+      <span class="hidden sm:block w-px h-5 bg-oak-500/35"></span>
+      <p class="text-[15.5px]">La cyclodanse est le cours le moins cher du studio</p>
+      <span class="text-[12.5px] text-oak-500">[à confirmer]</span>
+    </div>
+  </div>
+</section>
+
+<section id="lieu" class="bg-cream-100 pb-16 lg:pb-24">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9 mb-8 lg:mb-12">
+    <p class="text-[11px] uppercase tracking-[0.2em] text-terra-600 mb-3">Du chêne, de la lumière, et un jardin</p>
+    <h2 class="font-display text-[38px] lg:text-[52px] leading-none font-medium">Le lieu</h2>
+    <div class="rule-oak w-[180px] mt-5"></div>
+  </div>
+
+  <figure class="relative">
+    <img src="assets/img/studio-28-27.jpg" alt="La grande salle du Studio 28, parquet en chêne clair et jardin visible par les fenêtres"
+         class="w-full h-[46vh] lg:h-[68vh] object-cover grade">
+    <figcaption class="absolute left-5 lg:left-9 bottom-5 inline-flex items-center gap-2.5 rounded-full bg-ink-900/80 backdrop-blur px-4 py-2 text-cream-100 text-[12.5px]">
+      <span class="w-1.5 h-1.5 rounded-full bg-oak-400"></span>
+      La grande salle — et le jardin derrière les fenêtres
+    </figcaption>
+  </figure>
+
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9 mt-10 lg:mt-14 grid lg:grid-cols-12 gap-8 lg:gap-12">
+    <div class="lg:col-span-5">
+      <p class="font-display text-[22px] lg:text-[27px] leading-[1.35]">
+        Un parquet en chêne clair, des murs sombres, un mur de miroirs et un plafond haut.
+        Derrière la salle, un vrai jardin : pergola en bois, pavés bleus, fougères et beaucoup de vert.
+      </p>
+      <p class="text-[17px] leading-relaxed text-[#5C636D] mt-6">
+        On y vient pour un cours. On y reste dix minutes de plus.
+      </p>
+      <dl class="mt-8 divide-y divide-oak-500/25 border-t border-oak-500/25">
+        <div class="flex justify-between py-3 text-[15px]"><dt class="text-[#5C636D]">Grande salle</dt><dd class="tnum">[X] m² · [X] personnes <span class="text-[12px] text-oak-500">[à confirmer]</span></dd></div>
+        <div class="flex justify-between py-3 text-[15px]"><dt class="text-[#5C636D]">Salle noire</dt><dd>parquet noir, mur de miroirs, son</dd></div>
+        <div class="flex justify-between py-3 text-[15px]"><dt class="text-[#5C636D]">Vestiaires</dt><dd>[à confirmer]</dd></div>
+        <div class="flex justify-between py-3 text-[15px]"><dt class="text-[#5C636D]">Tapis</dt><dd>fournis pour le yoga et le pilates</dd></div>
+      </dl>
+    </div>
+
+    <div class="lg:col-span-7 grid grid-cols-2 gap-4 lg:gap-5">
+      <figure class="col-span-2">
+        <img src="assets/img/studio-28-20.jpg" alt="Le jardin intérieur du Studio 28 — pergola en bois, pavés bleus, fougères" class="w-full aspect-[16/9] object-cover rounded-lg grade">
+        <figcaption class="text-[12.5px] text-[#5C636D] mt-2">Le jardin — pergola, bluestone, fougères</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/ros_9188.jpg" alt="Colonne en lattes de chêne et fenêtre donnant sur la verdure" class="w-full aspect-[3/4] object-cover rounded-lg grade">
+        <figcaption class="text-[12.5px] text-[#5C636D] mt-2">Chêne, en lattes</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/ros_9193.jpg" alt="Fenêtre du studio ouvrant sur la verdure du jardin" class="w-full aspect-[3/4] object-cover rounded-lg grade">
+        <figcaption class="text-[12.5px] text-[#5C636D] mt-2">La lumière, en fin de journée</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="profs" class="bg-cream-200 py-16 lg:py-24 border-y border-oak-500/25">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
+    <div class="flex flex-wrap items-end justify-between gap-5 mb-10 lg:mb-14">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.2em] text-terra-600 mb-3">Chacun son école, une seule maison</p>
+        <h2 class="font-display text-[38px] lg:text-[52px] leading-none font-medium">Les professeurs et les écoles</h2>
+        <div class="rule-oak w-[180px] mt-5"></div>
+      </div>
+      <p class="text-[15px] text-[#5C636D] max-w-[38ch]">
+        Chacun garde son nom, sa page et ses élèves. Ils partagent la salle, l’horaire et
+        le même portefeuille de crédits.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-8">
+      <template x-for="p in profs" :key="p.prenom + p.disc">
+        <div>
+          
+          <div class="aspect-[4/5] rounded-lg bg-ink-800 grid place-items-center overflow-hidden relative">
+            <span class="font-display text-[48px] text-oak-400 leading-none" x-text="p.prenom.charAt(0)"></span>
+            <span class="absolute bottom-2 left-0 right-0 text-center text-[9.5px] uppercase tracking-[0.14em] text-bluestone-500">portrait à venir</span>
+          </div>
+          <p class="font-display text-[19px] mt-3 font-medium" x-text="p.prenom"></p>
+          <p class="text-[13.5px] text-[#5C636D]" x-text="p.disc"></p>
+          <p class="text-[12.5px] text-oak-500 tnum mt-1" x-text="'prochain : ' + prochainDe(p.disc)"></p>
+        </div>
+      </template>
+    </div>
+
+    <div class="mt-10 grid lg:grid-cols-12 gap-6 items-center">
+      <figure class="lg:col-span-7">
+        <img src="assets/img/ros_9403.jpg" alt="Un cours en train de se donner dans la salle noire du Studio 28" class="w-full aspect-[16/9] object-cover rounded-lg grade">
+      </figure>
+      <p class="lg:col-span-5 text-[15.5px] leading-relaxed text-[#5C636D]">
+        Prénoms et disciplines ci-dessus : <strong>données d’exemple</strong>. Les portraits, les logos
+        des écoles et les liens vers leurs pages sont à fournir — ils sont la meilleure preuve
+        que la maison est plurielle.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="salle" class="relative bg-ink-800 grain overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="assets/img/ros_9197.jpg" alt="" class="w-full h-full object-cover grade opacity-[0.22]">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/90 via-ink-900/80 to-ink-900"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1360px] px-5 lg:px-9 py-16 lg:py-24">
+    <div class="mb-10 lg:mb-14">
+      <p class="text-[11px] uppercase tracking-[0.2em] text-fern-600 mb-3">Pour enseigner, pour se réunir, pour fêter</p>
+      <h2 class="font-display text-cream-100 text-[38px] lg:text-[52px] leading-none font-medium">La salle est aussi la vôtre</h2>
+      <div class="h-[2px] w-[180px] mt-5 bg-fern-600"></div>
+    </div>
+
+    <div class="mb-10 inline-flex flex-wrap items-center gap-3 rounded-full border border-fern-700 bg-fern-800/40 px-5 py-3">
+      <span class="live-dot inline-block w-[7px] h-[7px] rounded-full bg-fern-600"></span>
+      <p class="text-[14.5px] text-cream-100" x-text="creneauLibreTexte"></p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+      <div class="rounded-2xl border border-ink-600 bg-ink-700 overflow-hidden shadow-xl shadow-black/40">
+        <img src="assets/img/studio-28-9.jpg" alt="La grande salle vide — parquet en chêne clair, murs sombres" class="w-full h-[190px] lg:h-[220px] object-cover grade">
+      <div class="p-7 lg:p-9">
+        <h3 class="font-display text-cream-100 text-[27px] lg:text-[31px] font-medium leading-tight">Donner cours chez nous</h3>
+        <p class="text-[16px] leading-relaxed text-cream-100/80 mt-4">
+          Vous êtes professeur ou vous avez votre propre école ? Louez un créneau au Studio 28 :
+          loyer fixe, votre nom, votre page, vos photos — et <strong class="text-cream-100">vos élèves restent vos élèves</strong>.
+          La plateforme de réservation est comprise dans le loyer.
+        </p>
+        <ul class="mt-6 space-y-2.5 text-[14.5px] text-cream-100/70">
+          <li class="flex gap-3"><span class="text-fern-600">—</span> Loyer fixe, pas de pourcentage sur vos recettes</li>
+          <li class="flex gap-3"><span class="text-fern-600">—</span> Votre école apparaît dans l’horaire commun, sous votre nom</li>
+          <li class="flex gap-3"><span class="text-fern-600">—</span> Deux salles, parquet chêne et parquet noir, son et vestiaires</li>
+        </ul>
+        <a href="#venir" class="mt-8 inline-flex items-center h-12 px-7 rounded-full bg-fern-600 hover:bg-fern-700 text-cream-100 font-semibold text-[15px] transition">
+          Proposer un cours
+        </a>
+      </div>
+      </div>
+
+      <div class="rounded-2xl border border-ink-600 bg-ink-700 overflow-hidden shadow-xl shadow-black/40">
+        <img src="assets/img/studio-28-20.jpg" alt="Le jardin du Studio 28 — pergola, pavés bleus, table en teck" class="w-full h-[190px] lg:h-[220px] object-cover grade">
+      <div class="p-7 lg:p-9">
+        <h3 class="font-display text-cream-100 text-[27px] lg:text-[31px] font-medium leading-tight">Privatiser la salle</h3>
+        <p class="text-[16px] leading-relaxed text-cream-100/80 mt-4">
+          Team building, réunion, atelier, anniversaire, tournage. Une salle de [X] m² pour [X] personnes,
+          un jardin, un système son, des vestiaires — à 3 min du métro Madou. À partir de [X] €.
+          <span class="text-[12.5px] text-oak-500">[à confirmer]</span>
+        </p>
+        <ul class="mt-6 space-y-2.5 text-[14.5px] text-cream-100/70">
+          <li class="flex gap-3"><span class="text-fern-600">—</span> Le jardin est privatisable avec la salle</li>
+          <li class="flex gap-3"><span class="text-fern-600">—</span> Facture et TVA, réponse sous 24 h ouvrables</li>
+          <li class="flex gap-3"><span class="text-fern-600">—</span> Un cours d’initiation possible pour l’équipe, dans la discipline de votre choix</li>
+        </ul>
+        <a href="#venir" class="mt-8 inline-flex items-center h-12 px-7 rounded-full bg-fern-600 hover:bg-fern-700 text-cream-100 font-semibold text-[15px] transition">
+          Demander une date
+        </a>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="bg-cream-100 py-16 lg:py-24">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-4">
+      <h2 class="font-display text-[38px] lg:text-[46px] leading-none font-medium">Questions fréquentes</h2>
+      <div class="rule-oak w-[180px] mt-5"></div>
+      <p class="text-[15px] text-[#5C636D] mt-6 max-w-[32ch]">
+        Une autre question ? Écrivez-nous sur WhatsApp, on répond dans la journée.
+      </p>
+      <a href="#venir" class="inline-flex items-center gap-2 mt-5 h-11 px-5 rounded-full border border-ink-900 hover:bg-ink-900 hover:text-cream-100 text-[14px] font-medium transition">
+        Une question ? Écrivez-nous sur WhatsApp
+      </a>
+    </div>
+
+    <div class="lg:col-span-8 border-t border-oak-500/30">
+      <template x-for="(q, i) in faq" :key="i">
+        <div class="border-b border-oak-500/30">
+          <button @click="faqOuvert = (faqOuvert === i ? -1 : i)"
+                  class="w-full flex items-start justify-between gap-6 py-5 text-left group">
+            <span class="font-display text-[19px] lg:text-[21px] font-medium leading-snug group-hover:text-terra-600 transition" x-text="q.q"></span>
+            <span class="shrink-0 mt-1 w-6 h-6 grid place-items-center rounded-full border border-oak-500/50 text-oak-500 transition"
+                  :class="faqOuvert === i ? 'rotate-45 border-terra-600 text-terra-600' : ''">
+              <svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </button>
+          <div x-show="faqOuvert === i" x-collapse>
+            <p class="pb-6 pr-10 text-[16px] leading-relaxed text-[#5C636D]" x-text="q.r"></p>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+</section>
+
+<footer id="venir" class="bg-ink-900 grain text-cream-100 pt-16 lg:pt-20 pb-28 lg:pb-12">
+  <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
+
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-ink-600/70">
+      <div class="lg:col-span-4">
+        <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="h-14 w-auto">
+        <p class="text-[11px] uppercase tracking-[0.18em] text-oak-400 mt-4">Danse · Yoga · Pilates · Bruxelles</p>
+        <h2 class="font-display text-[30px] lg:text-[36px] leading-tight mt-6 font-medium">Venir au Studio 28</h2>
+        <p class="text-[16px] text-cream-100/75 mt-4 leading-relaxed">
+          Rue des Deux Églises 28<br>1000 Bruxelles<br>
+          Métro [à confirmer] — 5 min à pied
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#" class="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-fern-600 hover:bg-fern-700 text-cream-100 text-[14px] font-medium transition">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.1c-.24.68-1.42 1.31-1.95 1.35-.5.05-.98.24-3.3-.69-2.79-1.1-4.55-3.94-4.69-4.13-.13-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34.18 0 .36 0 .52.01.17.01.39-.06.61.47.24.56.8 1.95.87 2.09.07.14.12.3.02.49-.09.19-.14.3-.28.47-.14.16-.29.36-.42.49-.14.14-.28.29-.12.56.16.27.72 1.18 1.54 1.92 1.06.94 1.95 1.23 2.22 1.37.27.14.43.12.59-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.11.07.66-.17 1.34Z"/></svg>
+            WhatsApp
+          </a>
+          <a href="tel:+32" class="inline-flex items-center h-11 px-5 rounded-full border border-ink-600 hover:border-oak-500 text-[14px] transition">[téléphone à confirmer]</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="text-[11px] uppercase tracking-[0.18em] text-oak-400 mb-4">Les cours</p>
+        <ul class="space-y-2 text-[14.5px] text-cream-100/75">
+          <template x-for="d in disciplines" :key="'f2'+d.nom">
+            <li><a href="#cours" class="link-u hover:text-cream-100" x-text="d.nom"></a></li>
+          </template>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="text-[11px] uppercase tracking-[0.18em] text-oak-400 mb-4">Le studio</p>
+        <ul class="space-y-2 text-[14.5px] text-cream-100/75">
+          <li><a href="#horaire" class="link-u hover:text-cream-100">Horaire de la semaine</a></li>
+          <li><a href="#comment" class="link-u hover:text-cream-100">Crédits et tarifs</a></li>
+          <li><a href="#lieu"    class="link-u hover:text-cream-100">Le lieu et le jardin</a></li>
+          <li><a href="#profs"   class="link-u hover:text-cream-100">Professeurs et écoles</a></li>
+          <li><a href="#salle"   class="link-u hover:text-cream-100">Louer la salle</a></li>
+          <li><a href="#salle"   class="link-u hover:text-cream-100">Entreprises</a></li>
+          <li><a href="#faq"     class="link-u hover:text-cream-100">Questions fréquentes</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="text-[11px] uppercase tracking-[0.18em] text-oak-400 mb-4">Horaires d’ouverture</p>
+        <dl class="text-[14.5px] text-cream-100/75 tnum space-y-1.5">
+          <div class="flex justify-between"><dt>Lundi – vendredi</dt><dd>07h00 – 22h30</dd></div>
+          <div class="flex justify-between"><dt>Samedi</dt><dd>09h00 – 20h00</dd></div>
+          <div class="flex justify-between"><dt>Dimanche</dt><dd>09h00 – 19h00</dd></div>
+        </dl>
+        <p class="text-[12.5px] text-bluestone-500 mt-2">Horaires d’exemple — à aligner sur la fiche Google.</p>
+
+        <p class="text-[11px] uppercase tracking-[0.18em] text-oak-400 mt-8 mb-3">Langue</p>
+        <div class="flex items-center gap-2 text-[14px]">
+          <a href="#" class="font-semibold">FR</a><span class="text-ink-600">/</span>
+          <a href="#" class="text-bluestone-500 hover:text-cream-100">EN</a><span class="text-ink-600">/</span>
+          <a href="#" class="text-bluestone-500 hover:text-cream-100">NL</a>
+        </div>
+
+        <div class="flex gap-4 mt-6 text-[14px] text-cream-100/75">
+          <a href="#" class="link-u hover:text-cream-100">Instagram</a>
+          <a href="#" class="link-u hover:text-cream-100">Facebook</a>
+          <a href="#" class="link-u hover:text-cream-100">Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-6 flex flex-wrap items-center justify-between gap-4 text-[12.5px] text-bluestone-500">
+      <p>© 2026 Studio 28 — Bruxelles. Toutes les données d’horaire de cette page sont des exemples.</p>
+      <div class="flex flex-wrap gap-5">
+        <a href="#" class="hover:text-cream-100">Mentions légales</a>
+        <a href="#" class="hover:text-cream-100">Vie privée</a>
+        <a href="#" class="hover:text-cream-100">Collaboration — Latin Dance Evolution</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-ink-900/95 backdrop-blur border-t border-ink-600">
+  <div class="px-4 pt-2 pb-1 flex items-center gap-2 text-[11.5px] text-bluestone-500">
+    <span class="live-dot inline-block w-[6px] h-[6px] rounded-full bg-terra-500 shrink-0"></span>
+    <p class="truncate">
+      <span x-text="titreMoment"></span>
+      <span class="tnum text-oak-300" x-text="prochain ? hm(prochain.c.debut) : ''"></span>
+      <span class="text-cream-100" x-text="prochain ? ' · ' + prochain.c.disc : ''"></span>
+      <span class="text-fern-600" x-text="prochain ? ' · ' + prochain.c.restant + ' places' : ''"></span>
+    </p>
+  </div>
+  <div class="px-4 pb-3 pt-1 flex gap-2">
+    <a href="#horaire" class="flex-1 inline-flex items-center justify-center h-11 rounded-full bg-terra-600 text-cream-100 font-semibold text-[14.5px]">Voir l’horaire</a>
+    <a href="#venir" aria-label="WhatsApp" class="grid place-items-center w-11 h-11 rounded-full border border-ink-600 text-cream-100">
+      <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.1c-.24.68-1.42 1.31-1.95 1.35-.5.05-.98.24-3.3-.69-2.79-1.1-4.55-3.94-4.69-4.13-.13-.19-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34.18 0 .36 0 .52.01.17.01.39-.06.61.47.24.56.8 1.95.87 2.09.07.14.12.3.02.49-.09.19-.14.3-.28.47-.14.16-.29.36-.42.49-.14.14-.28.29-.12.56.16.27.72 1.18 1.54 1.92 1.06.94 1.95 1.23 2.22 1.37.27.14.43.12.59-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.61-.13.25.09 1.6.75 1.87.89.27.14.45.2.52.32.07.11.07.66-.17 1.34Z"/></svg>
+    </a>
+  </div>
+</div>
+
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</body>
+</html>
+

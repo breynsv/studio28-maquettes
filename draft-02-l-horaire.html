@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio 28 — Danse · Yoga · Pilates · Bruxelles</title>
+<meta name="description" content="L'horaire de la semaine au Studio 28, Bruxelles. Yoga, pilates, cyclodanse, hip-hop, heels, salsa, bachata. Une dizaine de professeurs indépendants, une seule salle, un seul portefeuille de crédits.">
+<link rel="icon" href="assets/logo/logo-studio28-3.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:   { 900:'#12161C', 800:'#1A1F27', 700:'#262D38', 600:'#3A434F' },
+        stone: { 500:'#6B7078' },
+        oak:   { 300:'#E3C79C', 400:'#CFA974', 500:'#A8814D' },
+        cream: { 100:'#F7F3EA', 200:'#EDE6D9' },
+        terra: { 500:'#C05A34', 600:'#9C4526' },
+        coral: { 400:'#F0714B' },
+        fern:  { 600:'#4F6B52', 800:'#2C3B2F' },
+      },
+      fontFamily: {
+        display: ['Fraunces','Georgia','serif'],
+        sans: ['Inter','system-ui','sans-serif'],
+      },
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.1/dist/cdn.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js" defer></script>
+<style>
+  :root{
+    --hdr: 60px;      /* sticky header */
+    --bar: 54px;      /* sticky filter bar */
+  }
+  html{ scroll-behavior:smooth; scroll-padding-top: 118px; }
+  body{
+    background:#F7F3EA; color:#171B21;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"cv05" 1,"ss01" 1;
+  }
+  
+  .font-display{ font-variation-settings:"SOFT" 32,"WONK" 0,"opsz" 96; letter-spacing:-0.014em; }
+  .tnum{ font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1; }
+
+  /* Paper grain — makes the cream read as printed programme stock, not flat beige */
+  .grain::after{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+    opacity:.5; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  }
+  
+  .grade{ filter:saturate(.88) contrast(1.03) brightness(1.01); }
+  .grade-wrap{ position:relative; }
+  .grade-wrap::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(192,90,52,.06), rgba(26,31,39,.10));
+  }
+
+  .rule{ border-color:rgba(168,129,77,.38); }         /* oak hairline on cream */
+  .rule-dark{ border-color:rgba(168,129,77,.30); }    /* oak hairline on ink   */
+
+  /* Timetable row */
+  .trow{ position:relative; transition:background-color .18s ease; }
+  .trow::before{
+    content:""; position:absolute; left:-14px; top:8px; bottom:8px; width:2px;
+    background:#A8814D; transform:scaleY(0); transform-origin:top; transition:transform .22s ease;
+  }
+  @media (hover:hover){
+    .trow:hover{ background:#EDE6D9; }
+    .trow:hover::before{ transform:scaleY(1); }
+  }
+  .disc-label{ letter-spacing:.16em; }
+
+  /* Chip / filter */
+  .chip{ transition:background-color .16s ease, color .16s ease, border-color .16s ease; }
+
+  /* Entrance choreography — one orchestrated load, nothing scattered */
+  @keyframes rise{ from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none} }
+  @keyframes wipe{ from{transform:scaleX(0)} to{transform:scaleX(1)} }
+  .rise{ animation:rise .72s cubic-bezier(.16,.84,.31,1) both; }
+  .wipe{ transform-origin:left; animation:wipe .9s cubic-bezier(.16,.84,.31,1) both; }
+  @media (prefers-reduced-motion:reduce){
+    .rise,.wipe{ animation:none !important; }
+    html{ scroll-behavior:auto; }
+    .trow::before{ transition:none; }
+  }
+
+  /* Hide scrollbar on the horizontal chip rails (mobile) */
+  .rail{ scrollbar-width:none; -ms-overflow-style:none; }
+  .rail::-webkit-scrollbar{ display:none; }
+
+  ::selection{ background:#E3C79C; color:#12161C; }
+  a:focus-visible, button:focus-visible{ outline:2px solid #C05A34; outline-offset:3px; border-radius:2px; }
+</style>
+</head>
+
+<body class="font-sans antialiased">
+
+<header class="sticky top-0 z-50 bg-cream-100/95 backdrop-blur border-b rule" style="height:var(--hdr)">
+  <div class="mx-auto max-w-[1440px] h-full px-5 lg:px-10 flex items-center gap-6">
+
+    <a href="#" class="flex items-center gap-3 shrink-0">
+      <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="h-8 lg:h-9 w-auto">
+      <span class="hidden xl:block text-[10.5px] leading-tight text-stone-500 tracking-[.13em] uppercase border-l rule pl-3">
+        Danse · Yoga · Pilates<br>Bruxelles
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-6 text-[13.5px] ml-auto">
+      <a href="#cours" class="hover:text-terra-600 transition-colors">Cours</a>
+      <a href="#horaire" class="text-terra-600 font-medium relative">Horaire
+        <span class="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-terra-600"></span></a>
+      <a href="#lieu" class="hover:text-terra-600 transition-colors">Le lieu</a>
+      <a href="#salle" class="hover:text-terra-600 transition-colors">Louer la salle</a>
+      <a href="#salle" class="hover:text-terra-600 transition-colors">Entreprises</a>
+      <a href="#venir" class="hover:text-terra-600 transition-colors">Contact</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-4 text-[12px] shrink-0">
+      <div class="flex items-center gap-1.5 text-stone-500 tracking-wide">
+        <span class="text-ink-900 font-semibold">FR</span><span class="text-oak-500">/</span>
+        <a href="#" class="hover:text-ink-900 transition-colors">EN</a><span class="text-oak-500">/</span>
+        <a href="#" class="hover:text-ink-900 transition-colors">NL</a>
+      </div>
+      <a href="#venir" aria-label="WhatsApp" class="text-ink-900 hover:text-fern-600 transition-colors">
+        <svg viewBox="0 0 24 24" class="w-[19px] h-[19px]" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29Z"/></svg>
+      </a>
+      <a href="#horaire" class="bg-terra-600 text-cream-100 text-[13px] font-medium px-4 py-2 hover:bg-terra-500 transition-colors">Réserver</a>
+    </div>
+
+    <div class="flex lg:hidden items-center gap-4 ml-auto" x-data="{open:false}">
+      <a href="#venir" aria-label="WhatsApp" class="text-ink-900">
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29Z"/></svg>
+      </a>
+      <button @click="open=!open" :aria-expanded="open" aria-label="Menu" class="w-8 h-8 flex flex-col items-center justify-center gap-[5px]">
+        <span class="block w-5 h-[1.5px] bg-ink-900 transition-transform" :class="open&&'translate-y-[6.5px] rotate-45'"></span>
+        <span class="block w-5 h-[1.5px] bg-ink-900 transition-opacity" :class="open&&'opacity-0'"></span>
+        <span class="block w-5 h-[1.5px] bg-ink-900 transition-transform" :class="open&&'-translate-y-[6.5px] -rotate-45'"></span>
+      </button>
+
+      <div x-show="open" x-cloak x-transition.opacity
+           class="fixed left-0 right-0 top-[var(--hdr)] bottom-0 bg-cream-100 z-40 px-6 pt-8 overflow-y-auto">
+        <nav class="flex flex-col font-display text-[30px] leading-[1.5]">
+          <a @click="open=false" href="#cours" class="border-b rule py-2">Cours</a>
+          <a @click="open=false" href="#horaire" class="border-b rule py-2 text-terra-600">Horaire</a>
+          <a @click="open=false" href="#lieu" class="border-b rule py-2">Le lieu</a>
+          <a @click="open=false" href="#salle" class="border-b rule py-2">Louer la salle</a>
+          <a @click="open=false" href="#salle" class="border-b rule py-2">Entreprises</a>
+          <a @click="open=false" href="#venir" class="border-b rule py-2">Contact</a>
+        </nav>
+        <div class="mt-8 flex items-center gap-2 text-[15px] tracking-wide">
+          <span class="font-semibold">FR</span><span class="text-oak-500">/</span>
+          <a href="#">EN</a><span class="text-oak-500">/</span><a href="#">NL</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="relative bg-ink-800 text-cream-100 overflow-hidden">
+  
+  <div class="absolute inset-0">
+    <img src="assets/img/studio-28-9.jpg" alt="La grande salle du Studio 28 : parquet en chêne clair, colonnes habillées de lattes, murs anthracite et comptoir au fond"
+         class="w-full h-full object-cover object-[70%_54%] grade">
+    <div class="absolute inset-0 lg:hidden" style="background:linear-gradient(180deg,rgba(18,22,28,.95) 0%,rgba(18,22,28,.90) 55%,rgba(18,22,28,.80) 100%)"></div>
+    <div class="absolute inset-0 hidden lg:block"
+         style="background:linear-gradient(100deg,#12161C 0%,#12161C 34%,rgba(18,22,28,.94) 44%,rgba(18,22,28,.55) 58%,rgba(18,22,28,.12) 72%,rgba(18,22,28,0) 88%)"></div>
+    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink-900 via-ink-900/70 to-transparent"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1440px] px-5 lg:px-10 pt-10 pb-0 lg:pt-12">
+
+   <div class="lg:max-w-[54%]">
+
+    <p class="rise text-[10.5px] lg:text-[11px] tracking-[.24em] uppercase text-oak-300 flex items-center gap-3" style="animation-delay:.05s">
+      <span class="tnum">Semaine 34</span>
+      <span class="h-px w-8 bg-oak-500/60 hidden sm:block"></span>
+      <span class="hidden sm:inline tnum">17 → 23 août 2026</span>
+    </p>
+
+    <h1 class="rise font-display font-medium mt-4 text-[38px] leading-[1.02] sm:text-[52px] lg:text-[64px] max-w-[16ch]" style="animation-delay:.12s">
+      On vous a gardé une place.
+    </h1>
+
+    <p class="rise mt-4 text-[16.5px] lg:text-[18px] text-cream-100/80 max-w-[46ch] leading-[1.55]" style="animation-delay:.2s">
+      Yoga le lundi, heels le jeudi, salsa le samedi — avec les mêmes crédits.
+      Une adresse à Bruxelles, une dizaine de professeurs indépendants, un seul horaire.
+    </p>
+
+    <ul class="rise mt-6 flex flex-wrap gap-x-2 gap-y-2 text-[12px] lg:text-[12.5px]" style="animation-delay:.28s">
+      <li><a href="#yoga"       class="chip inline-block border border-oak-500/45 px-3 py-1.5 hover:bg-oak-300 hover:text-ink-900 hover:border-oak-300">Yoga</a></li>
+      <li><a href="#pilates"    class="chip inline-block border border-oak-500/45 px-3 py-1.5 hover:bg-oak-300 hover:text-ink-900 hover:border-oak-300">Pilates</a></li>
+      <li><a href="#cyclodanse" class="chip inline-block border border-oak-500/45 px-3 py-1.5 hover:bg-oak-300 hover:text-ink-900 hover:border-oak-300">Cyclodanse</a></li>
+      <li><a href="#hiphop"     class="chip inline-block border border-oak-500/45 px-3 py-1.5 hover:bg-oak-300 hover:text-ink-900 hover:border-oak-300">Hip-hop</a></li>
+      <li><a href="#heels"      class="chip inline-block border border-oak-500/45 px-3 py-1.5 hover:bg-oak-300 hover:text-ink-900 hover:border-oak-300">Heels</a></li>
+      <li><a href="#salsa"      class="chip inline-block border border-oak-500/45 px-3 py-1.5 hover:bg-oak-300 hover:text-ink-900 hover:border-oak-300">Salsa</a></li>
+      <li><a href="#bachata"    class="chip inline-block border border-oak-500/45 px-3 py-1.5 hover:bg-oak-300 hover:text-ink-900 hover:border-oak-300">Bachata</a></li>
+    </ul>
+
+    <div class="rise mt-7 flex flex-wrap items-center gap-3" style="animation-delay:.36s">
+      <a href="#horaire" class="bg-terra-600 hover:bg-terra-500 text-cream-100 text-[14.5px] font-medium px-6 py-3 transition-colors">Voir l'horaire</a>
+      <a href="#agenda" class="text-[14.5px] text-cream-100 border-b border-oak-500 hover:border-cream-100 pb-1 transition-colors">Journée portes ouvertes — samedi 29&nbsp;août</a>
+    </div>
+
+   </div>
+
+    <figure class="rise lg:hidden -mx-5 mt-8 grade-wrap" style="animation-delay:.42s">
+      <img src="assets/img/ros_9180.jpg" alt="La grande salle du Studio 28 : parquet en chêne clair, colonnes en lattes de chêne, mur de miroirs au fond"
+           class="w-full h-[186px] object-cover grade">
+    </figure>
+
+    <ul class="rise mt-9 lg:mt-11 grid sm:grid-cols-3 border-t rule-dark divide-y sm:divide-y-0 sm:divide-x divide-oak-500/25" style="animation-delay:.46s">
+      <li class="py-3.5 sm:pr-6 text-[13px] text-cream-100/85"><span class="tnum text-cream-100 font-medium">10</span> professeurs et écoles indépendantes</li>
+      <li class="py-3.5 sm:px-6 text-[13px] text-cream-100/85">Un seul portefeuille de crédits, toutes les disciplines</li>
+      <li class="py-3.5 sm:pl-6 text-[13px] text-cream-100/85"><span class="text-oak-300">Rue des Deux Églises 28</span>, Bruxelles — ouvert 7j/7, à <span class="tnum">5</span>&nbsp;min du métro <span class="text-oak-300">Madou</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="horaire" class="relative grain bg-cream-100" x-data="{f:'tout'}">
+
+  <div class="relative z-10 mx-auto max-w-[1440px] px-5 lg:px-10">
+
+    <div class="pt-9 lg:pt-11 pb-5 flex flex-wrap items-end justify-between gap-5">
+      <div>
+        <p class="text-[10.5px] tracking-[.24em] uppercase text-terra-600">Réservez votre place en deux clics</p>
+        <h2 class="font-display font-medium text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.02] mt-2">Cette semaine au Studio&nbsp;28</h2>
+      </div>
+      <div class="flex items-center gap-4 text-[13px] pb-1.5">
+        <button class="text-stone-500 hover:text-ink-900 transition-colors">← Semaine passée</button>
+        <span class="hidden sm:block h-4 w-px bg-oak-500/40"></span>
+        <button class="text-ink-900 hover:text-terra-600 transition-colors">Semaine suivante →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sticky z-40 bg-cream-100/95 backdrop-blur border-y rule" style="top:var(--hdr); height:var(--bar)">
+    <div class="mx-auto max-w-[1440px] h-full px-5 lg:px-10 flex items-center gap-6">
+      <span class="hidden lg:block text-[10.5px] tracking-[.2em] uppercase text-stone-500 shrink-0">Filtrer</span>
+      <div class="rail flex items-center gap-1.5 overflow-x-auto h-full">
+        <button @click="f='tout'"       :class="f==='tout'       ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/40 hover:border-ink-900'" class="chip shrink-0 border px-3 py-1.5 text-[12.5px]">Tout <span class="tnum opacity-60">39</span></button>
+        <span class="shrink-0 w-px h-4 bg-oak-500/35 mx-1"></span>
+        <button @click="f='yoga'"       :class="f==='yoga'       ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/40 hover:border-ink-900'" class="chip shrink-0 border px-3 py-1.5 text-[12.5px]">Yoga <span class="tnum opacity-60">10</span></button>
+        <button @click="f='pilates'"    :class="f==='pilates'    ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/40 hover:border-ink-900'" class="chip shrink-0 border px-3 py-1.5 text-[12.5px]">Pilates <span class="tnum opacity-60">7</span></button>
+        <button @click="f='cyclodanse'" :class="f==='cyclodanse' ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/40 hover:border-ink-900'" class="chip shrink-0 border px-3 py-1.5 text-[12.5px]">Cyclodanse <span class="tnum opacity-60">5</span></button>
+        <button @click="f='hiphop'"     :class="f==='hiphop'     ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/40 hover:border-ink-900'" class="chip shrink-0 border px-3 py-1.5 text-[12.5px]">Hip-hop <span class="tnum opacity-60">4</span></button>
+        <button @click="f='heels'"      :class="f==='heels'      ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/40 hover:border-ink-900'" class="chip shrink-0 border px-3 py-1.5 text-[12.5px]">Heels <span class="tnum opacity-60">4</span></button>
+        <button @click="f='salsa'"      :class="f==='salsa'      ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/40 hover:border-ink-900'" class="chip shrink-0 border px-3 py-1.5 text-[12.5px]">Salsa <span class="tnum opacity-60">4</span></button>
+        <button @click="f='bachata'"    :class="f==='bachata'    ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/40 hover:border-ink-900'" class="chip shrink-0 border px-3 py-1.5 text-[12.5px]">Bachata <span class="tnum opacity-60">4</span></button>
+      </div>
+      <a href="#comment" class="hidden xl:block ml-auto shrink-0 text-[12.5px] text-stone-500 hover:text-terra-600 transition-colors">Tarifs en crédits →</a>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-[1440px] px-5 lg:px-10">
+    <div class="rail flex gap-1.5 overflow-x-auto py-3 border-b rule lg:hidden">
+      <a href="#lun" class="shrink-0 px-3 py-1.5 text-[12px] tracking-[.1em] uppercase border rule bg-cream-200">Lun&nbsp;<span class="tnum">17</span></a>
+      <a href="#mar" class="shrink-0 px-3 py-1.5 text-[12px] tracking-[.1em] uppercase border rule bg-cream-200">Mar&nbsp;<span class="tnum">18</span></a>
+      <a href="#mer" class="shrink-0 px-3 py-1.5 text-[12px] tracking-[.1em] uppercase border rule bg-cream-200">Mer&nbsp;<span class="tnum">19</span></a>
+      <a href="#jeu" class="shrink-0 px-3 py-1.5 text-[12px] tracking-[.1em] uppercase border rule bg-cream-200">Jeu&nbsp;<span class="tnum">20</span></a>
+      <a href="#ven" class="shrink-0 px-3 py-1.5 text-[12px] tracking-[.1em] uppercase border rule bg-cream-200">Ven&nbsp;<span class="tnum">21</span></a>
+      <a href="#sam" class="shrink-0 px-3 py-1.5 text-[12px] tracking-[.1em] uppercase border rule bg-cream-200">Sam&nbsp;<span class="tnum">22</span></a>
+      <a href="#dim" class="shrink-0 px-3 py-1.5 text-[12px] tracking-[.1em] uppercase border rule bg-cream-200">Dim&nbsp;<span class="tnum">23</span></a>
+    </div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-[1440px] px-5 lg:px-10">
+
+    <div class="hidden lg:grid grid-cols-[132px_88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-5 text-[10px] tracking-[.2em] uppercase text-stone-500 pt-6 pb-2">
+      <span></span><span>Heure</span><span>Cours</span><span>Professeur</span><span>Salle</span><span>Crédits</span><span>Places</span><span></span>
+    </div>
+    <div class="hidden lg:block wipe h-[2px] bg-ink-800"></div>
+
+    <article id="lun" x-show="f==='tout'||['yoga','pilates','cyclodanse','hiphop','bachata'].includes(f)" class="lg:grid lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-x-5">
+      <div class="contents lg:block lg:sticky lg:self-start lg:top-[124px] lg:pt-6">
+        <div class="lg:hidden sticky z-30 -mx-5 px-5 py-2.5 bg-ink-800 text-cream-100 flex items-baseline gap-3" style="top:calc(var(--hdr) + var(--bar))">
+          <span class="font-display text-[19px]">Lundi</span>
+          <span class="tnum text-[13px] text-oak-300">17 août</span>
+        </div>
+        <div class="hidden lg:block">
+          <p class="font-display text-[26px] leading-none">Lundi</p>
+          <p class="tnum font-display text-[62px] leading-[.9] text-oak-500 mt-1">17</p>
+          <p class="text-[11px] tracking-[.2em] uppercase text-stone-500 mt-1">Août</p>
+        </div>
+      </div>
+
+      <div class="lg:pt-6 pt-2">
+        
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">07:15</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— réveil doux</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">6</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">6 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='pilates'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">12:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Pilates <span class="text-stone-500">— mat, pause de midi</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">9</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">9 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">18:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— vinyasa tonique</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">4</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">4 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='cyclodanse'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">19:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Cyclodanse <span class="text-stone-500">— tous niveaux</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Andy · Salle noire · [à conf.] · <span class="text-fern-600"><span class="tnum">11</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Andy</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">[à conf.]</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">11 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='hiphop'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">20:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Hip-hop <span class="text-stone-500">— débutant·e</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Jamel · Salle noire · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">7</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Jamel</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">7 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='bachata'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">21:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Bachata <span class="text-stone-500">— débutant·e</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">[école partenaire] · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">12</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">[école partenaire]</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">12 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+      </div>
+    </article>
+
+    <article id="mar" x-show="f==='tout'||['pilates','yoga','heels','salsa'].includes(f)" class="lg:grid lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-x-5">
+      <div class="contents lg:block lg:sticky lg:self-start lg:top-[124px] lg:pt-6">
+        <div class="lg:hidden sticky z-30 -mx-5 px-5 py-2.5 bg-ink-800 text-cream-100 flex items-baseline gap-3" style="top:calc(var(--hdr) + var(--bar))">
+          <span class="font-display text-[19px]">Mardi</span><span class="tnum text-[13px] text-oak-300">18 août</span>
+        </div>
+        <div class="hidden lg:block">
+          <p class="font-display text-[26px] leading-none">Mardi</p>
+          <p class="tnum font-display text-[62px] leading-[.9] text-oak-500 mt-1">18</p>
+          <p class="text-[11px] tracking-[.2em] uppercase text-stone-500 mt-1">Août</p>
+        </div>
+      </div>
+      <div class="lg:pt-6 pt-2">
+
+        <div x-show="f==='tout'||f==='pilates'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">09:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Pilates <span class="text-stone-500">— dos &amp; centre</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">8</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">8 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">12:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— pause déjeuner, 45 min</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Nivram · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">5</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Nivram</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">5 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='pilates'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">18:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Pilates <span class="text-stone-500">— intermédiaire</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Elena · Salle chêne · <span class="tnum">15</span> cr · <span class="text-stone-500">complet</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Elena</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">complet</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-oak-500 text-stone-500 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Liste d'attente →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='heels'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">19:15</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Heels <span class="text-stone-500">— technique &amp; présence</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Charline · Salle noire · <span class="tnum">30</span> cr · <span class="text-fern-600"><span class="tnum">3</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Charline</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[14px] tnum">30 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">3 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='salsa'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">20:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Salsa <span class="text-stone-500">— débutant·e</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">[école partenaire] · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">14</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">[école partenaire]</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">14 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='salsa'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">21:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Salsa <span class="text-stone-500">— intermédiaire</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">[école partenaire] · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">10</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">[école partenaire]</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">10 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+      </div>
+    </article>
+
+    <article id="mer" x-show="f==='tout'||['yoga','cyclodanse','hiphop','heels','bachata'].includes(f)" class="lg:grid lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-x-5">
+      <div class="contents lg:block lg:sticky lg:self-start lg:top-[124px] lg:pt-6">
+        <div class="lg:hidden sticky z-30 -mx-5 px-5 py-2.5 bg-ink-800 text-cream-100 flex items-baseline gap-3" style="top:calc(var(--hdr) + var(--bar))">
+          <span class="font-display text-[19px]">Mercredi</span><span class="tnum text-[13px] text-oak-300">19 août</span>
+        </div>
+        <div class="hidden lg:block">
+          <p class="font-display text-[26px] leading-none">Mercredi</p>
+          <p class="tnum font-display text-[62px] leading-[.9] text-oak-500 mt-1">19</p>
+          <p class="text-[11px] tracking-[.2em] uppercase text-stone-500 mt-1">Août</p>
+        </div>
+      </div>
+      <div class="lg:pt-6 pt-2">
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">07:15</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— réveil doux</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">9</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">9 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='cyclodanse'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">12:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Cyclodanse <span class="text-stone-500">— express, 45 min</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Andy · Salle noire · [à conf.] · <span class="text-fern-600"><span class="tnum">8</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Andy</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">[à conf.]</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">8 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='hiphop'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">17:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Hip-hop <span class="text-stone-500">— ados, 12–16 ans</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Tarek · Salle noire · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">6</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Tarek</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">6 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">19:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— yin, lent et au sol</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Nivram · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">2</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Nivram</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">2 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='heels'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">20:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Heels <span class="text-stone-500">— choré de la semaine</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Charline · Salle noire · <span class="tnum">30</span> cr · <span class="text-fern-600"><span class="tnum">5</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Charline</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[14px] tnum">30 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">5 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='bachata'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">21:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Bachata <span class="text-stone-500">— intermédiaire</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">[école partenaire] · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">9</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">[école partenaire]</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">9 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+      </div>
+    </article>
+
+    <article id="jeu" x-show="f==='tout'||['pilates','yoga','cyclodanse','heels','hiphop'].includes(f)" class="lg:grid lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-x-5">
+      <div class="contents lg:block lg:sticky lg:self-start lg:top-[124px] lg:pt-6">
+        <div class="lg:hidden sticky z-30 -mx-5 px-5 py-2.5 bg-ink-800 text-cream-100 flex items-baseline gap-3" style="top:calc(var(--hdr) + var(--bar))">
+          <span class="font-display text-[19px]">Jeudi</span><span class="tnum text-[13px] text-oak-300">20 août</span>
+        </div>
+        <div class="hidden lg:block">
+          <p class="font-display text-[26px] leading-none">Jeudi</p>
+          <p class="tnum font-display text-[62px] leading-[.9] text-oak-500 mt-1">20</p>
+          <p class="text-[11px] tracking-[.2em] uppercase text-stone-500 mt-1">Août</p>
+        </div>
+      </div>
+      <div class="lg:pt-6 pt-2">
+
+        <div x-show="f==='tout'||f==='pilates'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">09:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Pilates <span class="text-stone-500">— reprise en douceur</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Elena · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">10</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Elena</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">10 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">12:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— pause déjeuner, 45 min</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">7</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">7 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='cyclodanse'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">18:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Cyclodanse <span class="text-stone-500">— tous niveaux</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Andy · Salle noire · [à conf.] · <span class="text-fern-600"><span class="tnum">4</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Andy</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">[à conf.]</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">4 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='heels'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">19:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Heels <span class="text-stone-500">— débutant·e, aucun niveau requis</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Kenza · Salle noire · <span class="tnum">30</span> cr · <span class="text-fern-600"><span class="tnum">8</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Kenza</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[14px] tnum">30 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">8 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='hiphop'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">20:45</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Hip-hop <span class="text-stone-500">— intermédiaire</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Jamel · Salle noire · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">6</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Jamel</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">6 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+      </div>
+    </article>
+
+    <article id="ven" x-show="f==='tout'||['pilates','yoga','salsa','bachata'].includes(f)" class="lg:grid lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-x-5">
+      <div class="contents lg:block lg:sticky lg:self-start lg:top-[124px] lg:pt-6">
+        <div class="lg:hidden sticky z-30 -mx-5 px-5 py-2.5 bg-ink-800 text-cream-100 flex items-baseline gap-3" style="top:calc(var(--hdr) + var(--bar))">
+          <span class="font-display text-[19px]">Vendredi</span><span class="tnum text-[13px] text-oak-300">21 août</span>
+        </div>
+        <div class="hidden lg:block">
+          <p class="font-display text-[26px] leading-none">Vendredi</p>
+          <p class="tnum font-display text-[62px] leading-[.9] text-oak-500 mt-1">21</p>
+          <p class="text-[11px] tracking-[.2em] uppercase text-stone-500 mt-1">Août</p>
+        </div>
+      </div>
+      <div class="lg:pt-6 pt-2">
+
+        <div x-show="f==='tout'||f==='pilates'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">07:15</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Pilates <span class="text-stone-500">— réveil, 45 min</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">11</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">11 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">12:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— pause déjeuner, 45 min</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Nivram · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">6</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Nivram</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">6 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">18:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— détente de fin de semaine</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">3</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">3 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='salsa'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">19:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Salsa <span class="text-stone-500">— débutant·e</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">[école partenaire] · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">16</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">[école partenaire]</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">16 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='bachata'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">20:45</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Bachata <span class="text-stone-500">— tous niveaux</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">[école partenaire] · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">13</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">[école partenaire]</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">13 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='salsa'||f==='bachata'" class="trow border-b rule py-4 lg:py-3.5 bg-cream-200/60 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">22:00</span>
+          <div class="min-w-0">
+            <p class="text-[10px] tracking-[.2em] uppercase text-fern-600 mb-1">Soirée</p>
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Pratique libre <span class="text-stone-500">— on danse, on change de partenaire</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Ouvert à tous · Salle chêne · <span class="text-fern-600">entrée libre</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">Ouvert à tous</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[13px] text-fern-600">libre</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">—</span>
+          <a href="#agenda" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-fern-600 text-fern-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">En savoir plus →</a>
+        </div>
+      </div>
+    </article>
+
+    <article id="sam" x-show="f==='tout'||['yoga','pilates','cyclodanse','heels','hiphop','bachata'].includes(f)" class="lg:grid lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-x-5">
+      <div class="contents lg:block lg:sticky lg:self-start lg:top-[124px] lg:pt-6">
+        <div class="lg:hidden sticky z-30 -mx-5 px-5 py-2.5 bg-ink-800 text-cream-100 flex items-baseline gap-3" style="top:calc(var(--hdr) + var(--bar))">
+          <span class="font-display text-[19px]">Samedi</span><span class="tnum text-[13px] text-oak-300">22 août</span>
+        </div>
+        <div class="hidden lg:block">
+          <p class="font-display text-[26px] leading-none">Samedi</p>
+          <p class="tnum font-display text-[62px] leading-[.9] text-oak-500 mt-1">22</p>
+          <p class="text-[11px] tracking-[.2em] uppercase text-stone-500 mt-1">Août</p>
+        </div>
+      </div>
+      <div class="lg:pt-6 pt-2">
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">10:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— au jardin, météo permettant</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Nivram · <span class="text-fern-600">Jardin</span> · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">5</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Nivram</span>
+          <span class="hidden lg:block text-[13px] text-fern-600">Jardin</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">5 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='pilates'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">11:15</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Pilates <span class="text-stone-500">— mat, tous niveaux</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Elena · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">9</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Elena</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">9 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='cyclodanse'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">12:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Cyclodanse <span class="text-stone-500">— aucune expérience nécessaire</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Andy · Salle noire · [à conf.] · <span class="text-fern-600"><span class="tnum">7</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Andy</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">[à conf.]</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">7 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='heels'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">14:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Heels <span class="text-stone-500">— atelier de 2 h</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Charline · Salle noire · <span class="tnum">30</span> cr · <span class="text-fern-600"><span class="tnum">6</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Charline</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[14px] tnum">30 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">6 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='hiphop'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">16:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Hip-hop <span class="text-stone-500">— tous niveaux</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Tarek · Salle noire · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">12</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Tarek</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">12 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='bachata'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">18:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Bachata <span class="text-stone-500">— débutant·e</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">[école partenaire] · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">15</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">[école partenaire]</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">15 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+      </div>
+    </article>
+
+    <article id="dim" x-show="f==='tout'||['yoga','pilates','salsa','cyclodanse'].includes(f)" class="lg:grid lg:grid-cols-[132px_minmax(0,1fr)] lg:gap-x-5">
+      <div class="contents lg:block lg:sticky lg:self-start lg:top-[124px] lg:pt-6">
+        <div class="lg:hidden sticky z-30 -mx-5 px-5 py-2.5 bg-ink-800 text-cream-100 flex items-baseline gap-3" style="top:calc(var(--hdr) + var(--bar))">
+          <span class="font-display text-[19px]">Dimanche</span><span class="tnum text-[13px] text-oak-300">23 août</span>
+        </div>
+        <div class="hidden lg:block">
+          <p class="font-display text-[26px] leading-none">Dimanche</p>
+          <p class="tnum font-display text-[62px] leading-[.9] text-oak-500 mt-1">23</p>
+          <p class="text-[11px] tracking-[.2em] uppercase text-stone-500 mt-1">Août</p>
+        </div>
+      </div>
+      <div class="lg:pt-6 pt-2">
+
+        <div x-show="f==='tout'||f==='yoga'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">10:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Yoga <span class="text-stone-500">— doux &amp; respiration</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">8</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">8 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='pilates'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">11:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Pilates <span class="text-stone-500">— mat, tous niveaux</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Laura · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">10</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Laura</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">10 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='salsa'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">17:00</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Salsa <span class="text-stone-500">— atelier découverte</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">[école partenaire] · Salle chêne · <span class="tnum">15</span> cr · <span class="text-fern-600"><span class="tnum">18</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[13px] text-stone-500">[école partenaire]</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle chêne</span>
+          <span class="hidden lg:block text-[14px] tnum">15 cr</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">18 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+
+        <div x-show="f==='tout'||f==='cyclodanse'" class="trow border-b rule py-4 lg:py-3.5 grid grid-cols-[68px_minmax(0,1fr)] lg:grid-cols-[88px_minmax(0,1fr)_150px_118px_92px_96px_150px] gap-x-4 lg:gap-x-5 gap-y-1.5 items-baseline">
+          <span class="tnum text-[19px] lg:text-[20px] font-medium">18:30</span>
+          <div class="min-w-0">
+            <p class="font-display text-[20px] lg:text-[23px] leading-tight">Cyclodanse <span class="text-stone-500">— le cours le moins cher de la maison</span></p>
+            <p class="lg:hidden text-[13px] text-stone-500 mt-1">Andy · Salle noire · [à conf.] · <span class="text-fern-600"><span class="tnum">9</span> places</span></p>
+          </div>
+          <span class="hidden lg:block text-[14px]">Andy</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">Salle noire</span>
+          <span class="hidden lg:block text-[13px] text-stone-500">[à conf.]</span>
+          <span class="hidden lg:block text-[13px] text-fern-600 tnum">9 places</span>
+          <a href="#" class="col-start-2 lg:col-start-auto justify-self-start lg:justify-self-end text-[12.5px] border-b border-terra-600 text-terra-600 hover:text-ink-900 hover:border-ink-900 transition-colors pb-0.5">Pré-inscription →</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="border-t-2 border-ink-800 mt-2 pt-5 pb-14 lg:pb-20 flex flex-wrap items-start justify-between gap-6">
+      <p class="text-[12.5px] text-stone-500 max-w-[62ch] leading-relaxed">
+        Tarifs exprimés en crédits — <span class="text-ink-900">[à confirmer avec la liste de prix]</span>.
+        Un cours de danse : <span class="tnum">15</span> crédits. Un cours de heels : <span class="tnum">30</span> crédits.
+        La cyclodanse est le cours le moins cher du studio. Les places restantes sont mises à jour en direct.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#" class="text-[13.5px] bg-ink-800 text-cream-100 px-5 py-2.5 hover:bg-terra-600 transition-colors">Horaire complet</a>
+        <a href="#" class="text-[13.5px] border rule px-5 py-2.5 hover:border-ink-900 transition-colors">Recevoir l'horaire chaque semaine</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cours" class="relative bg-cream-200 border-y rule">
+  <div class="mx-auto max-w-[1440px] px-5 lg:px-10 py-14 lg:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+      <div>
+        <p class="text-[10.5px] tracking-[.24em] uppercase text-terra-600">Sept disciplines, une dizaine de professeurs</p>
+        <h2 class="font-display font-medium text-[30px] sm:text-[42px] leading-[1.04] mt-2">Les cours</h2>
+      </div>
+      <p class="text-[14px] text-stone-500 max-w-[38ch]">Chaque discipline a son cours débutant. Vos crédits fonctionnent partout.</p>
+    </div>
+
+    <ul class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-x-4 gap-y-8">
+      <li id="yoga">
+        <a href="#" class="group block">
+          <div class="grade-wrap overflow-hidden aspect-[3/4] bg-ink-700">
+            <img src="assets/img/ph-yoga.jpg" alt="Un cours de yoga : tapis au sol, posture debout, lumière naturelle" class="w-full h-full object-cover grade transition-transform duration-[900ms] group-hover:scale-[1.05]">
+          </div>
+          <h3 class="font-display text-[21px] mt-3 group-hover:text-terra-600 transition-colors">Yoga</h3>
+          <p class="text-[13px] text-stone-500 leading-snug mt-1">Respirer, s'étirer, relâcher. Des cours doux et des cours plus toniques, tous ouverts aux débutants.</p>
+          <span class="inline-block text-[12px] text-terra-600 border-b border-terra-600/50 mt-2 pb-0.5">Voir les horaires</span>
+        </a>
+      </li>
+      <li id="pilates">
+        <a href="#" class="group block">
+          <div class="grade-wrap overflow-hidden aspect-[3/4] bg-ink-700">
+            <img src="assets/img/ph-pilates.jpg" alt="Un cours de pilates sur reformer, dans un studio lumineux" class="w-full h-full object-cover grade transition-transform duration-[900ms] group-hover:scale-[1.05]">
+          </div>
+          <h3 class="font-display text-[21px] mt-3 group-hover:text-terra-600 transition-colors">Pilates</h3>
+          <p class="text-[13px] text-stone-500 leading-snug mt-1">Renforcer le dos et le centre, en douceur et sans impact. Le cours idéal pour reprendre le mouvement.</p>
+          <span class="inline-block text-[12px] text-terra-600 border-b border-terra-600/50 mt-2 pb-0.5">Voir les horaires</span>
+        </a>
+      </li>
+      <li id="cyclodanse">
+        <a href="#" class="group block">
+          <div class="grade-wrap overflow-hidden aspect-[3/4] bg-ink-700">
+            <img src="assets/img/ph-cyclodanse.jpg" alt="Un cours de cyclodanse : vélos en salle, lumière colorée" class="w-full h-full object-cover grade transition-transform duration-[900ms] group-hover:scale-[1.05]">
+          </div>
+          <h3 class="font-display text-[21px] mt-3 group-hover:text-terra-600 transition-colors">Cyclodanse</h3>
+          <p class="text-[13px] text-stone-500 leading-snug mt-1">Du vélo, mais en musique et en rythme. Le cours le plus cardio de la maison — et le moins cher.</p>
+          <span class="inline-block text-[12px] text-terra-600 border-b border-terra-600/50 mt-2 pb-0.5">Voir les horaires</span>
+        </a>
+      </li>
+      <li id="hiphop">
+        <a href="#" class="group block">
+          <div class="grade-wrap overflow-hidden aspect-[3/4] bg-ink-700">
+            <img src="assets/img/ros_9403.jpg" alt="Un cours en cours dans la salle noire, mur de miroirs" class="w-full h-full object-cover grade transition-transform duration-[900ms] group-hover:scale-[1.05]">
+          </div>
+          <h3 class="font-display text-[21px] mt-3 group-hover:text-terra-600 transition-colors">Hip-hop</h3>
+          <p class="text-[13px] text-stone-500 leading-snug mt-1">Du groove, de la technique et de la sueur. Cours réguliers, tous niveaux, dans la salle noire.</p>
+          <span class="inline-block text-[12px] text-terra-600 border-b border-terra-600/50 mt-2 pb-0.5">Voir les horaires</span>
+        </a>
+      </li>
+      <li id="heels">
+        <a href="#" class="group block">
+          <div class="grade-wrap overflow-hidden aspect-[3/4] bg-ink-700">
+            <img src="assets/img/ros_9203.jpg" alt="La salle en soirée, éclairage LED" class="w-full h-full object-cover grade transition-transform duration-[900ms] group-hover:scale-[1.05]">
+          </div>
+          <h3 class="font-display text-[21px] mt-3 group-hover:text-terra-600 transition-colors">Heels</h3>
+          <p class="text-[13px] text-stone-500 leading-snug mt-1">La danse en talons : technique, présence, confiance. Aucun niveau requis, juste l'envie.</p>
+          <span class="inline-block text-[12px] text-terra-600 border-b border-terra-600/50 mt-2 pb-0.5">Voir les horaires</span>
+        </a>
+      </li>
+      <li id="salsa">
+        <a href="#" class="group block">
+          <div class="grade-wrap overflow-hidden aspect-[3/4] bg-ink-700">
+            <img src="assets/img/ros_9189.jpg" alt="La salle, parquet en chêne et comptoir en lattes" class="w-full h-full object-cover grade transition-transform duration-[900ms] group-hover:scale-[1.05]">
+          </div>
+          <h3 class="font-display text-[21px] mt-3 group-hover:text-terra-600 transition-colors">Salsa</h3>
+          <p class="text-[13px] text-stone-500 leading-snug mt-1">Le rythme, les pas de base et beaucoup de monde. Venez seul·e : on change de partenaire.</p>
+          <span class="inline-block text-[12px] text-terra-600 border-b border-terra-600/50 mt-2 pb-0.5">Voir les horaires</span>
+        </a>
+      </li>
+      <li id="bachata">
+        <a href="#" class="group block">
+          <div class="grade-wrap overflow-hidden aspect-[3/4] bg-ink-700">
+            <img src="assets/img/ph-bachata.jpg" alt="Un couple qui danse la bachata dans un studio, devant les miroirs" class="w-full h-full object-cover grade transition-transform duration-[900ms] group-hover:scale-[1.05]">
+          </div>
+          <h3 class="font-display text-[21px] mt-3 group-hover:text-terra-600 transition-colors">Bachata</h3>
+          <p class="text-[13px] text-stone-500 leading-snug mt-1">La danse de couple la plus populaire du moment. Débutants bienvenus toute l'année.</p>
+          <span class="inline-block text-[12px] text-terra-600 border-b border-terra-600/50 mt-2 pb-0.5">Voir les horaires</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="comment" class="relative grain bg-cream-100">
+  <div class="relative z-10 mx-auto max-w-[1440px] px-5 lg:px-10 py-14 lg:py-20">
+    <div class="mb-8">
+      <p class="text-[10.5px] tracking-[.24em] uppercase text-terra-600">Pas d'abonnement. Des crédits.</p>
+      <h2 class="font-display font-medium text-[30px] sm:text-[42px] leading-[1.04] mt-2">Comment ça marche</h2>
+    </div>
+
+    <ol class="grid md:grid-cols-3 border-t-2 border-ink-800">
+      <li class="border-b rule md:border-b-0 md:border-r rule py-7 md:pr-8">
+        <span class="tnum font-display text-[54px] leading-none text-oak-500">1</span>
+        <h3 class="font-display text-[22px] mt-3">Achetez des crédits.</h3>
+        <p class="text-[15px] text-stone-500 leading-relaxed mt-2">Un pack de <span class="tnum text-ink-900">65&nbsp;€</span> ou de <span class="tnum text-ink-900">120&nbsp;€</span>, ou un cours à l'unité. Pas d'abonnement, pas d'engagement. <span class="text-oak-500">[à confirmer]</span></p>
+      </li>
+      <li class="border-b rule md:border-b-0 md:border-r rule py-7 md:px-8">
+        <span class="tnum font-display text-[54px] leading-none text-oak-500">2</span>
+        <h3 class="font-display text-[22px] mt-3">Choisissez votre cours.</h3>
+        <p class="text-[15px] text-stone-500 leading-relaxed mt-2">Yoga lundi, heels jeudi, salsa samedi : vos crédits fonctionnent partout, chez tous les professeurs de la maison.</p>
+      </li>
+      <li class="py-7 md:pl-8">
+        <span class="tnum font-display text-[54px] leading-none text-oak-500">3</span>
+        <h3 class="font-display text-[22px] mt-3">Pré-inscrivez-vous.</h3>
+        <p class="text-[15px] text-stone-500 leading-relaxed mt-2">Votre place est réservée et le cours vous coûte moins cher. Vous montrez votre QR code à l'entrée, c'est tout.</p>
+      </li>
+    </ol>
+
+    <div class="border-t-2 border-ink-800 pt-5 flex flex-wrap items-center gap-x-8 gap-y-3">
+      <p class="text-[14.5px]">Un cours de danse : <span class="tnum font-medium">15</span> crédits. Un cours de heels : <span class="tnum font-medium">30</span> crédits. La cyclodanse est le cours le moins cher du studio. <span class="text-oak-500 text-[13px]">[à confirmer]</span></p>
+      <a href="#horaire" class="text-[13.5px] bg-terra-600 text-cream-100 px-5 py-2.5 hover:bg-terra-500 transition-colors">Essayer un premier cours</a>
+    </div>
+  </div>
+</section>
+
+<section id="lieu" class="bg-ink-800 text-cream-100">
+  <div class="mx-auto max-w-[1440px] px-5 lg:px-10 pt-14 lg:pt-20 pb-8">
+    <div class="flex flex-wrap items-end justify-between gap-5">
+      <div>
+        <p class="text-[10.5px] tracking-[.24em] uppercase text-oak-300">Du chêne, de la lumière, et un jardin</p>
+        <h2 class="font-display font-medium text-[30px] sm:text-[42px] leading-[1.04] mt-2">Le lieu</h2>
+      </div>
+      <p class="text-[15.5px] text-cream-100/75 max-w-[46ch] leading-relaxed">
+        Un parquet en chêne clair, des murs sombres, un mur de miroirs et un plafond haut.
+        Derrière la salle, un vrai jardin : pergola en bois, pavés bleus, fougères et beaucoup de vert.
+        On y vient pour un cours. On y reste dix minutes de plus.
+      </p>
+    </div>
+  </div>
+
+  <figure class="grade-wrap">
+    <img src="assets/img/ros_9180.jpg" alt="La grande salle du Studio 28 : parquet en chêne clair, murs charbon, colonnes à lattes, mur de miroirs au fond"
+         class="w-full h-[46vh] lg:h-[62vh] object-cover grade" loading="lazy">
+  </figure>
+
+  <div class="mx-auto max-w-[1440px] px-5 lg:px-10 py-8 grid md:grid-cols-3 gap-5">
+    <figure class="grade-wrap md:col-span-2">
+      <img src="assets/img/studio-28-20.jpg" alt="Le jardin intérieur : pergola en bois sombre, pavés bleus, graminées et haies denses"
+           class="w-full h-[280px] lg:h-[420px] object-cover grade" loading="lazy">
+      <figcaption class="text-[12.5px] text-cream-100/60 mt-2">Le jardin, derrière la salle. Pergola, pavés bleus, fougères.</figcaption>
+    </figure>
+    <div class="grid grid-cols-2 md:grid-cols-1 gap-5">
+      <figure class="grade-wrap">
+        <img src="assets/img/ros_9184.jpg" alt="Détail : fleurs sur une table, mur bleu nuit" class="w-full h-[130px] lg:h-[198px] object-cover grade" loading="lazy">
+      </figure>
+      <figure class="grade-wrap">
+        <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses" class="w-full h-[130px] lg:h-[198px] object-cover grade" loading="lazy">
+      </figure>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-[1440px] px-5 lg:px-10 pb-14 lg:pb-20">
+    <ul class="grid sm:grid-cols-3 border-t rule-dark divide-y sm:divide-y-0 sm:divide-x divide-oak-500/25 text-[14.5px]">
+      <li class="py-4 sm:pr-6"><span class="text-oak-300">Le sol —</span> parquet en chêne clair dans la grande salle, sol noir de scène dans la salle de danse.</li>
+      <li class="py-4 sm:px-6"><span class="text-oak-300">La lumière —</span> une façade vitrée sur toute la longueur, rideaux occultants, éclairage sur rail.</li>
+      <li class="py-4 sm:pl-6"><span class="text-oak-300">L'équipement —</span> mur de miroirs, système son, vestiaires <span class="text-stone-500">[à confirmer : douches]</span>.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="profs" class="relative grain bg-cream-100 border-b rule">
+  <div class="relative z-10 mx-auto max-w-[1440px] px-5 lg:px-10 py-14 lg:py-20">
+    <div class="flex flex-wrap items-end justify-between gap-5 mb-8">
+      <div>
+        <p class="text-[10.5px] tracking-[.24em] uppercase text-terra-600">Chacun son école, une seule maison</p>
+        <h2 class="font-display font-medium text-[30px] sm:text-[42px] leading-[1.04] mt-2">Les professeurs et les écoles</h2>
+      </div>
+      <p class="text-[14.5px] text-stone-500 max-w-[42ch]">Une dizaine de professeurs et d'écoles indépendantes enseignent ici. Chacun garde son nom, sa page et ses élèves.</p>
+    </div>
+
+    <ul class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-x-3 gap-y-6">
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">C</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Laura</h3><p class="text-[11.5px] text-stone-500 leading-snug">Yoga · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">I</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Laura</h3><p class="text-[11.5px] text-stone-500 leading-snug">Pilates · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">L</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Nivram</h3><p class="text-[11.5px] text-stone-500 leading-snug">Yoga · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">M</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Elena</h3><p class="text-[11.5px] text-stone-500 leading-snug">Pilates · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">M</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Andy</h3><p class="text-[11.5px] text-stone-500 leading-snug">Cyclodanse · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">N</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Jamel</h3><p class="text-[11.5px] text-stone-500 leading-snug">Hip-hop · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">T</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Tarek</h3><p class="text-[11.5px] text-stone-500 leading-snug">Hip-hop · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">Y</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Charline</h3><p class="text-[11.5px] text-stone-500 leading-snug">Heels · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[26px] text-oak-500">K</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">Kenza</h3><p class="text-[11.5px] text-stone-500 leading-snug">Heels · <span class="text-oak-500">[portrait]</span></p></li>
+      <li><div class="aspect-[4/5] bg-cream-200 border rule flex items-center justify-center"><span class="font-display text-[17px] tracking-wide text-oak-500">S28</span></div>
+          <h3 class="font-display text-[16px] mt-2 leading-tight">[école partenaire]</h3><p class="text-[11.5px] text-stone-500 leading-snug">Salsa &amp; bachata · <span class="text-oak-500">[logo]</span></p></li>
+    </ul>
+
+    <p class="text-[13px] text-stone-500 mt-8 border-t rule pt-5">
+      Noms, portraits et logos à compléter — <span class="text-ink-900">[liste des partenaires à confirmer]</span>.
+    </p>
+  </div>
+</section>
+
+<section id="salle" class="bg-fern-800 text-cream-100">
+  <div class="mx-auto max-w-[1440px] px-5 lg:px-10 py-14 lg:py-20">
+    <div class="mb-9">
+      <p class="text-[10.5px] tracking-[.24em] uppercase text-cream-100/60">Pour enseigner, pour se réunir, pour fêter</p>
+      <h2 class="font-display font-medium text-[30px] sm:text-[42px] leading-[1.04] mt-2">La salle est aussi la vôtre</h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-5 lg:gap-6">
+
+      <article class="bg-ink-800 flex flex-col">
+        <div class="grade-wrap">
+          <img src="assets/img/studio-28-10.jpg" alt="La salle vide, prête pour un cours" class="w-full h-[210px] lg:h-[260px] object-cover grade" loading="lazy">
+        </div>
+        <div class="p-6 lg:p-8 flex flex-col flex-1">
+          <h3 class="font-display text-[26px] lg:text-[30px]">Donner cours chez nous</h3>
+          <p class="text-[15.5px] text-cream-100/75 leading-relaxed mt-3 flex-1">
+            Vous êtes professeur ou vous avez votre propre école ? Louez un créneau au Studio&nbsp;28 :
+            loyer fixe, votre nom, votre page, vos photos — et <strong class="text-cream-100 font-medium">vos élèves restent vos élèves</strong>.
+            La plateforme de réservation est comprise dans le loyer.
+          </p>
+          <ul class="mt-5 text-[13.5px] text-cream-100/70 border-t rule-dark divide-y divide-oak-500/20">
+            <li class="py-2.5">Loyer fixe — pas de pourcentage sur vos recettes</li>
+            <li class="py-2.5">Votre page, votre marque, vos photos</li>
+            <li class="py-2.5">Réservations et paiements inclus</li>
+          </ul>
+          <a href="#venir" class="mt-6 self-start bg-cream-100 text-ink-900 text-[14px] font-medium px-5 py-3 hover:bg-oak-300 transition-colors">Proposer un cours</a>
+        </div>
+      </article>
+
+      <article class="bg-ink-800 flex flex-col">
+        <div class="grade-wrap">
+          <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses" class="w-full h-[210px] lg:h-[260px] object-cover grade" loading="lazy">
+        </div>
+        <div class="p-6 lg:p-8 flex flex-col flex-1">
+          <h3 class="font-display text-[26px] lg:text-[30px]">Privatiser la salle</h3>
+          <p class="text-[15.5px] text-cream-100/75 leading-relaxed mt-3 flex-1">
+            Team building, réunion, atelier, anniversaire, tournage. Une salle de <span class="text-cream-100">[X]&nbsp;m²</span>
+            pour <span class="text-cream-100">[X]&nbsp;personnes</span>, un jardin, un système son, des vestiaires —
+            à <span class="text-cream-100">[X]&nbsp;minutes</span> du métro <span class="text-cream-100">[X]</span>.
+            À partir de <span class="text-cream-100">[X]&nbsp;€</span>.
+          </p>
+          <ul class="mt-5 text-[13.5px] text-cream-100/70 border-t rule-dark divide-y divide-oak-500/20">
+            <li class="py-2.5">Jardin privatif et terrasse</li>
+            <li class="py-2.5">Système son, éclairage, vestiaires</li>
+            <li class="py-2.5">Facturation avec TVA — réponse sous <span class="tnum">24</span>&nbsp;h <span class="text-cream-100/40">[à confirmer]</span></li>
+          </ul>
+          <a href="#venir" class="mt-6 self-start bg-cream-100 text-ink-900 text-[14px] font-medium px-5 py-3 hover:bg-oak-300 transition-colors">Demander une date</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="agenda" class="relative grain bg-cream-200 border-b rule">
+  <div class="relative z-10 mx-auto max-w-[1440px] px-5 lg:px-10 py-12 lg:py-16">
+    <h2 class="font-display font-medium text-[26px] sm:text-[34px] leading-[1.04] mb-6">Ce qui se passe au studio</h2>
+    <ul class="grid md:grid-cols-3 border-t-2 border-ink-800">
+      <li class="border-b rule md:border-b-0 md:border-r rule py-6 md:pr-7">
+        <p class="tnum text-[12.5px] tracking-[.14em] uppercase text-terra-600">Samedi 29 août</p>
+        <h3 class="font-display text-[22px] mt-2">Journée portes ouvertes</h3>
+        <p class="text-[14px] text-stone-500 mt-2 leading-relaxed">Tous les cours en accès libre, de <span class="tnum">10:00</span> à <span class="tnum">18:00</span>. Le jardin est ouvert.</p>
+      </li>
+      <li class="border-b rule md:border-b-0 md:border-r rule py-6 md:px-7">
+        <p class="tnum text-[12.5px] tracking-[.14em] uppercase text-terra-600">Chaque vendredi</p>
+        <h3 class="font-display text-[22px] mt-2">Pratique libre</h3>
+        <p class="text-[14px] text-stone-500 mt-2 leading-relaxed">À partir de <span class="tnum">22:00</span>, entrée libre. On change de partenaire, personne ne reste assis.</p>
+      </li>
+      <li class="py-6 md:pl-7">
+        <p class="text-[12.5px] tracking-[.14em] uppercase text-terra-600">Sur demande</p>
+        <h3 class="font-display text-[22px] mt-2">Ateliers et stages</h3>
+        <p class="text-[14px] text-stone-500 mt-2 leading-relaxed">Les professeurs de la maison programment des ateliers ponctuels. Ils apparaissent dans l'horaire.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="faq" class="relative grain bg-cream-100">
+  <div class="relative z-10 mx-auto max-w-[1440px] px-5 lg:px-10 py-14 lg:py-20 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] gap-8 lg:gap-16">
+    <div>
+      <h2 class="font-display font-medium text-[30px] sm:text-[42px] leading-[1.04]">Questions fréquentes</h2>
+      <p class="text-[14.5px] text-stone-500 mt-3 max-w-[34ch]">Une autre question ? Écrivez-nous sur WhatsApp, on répond vite.</p>
+      <a href="#venir" class="inline-flex items-center gap-2 mt-5 text-[14px] border rule px-4 py-2.5 hover:border-ink-900 transition-colors">
+        <svg viewBox="0 0 24 24" class="w-4 h-4 text-fern-600" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Z"/></svg>
+        Une question ? Écrivez-nous sur WhatsApp
+      </a>
+    </div>
+
+    <div x-data="{o:1}" class="border-t-2 border-ink-800">
+      <div class="border-b rule">
+        <button @click="o = o===1 ? 0 : 1" class="w-full text-left py-5 flex items-start justify-between gap-6">
+          <span class="font-display text-[20px] lg:text-[23px] leading-snug">Puis-je venir seul·e ?</span>
+          <span class="text-oak-500 text-[22px] leading-none mt-1 shrink-0" x-text="o===1 ? '–' : '+'">–</span>
+        </button>
+        <div x-show="o===1" x-collapse><p class="text-[15.5px] text-stone-500 leading-relaxed pb-5 max-w-[62ch]">Oui. Dans tous nos cours de danse, on change de partenaire régulièrement. Vous n'avez besoin de personne pour commencer.</p></div>
+      </div>
+      <div class="border-b rule">
+        <button @click="o = o===2 ? 0 : 2" class="w-full text-left py-5 flex items-start justify-between gap-6">
+          <span class="font-display text-[20px] lg:text-[23px] leading-snug">Je n'ai jamais dansé / jamais fait de yoga. C'est un problème ?</span>
+          <span class="text-oak-500 text-[22px] leading-none mt-1 shrink-0" x-text="o===2 ? '–' : '+'">+</span>
+        </button>
+        <div x-show="o===2" x-collapse><p class="text-[15.5px] text-stone-500 leading-relaxed pb-5 max-w-[62ch]">Non. Chaque discipline a son cours débutant, et vous pouvez commencer à n'importe quel moment de l'année — pas seulement en septembre.</p></div>
+      </div>
+      <div class="border-b rule">
+        <button @click="o = o===3 ? 0 : 3" class="w-full text-left py-5 flex items-start justify-between gap-6">
+          <span class="font-display text-[20px] lg:text-[23px] leading-snug">Faut-il un abonnement ?</span>
+          <span class="text-oak-500 text-[22px] leading-none mt-1 shrink-0" x-text="o===3 ? '–' : '+'">+</span>
+        </button>
+        <div x-show="o===3" x-collapse><p class="text-[15.5px] text-stone-500 leading-relaxed pb-5 max-w-[62ch]">Non. Vous achetez des crédits et vous les dépensez où vous voulez, quand vous voulez.</p></div>
+      </div>
+      <div class="border-b rule">
+        <button @click="o = o===4 ? 0 : 4" class="w-full text-left py-5 flex items-start justify-between gap-6">
+          <span class="font-display text-[20px] lg:text-[23px] leading-snug">Êtes-vous ouverts pendant les vacances scolaires ?</span>
+          <span class="text-oak-500 text-[22px] leading-none mt-1 shrink-0" x-text="o===4 ? '–' : '+'">+</span>
+        </button>
+        <div x-show="o===4" x-collapse><p class="text-[15.5px] text-stone-500 leading-relaxed pb-5 max-w-[62ch]">Oui, avec un horaire allégé. Il est publié ici deux semaines à l'avance.</p></div>
+      </div>
+      <div class="border-b rule">
+        <button @click="o = o===5 ? 0 : 5" class="w-full text-left py-5 flex items-start justify-between gap-6">
+          <span class="font-display text-[20px] lg:text-[23px] leading-snug">Que dois-je apporter ?</span>
+          <span class="text-oak-500 text-[22px] leading-none mt-1 shrink-0" x-text="o===5 ? '–' : '+'">+</span>
+        </button>
+        <div x-show="o===5" x-collapse><p class="text-[15.5px] text-stone-500 leading-relaxed pb-5 max-w-[62ch]">Une bouteille d'eau et des vêtements confortables. Les tapis sont fournis pour le yoga et le pilates ; pour la danse, prévoyez des chaussures propres.</p></div>
+      </div>
+      <div class="border-b rule">
+        <button @click="o = o===6 ? 0 : 6" class="w-full text-left py-5 flex items-start justify-between gap-6">
+          <span class="font-display text-[20px] lg:text-[23px] leading-snug">Les tarifs et promotions en cours</span>
+          <span class="text-oak-500 text-[22px] leading-none mt-1 shrink-0" x-text="o===6 ? '–' : '+'">+</span>
+        </button>
+        <div x-show="o===6" x-collapse><p class="text-[15.5px] text-stone-500 leading-relaxed pb-5 max-w-[62ch]">Tous nos tarifs sont affichés sur la page Tarifs — ils sont toujours à jour.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="venir" class="bg-ink-900 text-cream-100 pb-24 lg:pb-0">
+  <div class="mx-auto max-w-[1440px] px-5 lg:px-10 py-14 lg:py-20">
+
+    <div class="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-14 border-b rule-dark pb-12">
+
+      <div>
+        <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="h-11 w-auto">
+        <p class="text-[11px] tracking-[.16em] uppercase text-oak-300 mt-4">Danse · Yoga · Pilates · Bruxelles</p>
+        <h2 class="font-display text-[28px] lg:text-[34px] mt-5 leading-tight">Venir au Studio&nbsp;28</h2>
+        <address class="not-italic text-[15.5px] text-cream-100/80 leading-relaxed mt-4">
+          <span class="text-oak-300">Rue des Deux Églises 28</span><br>
+          <span class="tnum">1000</span> Bruxelles, Belgique<br>
+          <a href="tel:" class="tnum border-b border-oak-500/50 hover:border-cream-100 transition-colors">[téléphone]</a>
+        </address>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <a href="#" class="inline-flex items-center gap-2 text-[13.5px] bg-fern-600 text-cream-100 px-4 py-2.5 hover:bg-fern-800 transition-colors">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Z"/></svg>
+            WhatsApp
+          </a>
+          <a href="#" class="text-[13.5px] border border-oak-500/45 px-4 py-2.5 hover:border-cream-100 transition-colors">Voir sur le plan</a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8">
+        <div>
+          <p class="text-[10.5px] tracking-[.2em] uppercase text-oak-300 mb-4">Les cours</p>
+          <ul class="space-y-2 text-[14.5px] text-cream-100/80">
+            <li><a href="#yoga" class="hover:text-oak-300 transition-colors">Yoga à Bruxelles</a></li>
+            <li><a href="#pilates" class="hover:text-oak-300 transition-colors">Pilates à Bruxelles</a></li>
+            <li><a href="#cyclodanse" class="hover:text-oak-300 transition-colors">Cyclodanse</a></li>
+            <li><a href="#hiphop" class="hover:text-oak-300 transition-colors">Hip-hop</a></li>
+            <li><a href="#heels" class="hover:text-oak-300 transition-colors">Heels</a></li>
+            <li><a href="#salsa" class="hover:text-oak-300 transition-colors">Salsa</a></li>
+            <li><a href="#bachata" class="hover:text-oak-300 transition-colors">Bachata</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-[10.5px] tracking-[.2em] uppercase text-oak-300 mb-4">Le studio</p>
+          <ul class="space-y-2 text-[14.5px] text-cream-100/80">
+            <li><a href="#horaire" class="hover:text-oak-300 transition-colors">Horaire</a></li>
+            <li><a href="#comment" class="hover:text-oak-300 transition-colors">Tarifs et crédits</a></li>
+            <li><a href="#lieu" class="hover:text-oak-300 transition-colors">Le lieu</a></li>
+            <li><a href="#profs" class="hover:text-oak-300 transition-colors">Professeurs et écoles</a></li>
+            <li><a href="#salle" class="hover:text-oak-300 transition-colors">Louer la salle</a></li>
+            <li><a href="#salle" class="hover:text-oak-300 transition-colors">Entreprises</a></li>
+            <li><a href="#agenda" class="hover:text-oak-300 transition-colors">Agenda</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[10.5px] tracking-[.2em] uppercase text-oak-300 mb-4">Horaires d'ouverture</p>
+        <ul class="text-[14.5px] text-cream-100/80 divide-y divide-oak-500/20 border-y rule-dark">
+          <li class="flex justify-between py-2"><span>Lundi – vendredi</span><span class="tnum text-cream-100">07:00 – 22:30</span></li>
+          <li class="flex justify-between py-2"><span>Samedi</span><span class="tnum text-cream-100">09:30 – 20:00</span></li>
+          <li class="flex justify-between py-2"><span>Dimanche</span><span class="tnum text-cream-100">09:30 – 20:00</span></li>
+        </ul>
+        <p class="text-[12px] text-stone-500 mt-2">[horaires à confirmer avec le profil Google]</p>
+
+        <p class="text-[10.5px] tracking-[.2em] uppercase text-oak-300 mt-8 mb-3">Recevoir l'horaire chaque semaine</p>
+        <form class="flex gap-2" onsubmit="return false">
+          <label for="nl" class="sr-only">Votre adresse e-mail</label>
+          <input id="nl" type="email" placeholder="votre@email.be" class="min-w-0 flex-1 bg-ink-800 border border-oak-500/40 px-3 py-2.5 text-[14px] placeholder:text-stone-500 focus:border-oak-300 outline-none">
+          <button class="bg-cream-100 text-ink-900 text-[14px] font-medium px-4 py-2.5 hover:bg-oak-300 transition-colors shrink-0">OK</button>
+        </form>
+
+        <div class="flex items-center gap-4 mt-6 text-[13px] text-cream-100/70">
+          <a href="#" class="hover:text-oak-300 transition-colors">Instagram</a>
+          <span class="text-oak-500">·</span>
+          <a href="#" class="hover:text-oak-300 transition-colors">Facebook</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-6 flex flex-wrap items-center justify-between gap-4 text-[12.5px] text-stone-500">
+      <div class="flex items-center gap-2">
+        <span class="text-cream-100">FR</span><span class="text-oak-500">/</span>
+        <a href="#" class="hover:text-cream-100 transition-colors">EN</a><span class="text-oak-500">/</span>
+        <a href="#" class="hover:text-cream-100 transition-colors">NL</a>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <a href="#" class="hover:text-cream-100 transition-colors">Conditions générales</a>
+        <a href="#" class="hover:text-cream-100 transition-colors">Vie privée</a>
+        <a href="#" class="hover:text-cream-100 transition-colors">Collaboration — Latin Dance Evolution</a>
+        <span>© <span class="tnum">2026</span> Studio 28</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-ink-900/95 backdrop-blur border-t border-oak-500/30 flex">
+  <a href="#horaire" class="flex-1 text-center text-cream-100 text-[14.5px] font-medium py-4">Voir l'horaire</a>
+  <a href="#venir" class="w-[64px] grid place-items-center border-l border-oak-500/30 text-fern-600" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Z"/></svg>
+  </a>
+</div>
+
+<style>[x-cloak]{display:none !important}</style>
+
+</body>
+</html>
