@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Danse · Yoga · Pilates · Bruxelles</title>
-<meta name="description" content="Sept disciplines, plusieurs écoles indépendantes, une seule porte. Yoga, pilates, cyclodanse, hip-hop, heels, salsa et bachata à Bruxelles.">
+<meta name="description" content="Danser, bouger, respirer, plusieurs écoles indépendantes, une seule adresse. Yoga, pilates, cyclodanse, hip-hop, heels, salsa et bachata à Bruxelles.">
 <link rel="icon" href="assets/logo/logo-studio28-3.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -151,11 +151,13 @@ function s28(){
 
 <body x-data="s28()" @scroll.window="scrolled = window.scrollY > 80" class="pb-[68px] md:pb-0">
 
+
 <header class="fixed top-0 inset-x-0 z-50 transition-colors duration-500"
         :class="scrolled ? 'bg-cream-100/95 backdrop-blur border-b border-oak-500/30' : 'bg-transparent'">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8">
     <div class="flex items-center justify-between h-[68px] md:h-[84px]">
 
+      
       <a href="#top" class="flex items-center gap-3 shrink-0">
         <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="h-9 w-auto md:hidden">
         <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="hidden md:block h-11 w-auto">
@@ -164,6 +166,7 @@ function s28(){
         </span>
       </a>
 
+      
       <nav class="hidden xl:flex items-center gap-7 ann"
            :class="scrolled ? 'text-ink-800' : 'text-cream-100'">
         <a href="#cours"       class="hover:text-terra-600 transition-colors">Cours</a>
@@ -197,6 +200,7 @@ function s28(){
     </div>
   </div>
 
+  
   <div x-show="menu" x-cloak x-transition.opacity class="xl:hidden bg-cream-100 border-t border-oak-500/30">
     <nav class="px-5 py-6 grid gap-4 ann-lg text-ink-800">
       <a @click="menu=false" href="#cours" class="flex justify-between hair border-b pb-3">Cours <span class="text-oak-500">01</span></a>
@@ -209,6 +213,7 @@ function s28(){
     </nav>
   </div>
 </header>
+
 
 <section id="top" class="relative bg-ink-800 text-cream-100 overflow-hidden">
   <div class="absolute inset-0">
@@ -226,7 +231,7 @@ function s28(){
     </p>
 
     <h1 class="mt-6 md:mt-8 font-display text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[5.4rem] lg:leading-[.98] max-w-[17ch] reveal" style="animation-delay:.12s">
-      Sept disciplines.<br>Plusieurs écoles.<br><span class="text-oak-300">Une seule porte.</span>
+      Danser, bouger, respirer.<br>Plusieurs écoles.<br><span class="text-oak-300">Une seule adresse.</span>
     </h1>
 
     <p class="mt-6 md:mt-7 text-[17px] md:text-xl text-cream-100/80 max-w-[46ch] leading-relaxed reveal" style="animation-delay:.2s">
@@ -243,9 +248,11 @@ function s28(){
       </a>
     </div>
 
+    
     <div class="mt-14 md:mt-20 reveal" style="animation-delay:.36s">
       <p class="ann text-cream-100/45 mb-5">Coupe longitudinale — de la rue au jardin</p>
 
+      
       <div class="hidden md:block relative">
         <div class="absolute left-0 right-0 top-[7px] h-px bg-oak-400/45"></div>
         <div class="relative grid grid-cols-6">
@@ -266,6 +273,7 @@ function s28(){
         </div>
       </div>
 
+      
       <div class="md:hidden border-l border-oak-400/40 pl-5 space-y-4">
         <template x-for="(sp,i) in [
           {n:'00',t:'Rue'},{n:'01',t:'Accueil'},{n:'02',t:'Grande salle'},
@@ -279,8 +287,9 @@ function s28(){
       </div>
     </div>
 
+    
     <div class="mt-12 md:mt-16 pt-8 border-t border-cream-100/10 reveal" style="animation-delay:.44s">
-      <p class="ann text-cream-100/45 mb-4">Sept disciplines — chacune dans sa salle</p>
+      <p class="ann text-cream-100/45 mb-4">Danser, bouger, respirer — chacune dans sa salle</p>
       <ul class="flex flex-wrap gap-2 md:gap-2.5">
         <template x-for="d in [
           {k:'yoga',n:'Yoga',r:'02'},{k:'pilates',n:'Pilates',r:'02'},{k:'cyclodanse',n:'Cyclodanse',r:'02'},
@@ -299,6 +308,7 @@ function s28(){
     </div>
   </div>
 </section>
+
 
 <section class="bg-ink-900 text-cream-100 border-t border-ink-600/60">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8">
@@ -319,6 +329,7 @@ function s28(){
   </div>
 </section>
 
+
 <section id="cours" class="paper">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 pt-16 md:pt-24 pb-16 md:pb-24">
 
@@ -328,7 +339,7 @@ function s28(){
         <h2 class="mt-4 font-display text-4xl md:text-6xl leading-[1.02]">Les cours</h2>
         <div class="rule-terra mt-5"></div>
         <p class="mt-5 text-[17px] md:text-lg text-ink-800/70 max-w-[42ch] leading-relaxed">
-          Sept disciplines, une dizaine de professeurs. Chaque cours a sa salle : le parquet de chêne
+          Danser, bouger, respirer, une dizaine de professeurs. Chaque cours a sa salle : le parquet de chêne
           pour le yoga, le pilates et la danse de couple ; la salle noire et son mur de miroirs pour
           le hip-hop et les heels.
         </p>
@@ -339,15 +350,18 @@ function s28(){
       </p>
     </div>
 
+    
     <div class="mt-10 md:mt-14 bg-cream-100 border border-oak-500/35 p-4 sm:p-7 md:p-10 relative">
 
+      
       <span class="absolute left-3 top-3 w-4 h-4 border-l border-t border-oak-500/60"></span>
       <span class="absolute right-3 top-3 w-4 h-4 border-r border-t border-oak-500/60"></span>
       <span class="absolute left-3 bottom-3 w-4 h-4 border-l border-b border-oak-500/60"></span>
       <span class="absolute right-3 bottom-3 w-4 h-4 border-r border-b border-oak-500/60"></span>
 
+      
       <svg class="plan hidden md:block" viewBox="0 0 1260 800" role="img"
-           aria-label="Plan du Studio 28 : rue, accueil, grande salle, salle noire, vestiaires et jardin, avec les sept disciplines situées dans leur salle.">
+           aria-label="Plan du Studio 28 : rue, accueil, grande salle, salle noire, vestiaires et jardin, avec les toutes nos disciplines situées dans leur salle.">
         <defs>
           <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
             <line x1="0" y1="0" x2="0" y2="9" stroke="#A8814D" stroke-width="1" opacity=".45"/>
@@ -364,6 +378,7 @@ function s28(){
           </pattern>
         </defs>
 
+        
         <g class="zone" @mouseenter="sel=null" @click="document.getElementById('lieu').scrollIntoView({behavior:'smooth'})">
           <rect x="250" y="42" width="960" height="152" fill="#4F6B52" opacity=".14"/>
           <rect x="250" y="42" width="960" height="152" fill="none" stroke="#4F6B52" stroke-width="1.2" stroke-dasharray="7 5" opacity=".8"/>
@@ -389,13 +404,16 @@ function s28(){
           <text class="lab" x="792" y="176" font-size="10" fill="#4F6B52" letter-spacing="1.6">Pergola</text>
         </g>
 
+        
         <rect x="0" y="42" width="62" height="700" fill="url(#hatch)"/>
         <line x1="62" y1="42" x2="62" y2="742" stroke="#A8814D" stroke-width="1"/>
         <text class="lab" transform="translate(30,560) rotate(-90)" font-size="11.5" fill="#5C636D" letter-spacing="3">00 — Rue · Rue des Deux Églises 28</text>
         <text class="lab" transform="translate(46,300) rotate(-90)" font-size="10" fill="#6B7078" letter-spacing="2">Métro Madou à 5 min</text>
 
+        
         <rect x="62" y="200" width="1148" height="480" fill="#EDE6D9"/>
 
+        
         <g class="zone" @click="document.getElementById('comment').scrollIntoView({behavior:'smooth'})">
           <rect x="62" y="200" width="196" height="290" fill="#E6DDCB"/>
           <rect x="164" y="228" width="76" height="26" fill="url(#counter)" stroke="#A8814D" stroke-width="1"/>
@@ -405,6 +423,7 @@ function s28(){
           <text class="lab" x="168" y="270" font-size="9.5" fill="#5C636D" letter-spacing="1.4">Comptoir</text>
         </g>
 
+        
         <g class="zone">
           <rect x="62" y="490" width="98" height="190" fill="#E6DDCB"/>
           <rect x="160" y="490" width="98" height="190" fill="#E6DDCB"/>
@@ -419,6 +438,7 @@ function s28(){
           <text class="lab" x="174" y="574" font-size="9" fill="#5C636D" letter-spacing=".9">à confirmer]</text>
         </g>
 
+        
         <g>
           <rect x="258" y="200" width="556" height="480" fill="#EDE6D9"/>
           <rect x="258" y="200" width="556" height="480" fill="url(#planks)"/>
@@ -432,6 +452,7 @@ function s28(){
           <text class="lab" x="286" y="282" font-size="10.5" fill="#5C636D" letter-spacing="1.8">Parquet chêne clair · [X] m² · [X] personnes</text>
         </g>
 
+        
         <g>
           <rect x="814" y="200" width="396" height="480" fill="#1A1F27"/>
           <rect class="wash dark" :class="{'on': lit('noire')}" x="814" y="200" width="396" height="480" fill="#CFA974"/>
@@ -453,6 +474,7 @@ function s28(){
           <text class="lab" x="842" y="282" font-size="10.5" fill="#9AA3AD" letter-spacing="1.8">Plancher noir · son · [X] m²</text>
         </g>
 
+        
         <rect x="62" y="200" width="1148" height="480" class="wall"/>
         <line x1="258" y1="200" x2="258" y2="330" class="wall-in"/>
         <line x1="258" y1="440" x2="258" y2="680" class="wall-in"/>
@@ -460,12 +482,14 @@ function s28(){
         <line x1="814" y1="530" x2="814" y2="680" class="wall-in"/>
         <line x1="62" y1="490" x2="258" y2="490" class="wall-in"/>
 
+        
         <line x1="62" y1="392" x2="62" y2="468" stroke="#F7F3EA" stroke-width="4"/>
         <line x1="62" y1="392" x2="62" y2="468" stroke="#9C4526" stroke-width="2.4"/>
         <path d="M62 468 L138 468" stroke="#9C4526" stroke-width="1.4"/>
         <path d="M138 468 A76 76 0 0 0 62 392" fill="none" stroke="#9C4526" stroke-width="1" stroke-dasharray="4 4"/>
         <text class="lab" x="76" y="492" font-size="10" fill="#9C4526" letter-spacing="1.8">Entrée</text>
 
+        
         <g>
           <rect x="300" y="194" width="440" height="12" fill="#F7F3EA"/>
           <line x1="300" y1="200" x2="740" y2="200" stroke="#3A434F" stroke-width="1"/>
@@ -478,6 +502,7 @@ function s28(){
         <path d="M676 200 L676 124" stroke="#4F6B52" stroke-width="1.2"/>
         <path d="M676 124 A76 76 0 0 0 600 200" fill="none" stroke="#4F6B52" stroke-width="1" stroke-dasharray="4 4"/>
 
+        
         <g class="tag" role="button" tabindex="0" @mouseenter="sel='yoga'" @mouseleave="sel=null" @focus="sel='yoga'" @blur="sel=null" @click="pick('yoga')" @keydown.enter.prevent="pick('yoga')" :class="{'on': sel==='yoga'}">
           <circle cx="316" cy="360" r="14"/><text class="num" x="316" y="364" text-anchor="middle">1</text>
           <text class="lbl lab" x="340" y="358" letter-spacing="2.4">Yoga</text>
@@ -504,6 +529,7 @@ function s28(){
           <text class="sub lab" x="634" y="504">Débutants toute l'année</text>
         </g>
 
+        
         <g class="tag dark" role="button" tabindex="0" @mouseenter="sel='hiphop'" @mouseleave="sel=null" @focus="sel='hiphop'" @blur="sel=null" @click="pick('hiphop')" @keydown.enter.prevent="pick('hiphop')" :class="{'on': sel==='hiphop'}">
           <circle cx="880" cy="400" r="14"/><text class="num" x="880" y="404" text-anchor="middle">4</text>
           <text class="lbl lab" x="904" y="398" letter-spacing="2.4">Hip-hop</text>
@@ -515,6 +541,7 @@ function s28(){
           <text class="sub lab" x="904" y="504">Aucun niveau requis</text>
         </g>
 
+        
         <g class="dim">
           <line x1="62" y1="726" x2="1210" y2="726"/>
           <line x1="62" y1="690" x2="62" y2="736"/>
@@ -525,6 +552,7 @@ function s28(){
         <rect x="556" y="714" width="160" height="24" fill="#F7F3EA"/>
         <text class="lab" x="636" y="731" font-size="10.5" fill="#5C636D" letter-spacing="2" text-anchor="middle">[longueur] m</text>
 
+        
         <g transform="translate(1160,760)">
           <circle cx="0" cy="0" r="17" fill="none" stroke="#A8814D" stroke-width="1"/>
           <path d="M0 -13 l5 20 -5 -6 -5 6 z" fill="#9C4526"/>
@@ -540,6 +568,7 @@ function s28(){
         </g>
       </svg>
 
+      
       <svg class="plan md:hidden" viewBox="0 0 400 1030" role="img"
            aria-label="Plan vertical du Studio 28 : rue, accueil, grande salle, salle noire, vestiaires et jardin.">
         <defs>
@@ -554,19 +583,23 @@ function s28(){
           </pattern>
         </defs>
 
+        
         <rect x="14" y="0" width="372" height="40" fill="url(#mhatch)"/>
         <text class="lab" x="22" y="25" font-size="11" fill="#5C636D" letter-spacing="2.2">00 — Rue · Rue des Deux Églises 28</text>
 
+        
         <line x1="150" y1="40" x2="230" y2="40" stroke="#9C4526" stroke-width="4"/>
         <path d="M230 40 L230 100" stroke="#9C4526" stroke-width="1.2"/>
         <path d="M230 100 A60 60 0 0 0 150 40" fill="none" stroke="#9C4526" stroke-width="1" stroke-dasharray="4 4"/>
 
+        
         <rect x="14" y="40" width="372" height="122" fill="#E6DDCB"/>
         <rect x="250" y="112" width="110" height="22" fill="none" stroke="#A8814D" stroke-width="1"/>
         <text class="lab" x="30" y="70" font-size="12.5" fill="#171B21" letter-spacing="2.6">01 — Accueil</text>
         <text class="lab" x="30" y="90" font-size="10" fill="#5C636D" letter-spacing="1.6">Bar · crédits · QR code</text>
         <text class="lab" x="258" y="127" font-size="9.5" fill="#5C636D" letter-spacing="1.4">Comptoir</text>
 
+        
         <rect x="14" y="162" width="372" height="82" fill="#EDE6D9"/>
         <line x1="200" y1="162" x2="200" y2="244" class="wall-in"/>
         <text class="lab" x="30" y="190" font-size="11.5" fill="#171B21" letter-spacing="2.2">04 — Vestiaires</text>
@@ -574,6 +607,7 @@ function s28(){
         <text class="lab" x="214" y="190" font-size="11.5" fill="#171B21" letter-spacing="2.2">04b — Sanit.</text>
         <text class="lab" x="214" y="208" font-size="9.5" fill="#5C636D" letter-spacing="1.4">[douches à confirmer]</text>
 
+        
         <rect x="14" y="244" width="372" height="392" fill="#EDE6D9"/>
         <rect x="14" y="244" width="372" height="392" fill="url(#mplanks)"/>
         <rect class="wash" :class="{'on': lit('salle')}" x="14" y="244" width="372" height="392" fill="#E3C79C"/>
@@ -603,6 +637,7 @@ function s28(){
           <text class="lbl lab" x="70" y="578" letter-spacing="2">Bachata</text><text class="sub lab" x="70" y="593">Débutants toute l'année</text>
         </g>
 
+        
         <rect x="14" y="636" width="372" height="216" fill="#1A1F27"/>
         <rect class="wash dark" :class="{'on': lit('noire')}" x="14" y="636" width="372" height="216" fill="#CFA974"/>
         <line x1="380" y1="642" x2="380" y2="846" stroke="#E3C79C" stroke-width="2.2"/>
@@ -623,8 +658,10 @@ function s28(){
           <text class="lbl lab" x="70" y="798" letter-spacing="2">Heels</text><text class="sub lab" x="70" y="813">Aucun niveau requis</text>
         </g>
 
+        
         <rect x="14" y="40" width="372" height="812" class="wall"/>
 
+        
         <rect x="14" y="878" width="372" height="130" fill="#4F6B52" opacity=".14"/>
         <rect x="14" y="878" width="372" height="130" fill="none" stroke="#4F6B52" stroke-width="1.2" stroke-dasharray="7 5" opacity=".8"/>
         <rect x="40" y="936" width="108" height="60" fill="url(#mpave)"/>
@@ -637,6 +674,7 @@ function s28(){
       </svg>
     </div>
 
+    
     <div class="mt-10 md:mt-12">
       <p class="ann text-ink-800/50 hair border-b pb-4">Légende photographique — les salles du plan</p>
       <div class="mt-6 grid gap-5 grid-cols-2 lg:grid-cols-4">
@@ -663,6 +701,7 @@ function s28(){
       </div>
     </div>
 
+    
     <div class="mt-14 md:mt-20">
       <div class="flex items-baseline justify-between gap-6 hair border-b pb-4">
         <p class="ann text-ink-800/60">Nomenclature des cours — 7 entrées</p>
@@ -719,6 +758,7 @@ function s28(){
   </div>
 </section>
 
+
 <section id="horaire" class="bg-cream-200 border-y border-oak-500/30">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 py-16 md:py-24">
 
@@ -733,6 +773,7 @@ function s28(){
       </p>
     </div>
 
+    
     <div class="mt-9 flex flex-wrap gap-2">
       <template x-for="f in [
         {k:'tous',n:'Tout'},{k:'yoga',n:'Yoga'},{k:'pilates',n:'Pilates'},{k:'cyclodanse',n:'Cyclodanse'},
@@ -744,6 +785,7 @@ function s28(){
       </template>
     </div>
 
+    
     <div class="mt-8 bg-cream-100 border border-oak-500/35">
       <div class="hidden md:grid grid-cols-[1.1fr_1.5fr_1fr_1fr_.9fr_auto] gap-4 px-6 py-4 ann text-ink-800/50 border-b border-oak-500/35">
         <span>Jour · Heure</span><span>Cours</span><span>Professeur·e</span><span>Salle</span><span>Crédits</span><span class="text-right">Place</span>
@@ -802,6 +844,7 @@ function s28(){
     </div>
   </div>
 </section>
+
 
 <section id="comment" class="paper-fine">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 py-16 md:py-24">
@@ -868,6 +911,7 @@ function s28(){
   </div>
 </section>
 
+
 <section id="lieu" class="bg-cream-100">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 pt-16 md:pt-24">
     <div class="md:flex md:items-end md:justify-between gap-10">
@@ -880,6 +924,7 @@ function s28(){
     </div>
   </div>
 
+  
   <figure class="mt-10 md:mt-14 relative">
     <img src="assets/img/studio-28-27.jpg" alt="La grande salle : parquet en chêne clair, murs anthracite, baies vitrées et rideaux bleu nuit"
          class="w-full h-[52vh] md:h-[76vh] object-cover grade">
@@ -899,6 +944,7 @@ function s28(){
     </p>
   </div>
 
+  
   <figure class="relative">
     <img src="assets/img/studio-28-20.jpg" alt="Le jardin intérieur : pergola en bois foncé, pavés bleus, fougères, graminées et haies denses"
          class="w-full h-[50vh] md:h-[72vh] object-cover grade">
@@ -908,6 +954,7 @@ function s28(){
     </figcaption>
   </figure>
 
+  
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 py-12 md:py-20">
     <p class="ann text-ink-800/50 hair border-b pb-4">Détails — matériaux et finitions</p>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -930,6 +977,7 @@ function s28(){
     </div>
   </div>
 </section>
+
 
 <section id="profs" class="paper border-t border-oak-500/30">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 py-16 md:py-24">
@@ -983,6 +1031,7 @@ function s28(){
   </div>
 </section>
 
+
 <section class="bg-ink-800 text-cream-100">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 py-16 md:py-24">
 
@@ -993,6 +1042,7 @@ function s28(){
         <div class="mt-5 h-[2px] w-9" style="background:var(--fern-600)"></div>
       </div>
 
+      
       <div class="mt-10 lg:mt-0 shrink-0 w-full lg:w-[420px]">
         <p class="ann text-cream-100/40 mb-3">Plan 02 — Configuration réception</p>
         <svg viewBox="0 0 420 200" class="w-full h-auto" role="img" aria-label="Le même plan configuré pour une réception d'entreprise, avec tables hautes et accès au jardin.">
@@ -1027,6 +1077,7 @@ function s28(){
 
     <div class="mt-12 md:mt-16 grid gap-6 lg:grid-cols-2">
 
+      
       <div id="louer" class="bg-ink-700 border border-ink-600 p-7 md:p-10 flex flex-col">
         <p class="ann" style="color:var(--fern-600)">Porte 01 — Professeurs et écoles</p>
         <h3 class="mt-4 font-display text-3xl md:text-[2.4rem] leading-tight">Donner cours chez nous</h3>
@@ -1047,6 +1098,7 @@ function s28(){
         </a>
       </div>
 
+      
       <div id="entreprises" class="bg-ink-700 border border-ink-600 flex flex-col overflow-hidden">
         <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses" class="w-full h-48 md:h-56 object-cover grade" loading="lazy">
         <div class="p-7 md:p-10 flex flex-col flex-1">
@@ -1066,6 +1118,7 @@ function s28(){
     </div>
   </div>
 </section>
+
 
 <section id="faq" class="paper-fine">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 py-16 md:py-24">
@@ -1098,6 +1151,7 @@ function s28(){
     </div>
   </div>
 </section>
+
 
 <footer id="contact" class="bg-ink-900 text-cream-100">
   <div class="mx-auto max-w-[1400px] px-5 sm:px-8 pt-16 md:pt-24 pb-10">
@@ -1171,6 +1225,7 @@ function s28(){
       </div>
     </div>
 
+    
     <div class="mt-14 border border-ink-600">
       <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 divide-x divide-y md:divide-y-0 divide-ink-600">
         <div class="p-4"><p class="ann text-cream-100/35">Projet</p><p class="mt-1.5 ann text-cream-100/85">Studio 28</p></div>
@@ -1193,6 +1248,7 @@ function s28(){
   </div>
 </footer>
 
+
 <div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-ink-900/95 backdrop-blur border-t border-ink-600 px-4 py-3 flex gap-3">
   <a href="#horaire" class="flex-1 grid place-items-center ann py-3.5 rounded-full bg-terra-600 text-cream-100">Voir l'horaire</a>
   <a href="#contact" aria-label="WhatsApp" class="grid place-items-center w-[52px] rounded-full border border-cream-100/25 text-cream-100">
@@ -1205,4 +1261,5 @@ function s28(){
 
 </body>
 </html>
+
 

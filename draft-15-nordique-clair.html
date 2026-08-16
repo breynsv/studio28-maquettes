@@ -122,6 +122,7 @@ tailwind.config = {
 </head>
 <body class="bg-snow text-ink antialiased">
 
+
 <header x-data="{ nav:false }" class="sticky top-0 z-50 border-b hair-soft" style="background:rgba(252,252,251,0.90); backdrop-filter:saturate(1.1) blur(10px);">
   <div class="max-w-shell mx-auto px-6 md:px-10">
     <div class="flex items-center justify-between h-[74px] md:h-[86px] gap-6">
@@ -157,6 +158,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="nav" x-cloak class="lg:hidden border-t hair-soft pb-8 pt-6">
       <nav class="flex flex-col">
         <a href="#cours"   @click="nav=false" class="serif text-[1.75rem] py-3 border-b hair-soft">Cours</a>
@@ -173,15 +175,16 @@ tailwind.config = {
   </div>
 </header>
 
+
 <section class="pt-[clamp(2.5rem,6vw,5rem)] pb-0">
   <div class="max-w-shell mx-auto px-6 md:px-10">
 
     <p class="eyebrow rise d1">Rue des Deux Églises 28 · 1000 Bruxelles · métro Madou, 3 min à pied</p>
 
     <h1 class="rise d2 mt-7 md:mt-10 text-[clamp(2.7rem,6.1vw,5.4rem)] leading-[1.03] max-w-[17ch]">
-      Sept disciplines.<br>
+      Danser, bouger, respirer.<br>
       Plusieurs écoles.<br>
-      <span class="italic text-mute">Une seule porte.</span>
+      <span class="italic text-mute">Une seule adresse.</span>
     </h1>
 
     <div class="rise d3 mt-9 md:mt-11 flex flex-col md:flex-row md:items-end justify-between gap-10">
@@ -197,6 +200,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <ul class="rise d4 mt-10 md:mt-12 flex flex-wrap gap-x-3 gap-y-3 border-t hair-soft pt-7">
       <li><a href="#cours" class="inline-block text-[13px] px-4 py-2 rounded-full border hair hover:border-rust hover:text-rust transition-colors">Yoga</a></li>
       <li><a href="#cours" class="inline-block text-[13px] px-4 py-2 rounded-full border hair hover:border-rust hover:text-rust transition-colors">Pilates</a></li>
@@ -208,6 +212,7 @@ tailwind.config = {
     </ul>
   </div>
 
+  
   <figure class="rise d5 mt-10 md:mt-14">
     <div class="photo h-[52vh] md:h-[78vh] min-h-[320px]">
       <img src="assets/img/studio-28-27.jpg" alt="La grande salle du Studio 28 : parquet en chêne clair, plafond crème, baies vitrées ouvertes sur le jardin.">
@@ -218,6 +223,7 @@ tailwind.config = {
     </figcaption>
   </figure>
 </section>
+
 
 <section class="band-pad-sm">
   <div class="max-w-shell mx-auto px-6 md:px-10">
@@ -235,12 +241,13 @@ tailwind.config = {
   </div>
 </section>
 
+
 <section id="cours" class="band-pad bg-snow">
   <div class="max-w-shell mx-auto px-6 md:px-10">
 
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
       <div>
-        <p class="eyebrow">Sept disciplines, une dizaine de professeurs</p>
+        <p class="eyebrow">Danser, bouger, respirer, une dizaine de professeurs</p>
         <h2 class="mt-6 text-[clamp(2.4rem,5vw,4.4rem)] leading-[1.05]">Les cours</h2>
       </div>
       <p class="text-[16px] leading-[1.8] text-ink/70 max-w-[34ch] font-light">
@@ -251,6 +258,7 @@ tailwind.config = {
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
 
+      
       <a href="#horaire" class="group block">
         <div class="photo aspect-[4/5]">
           <img class="card-img" src="assets/img/ph-yoga.jpg" alt="Cours de yoga sur tapis, en lumière du jour.">
@@ -260,6 +268,7 @@ tailwind.config = {
         <span class="mt-5 inline-block text-[13px] link-rust">Voir les horaires <span class="arrow-move">→</span></span>
       </a>
 
+      
       <a href="#horaire" class="group block">
         <div class="photo aspect-[4/5]">
           <img class="card-img" src="assets/img/ph-pilates.jpg" alt="Cours de pilates dans un studio lumineux.">
@@ -269,6 +278,7 @@ tailwind.config = {
         <span class="mt-5 inline-block text-[13px] link-rust">Voir les horaires <span class="arrow-move">→</span></span>
       </a>
 
+      
       <a href="#horaire" class="group block">
         <div class="photo photo-cool aspect-[4/5]">
           <img class="card-img" src="assets/img/ph-cyclodanse.jpg" alt="Cours de vélo en salle, en musique.">
@@ -278,6 +288,7 @@ tailwind.config = {
         <span class="mt-5 inline-block text-[13px] link-rust">Voir les horaires <span class="arrow-move">→</span></span>
       </a>
 
+      
       <a href="#horaire" class="group block">
         <div class="photo photo-cool aspect-[4/5]">
           <img class="card-img" src="assets/img/ros_9403.jpg" alt="Un cours en cours sur la piste noire du Studio 28, face au mur de miroirs.">
@@ -287,6 +298,7 @@ tailwind.config = {
         <span class="mt-5 inline-block text-[13px] link-rust">Voir les horaires <span class="arrow-move">→</span></span>
       </a>
 
+      
       <a href="#horaire" class="group block">
         <div class="photo aspect-[4/5]">
           <img class="card-img" src="assets/img/studio-28-12.jpg" alt="La salle du Studio 28 avec ses colonnes en lattes de chêne et ses fenêtres sur le jardin.">
@@ -296,6 +308,7 @@ tailwind.config = {
         <span class="mt-5 inline-block text-[13px] link-rust">Voir les horaires <span class="arrow-move">→</span></span>
       </a>
 
+      
       <a href="#horaire" class="group block">
         <div class="photo aspect-[4/5]">
           <img class="card-img" src="assets/img/studio-28-16.jpg" alt="La grande salle vide, parquet clair et murs sombres.">
@@ -305,6 +318,7 @@ tailwind.config = {
         <span class="mt-5 inline-block text-[13px] link-rust">Voir les horaires <span class="arrow-move">→</span></span>
       </a>
 
+      
       <a href="#horaire" class="group block">
         <div class="photo aspect-[4/5]">
           <img class="card-img" src="assets/img/ph-bachata.jpg" alt="Un couple dansant devant un mur de miroirs.">
@@ -314,6 +328,7 @@ tailwind.config = {
         <span class="mt-5 inline-block text-[13px] link-rust">Voir les horaires <span class="arrow-move">→</span></span>
       </a>
 
+      
       <div class="flex flex-col justify-end border-t hair pt-6 sm:border-t-0 sm:pt-0">
         <p class="serif text-[1.5rem] leading-[1.3] text-ink/85">Une seule carte de crédits pour les sept.</p>
         <p class="mt-4 text-[14px] leading-[1.7] text-ink/60 font-light">Yoga le lundi, heels le jeudi, salsa le samedi. Pas d'abonnement.</p>
@@ -322,6 +337,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
 
 <section id="horaire" class="band-pad bg-shell">
   <div class="max-w-shell mx-auto px-6 md:px-10" x-data="{ f:'tous' }">
@@ -334,6 +350,7 @@ tailwind.config = {
       <p class="text-[14px] text-mute tnum">Semaine du 24 au 30 août 2026</p>
     </div>
 
+    
     <div class="flex flex-wrap gap-2 mb-10 md:mb-14">
       <template x-for="[key,label] in [['tous','Tout'],['yoga','Yoga'],['pilates','Pilates'],['cyclodanse','Cyclodanse'],['hiphop','Hip-hop'],['heels','Heels'],['salsa','Salsa'],['bachata','Bachata']]" :key="key">
         <button @click="f=key"
@@ -344,6 +361,7 @@ tailwind.config = {
       </template>
     </div>
 
+    
     <div x-show="['tous','yoga','pilates','salsa'].includes(f)" class="mb-2">
       <div class="border-t hair pt-5 pb-2 flex items-baseline gap-4">
         <span class="serif text-[1.35rem]">Lundi</span><span class="text-[13px] text-mute tnum">24 août</span>
@@ -371,6 +389,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="['tous','cyclodanse','hiphop'].includes(f)" class="mb-2 mt-10">
       <div class="border-t hair pt-5 pb-2 flex items-baseline gap-4">
         <span class="serif text-[1.35rem]">Mardi</span><span class="text-[13px] text-mute tnum">25 août</span>
@@ -391,6 +410,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="['tous','yoga','pilates','bachata'].includes(f)" class="mb-2 mt-10">
       <div class="border-t hair pt-5 pb-2 flex items-baseline gap-4">
         <span class="serif text-[1.35rem]">Mercredi</span><span class="text-[13px] text-mute tnum">26 août</span>
@@ -418,6 +438,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="['tous','heels','salsa'].includes(f)" class="mb-2 mt-10">
       <div class="border-t hair pt-5 pb-2 flex items-baseline gap-4">
         <span class="serif text-[1.35rem]">Jeudi</span><span class="text-[13px] text-mute tnum">27 août</span>
@@ -438,6 +459,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="['tous','pilates','cyclodanse'].includes(f)" class="mb-2 mt-10">
       <div class="border-t hair pt-5 pb-2 flex items-baseline gap-4">
         <span class="serif text-[1.35rem]">Vendredi</span><span class="text-[13px] text-mute tnum">28 août</span>
@@ -458,6 +480,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="['tous','bachata'].includes(f)" class="mb-2 mt-10">
       <div class="border-t hair pt-5 pb-2 flex items-baseline gap-4">
         <span class="serif text-[1.35rem]">Samedi</span><span class="text-[13px] text-mute tnum">29 août</span>
@@ -482,6 +505,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
 
 <section id="credits" class="band-pad bg-snow">
   <div class="max-w-shell mx-auto px-6 md:px-10">
@@ -515,6 +539,7 @@ tailwind.config = {
   </div>
 </section>
 
+
 <section id="lieu" class="band-pad-sm bg-snow">
   <div class="max-w-shell mx-auto px-6 md:px-10 mb-14 md:mb-20">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-10">
@@ -530,6 +555,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <figure>
     <div class="photo h-[46vh] md:h-[72vh] min-h-[300px]">
       <img src="assets/img/studio-28-10.jpg" alt="La salle vide : parquet en chêne clair, colonnes habillées de lattes de chêne, comptoir en bois au fond.">
@@ -541,6 +567,7 @@ tailwind.config = {
     <span class="text-[12px] text-mute">La grande salle, sans personne. C'est aussi comme ça qu'on la loue.</span>
   </div>
 
+  
   <div class="max-w-shell mx-auto px-6 md:px-10">
     <div class="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-8 lg:gap-12 items-end">
       <figure>
@@ -563,6 +590,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12 mt-16 md:mt-24">
       <figure>
         <div class="photo aspect-[5/4]"><img src="assets/img/studio-28-16.jpg" alt="Détail de la salle : poutres sombres, plafond crème et parquet clair."></div>
@@ -579,6 +607,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
 
 <section id="profs" class="band-pad bg-shell">
   <div class="max-w-shell mx-auto px-6 md:px-10">
@@ -682,6 +711,7 @@ tailwind.config = {
   </div>
 </section>
 
+
 <section id="agenda" class="band-pad bg-snow">
   <div class="max-w-shell mx-auto px-6 md:px-10">
     <div class="mb-16 md:mb-24">
@@ -712,6 +742,7 @@ tailwind.config = {
   </div>
 </section>
 
+
 <section id="salle" class="band-pad bg-band">
   <div class="max-w-shell mx-auto px-6 md:px-10">
     <div class="mb-16 md:mb-24 max-w-[46ch]">
@@ -721,6 +752,7 @@ tailwind.config = {
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-16">
 
+      
       <div class="lg:pr-16 lg:border-r hair">
         <div class="photo aspect-[16/10] mb-8">
           <img src="assets/img/studio-28-12.jpg" alt="La salle vide, vue vers l'entrée vitrée et les fenêtres du jardin.">
@@ -739,6 +771,7 @@ tailwind.config = {
         <a href="#venir" class="btn-ghost mt-10 inline-block text-[14px] px-7 py-[13px] rounded-full">Proposer un cours</a>
       </div>
 
+      
       <div>
         <div class="photo aspect-[16/10] mb-8">
           <img src="assets/img/ros_9181.jpg" alt="La salle en configuration réception, vue côté fenêtres avec la verdure dehors.">
@@ -761,6 +794,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
 
 <section id="faq" class="band-pad bg-snow">
   <div class="max-w-shell mx-auto px-6 md:px-10">
@@ -840,6 +874,7 @@ tailwind.config = {
   </div>
 </section>
 
+
 <footer id="venir" class="bg-shell border-t hair">
   <div class="max-w-shell mx-auto px-6 md:px-10 band-pad-sm">
 
@@ -897,6 +932,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <figure class="mt-20 md:mt-28">
       <div class="photo aspect-[21/7]">
         <img src="assets/img/studio-28-1.jpg" alt="La façade du Studio 28 rue des Deux Églises : vitrine vitrée sur le trottoir bruxellois.">
@@ -921,6 +957,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t hair" style="background:rgba(252,252,251,0.95); backdrop-filter:blur(10px);">
     <div class="px-6 py-3 flex items-center gap-3">
       <a href="#horaire" class="btn-rust flex-1 text-center text-[14px] px-5 py-[12px] rounded-full">Voir l'horaire</a>
@@ -930,6 +967,7 @@ tailwind.config = {
     </div>
   </div>
 </footer>
+
 
 </body>
 </html>

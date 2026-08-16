@@ -155,6 +155,7 @@ tailwind.config = {
 
 <body class="antialiased">
 
+
 <header x-data="{ open:false, stuck:false }"
         @scroll.window="stuck = window.scrollY > 40"
         class="fixed top-0 inset-x-0 z-50 transition-all duration-500"
@@ -162,6 +163,7 @@ tailwind.config = {
   <div class="max-w-[1440px] mx-auto px-5 lg:px-10">
     <div class="flex items-center justify-between h-[72px] lg:h-[84px]">
 
+      
       <a href="#" class="flex items-center gap-3.5 shrink-0">
         <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="h-9 lg:h-10 w-auto opacity-90">
         <span class="block">
@@ -170,6 +172,7 @@ tailwind.config = {
         </span>
       </a>
 
+      
       <nav class="hidden xl:flex items-center gap-8">
         <a href="#cours" class="navlink">Cours</a>
         <a href="#horaire" class="navlink">Horaire</a>
@@ -193,6 +196,7 @@ tailwind.config = {
         <a href="#horaire" class="btn-brass px-6 py-3">Réserver</a>
       </div>
 
+      
       <div class="flex xl:hidden items-center gap-4">
         <a href="#venir" aria-label="WhatsApp" class="text-[rgba(240,235,225,0.75)]">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Z"/></svg>
@@ -204,6 +208,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <div x-show="open" x-transition.opacity x-cloak
        class="xl:hidden bg-[rgba(15,15,17,0.98)] backdrop-blur-md border-t border-[rgba(184,146,90,0.22)]">
     <nav class="px-5 py-7 flex flex-col gap-5">
@@ -222,6 +227,8 @@ tailwind.config = {
     </nav>
   </div>
 </header>
+
+
 
 <section class="relative min-h-[92vh] lg:min-h-[100vh] flex items-end">
   <div class="frame frame-hero absolute inset-0">
@@ -254,6 +261,7 @@ tailwind.config = {
         <a href="#agenda"  class="btn-ghost px-9 py-4 text-center">Journée portes ouvertes — samedi 29 août</a>
       </div>
 
+      
       <div class="reveal mt-12 lg:mt-14" style="animation-delay:.6s">
         <div class="rule-full mb-6 max-w-[900px]"></div>
         <ul class="flex flex-wrap gap-2.5">
@@ -272,6 +280,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="relative border-y border-[rgba(184,146,90,0.22)] bg-raised">
   <div class="max-w-[1440px] mx-auto px-5 lg:px-10">
@@ -298,12 +308,14 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="cours" class="py-20 lg:py-32">
   <div class="max-w-[1440px] mx-auto px-5 lg:px-10">
 
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 lg:mb-16">
       <div>
-        <p class="label">Sept disciplines, une dizaine de professeurs</p>
+        <p class="label">Danser, bouger, respirer, une dizaine de professeurs</p>
         <h2 class="mt-4 display text-[44px] lg:text-[68px] leading-[1.05] text-ivory">Les cours</h2>
         <div class="rule w-32 mt-7"></div>
       </div>
@@ -315,6 +327,7 @@ tailwind.config = {
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
 
+      
       <article class="card group">
         <div class="frame aspect-[4/3]">
           <img src="assets/img/ph-yoga.jpg" alt="Cours de yoga sur tapis, posture debout" class="grade-m">
@@ -326,6 +339,7 @@ tailwind.config = {
         </div>
       </article>
 
+      
       <article class="card group">
         <div class="frame aspect-[4/3]">
           <img src="assets/img/ph-pilates.jpg" alt="Cours de pilates dans un studio lumineux" class="grade-m">
@@ -337,6 +351,7 @@ tailwind.config = {
         </div>
       </article>
 
+      
       <article class="card group">
         <div class="frame aspect-[4/3]">
           <img src="assets/img/ph-cyclodanse.jpg" alt="Cours de vélo en salle, en musique" class="grade-warm">
@@ -348,6 +363,7 @@ tailwind.config = {
         </div>
       </article>
 
+      
       <article class="card group">
         <div class="frame aspect-[4/3]">
           <img src="assets/img/ros_9403.jpg" alt="Un cours en mouvement sur le plancher noir du Studio 28, devant le mur de miroirs" class="grade-warm" style="object-position:38% 50%;">
@@ -359,6 +375,7 @@ tailwind.config = {
         </div>
       </article>
 
+      
       <article class="card group">
         <div class="frame aspect-[4/3]">
           <img src="assets/img/studio-28-16.jpg" alt="La grande salle du Studio 28, vide, vue depuis l'entrée" class="grade-m" style="object-position:60% 62%;">
@@ -370,6 +387,7 @@ tailwind.config = {
         </div>
       </article>
 
+      
       <article class="card group">
         <div class="frame aspect-[4/3]">
           <img src="assets/img/ros_9188.jpg" alt="Colonne en lattes de chêne et fenêtre sur la verdure, dans la salle du Studio 28" class="grade-m" style="object-position:50% 55%;">
@@ -381,6 +399,7 @@ tailwind.config = {
         </div>
       </article>
 
+      
       <article class="card group">
         <div class="frame aspect-[4/3]">
           <img src="assets/img/ph-bachata.jpg" alt="Un couple qui danse dans une salle avec miroirs et barre" class="grade-m">
@@ -392,6 +411,7 @@ tailwind.config = {
         </div>
       </article>
 
+      
       <a href="#horaire" class="border border-[rgba(184,146,90,0.3)] hover:border-brass transition-colors flex flex-col justify-between p-6 lg:p-7 min-h-[220px]">
         <p class="label">Toute la semaine</p>
         <div>
@@ -405,6 +425,8 @@ tailwind.config = {
     <p class="mt-7 flag inline-block px-3 py-1.5">Photos yoga · pilates · cyclodanse · bachata — provisoires, à remplacer après le 29 août</p>
   </div>
 </section>
+
+
 
 <section id="horaire" class="py-20 lg:py-28 border-t border-[rgba(240,235,225,0.08)] bg-raised"
          x-data="{ f:'tout' }">
@@ -424,6 +446,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div class="vscroll -mx-5 px-5 lg:mx-0 lg:px-0 pb-2 mb-2">
       <div class="flex gap-2.5 min-w-max">
         <template x-for="d in ['tout','yoga','pilates','cyclodanse','hip-hop','heels','salsa','bachata']" :key="d">
@@ -435,6 +458,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div class="mt-8">
       
       <div class="hidden lg:grid grid-cols-[110px_120px_1fr_220px_130px_200px] gap-6 pb-4 border-b border-[rgba(184,146,90,0.3)]">
@@ -446,6 +470,7 @@ tailwind.config = {
         <span></span>
       </div>
 
+      
       <template x-for="c in [
         {j:'Lundi',    d:'19 août', h:'12:30 – 13:30', disc:'Pilates',    dk:'pilates',    p:'Laura',    cr:'15', pl:'8 places'},
         {j:'Lundi',    d:'19 août', h:'19:00 – 20:15', disc:'Yoga',       dk:'yoga',       p:'Nivram',   cr:'15', pl:'4 places'},
@@ -508,6 +533,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section class="py-20 lg:py-32">
   <div class="max-w-[1440px] mx-auto px-5 lg:px-10">
     <p class="label">Pas d'abonnement. Des crédits.</p>
@@ -551,8 +578,11 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="lieu" class="border-t border-[rgba(240,235,225,0.08)]">
 
+  
   <div class="frame frame-band h-[62vh] lg:h-[82vh] relative">
     <img src="assets/img/studio-28-10.jpg" alt="La salle vide du Studio 28 : parquet en chêne, murs charbon, colonnes en lattes de bois, comptoir d'accueil" class="grade" style="object-position:50% 55%;">
     <div class="absolute inset-0 z-10 flex items-end">
@@ -587,6 +617,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <div class="frame frame-band h-[68vh] lg:h-[88vh] relative">
     <img src="assets/img/studio-28-20.jpg" alt="Le jardin intérieur du Studio 28 : pergola en bois sombre, pavés bleus, fougères, graminées et haies denses" class="grade-m" style="object-position:50% 58%;">
     <div class="absolute inset-0 z-10 flex items-end">
@@ -603,6 +634,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <div class="max-w-[1440px] mx-auto px-5 lg:px-10 py-14 lg:py-20">
     <div class="grid sm:grid-cols-3 gap-8 lg:gap-14">
       <div>
@@ -625,6 +657,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="profs" class="py-20 lg:py-28 border-t border-[rgba(240,235,225,0.08)] bg-raised">
   <div class="max-w-[1440px] mx-auto px-5 lg:px-10">
 
@@ -641,6 +675,7 @@ tailwind.config = {
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-[rgba(184,146,90,0.18)] border border-[rgba(184,146,90,0.18)]">
 
+      
       <div class="bg-raised p-6 lg:p-8 hover:bg-[#1F2024] transition-colors">
         <div class="w-16 h-16 lg:w-[74px] lg:h-[74px] rounded-full border border-[rgba(184,146,90,0.45)] flex items-center justify-center">
           <span class="display text-[26px] text-brass">L</span>
@@ -713,6 +748,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="agenda" class="py-20 lg:py-28">
   <div class="max-w-[1440px] mx-auto px-5 lg:px-10">
     <p class="label">Soirées, ateliers, portes ouvertes</p>
@@ -759,6 +796,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="salle" class="relative border-y border-[rgba(124,148,121,0.28)]">
   <div class="frame absolute inset-0">
     <img src="assets/img/studio-28-23.jpg" alt="Le jardin intérieur du Studio 28, autre angle" class="grade" style="object-position:50% 55%; filter:brightness(.34) contrast(1.06) saturate(.55) sepia(.1);">
@@ -772,6 +811,7 @@ tailwind.config = {
 
     <div class="grid lg:grid-cols-2 gap-px" style="background:rgba(124,148,121,0.28);">
 
+      
       <div class="p-8 lg:p-12" style="background:rgba(20,21,23,0.94);">
         <p class="label" style="color:#93AE8F">Professeurs et écoles</p>
         <h3 class="mt-4 display text-[34px] lg:text-[42px] leading-[1.1] text-ivory">Donner cours chez nous</h3>
@@ -788,6 +828,7 @@ tailwind.config = {
         <a href="#venir" class="btn-ghost inline-block px-9 py-4 mt-10" style="border-color:rgba(124,148,121,0.6);">Proposer un cours</a>
       </div>
 
+      
       <div class="p-8 lg:p-12" style="background:rgba(20,21,23,0.94);">
         <p class="label" style="color:#93AE8F">Entreprises et privatisation</p>
         <h3 class="mt-4 display text-[34px] lg:text-[42px] leading-[1.1] text-ivory">Privatiser la salle</h3>
@@ -810,6 +851,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="py-20 lg:py-28">
   <div class="max-w-[1440px] mx-auto px-5 lg:px-10">
@@ -890,6 +933,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <footer id="venir" class="border-t border-[rgba(184,146,90,0.26)]">
 
@@ -1001,6 +1046,8 @@ tailwind.config = {
   <div class="h-[76px] xl:hidden"></div>
 </footer>
 
+
+
 <div class="fixed bottom-0 inset-x-0 z-40 xl:hidden border-t border-[rgba(184,146,90,0.3)]"
      style="background:rgba(15,15,17,0.96); backdrop-filter:blur(10px);">
   <div class="flex items-stretch">
@@ -1012,6 +1059,8 @@ tailwind.config = {
 </div>
 
 <style>[x-cloak]{ display:none !important; }</style>
+
+
 
 </body>
 </html>

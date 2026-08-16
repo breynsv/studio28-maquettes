@@ -131,10 +131,12 @@ tailwind.config = {
 
 <a href="#horaire" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:m-3 focus:bg-ink-900 focus:text-cream-100 focus:px-4 focus:py-2">Aller à l’horaire</a>
 
+
 <header x-data="{open:false}" class="sticky top-0 z-50 bg-ink-900/95 backdrop-blur-md border-b border-ink-600/60">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
     <div class="flex items-center justify-between gap-6 h-[62px] lg:h-[76px]">
 
+      
       <a href="#" class="flex items-center gap-3 lg:gap-4 shrink-0">
         <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="hidden sm:block h-8 lg:h-10 w-auto">
         <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="sm:hidden h-8 w-auto">
@@ -142,6 +144,7 @@ tailwind.config = {
         <span class="hidden xl:block label text-oak-400">Danse · Yoga · Pilates · Bruxelles</span>
       </a>
 
+      
       <nav class="hidden lg:flex items-center gap-7 text-[14.5px] text-cream-100/85">
         <a href="#cours" class="hover:text-oak-300 transition-colors">Cours</a>
         <a href="#horaire" class="hover:text-oak-300 transition-colors">Horaire</a>
@@ -176,6 +179,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <div x-show="open" x-cloak x-transition.opacity class="lg:hidden border-t border-ink-600/60 bg-ink-900">
     <nav class="mx-auto max-w-edito px-5 py-5 flex flex-col">
       <a @click="open=false" href="#cours"       class="py-3 border-b rule-ink text-cream-100 text-[19px] serif">Cours</a>
@@ -193,8 +197,11 @@ tailwind.config = {
   </div>
 </header>
 
+
+
 <section class="relative isolate grain bg-ink-900 overflow-hidden">
 
+  
   <figure class="absolute inset-0 m-0">
     <img src="assets/img/ros_9180.jpg" alt="La salle principale du Studio 28 : parquet en chêne clair, murs anthracite, colonnes en tasseaux, mur de miroirs au fond"
          class="h-full w-full object-cover object-[58%_54%] grade">
@@ -218,15 +225,16 @@ tailwind.config = {
       </div>
 
       <h1 data-reveal style="--d:90ms" class="h-display text-cream-100 mt-6 lg:mt-8 text-[clamp(2.9rem,8.4vw,5.8rem)]">
-        Sept disciplines.<br>
+        Danser, bouger, respirer.<br>
         Plusieurs écoles.<br>
-        <span class="text-oak-300">Une seule porte.</span>
+        <span class="text-oak-300">Une seule adresse.</span>
       </h1>
 
       <p data-reveal style="--d:180ms" class="mt-6 lg:mt-8 max-w-[30ch] text-[18px] lg:text-[20px] leading-[1.55] text-cream-100/80">
         Du chêne au sol, un jardin derrière, et un cours qui commence à 19h.
       </p>
 
+      
       <ul data-reveal style="--d:260ms" class="mt-8 lg:mt-10 flex flex-wrap gap-2 max-w-[46rem]">
         <li><a href="#cours" class="inline-block border rule-oak text-cream-100/90 hover:text-ink-900 hover:bg-oak-300 hover:border-oak-300 transition-colors text-[13.5px] px-3.5 py-1.5">Yoga</a></li>
         <li><a href="#cours" class="inline-block border rule-oak text-cream-100/90 hover:text-ink-900 hover:bg-oak-300 hover:border-oak-300 transition-colors text-[13.5px] px-3.5 py-1.5">Pilates</a></li>
@@ -246,6 +254,7 @@ tailwind.config = {
         </a>
       </div>
 
+      
       <div data-reveal style="--d:420ms" class="mt-12 lg:mt-16 pt-6 border-t rule-ink">
         <ul class="flex flex-wrap gap-x-5 gap-y-3">
           <li class="flex items-center gap-2"><span class="w-3 h-3 shrink-0" style="background:#CFA974"></span><span class="label text-cream-100/70">Chêne</span></li>
@@ -263,6 +272,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="bg-cream-200 border-b rule-oak">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
@@ -282,6 +293,8 @@ tailwind.config = {
     </dl>
   </div>
 </section>
+
+
 
 <section class="bg-cream-100 py-16 lg:py-24">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
@@ -386,17 +399,19 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="cours" class="bg-cream-200 py-16 lg:py-28 border-y rule-oak">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
 
     <div class="grid lg:grid-cols-12 gap-y-6 lg:gap-10 items-end">
       <div data-reveal class="lg:col-span-6">
-        <p class="label text-oak-500">Sept disciplines, une dizaine de professeurs</p>
+        <p class="label text-oak-500">Danser, bouger, respirer, une dizaine de professeurs</p>
         <h2 class="h-section mt-3">Les cours</h2>
       </div>
       <div data-reveal style="--d:120ms" class="lg:col-start-8 lg:col-span-5">
         <p class="text-[16.5px] leading-relaxed" style="color:var(--on-light-muted)">
-          Sept disciplines dans une seule salle, données par des professeurs et des écoles
+          Danser, bouger, respirer dans une seule salle, données par des professeurs et des écoles
           indépendantes. Vos crédits fonctionnent chez tous, sans exception et sans abonnement.
         </p>
       </div>
@@ -404,6 +419,7 @@ tailwind.config = {
 
     <div class="h-px bg-oak-500/35 mt-8 lg:mt-12 draw" data-reveal></div>
 
+    
     <ul class="mt-8 lg:mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10 lg:gap-x-6 lg:gap-y-14">
 
       <li data-reveal class="group">
@@ -490,6 +506,7 @@ tailwind.config = {
         </a>
       </li>
 
+      
       <li data-reveal style="--d:490ms" class="flex">
         <div class="w-full border rule-oak p-5 lg:p-6 flex flex-col justify-between min-h-[220px]">
           <div>
@@ -507,6 +524,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="horaire" x-data="{f:'tous'}" class="bg-cream-100 py-16 lg:py-28">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
 
@@ -523,6 +542,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div data-reveal style="--d:180ms" class="mt-9 lg:mt-12 -mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto">
       <div class="flex gap-2 min-w-max pb-1">
         <template x-for="d in [['tous','Tous'],['yoga','Yoga'],['pilates','Pilates'],['cyclodanse','Cyclodanse'],['hiphop','Hip-hop'],['heels','Heels'],['salsa','Salsa'],['bachata','Bachata']]" :key="d[0]">
@@ -534,12 +554,14 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div class="hidden lg:grid grid-cols-[5.5rem_1fr_8rem_9rem_5.5rem_9.5rem] gap-4 mt-10 pb-3 border-b border-ink-900/25 label" style="color:var(--on-light-muted)">
       <span>Heure</span><span>Discipline</span><span>Niveau</span><span>Professeur</span><span class="text-right">Crédits</span><span></span>
     </div>
 
     <div class="mt-4 lg:mt-0">
 
+      
       <div x-data="{ds:['pilates','yoga','hiphop']}" x-show="f==='tous'||ds.includes(f)">
         <h3 class="serif text-[30px] lg:text-[34px] mt-9 lg:mt-10 pb-2 border-b border-oak-500/35">Lundi</h3>
         <ul>
@@ -570,6 +592,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div x-data="{ds:['yoga','cyclodanse','bachata']}" x-show="f==='tous'||ds.includes(f)">
         <h3 class="serif text-[30px] lg:text-[34px] mt-9 lg:mt-10 pb-2 border-b border-oak-500/35">Mardi</h3>
         <ul>
@@ -600,6 +623,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div x-data="{ds:['pilates','heels','yoga']}" x-show="f==='tous'||ds.includes(f)">
         <h3 class="serif text-[30px] lg:text-[34px] mt-9 lg:mt-10 pb-2 border-b border-oak-500/35">Mercredi</h3>
         <ul>
@@ -630,6 +654,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div x-data="{ds:['yoga','heels','salsa']}" x-show="f==='tous'||ds.includes(f)">
         <h3 class="serif text-[30px] lg:text-[34px] mt-9 lg:mt-10 pb-2 border-b border-oak-500/35">Jeudi</h3>
         <ul>
@@ -660,6 +685,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div x-data="{ds:['cyclodanse','bachata']}" x-show="f==='tous'||ds.includes(f)">
         <h3 class="serif text-[30px] lg:text-[34px] mt-9 lg:mt-10 pb-2 border-b border-oak-500/35">Vendredi</h3>
         <ul>
@@ -682,6 +708,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div x-data="{ds:['yoga','pilates','hiphop','salsa']}" x-show="f==='tous'||ds.includes(f)">
         <h3 class="serif text-[30px] lg:text-[34px] mt-9 lg:mt-10 pb-2 border-b border-oak-500/35">Samedi</h3>
         <ul>
@@ -720,6 +747,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div x-data="{ds:['yoga','pilates']}" x-show="f==='tous'||ds.includes(f)">
         <h3 class="serif text-[30px] lg:text-[34px] mt-9 lg:mt-10 pb-2 border-b border-oak-500/35">Dimanche</h3>
         <ul>
@@ -754,6 +782,8 @@ tailwind.config = {
 
   </div>
 </section>
+
+
 
 <section class="bg-cream-200 border-y rule-oak py-16 lg:py-24">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
@@ -801,6 +831,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="lieu" class="bg-cream-100 pt-16 lg:pt-28">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
 
@@ -834,6 +866,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <figure data-reveal class="mt-12 lg:mt-16">
     <div class="overflow-hidden">
       <img src="assets/img/studio-28-27.jpg" alt="La salle principale du Studio 28 : parquet en chêne, murs anthracite, rideaux en velours, fenêtres donnant sur le jardin"
@@ -845,8 +878,10 @@ tailwind.config = {
     </figcaption>
   </figure>
 
+  
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12 pb-16 lg:pb-28">
 
+    
     <article data-reveal class="mt-16 lg:mt-28 grid lg:grid-cols-12 gap-y-5 lg:gap-8 items-start">
       <div class="lg:col-span-2 flex lg:block items-center gap-3">
         <span class="label num text-oak-500">M.01</span>
@@ -869,6 +904,7 @@ tailwind.config = {
       </div>
     </article>
 
+    
     <article data-reveal class="mt-16 lg:mt-28 grid lg:grid-cols-12 gap-y-5 lg:gap-8 items-start">
       <div class="lg:col-span-2 flex lg:block items-center gap-3">
         <span class="label num text-oak-500">M.02</span>
@@ -891,6 +927,7 @@ tailwind.config = {
       </figure>
     </article>
 
+    
     <article data-reveal class="mt-16 lg:mt-28 grid lg:grid-cols-12 gap-y-5 lg:gap-8 items-start">
       <div class="lg:col-span-2 flex lg:block items-center gap-3">
         <span class="label num text-oak-500">M.03</span>
@@ -913,6 +950,7 @@ tailwind.config = {
       </div>
     </article>
 
+    
     <article data-reveal class="mt-16 lg:mt-28 grid lg:grid-cols-12 gap-y-5 lg:gap-8 items-start">
       <div class="lg:col-span-2 flex lg:block items-center gap-3">
         <span class="label num text-oak-500">M.04</span>
@@ -934,6 +972,7 @@ tailwind.config = {
       </figure>
     </article>
 
+    
     <figure data-reveal class="mt-16 lg:mt-28 -mx-5 sm:-mx-8 lg:-mx-12">
       <div class="overflow-hidden">
         <img src="assets/img/studio-28-11.jpg" alt="La salle du Studio 28, vide : mur en tasseaux de chêne, parquet clair, fenêtres sur le jardin"
@@ -945,6 +984,7 @@ tailwind.config = {
       </figcaption>
     </figure>
 
+    
     <div data-reveal class="mt-16 lg:mt-28">
       <div class="flex items-center gap-4">
         <span class="label num text-oak-500">M.05 — M.06</span>
@@ -988,6 +1028,8 @@ tailwind.config = {
 
   </div>
 </section>
+
+
 
 <section class="bg-cream-200 border-y rule-oak py-16 lg:py-28">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
@@ -1101,8 +1143,11 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section class="relative isolate grain bg-ink-900 overflow-hidden">
 
+  
   <figure class="relative m-0">
     <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses"
          class="w-full aspect-[16/9] lg:aspect-[21/9] object-cover object-[50%_30%] grade">
@@ -1122,6 +1167,7 @@ tailwind.config = {
 
     <div class="mt-10 lg:mt-16 grid lg:grid-cols-2 gap-y-12 lg:gap-x-16">
 
+      
       <div id="louer" data-reveal class="lg:border-r border-ink-600/70 lg:pr-16 scroll-mt-24">
         <span class="label num" style="color:#8FA98F">01 — Professeurs &amp; écoles</span>
         <h3 class="serif text-[clamp(1.9rem,3vw,2.5rem)] leading-tight mt-3 text-cream-100">Donner cours chez nous</h3>
@@ -1139,6 +1185,7 @@ tailwind.config = {
         <a href="#contact" class="btn-focus inline-flex items-center mt-8 border border-cream-100/70 text-cream-100 font-semibold text-[15px] px-6 py-3 hover:bg-cream-100 hover:text-ink-900 transition-colors">Proposer un cours</a>
       </div>
 
+      
       <div id="entreprises" data-reveal style="--d:120ms" class="scroll-mt-24">
         <span class="label num" style="color:#8FA98F">02 — Entreprises &amp; privatisation</span>
         <h3 class="serif text-[clamp(1.9rem,3vw,2.5rem)] leading-tight mt-3 text-cream-100">Privatiser la salle</h3>
@@ -1158,6 +1205,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section id="agenda" class="bg-cream-100 py-16 lg:py-24 scroll-mt-20">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
@@ -1185,6 +1234,8 @@ tailwind.config = {
     </ul>
   </div>
 </section>
+
+
 
 <section class="bg-cream-200 border-y rule-oak py-16 lg:py-24">
   <div class="mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
@@ -1271,6 +1322,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <footer id="contact" class="relative grain bg-ink-900 text-cream-100 pt-16 lg:pt-24 pb-28 lg:pb-12 scroll-mt-20">
   <div class="relative z-10 mx-auto max-w-edito px-5 sm:px-8 lg:px-12">
 
@@ -1337,6 +1390,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div class="mt-14 lg:mt-20 pt-8 border-t border-ink-600/70 grid lg:grid-cols-12 gap-y-5 lg:gap-8 items-center">
       <p class="lg:col-span-4 serif text-[24px] lg:text-[28px] leading-tight">Recevoir l’horaire chaque semaine</p>
       <form class="lg:col-start-6 lg:col-span-7 flex flex-col sm:flex-row gap-3" onsubmit="return false">
@@ -1366,6 +1420,8 @@ tailwind.config = {
   </div>
 </footer>
 
+
+
 <div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-ink-900/95 backdrop-blur border-t border-ink-600 pb-[env(safe-area-inset-bottom)]">
   <div class="flex items-stretch gap-px">
     <a href="#horaire" class="flex-1 text-center text-cream-100 font-semibold text-[15px] py-4">Voir l’horaire</a>
@@ -1374,6 +1430,7 @@ tailwind.config = {
     </a>
   </div>
 </div>
+
 
 <script>
 (function () {
@@ -1394,4 +1451,5 @@ tailwind.config = {
 
 </body>
 </html>
+
 

@@ -145,6 +145,7 @@ tailwind.config = {
 
 <body class="antialiased">
 
+
 <div class="bg-ink-900 text-cream-100">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
     <div class="flex items-center justify-between gap-4 py-2 text-[11px] sm:text-[12px] signage tracking-[.18em] text-oak-300">
@@ -201,6 +202,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="open" x-cloak x-transition.opacity class="lg:hidden border-t border-oak-500/35 py-4">
       <nav class="grid gap-1 text-[17px] font-medium">
         <a href="#cours" @click="open=false" class="py-2 border-b border-oak-500/20">Cours</a>
@@ -219,8 +221,11 @@ tailwind.config = {
   </div>
 </header>
 
+
+
 <section class="relative grain grain-dark bg-ink-800 text-cream-100 overflow-hidden">
 
+  
   <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-[51%] xl:w-[53%]">
     <div class="relative h-[340px] sm:h-[460px] lg:h-full">
       <img src="assets/img/studio-28-10.jpg" alt="La grande salle du Studio 28 : plancher de chêne, colonnes habillées de lattes, murs anthracite"
@@ -241,8 +246,10 @@ tailwind.config = {
   <div class="relative mx-auto max-w-[1320px] px-5 sm:px-8">
     <div>
 
+      
       <div class="lg:w-[47%] xl:w-[45%] pt-12 pb-12 lg:pt-24 lg:pb-28">
 
+        
         <div class="rise d1 enamel inline-block px-6 py-4 sm:px-8 sm:py-5">
           <p class="font-display text-[26px] sm:text-[34px] font-bold leading-none tracking-[.02em]">STUDIO 28</p>
           <p class="mt-2 signage text-[10px] sm:text-[11px] text-oak-300 tracking-[.22em]">Danse · Yoga · Pilates</p>
@@ -255,10 +262,11 @@ tailwind.config = {
         </h1>
 
         <p class="rise d3 mt-6 max-w-[46ch] text-[18px] leading-[1.55] text-cream-100/85">
-          Sept disciplines, tous les niveaux, sans abonnement.<br class="hidden sm:block">
+          Danser, bouger, respirer, tous les niveaux, sans abonnement.<br class="hidden sm:block">
           Studio 28, <span class="text-oak-300">Rue des Deux Églises 28</span>, Bruxelles.
         </p>
 
+        
         <ul class="rise d4 mt-8 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 border-y border-oak-500/45 py-3.5 text-[12.5px] signage tracking-[.14em] text-cream-100/90">
           <li><a href="#cours" class="hover:text-oak-300 transition-colors">Yoga</a></li>
           <li class="text-oak-500" aria-hidden="true">·</li>
@@ -295,6 +303,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section class="grain bg-cream-200 border-y border-oak-500/40">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
     <dl class="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-oak-500/35">
@@ -314,12 +324,14 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="cours" class="grain scroll-mt-24 py-16 sm:py-24">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
 
     <div class="flex flex-wrap items-end justify-between gap-6 border-b-2 border-ink-900 pb-5">
       <div>
-        <p class="kicker text-terra-600">Sept disciplines, une dizaine de professeurs</p>
+        <p class="kicker text-terra-600">Danser, bouger, respirer, une dizaine de professeurs</p>
         <h2 class="mt-3 font-display text-[38px] sm:text-[54px] font-semibold leading-none">Les cours</h2>
       </div>
       <p class="max-w-[38ch] text-[15px] leading-relaxed text-ink-800/70">
@@ -451,6 +463,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section class="relative">
   <img src="assets/img/ros_9403.jpg" alt="Un cours en cours dans la salle noire du Studio 28, devant le mur de miroirs"
        class="w-full h-[280px] sm:h-[420px] lg:h-[540px] object-cover" loading="lazy">
@@ -465,6 +479,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="horaire" class="grain scroll-mt-24 bg-cream-200 border-y border-oak-500/40 py-16 sm:py-24"
          x-data="{ f:'tous' }">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
@@ -477,8 +493,10 @@ tailwind.config = {
       <a href="#" class="ulink text-[15px] font-semibold">Horaire complet de la saison →</a>
     </div>
 
+    
     <div class="window mt-9 rounded-[3px]">
 
+      
       <div class="bg-ink-900 text-cream-100 px-5 sm:px-8 py-5 flex flex-wrap items-center justify-between gap-4">
         <div class="flex items-center gap-4">
           <div class="enamel-fern enamel px-3 py-1.5">
@@ -494,6 +512,7 @@ tailwind.config = {
         </p>
       </div>
 
+      
       <div class="bg-cream-200 border-b border-oak-500/35 px-4 sm:px-8 py-4">
         <div class="flex flex-wrap gap-1.5 text-[12.5px] signage tracking-[.12em]">
           <button @click="f='tous'" :class="f==='tous' ? 'bg-ink-900 text-cream-100 border-ink-900' : 'border-oak-500/45 hover:border-ink-900'" class="rounded-[2px] border px-3 py-1.5 transition-colors">Tous</button>
@@ -507,8 +526,10 @@ tailwind.config = {
         </div>
       </div>
 
+      
       <div class="bg-cream-100">
 
+        
         <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
           <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
             <p class="signage text-[12px] tracking-[.18em] text-terra-600">Lundi</p>
@@ -536,6 +557,7 @@ tailwind.config = {
           </div>
         </div>
 
+        
         <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
           <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
             <p class="signage text-[12px] tracking-[.18em] text-terra-600">Mardi</p>
@@ -563,6 +585,7 @@ tailwind.config = {
           </div>
         </div>
 
+        
         <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
           <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
             <p class="signage text-[12px] tracking-[.18em] text-terra-600">Mercredi</p>
@@ -590,6 +613,7 @@ tailwind.config = {
           </div>
         </div>
 
+        
         <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
           <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
             <p class="signage text-[12px] tracking-[.18em] text-terra-600">Jeudi</p>
@@ -617,6 +641,7 @@ tailwind.config = {
           </div>
         </div>
 
+        
         <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
           <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
             <p class="signage text-[12px] tracking-[.18em] text-terra-600">Vendredi</p>
@@ -644,6 +669,7 @@ tailwind.config = {
           </div>
         </div>
 
+        
         <div class="grid sm:grid-cols-[132px_1fr] border-b border-oak-500/30">
           <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
             <p class="signage text-[12px] tracking-[.18em] text-terra-600">Samedi</p>
@@ -671,6 +697,7 @@ tailwind.config = {
           </div>
         </div>
 
+        
         <div class="grid sm:grid-cols-[132px_1fr]">
           <div class="bg-cream-200/60 sm:bg-transparent px-5 sm:px-8 py-3 sm:py-6 border-b sm:border-b-0 sm:border-r border-oak-500/30">
             <p class="signage text-[12px] tracking-[.18em] text-terra-600">Dimanche</p>
@@ -694,6 +721,7 @@ tailwind.config = {
 
       </div>
 
+      
       <div class="bg-ink-900 text-cream-100/70 px-5 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-3 text-[13px]">
         <p>Pré-inscription — <span class="tab text-oak-300">13 €</span> au lieu de <span class="tab">15 €</span> <span class="text-cream-100/40">[à confirmer]</span></p>
         <a href="#" class="ulink font-semibold text-cream-100" style="box-shadow:inset 0 -1px 0 rgba(227,199,156,.6)">Recevoir l'horaire chaque semaine</a>
@@ -701,6 +729,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="grain py-16 sm:py-24">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
@@ -737,6 +767,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="lieu" class="grain scroll-mt-24 bg-ink-800 text-cream-100 grain-dark py-16 sm:py-24">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
 
@@ -748,6 +780,7 @@ tailwind.config = {
       <p class="signage text-[11px] tracking-[.2em] text-cream-100/45">Derrière la vitrine — Rue des Deux Églises 28</p>
     </div>
 
+    
     <figure class="mt-10">
       <img src="assets/img/studio-28-27.jpg" alt="La salle principale, parquet en chêne clair, murs sombres et le jardin visible par les fenêtres"
            class="w-full h-[300px] sm:h-[520px] lg:h-[680px] object-cover rounded-[3px]" loading="lazy">
@@ -770,6 +803,7 @@ tailwind.config = {
       </figure>
     </div>
 
+    
     <figure class="mt-12">
       <img src="assets/img/studio-28-20.jpg" alt="La cour intérieure : pergola en bois, pavés bleus, pelouse, fougères et graminées"
            class="w-full h-[300px] sm:h-[480px] lg:h-[620px] object-cover rounded-[3px]" loading="lazy">
@@ -779,6 +813,7 @@ tailwind.config = {
       </figcaption>
     </figure>
 
+    
     <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
       <figure>
         <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses" class="w-full h-[170px] sm:h-[230px] object-cover rounded-[3px]" loading="lazy">
@@ -805,6 +840,8 @@ tailwind.config = {
     </ul>
   </div>
 </section>
+
+
 
 <section class="grain py-16 sm:py-24">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
@@ -894,6 +931,7 @@ tailwind.config = {
         </span>
       </li>
 
+      
       <li class="col-span-2 bell rounded-[3px] p-4 flex items-center gap-3.5 border-2 border-dashed border-fern-600/55 bg-fern-600/[.07]">
         <span class="grid place-items-center h-12 w-12 shrink-0 rounded-full border-2 border-dashed border-fern-600/60 text-fern-600 text-[22px] leading-none">+</span>
         <span class="min-w-0">
@@ -906,6 +944,8 @@ tailwind.config = {
     <p class="mt-5 text-[13px] text-ink-800/50">Noms, portraits et logos des écoles partenaires — <span class="signage tracking-[.1em] text-oak-500">[à fournir]</span>.</p>
   </div>
 </section>
+
+
 
 <section id="agenda" class="grain scroll-mt-24 bg-cream-200 border-y border-oak-500/40 py-14 sm:py-20">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
@@ -936,6 +976,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="grain grain-dark bg-fern-800 text-cream-100 py-16 sm:py-24">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
@@ -990,6 +1032,8 @@ tailwind.config = {
     </p>
   </div>
 </section>
+
+
 
 <section class="grain py-16 sm:py-24">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
@@ -1061,6 +1105,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="venir" class="grain scroll-mt-24 bg-cream-200 border-t border-oak-500/40 py-16 sm:py-24">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
 
@@ -1076,6 +1122,7 @@ tailwind.config = {
 
     <div class="mt-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
 
+      
       <div class="lg:col-span-8 min-w-0">
         <div class="bg-cream-100 border border-oak-500/45 rounded-[3px] p-4 sm:p-6 min-w-0">
           <div class="map-scroll max-w-full">
@@ -1090,6 +1137,7 @@ tailwind.config = {
                 </pattern>
               </defs>
 
+              
               <g stroke="#12161C" stroke-width="1.8" stroke-linejoin="round" fill="url(#hatch)">
                 <path d="M42 44 L268 39 L272 241 L46 246 Z"/>
                 <path d="M304 40 L618 45 L613 238 L299 234 Z"/>
@@ -1101,13 +1149,16 @@ tailwind.config = {
                 <path d="M652 458 L918 452 L922 563 L648 568 Z"/>
               </g>
 
+              
               <path d="M652 280 L920 275 L924 418 L648 423 Z" fill="url(#hatchGreen)" stroke="#2C3B2F" stroke-width="1.8"/>
               <text x="786" y="345" text-anchor="middle" class="maplabel" font-size="15" fill="#2C3B2F" letter-spacing="3">[Square]</text>
               <text x="786" y="368" text-anchor="middle" font-size="12" fill="#2C3B2F" opacity=".75" font-family="Inter, sans-serif">à 2 min à pied</text>
 
+              
               <path d="M420 330 L600 333 L598 412 L418 409 Z" fill="url(#hatchGreen)" stroke="#2C3B2F" stroke-width="1.6" stroke-dasharray="7 5"/>
               <text x="509" y="378" text-anchor="middle" class="maplabel" font-size="12.5" fill="#2C3B2F" letter-spacing="2.4">Le jardin</text>
 
+              
               <text x="62" y="266" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Rue du Studio] →</text>
               <text x="62" y="443" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Rue]</text>
               <text x="700" y="443" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Avenue]</text>
@@ -1118,6 +1169,7 @@ tailwind.config = {
                 <text x="664" y="130" text-anchor="middle" class="maplabel" font-size="13" fill="#12161C" opacity=".62" letter-spacing="2.6">[Chaussée]</text>
               </g>
 
+              
               <path d="M636 34 C 632 180, 640 400, 634 572" fill="none" stroke="#12161C" stroke-width="2.2" stroke-dasharray="12 7" opacity=".8"/>
               <g stroke="#12161C" stroke-width="2" opacity=".55">
                 <line x1="626" y1="120" x2="646" y2="120"/><line x1="627" y1="200" x2="647" y2="200"/>
@@ -1129,14 +1181,17 @@ tailwind.config = {
               <text x="616" y="296" text-anchor="end" class="maplabel" font-size="12.5" fill="#12161C" letter-spacing="2">Tram</text>
               <text x="616" y="315" text-anchor="end" font-size="13" fill="#12161C" opacity=".7" font-family="Inter, sans-serif">Madou</text>
 
+              
               <circle cx="286" cy="258" r="19" fill="#12161C"/>
               <text x="286" y="266" text-anchor="middle" font-size="21" font-weight="700" fill="#F7F3EA" class="maplabel solid">M</text>
               <text x="264" y="216" text-anchor="end" class="maplabel" font-size="12.5" fill="#12161C" letter-spacing="2">Métro</text>
               <text x="264" y="235" text-anchor="end" font-size="13" fill="#12161C" opacity=".7" font-family="Inter, sans-serif">Madou</text>
 
+              
               <path d="M306 264 C 340 276, 380 270, 422 273" fill="none" stroke="#C05A34" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
               <text x="364" y="302" text-anchor="middle" font-size="12.5" fill="#9C4526" font-family="Inter, sans-serif">3 min à pied</text>
 
+              
               <g>
                 <rect x="424" y="252" width="46" height="40" rx="3" fill="#9C4526"/>
                 <text x="447" y="280" text-anchor="middle" font-size="21" font-weight="700" fill="#F7F3EA" class="maplabel solid">28</text>
@@ -1149,11 +1204,13 @@ tailwind.config = {
                 <text x="350" y="181" class="solid" font-size="12.5" fill="#4F6B52" font-family="Inter, sans-serif">Vitrine sur rue · rez-de-chaussée</text>
               </g>
 
+              
               <g transform="translate(886,540)">
                 <path d="M0 -30 L9 8 L0 1 L-9 8 Z" fill="none" stroke="#12161C" stroke-width="1.8" stroke-linejoin="round"/>
                 <text x="0" y="26" text-anchor="middle" class="maplabel" font-size="12" fill="#12161C" letter-spacing="1.5">N</text>
               </g>
 
+              
               <g transform="translate(60,578)">
                 <line x1="0" y1="0" x2="90" y2="0" stroke="#12161C" stroke-width="2"/>
                 <line x1="0" y1="-5" x2="0" y2="5" stroke="#12161C" stroke-width="2"/>
@@ -1169,6 +1226,7 @@ tailwind.config = {
         </div>
       </div>
 
+      
       <div class="lg:col-span-4 grid gap-5">
 
         <div class="enamel px-6 py-6">
@@ -1202,6 +1260,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <footer class="grain grain-dark bg-ink-900 text-cream-100 pt-14 pb-10">
   <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
@@ -1282,6 +1342,8 @@ tailwind.config = {
   </div>
 </footer>
 
+
+
 <div class="md:hidden fixed bottom-0 inset-x-0 z-50 bg-ink-900 border-t border-oak-500/40">
   <div class="grid grid-cols-[1fr_auto] gap-2 p-2.5">
     <a href="#horaire" class="inline-flex justify-center items-center gap-2 rounded-[3px] bg-oak-300 px-4 py-3 text-[15px] font-semibold text-ink-900">
@@ -1297,4 +1359,5 @@ tailwind.config = {
 
 </body>
 </html>
+
 

@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Danse, Yoga, Pilates · Bruxelles</title>
-<meta name="description" content="Sept disciplines, plusieurs écoles indépendantes, une seule porte. Une salle en chêne, un jardin derrière, à Bruxelles.">
+<meta name="description" content="Danser, bouger, respirer, plusieurs écoles indépendantes, une seule adresse. Une salle en chêne, un jardin derrière, à Bruxelles.">
 <link rel="icon" href="assets/logo/logo-studio28-3.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -122,10 +122,12 @@ tailwind.config = {
 
 <body class="font-sans antialiased text-[17px] leading-relaxed">
 
+
 <header x-data="{ open:false }" class="sticky top-0 z-50 bg-cream-100/90 backdrop-blur-sm border-b" style="border-bottom-color:rgba(168,129,77,.35)">
   <div class="mx-auto max-w-[1360px] px-5 md:px-8">
     <div class="flex items-center justify-between gap-6 h-[68px] md:h-[84px]">
 
+      
       <a href="#" class="flex items-center gap-3 shrink-0">
         <img src="assets/logo/logo-studio28-1.png" alt="Studio 28" class="h-8 md:h-11 w-auto hidden sm:block">
         <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="h-8 w-auto sm:hidden">
@@ -134,6 +136,7 @@ tailwind.config = {
         </span>
       </a>
 
+      
       <nav class="hidden lg:flex items-center gap-7 text-[15px]">
         <a href="#cours"    class="link-u">Cours</a>
         <a href="#horaire"  class="link-u">Horaire</a>
@@ -163,6 +166,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <div x-show="open" x-collapse x-cloak class="lg:hidden border-t" style="border-color:rgba(168,129,77,.35)">
     <nav class="mx-auto max-w-[1360px] px-5 py-6 grid gap-4 text-[19px] font-serif">
       <a @click="open=false" href="#cours">Cours</a>
@@ -180,11 +184,13 @@ tailwind.config = {
 
 <main>
 
+
 <section class="relative grain dapple bg-cream-100">
   <span class="grain-l"></span>
   <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8">
     <div class="hero-h grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] gap-10 lg:gap-16 items-center py-12 lg:py-0">
 
+      
       <div class="order-2 lg:order-1 max-w-[560px]">
         <p class="hs text-[11px] uppercase tracking-[0.28em] text-fern-600 flex items-center gap-3" style="animation-delay:.05s">
           <span class="inline-block h-1.5 w-1.5 rounded-full bg-fern-600"></span>
@@ -192,9 +198,9 @@ tailwind.config = {
         </p>
 
         <h1 class="hs font-serif serif-tight mt-6 text-[clamp(42px,6.2vw,74px)]" style="animation-delay:.14s">
-          Sept disciplines.<br>
+          Danser, bouger, respirer.<br>
           Plusieurs écoles.<br>
-          <span class="italic">Une seule porte.</span>
+          <span class="italic">Une seule adresse.</span>
         </h1>
 
         <p class="hs mt-7 text-[18px] md:text-[19px] leading-[1.6] text-body-muted max-w-[440px]" style="animation-delay:.24s">
@@ -211,6 +217,7 @@ tailwind.config = {
           </a>
         </div>
 
+        
         <ul class="hs mt-10 flex flex-wrap gap-x-2 gap-y-2 text-[13px]" style="animation-delay:.42s">
           <li><a href="#cours" class="pill inline-block px-3 py-1.5 rounded-full border bg-cream-200/60 hover:bg-fern-600 hover:text-cream-100 hover:border-fern-600" style="border-color:rgba(168,129,77,.45)">Yoga</a></li>
           <li><a href="#cours" class="pill inline-block px-3 py-1.5 rounded-full border bg-cream-200/60 hover:bg-fern-600 hover:text-cream-100 hover:border-fern-600" style="border-color:rgba(168,129,77,.45)">Pilates</a></li>
@@ -226,6 +233,7 @@ tailwind.config = {
         </p>
       </div>
 
+      
       <figure class="hf hero-img hero-bleed order-1 lg:order-2 relative hero-fb" style="animation-delay:.1s">
         <img src="assets/img/studio-28-20.jpg" alt="Le jardin du Studio 28 : pergola en bois, pavés bleus, fougères et graminées."
              class="grade w-full h-[46vh] sm:h-[56vh] lg:h-full object-cover" style="object-position:52% 55%">
@@ -238,6 +246,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
 
 <section class="relative bg-ink-800">
   <figure class="relative">
@@ -254,6 +263,7 @@ tailwind.config = {
     </figcaption>
   </figure>
 </section>
+
 
 <section class="relative grain bg-cream-200">
   <span class="grain-l"></span>
@@ -275,6 +285,7 @@ tailwind.config = {
   </div>
 </section>
 
+
 <section id="cours" class="relative grain dapple bg-cream-100 scroll-mt-24">
   <span class="grain-l"></span>
   <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-20 md:py-28">
@@ -282,7 +293,7 @@ tailwind.config = {
     <div class="rv flex flex-wrap items-end justify-between gap-6 border-b pb-6" style="border-color:rgba(168,129,77,.45)">
       <div>
         <p class="text-[11px] uppercase tracking-[0.28em] text-fern-600">01 — Les cours</p>
-        <h2 class="font-serif serif-tight mt-3 text-[clamp(34px,4.6vw,58px)]">Sept disciplines,<br>une dizaine de professeurs</h2>
+        <h2 class="font-serif serif-tight mt-3 text-[clamp(34px,4.6vw,58px)]">Danser, bouger, respirer,<br>une dizaine de professeurs</h2>
       </div>
       <p class="text-body-muted max-w-[360px] text-[15.5px] leading-relaxed">
         Tous les cours se donnent dans la même salle, avec les mêmes crédits. Vous pouvez commencer à n'importe quel moment de l'année.
@@ -291,6 +302,7 @@ tailwind.config = {
 
     <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
 
+      
       <article class="card rv group">
         <a href="#horaire" class="block">
           <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
@@ -309,6 +321,7 @@ tailwind.config = {
         </a>
       </article>
 
+      
       <article class="card rv group" style="transition-delay:.08s">
         <a href="#horaire" class="block">
           <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
@@ -327,6 +340,7 @@ tailwind.config = {
         </a>
       </article>
 
+      
       <article class="card rv group" style="transition-delay:.16s">
         <a href="#horaire" class="block">
           <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
@@ -345,6 +359,7 @@ tailwind.config = {
         </a>
       </article>
 
+      
       <article class="card rv group" style="transition-delay:.24s">
         <a href="#horaire" class="block">
           <div class="relative overflow-hidden bg-ink-900 aspect-[4/3]">
@@ -363,6 +378,7 @@ tailwind.config = {
         </a>
       </article>
 
+      
       <article class="card rv group">
         <a href="#horaire" class="block">
           <div class="relative overflow-hidden bg-ink-900 aspect-[4/3]">
@@ -381,6 +397,7 @@ tailwind.config = {
         </a>
       </article>
 
+      
       <article class="card rv group" style="transition-delay:.08s">
         <a href="#horaire" class="block">
           <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
@@ -399,6 +416,7 @@ tailwind.config = {
         </a>
       </article>
 
+      
       <article class="card rv group" style="transition-delay:.16s">
         <a href="#horaire" class="block">
           <div class="relative overflow-hidden bg-cream-200 aspect-[4/3]">
@@ -417,6 +435,7 @@ tailwind.config = {
         </a>
       </article>
 
+      
       <article class="rv" style="transition-delay:.24s">
         <a href="#horaire" class="group flex flex-col justify-between h-full min-h-[260px] bg-fern-800 text-cream-100 p-7">
           <p class="text-[11px] uppercase tracking-[0.26em] text-oak-300">Toute la semaine</p>
@@ -433,6 +452,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
 
 <section class="relative bg-ink-900">
   <div class="relative">
@@ -457,6 +477,7 @@ tailwind.config = {
   </div>
 </section>
 
+
 <section id="horaire" class="relative grain bg-cream-100 scroll-mt-24"
   x-data="{ f:'all', has:{
     lundi:['pilates','yoga','hiphop'],
@@ -480,6 +501,7 @@ tailwind.config = {
       </p>
     </div>
 
+    
     <div class="rv mt-9 flex flex-wrap gap-2 text-[13.5px]">
       <button @click="f='all'"    :class="f==='all'    ? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Tout</button>
       <button @click="f='yoga'"   :class="f==='yoga'   ? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Yoga</button>
@@ -491,10 +513,12 @@ tailwind.config = {
       <button @click="f='bachata'":class="f==='bachata'? 'bg-ink-800 text-cream-100 border-ink-800' : 'bg-transparent hover:border-fern-600 hover:text-fern-600'" class="pill px-4 py-1.5 rounded-full border" style="border-color:rgba(168,129,77,.5)">Bachata</button>
     </div>
 
+    
     <div class="hidden md:grid mt-10 grid-cols-[92px_1fr_0.8fr_150px_90px_140px] gap-x-5 pb-3 border-b text-[11px] uppercase tracking-[0.18em] text-body-muted" style="border-color:rgba(168,129,77,.45)">
       <span>Heure</span><span>Cours</span><span>Professeur·e</span><span>Niveau</span><span>Crédits</span><span></span>
     </div>
 
+    
     <div x-show="f==='all' || has.lundi.includes(f)" class="rv">
       <h3 class="font-serif text-[26px] mt-9 md:mt-8 mb-1">Lundi</h3>
       <div>
@@ -531,6 +555,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="f==='all' || has.mardi.includes(f)" class="rv">
       <h3 class="font-serif text-[26px] mt-9 mb-1">Mardi</h3>
       <div>
@@ -567,6 +592,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="f==='all' || has.mercredi.includes(f)" class="rv">
       <h3 class="font-serif text-[26px] mt-9 mb-1">Mercredi</h3>
       <div>
@@ -593,6 +619,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="f==='all' || has.jeudi.includes(f)" class="rv">
       <h3 class="font-serif text-[26px] mt-9 mb-1">Jeudi</h3>
       <div>
@@ -629,6 +656,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="f==='all' || has.vendredi.includes(f)" class="rv">
       <h3 class="font-serif text-[26px] mt-9 mb-1">Vendredi</h3>
       <div>
@@ -655,6 +683,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="f==='all' || has.samedi.includes(f)" class="rv">
       <h3 class="font-serif text-[26px] mt-9 mb-1">Samedi</h3>
       <div>
@@ -691,6 +720,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div x-show="f==='all' || has.dimanche.includes(f)" class="rv">
       <h3 class="font-serif text-[26px] mt-9 mb-1">Dimanche</h3>
       <div>
@@ -728,6 +758,7 @@ tailwind.config = {
 
   </div>
 </section>
+
 
 <section class="relative grain bg-cream-200">
   <span class="grain-l"></span>
@@ -769,6 +800,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
 
 <section id="lieu" class="relative grain dapple bg-cream-100 scroll-mt-24">
   <span class="grain-l"></span>
@@ -824,6 +856,7 @@ tailwind.config = {
     </ul>
   </div>
 </section>
+
 
 <section class="relative grain bg-cream-200">
   <span class="grain-l"></span>
@@ -895,6 +928,7 @@ tailwind.config = {
   </div>
 </section>
 
+
 <section id="la-salle" class="relative bg-fern-800 text-cream-100 scroll-mt-24 overflow-hidden">
   <img src="assets/img/studio-28-22.jpg" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-[0.13]">
   <div class="relative z-10 mx-auto max-w-[1360px] px-5 md:px-8 py-20 md:py-28">
@@ -931,6 +965,7 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
 
 <section class="relative grain bg-cream-100">
   <span class="grain-l"></span>
@@ -973,6 +1008,7 @@ tailwind.config = {
 </section>
 
 </main>
+
 
 <footer id="contact" class="relative bg-ink-900 text-cream-100 scroll-mt-24">
   <div class="mx-auto max-w-[1360px] px-5 md:px-8 pt-20 md:pt-24 pb-10">
@@ -1031,6 +1067,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div class="mt-16 border-t pt-8 flex flex-wrap items-center justify-between gap-6" style="border-color:rgba(247,243,234,.16)">
       <p class="font-serif text-[22px]">Recevoir l'horaire chaque semaine</p>
       <form class="flex flex-wrap gap-3" onsubmit="return false">
@@ -1049,6 +1086,7 @@ tailwind.config = {
     </div>
   </div>
 </footer>
+
 
 <div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-cream-100/95 backdrop-blur border-t px-4 py-3 flex items-center gap-3" style="border-color:rgba(168,129,77,.4)">
   <a href="#horaire" class="flex-1 inline-flex items-center justify-center h-11 rounded-full bg-terra-600 text-cream-100 text-[15px]">Voir l'horaire</a>
@@ -1080,4 +1118,5 @@ tailwind.config = {
 
 </body>
 </html>
+
 

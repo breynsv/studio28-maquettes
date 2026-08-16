@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Danse · Yoga · Pilates · Bruxelles</title>
-<meta name="description" content="Sept disciplines, une dizaine de professeurs indépendants, une seule salle à Bruxelles. Yoga, pilates, cyclodanse, hip-hop, heels, salsa, bachata. Sans abonnement.">
+<meta name="description" content="Danser, bouger, respirer, une dizaine de professeurs indépendants, une seule salle à Bruxelles. Yoga, pilates, cyclodanse, hip-hop, heels, salsa, bachata. Sans abonnement.">
 <link rel="icon" href="assets/logo/logo-studio28-3.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -423,6 +423,7 @@ function studio28() {
 
 <div x-data="studio28()">
 
+
 <header class="sticky top-0 z-50 bg-ink-900/95 backdrop-blur-md border-b border-ink-600/70">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
     <div class="flex items-center justify-between gap-6 h-[68px] lg:h-[76px]">
@@ -477,6 +478,7 @@ function studio28() {
   </div>
 </header>
 
+
 <section class="relative bg-ink-900 grain overflow-hidden">
   <div class="absolute inset-0">
     <img src="assets/img/studio-28-27.jpg" :src="heroImg" alt="La salle du Studio 28 — parquet en chêne clair, murs sombres, colonnes en lattes de bois"
@@ -488,6 +490,7 @@ function studio28() {
   <div class="relative mx-auto max-w-[1360px] px-5 lg:px-9 pt-12 pb-14 lg:pt-20 lg:pb-24">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-end">
 
+      
       <div class="lg:col-span-7">
         <p class="rise text-[11px] uppercase tracking-[0.22em] text-oak-400 mb-6" style="animation-delay:.05s">
           <span x-text="dateLongue">—</span> · Bruxelles · ouvert 7j/7
@@ -499,10 +502,11 @@ function studio28() {
         </h1>
 
         <p class="rise mt-6 text-[17px] lg:text-[19px] leading-relaxed text-cream-100/80 max-w-[46ch]" style="animation-delay:.2s">
-          Sept disciplines, tous les niveaux, sans abonnement.
+          Danser, bouger, respirer, tous les niveaux, sans abonnement.
           Une adresse à Bruxelles, plusieurs écoles indépendantes, un seul horaire.
         </p>
 
+        
         <ul class="rise mt-8 flex flex-wrap gap-2" style="animation-delay:.28s">
           <template x-for="d in disciplines" :key="d.nom">
             <li>
@@ -528,6 +532,7 @@ function studio28() {
         </p>
       </div>
 
+      
       <div class="lg:col-span-5 rise" style="animation-delay:.3s">
         <div class="rounded-2xl border border-ink-600 bg-ink-800/85 backdrop-blur-sm shadow-2xl shadow-black/40 overflow-hidden">
 
@@ -539,6 +544,7 @@ function studio28() {
             <span class="tnum text-[13px] text-bluestone-500" x-text="horloge">—</span>
           </div>
 
+          
           <template x-if="enCours.length">
             <div class="px-5 pt-4 pb-3 border-b border-ink-600/60 flex items-start gap-3">
               <span class="mt-1.5 live-dot inline-block w-[7px] h-[7px] rounded-full bg-fern-600 shrink-0"></span>
@@ -566,6 +572,7 @@ function studio28() {
 
             <p class="mt-4 inline-flex items-center gap-2 h-7 px-3 rounded-full bg-ink-700 border border-ink-600 text-[12.5px] text-oak-300 tnum" x-text="delai(prochain)"></p>
 
+            
             <div class="mt-6">
               <div class="flex items-baseline justify-between mb-2">
                 <p class="text-[14px] text-cream-100">
@@ -588,6 +595,7 @@ function studio28() {
             </p>
           </div>
 
+          
           <div class="border-t border-ink-600/70 divide-y divide-ink-600/50">
             <template x-for="item in suite.slice(1,4)" :key="item.c.id + '-' + item.offset">
               <a href="#horaire" class="flex items-center gap-4 px-5 py-3 hover:bg-ink-700/60 transition">
@@ -612,6 +620,7 @@ function studio28() {
   </div>
 </section>
 
+
 <section class="bg-ink-800 border-t border-ink-600/60 grain">
   <div class="relative mx-auto max-w-[1360px] px-5 lg:px-9 py-10 lg:py-14">
 
@@ -625,6 +634,7 @@ function studio28() {
       <a href="#salle" class="link-u text-[13.5px] text-oak-300 hover:text-oak-400">Louer un créneau →</a>
     </div>
 
+    
     <div class="hidden md:block">
       <div class="relative pl-[132px]">
         
@@ -640,6 +650,7 @@ function studio28() {
             <span class="absolute top-0 bottom-0 w-px bg-ink-600/60" :style="'left:' + g.pos + '%'"></span>
           </template>
 
+          
           <template x-if="posMaintenant">
             <div class="absolute top-[-26px] bottom-[-6px] z-20 pointer-events-none" :style="posMaintenant">
               <div class="now-line w-[2px] h-full bg-terra-500"></div>
@@ -647,6 +658,7 @@ function studio28() {
             </div>
           </template>
 
+          
           <template x-for="salle in salles" :key="salle">
             <div class="relative h-[86px] mb-3 last:mb-0">
               
@@ -657,6 +669,7 @@ function studio28() {
 
               <div class="absolute inset-0 rounded-lg bg-ink-900/60 border border-ink-600/50"></div>
 
+              
               <template x-for="v in videsDeLaSalle(salle)" :key="salle + v.de">
                 <a href="#salle" class="absolute top-[9px] bottom-[9px] rounded-md hatch border border-dashed border-oak-500/45 hover:border-oak-500 flex items-center justify-center transition group"
                    :style="pos(v.de, v.a)">
@@ -664,6 +677,7 @@ function studio28() {
                 </a>
               </template>
 
+              
               <template x-for="c in coursDeLaSalle(salle)" :key="c.id">
                 <a href="#horaire"
                    class="absolute top-[7px] bottom-[7px] z-10 rounded-md px-3 py-2 overflow-hidden border transition hover:-translate-y-0.5"
@@ -684,6 +698,7 @@ function studio28() {
       </div>
     </div>
 
+    
     <div class="md:hidden space-y-2.5">
       <template x-for="salle in salles" :key="'m'+salle">
         <div>
@@ -714,6 +729,7 @@ function studio28() {
   </div>
 </section>
 
+
 <section class="bg-cream-200 border-b border-oak-500/25">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
     <div class="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-oak-500/25">
@@ -733,12 +749,13 @@ function studio28() {
   </div>
 </section>
 
+
 <section id="cours" class="bg-cream-100 py-16 lg:py-24">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
 
     <div class="flex flex-wrap items-end justify-between gap-5 mb-10 lg:mb-14">
       <div>
-        <p class="text-[11px] uppercase tracking-[0.2em] text-terra-600 mb-3">Sept disciplines, une dizaine de professeurs</p>
+        <p class="text-[11px] uppercase tracking-[0.2em] text-terra-600 mb-3">Danser, bouger, respirer, une dizaine de professeurs</p>
         <h2 class="font-display text-[38px] lg:text-[52px] leading-none font-medium">Les cours</h2>
         <div class="rule-oak w-[180px] mt-5"></div>
       </div>
@@ -764,6 +781,7 @@ function studio28() {
         </a>
       </template>
 
+      
       <div class="hidden lg:flex flex-col justify-center border-l border-oak-500/30 pl-6">
         <p class="font-display text-[22px] leading-tight">Toutes les disciplines,<br>les mêmes crédits.</p>
         <p class="text-[14px] text-[#5C636D] mt-3 leading-relaxed">
@@ -775,6 +793,7 @@ function studio28() {
     </div>
   </div>
 </section>
+
 
 <section class="relative">
   <img src="assets/img/studio-28-22.jpg" alt="Le jardin du Studio 28 : allée en pierre bleue, pergola en bois et haies denses"
@@ -793,6 +812,7 @@ function studio28() {
   </div>
 </section>
 
+
 <section id="horaire" class="bg-cream-200 py-16 lg:py-24 border-y border-oak-500/25">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
 
@@ -808,6 +828,7 @@ function studio28() {
       </p>
     </div>
 
+    
     <div class="flex flex-wrap gap-2 mb-4">
       <template x-for="(nom, i) in joursAbbr" :key="'j'+i">
         <button @click="jourActif = i"
@@ -822,6 +843,7 @@ function studio28() {
       </span>
     </div>
 
+    
     <div class="flex flex-wrap gap-2 mb-8">
       <button @click="filtre = 'Toutes'"
               class="h-8 px-3.5 rounded-full border text-[13px] transition"
@@ -834,6 +856,7 @@ function studio28() {
       </template>
     </div>
 
+    
     <div class="hidden lg:grid grid-cols-[86px_1.5fr_1fr_1fr_0.9fr_0.9fr_190px] gap-4 px-4 pb-3 border-b border-oak-500/40 text-[11px] uppercase tracking-[0.16em] text-[#5C636D]">
       <span>Heure</span><span>Discipline</span><span>Professeur</span><span>Salle</span><span>Niveau</span><span>Places</span><span></span>
     </div>
@@ -889,6 +912,7 @@ function studio28() {
       <a href="#" class="link-u text-[14.5px] text-[#5C636D]">Recevoir l’horaire chaque semaine</a>
     </div>
 
+    
     <div id="agenda" class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-oak-500/35 bg-cream-100 px-5 py-4">
       <span class="inline-flex items-center h-6 px-2.5 rounded-full bg-fern-600 text-cream-100 text-[10.5px] uppercase tracking-[0.14em]">À l’agenda</span>
       <p class="text-[15px]"><span class="font-semibold">Samedi 29 août — Journée portes ouvertes.</span> 11h–18h, entrée libre, toutes les disciplines à l’essai.</p>
@@ -900,6 +924,7 @@ function studio28() {
     </p>
   </div>
 </section>
+
 
 <section id="comment" class="bg-cream-100 py-16 lg:py-24">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
@@ -946,6 +971,7 @@ function studio28() {
     </div>
   </div>
 </section>
+
 
 <section id="lieu" class="bg-cream-100 pb-16 lg:pb-24">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9 mb-8 lg:mb-12">
@@ -997,6 +1023,7 @@ function studio28() {
   </div>
 </section>
 
+
 <section id="profs" class="bg-cream-200 py-16 lg:py-24 border-y border-oak-500/25">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
     <div class="flex flex-wrap items-end justify-between gap-5 mb-10 lg:mb-14">
@@ -1039,6 +1066,7 @@ function studio28() {
   </div>
 </section>
 
+
 <section id="salle" class="relative bg-ink-800 grain overflow-hidden">
   <div class="absolute inset-0">
     <img src="assets/img/ros_9197.jpg" alt="" class="w-full h-full object-cover grade opacity-[0.22]">
@@ -1052,6 +1080,7 @@ function studio28() {
       <div class="h-[2px] w-[180px] mt-5 bg-fern-600"></div>
     </div>
 
+    
     <div class="mb-10 inline-flex flex-wrap items-center gap-3 rounded-full border border-fern-700 bg-fern-800/40 px-5 py-3">
       <span class="live-dot inline-block w-[7px] h-[7px] rounded-full bg-fern-600"></span>
       <p class="text-[14.5px] text-cream-100" x-text="creneauLibreTexte"></p>
@@ -1101,6 +1130,7 @@ function studio28() {
   </div>
 </section>
 
+
 <section id="faq" class="bg-cream-100 py-16 lg:py-24">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9 grid lg:grid-cols-12 gap-10">
     <div class="lg:col-span-4">
@@ -1133,6 +1163,7 @@ function studio28() {
     </div>
   </div>
 </section>
+
 
 <footer id="venir" class="bg-ink-900 grain text-cream-100 pt-16 lg:pt-20 pb-28 lg:pb-12">
   <div class="mx-auto max-w-[1360px] px-5 lg:px-9">
@@ -1212,6 +1243,7 @@ function studio28() {
   </div>
 </footer>
 
+
 <div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-ink-900/95 backdrop-blur border-t border-ink-600">
   <div class="px-4 pt-2 pb-1 flex items-center gap-2 text-[11.5px] text-bluestone-500">
     <span class="live-dot inline-block w-[6px] h-[6px] rounded-full bg-terra-500 shrink-0"></span>
@@ -1237,4 +1269,5 @@ function studio28() {
 
 </body>
 </html>
+
 

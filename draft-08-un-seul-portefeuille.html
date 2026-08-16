@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Danse · Yoga · Pilates · Bruxelles</title>
-<meta name="description" content="Sept disciplines, une dizaine de professeurs et d'écoles indépendantes, une seule salle à Bruxelles — et un seul portefeuille de crédits qui fonctionne partout.">
+<meta name="description" content="Danser, bouger, respirer, une dizaine de professeurs et d'écoles indépendantes, une seule salle à Bruxelles — et un seul portefeuille de crédits qui fonctionne partout.">
 <link rel="icon" href="assets/logo/logo-studio28-3.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,6 +174,7 @@ document.addEventListener('alpine:init', () => {
 
 <a href="#horaire" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-3 focus:left-3 focus:bg-ink-800 focus:text-cream-100 focus:px-4 focus:py-2">Aller à l'horaire</a>
 
+
 <header x-data="{ past:false }"
         x-init="window.addEventListener('scroll', () => past = window.scrollY > 520, {passive:true})"
         class="fixed top-0 inset-x-0 z-50">
@@ -201,6 +202,7 @@ document.addEventListener('alpine:init', () => {
 
         <div class="ml-auto flex items-center gap-3">
 
+          
           <div x-cloak x-show="past" x-transition.opacity.duration.300ms
                class="hidden md:flex items-center gap-2.5 pl-3 pr-3.5 py-1.5 border border-ink-600 rounded-sm bg-ink-800/80">
             <span class="kicker text-oak-400">Solde</span>
@@ -235,6 +237,7 @@ document.addEventListener('alpine:init', () => {
     </div>
   </div>
 
+  
   <div x-data="{ open:false }" @togglemenu.window="open = !open" x-cloak x-show="open"
        x-transition.opacity class="lg:hidden bg-ink-900/100 backdrop-blur border-b border-ink-600">
     <nav class="max-w-shell mx-auto px-5 py-6 grid gap-4 text-cream-100 text-[17px]">
@@ -252,6 +255,7 @@ document.addEventListener('alpine:init', () => {
   </div>
 </header>
 
+
 <section class="relative bg-ink-900 grain grain-dark overflow-hidden">
   <div class="absolute inset-0">
     <img src="assets/img/ros_9180.jpg" alt="La salle du Studio 28 : parquet en chêne clair, colonnes en lattes de bois, murs charbon."
@@ -263,6 +267,7 @@ document.addEventListener('alpine:init', () => {
   <div class="relative z-10 max-w-shell mx-auto px-5 lg:px-8 pt-[104px] pb-0">
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center min-h-[520px] lg:min-h-[620px]">
 
+      
       <div class="lg:col-span-6 xl:col-span-6 pt-6 lg:pt-0">
         <p class="kicker text-oak-400 flex items-center gap-3">
           <span class="inline-block w-8 h-px bg-terra-500"></span>
@@ -294,6 +299,7 @@ document.addEventListener('alpine:init', () => {
         </p>
       </div>
 
+      
       <div class="lg:col-span-6 xl:col-span-5 xl:col-start-8 lg:justify-self-end w-full max-w-[440px] lg:max-w-none">
         <div class="carnet rounded-[3px] lg:rotate-[-1.6deg] lg:translate-y-4"
              :class="$store.wallet.empty && 'shake'">
@@ -319,6 +325,7 @@ document.addEventListener('alpine:init', () => {
               </button>
             </div>
 
+            
             <div class="mt-4 grid gap-[3px]" :style="'grid-template-columns: repeat(' + $store.wallet.max + ', minmax(0,1fr))'">
               <template x-for="i in $store.wallet.max" :key="i">
                 <span class="pip" :class="i > $store.wallet.left && 'spent'"></span>
@@ -334,6 +341,7 @@ document.addEventListener('alpine:init', () => {
             </p>
           </div>
 
+          
           <div class="perf mx-6 sm:mx-7"></div>
           <div class="px-6 sm:px-7 py-4 min-h-[74px]">
             <p class="kicker text-[color:var(--muted-on-cream)]">Dépensé chez</p>
@@ -350,9 +358,10 @@ document.addEventListener('alpine:init', () => {
       </div>
     </div>
 
+    
     <div class="mt-10 lg:mt-14 pb-10 lg:pb-14">
       <div class="hair-dark mb-5"></div>
-      <p class="kicker text-oak-400 mb-4">Sept disciplines — vos crédits fonctionnent partout</p>
+      <p class="kicker text-oak-400 mb-4">Danser, bouger, respirer — vos crédits fonctionnent partout</p>
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
         <button @click="$store.wallet.spend('Yoga', 2, 'lundi 12h30')"
                 class="chip group border border-ink-600 hover:border-oak-500 bg-ink-800/50 hover:bg-ink-700 rounded-sm px-3 py-3 text-left">
@@ -394,6 +403,7 @@ document.addEventListener('alpine:init', () => {
   </div>
 </section>
 
+
 <section class="bg-cream-200 grain border-b rule-oak border-t">
   <div class="max-w-shell mx-auto px-5 lg:px-8">
     <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-oak-500/30">
@@ -413,6 +423,7 @@ document.addEventListener('alpine:init', () => {
   </div>
 </section>
 
+
 <section id="portefeuille" class="bg-cream-100 grain py-16 lg:py-24">
   <div class="max-w-shell mx-auto px-5 lg:px-8">
 
@@ -422,7 +433,7 @@ document.addEventListener('alpine:init', () => {
         Comment ça marche — pas d'abonnement, des crédits
       </p>
       <h2 class="mt-5 font-display font-medium text-[40px] sm:text-[52px] lg:text-[60px] leading-[1.03]">
-        Un seul portefeuille,<br>sept disciplines.
+        Un seul portefeuille,<br>toutes nos disciplines.
       </h2>
       <p class="mt-5 text-[18px] leading-relaxed text-[color:var(--muted-on-cream)]">
         Vous achetez des crédits une fois. Ils ne sont liés à aucune discipline, à aucun professeur,
@@ -431,8 +442,10 @@ document.addEventListener('alpine:init', () => {
       </p>
     </div>
 
+    
     <div class="mt-12 lg:mt-16 grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
 
+      
       <div class="lg:col-span-5 min-w-0">
         <div class="carnet carnet-on-cream rounded-[3px] lg:sticky lg:top-24" :class="$store.wallet.empty && 'shake'">
           <div class="px-6 sm:px-8 pt-7 pb-6">
@@ -479,6 +492,7 @@ document.addEventListener('alpine:init', () => {
 
           <div class="perf mx-6 sm:mx-8"></div>
 
+          
           <div class="px-6 sm:px-8 py-5">
             <p class="kicker text-[color:var(--muted-on-cream)]">Relevé</p>
             <div class="mt-3 min-h-[132px]">
@@ -508,6 +522,7 @@ document.addEventListener('alpine:init', () => {
         </div>
       </div>
 
+      
       <div class="lg:col-span-7 min-w-0">
 
         <ol class="grid sm:grid-cols-3 gap-5">
@@ -631,6 +646,7 @@ document.addEventListener('alpine:init', () => {
           </div>
         </div>
 
+        
         <p class="mt-8 font-display text-[26px] sm:text-[32px] leading-tight">
           <span class="tnum" x-text="$store.wallet.ledger.length"></span> cours.
           <span class="tnum" x-text="$store.wallet.disciplines.length"></span> discipline<span x-show="$store.wallet.disciplines.length > 1">s</span>.
@@ -646,13 +662,14 @@ document.addEventListener('alpine:init', () => {
   </div>
 </section>
 
+
 <section id="cours" class="bg-cream-200 grain border-t rule-oak py-16 lg:py-24">
   <div class="max-w-shell mx-auto px-5 lg:px-8">
     <div class="flex flex-wrap items-end justify-between gap-6">
       <div>
         <p class="kicker text-terra-600 flex items-center gap-3">
           <span class="inline-block w-8 h-px bg-terra-500"></span>
-          Sept disciplines, une dizaine de professeurs
+          Danser, bouger, respirer, une dizaine de professeurs
         </p>
         <h2 class="mt-5 font-display font-medium text-[40px] sm:text-[52px] leading-[1.03]">Les cours</h2>
       </div>
@@ -773,6 +790,7 @@ document.addEventListener('alpine:init', () => {
   </div>
 </section>
 
+
 <section id="horaire" x-data="{ f:'all' }" class="bg-cream-100 grain py-16 lg:py-24">
   <div class="max-w-shell mx-auto px-5 lg:px-8">
 
@@ -790,6 +808,7 @@ document.addEventListener('alpine:init', () => {
       </p>
     </div>
 
+    
     <div class="mt-8 flex flex-wrap gap-2">
       <button @click="f='all'" :class="f==='all' ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/45 hover:border-terra-500'" class="chip px-3.5 h-9 border rounded-sm text-[13.5px] font-medium">Tout</button>
       <button @click="f='Yoga'" :class="f==='Yoga' ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/45 hover:border-terra-500'" class="chip px-3.5 h-9 border rounded-sm text-[13.5px] font-medium">Yoga</button>
@@ -801,6 +820,7 @@ document.addEventListener('alpine:init', () => {
       <button @click="f='Bachata'" :class="f==='Bachata' ? 'bg-ink-800 text-cream-100 border-ink-800' : 'border-oak-500/45 hover:border-terra-500'" class="chip px-3.5 h-9 border rounded-sm text-[13.5px] font-medium">Bachata</button>
     </div>
 
+    
     <div class="mt-8 hidden lg:grid grid-cols-[130px_150px_1fr_170px_120px_170px] gap-4 pb-3 border-b-2 border-oak-500/50">
       <span class="kicker text-[color:var(--muted-on-cream)]">Jour</span>
       <span class="kicker text-[color:var(--muted-on-cream)]">Heure</span>
@@ -812,6 +832,7 @@ document.addEventListener('alpine:init', () => {
 
     <div class="divide-y divide-oak-500/30 border-b rule-oak lg:border-b-0">
 
+      
       <div x-show="f==='all' || f==='Yoga'" x-data="{done:false}" class="grid grid-cols-1 lg:grid-cols-[130px_150px_1fr_170px_120px_170px] gap-1 lg:gap-4 items-center py-4">
         <span class="text-[13px] lg:text-[15px] font-medium lg:font-normal uppercase lg:normal-case tracking-[.1em] lg:tracking-normal text-[color:var(--muted-on-cream)] lg:text-[color:var(--text-on-cream)]">Lundi</span>
         <span class="font-display text-[24px] lg:text-[22px] tnum leading-none">12:30</span>
@@ -983,6 +1004,7 @@ document.addEventListener('alpine:init', () => {
   </div>
 </section>
 
+
 <section id="lieu" class="bg-ink-900 grain grain-dark">
   <div class="relative">
     <img src="assets/img/studio-28-27.jpg" alt="La salle et le jardin visibles à travers les grandes fenêtres."
@@ -1035,6 +1057,7 @@ document.addEventListener('alpine:init', () => {
     <p class="mt-3 text-[12.5px] text-cream-100/40">Photographies du jardin à remplacer avant la mise en ligne — voir le manifeste des visuels.</p>
   </div>
 </section>
+
 
 <section id="professeurs" class="bg-cream-100 grain py-16 lg:py-24">
   <div class="max-w-shell mx-auto px-5 lg:px-8">
@@ -1132,6 +1155,7 @@ document.addEventListener('alpine:init', () => {
   </div>
 </section>
 
+
 <section id="agenda" class="bg-cream-200 grain border-t rule-oak py-14 lg:py-20">
   <div class="max-w-shell mx-auto px-5 lg:px-8">
     <h2 class="font-display font-medium text-[32px] sm:text-[40px] leading-tight">Ce qui se passe au studio</h2>
@@ -1139,7 +1163,7 @@ document.addEventListener('alpine:init', () => {
       <article class="bg-cream-100 border rule-oak rounded-[3px] p-6">
         <p class="kicker text-terra-600 tnum">Samedi 29 août</p>
         <h3 class="mt-2 font-display text-[23px] leading-tight">Journée portes ouvertes</h3>
-        <p class="mt-2 text-[15px] text-[color:var(--muted-on-cream)] leading-relaxed">Les sept disciplines en cours d'essai, toute la journée. Entrée libre, le jardin est ouvert.</p>
+        <p class="mt-2 text-[15px] text-[color:var(--muted-on-cream)] leading-relaxed">Les toutes nos disciplines en cours d'essai, toute la journée. Entrée libre, le jardin est ouvert.</p>
         <a href="#venir" class="lnk mt-4 inline-block text-[14.5px] font-medium">S'inscrire →</a>
       </article>
       <article class="bg-cream-100 border rule-oak rounded-[3px] p-6">
@@ -1157,6 +1181,7 @@ document.addEventListener('alpine:init', () => {
     </div>
   </div>
 </section>
+
 
 <section id="professionnels" class="relative bg-ink-800 grain grain-dark py-16 lg:py-24 overflow-hidden">
   <img src="assets/img/studio-28-22.jpg" alt="" aria-hidden="true" loading="lazy"
@@ -1210,6 +1235,7 @@ document.addEventListener('alpine:init', () => {
     </div>
   </div>
 </section>
+
 
 <section id="faq" class="bg-cream-100 grain py-16 lg:py-24">
   <div class="max-w-shell mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-10">
@@ -1305,6 +1331,7 @@ document.addEventListener('alpine:init', () => {
   </div>
 </section>
 
+
 <footer id="venir" class="bg-ink-900 grain grain-dark text-cream-100 pt-16 lg:pt-20 pb-32 lg:pb-12">
   <div class="max-w-shell mx-auto px-5 lg:px-8">
 
@@ -1389,6 +1416,7 @@ document.addEventListener('alpine:init', () => {
   </div>
 </footer>
 
+
 <div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-ink-900/95 backdrop-blur border-t border-ink-600">
   <div class="px-4 py-2.5 flex items-center gap-3">
     <div class="shrink-0" :class="$store.wallet.empty && 'shake'">
@@ -1411,4 +1439,5 @@ document.addEventListener('alpine:init', () => {
 
 </body>
 </html>
+
 

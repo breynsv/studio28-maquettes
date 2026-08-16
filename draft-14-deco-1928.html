@@ -181,9 +181,11 @@ tailwind.config = {
 
 <body x-data="{ menu:false, disc:'Tout' }" class="font-body antialiased">
 
+
 <header class="fixed top-0 inset-x-0 z-50 bg-char/95 backdrop-blur-sm">
   <div class="max-w-[1360px] mx-auto px-5 md:px-10">
     <div class="flex items-center justify-between h-[62px] md:h-[78px]">
+
 
       
       <nav class="hidden xl:flex items-center gap-5 2xl:gap-7 navcaps text-cream/80 mr-auto">
@@ -207,6 +209,7 @@ tailwind.config = {
         <a href="#horaire" class="btn btn-gold !px-5 !py-3 !tracking-[.16em]">Réserver</a>
       </div>
 
+      
       <div class="flex xl:hidden items-center gap-4 mr-auto">
         <a href="#venir" aria-label="WhatsApp" class="text-cream/70">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Z"/></svg>
@@ -218,6 +221,7 @@ tailwind.config = {
         </button>
       </div>
 
+      
       <a href="#top" class="shrink-0 flex items-center ml-4 md:ml-7" aria-label="Studio 28 — accueil">
         <img src="assets/logo/logo-studio28-1-gold.png" alt="Studio 28"
              style="width:clamp(46px,5.2vw,64px);height:auto;display:block">
@@ -226,6 +230,7 @@ tailwind.config = {
   </div>
   <div class="rule2"></div>
 
+  
   <div x-show="menu" x-cloak x-transition.opacity class="xl:hidden bg-char border-b border-gold/30">
     <nav class="px-5 py-7 flex flex-col gap-5 smallcaps text-cream/85">
       <a href="#cours"   @click="menu=false">Cours</a>
@@ -248,26 +253,32 @@ tailwind.config = {
   </div>
 </header>
 
+
+
 <section id="top" class="relative bg-char pt-[62px] md:pt-[78px]">
   <div class="relative min-h-[640px] md:min-h-[92vh] flex items-center overflow-hidden">
 
+    
     <img src="assets/img/studio-28-27.jpg" alt="La grande salle du Studio 28 : parquet en chêne clair, murs sombres, et le jardin visible à travers les baies vitrées"
          class="absolute inset-0 w-full h-full object-cover grade-dark">
     <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(34,32,29,.90) 0%,rgba(34,32,29,.70) 38%,rgba(34,32,29,.80) 72%,rgba(34,32,29,.97) 100%)"></div>
     <div class="absolute inset-0" style="background:radial-gradient(ellipse at 50% 45%,rgba(34,32,29,0) 30%,rgba(34,32,29,.55) 100%)"></div>
 
+    
     <div class="absolute inset-4 md:inset-9 border border-gold/40 pointer-events-none"></div>
     <div class="absolute inset-[22px] md:inset-[52px] border border-gold/20 pointer-events-none"></div>
 
+    
     <div class="relative z-10 w-full max-w-[1100px] mx-auto px-9 md:px-20 py-20 md:py-24 text-center">
 
+      
       <img src="assets/logo/logo-studio28-1-gold.png" alt="Studio 28"
            class="mx-auto mb-7 md:mb-9" style="width:clamp(140px,17vw,186px);height:auto">
 
       <p class="smallcaps text-gold mb-6 md:mb-8">Rue des Deux Églises 28 · 1000 Bruxelles</p>
 
       <h1 class="disp text-cream text-[2.15rem] leading-[1.14] sm:text-[3rem] md:text-[4rem] lg:text-[4.6rem] md:leading-[1.08]">
-        Sept disciplines.<br>Plusieurs écoles.<br><span class="text-goldlt">Une seule porte.</span>
+        Danser, bouger, respirer.<br>Plusieurs écoles.<br><span class="text-goldlt">Une seule adresse.</span>
       </h1>
 
       <div class="rule2 max-w-[220px] mx-auto my-8 md:my-10"></div>
@@ -281,6 +292,7 @@ tailwind.config = {
         <a href="#agenda"  class="btn btn-ghost w-full sm:w-auto">Portes ouvertes — samedi 29 août</a>
       </div>
 
+      
       <div class="mt-11 md:mt-14">
         <div class="hair max-w-[420px] mx-auto mb-7 opacity-40"></div>
         <ul class="flex flex-wrap items-center justify-center gap-2 md:gap-2.5">
@@ -298,6 +310,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="bg-char2 border-t border-gold/30">
   <div class="max-w-[1360px] mx-auto px-6 md:px-10">
@@ -324,6 +338,8 @@ tailwind.config = {
   </svg>
 </section>
 
+
+
 <section id="cours" class="bg-cream py-20 md:py-28 relative overflow-hidden">
   <div class="watermark28 absolute -right-6 top-8 text-[13rem] md:text-[22rem] hidden sm:block" aria-hidden="true">28</div>
 
@@ -334,13 +350,14 @@ tailwind.config = {
       <h2 class="disp text-char text-[2.3rem] md:text-[3.4rem]">Les cours</h2>
       <div class="rule2 max-w-[160px] mx-auto my-6"></div>
       <p class="text-warmd text-[1.05rem] md:text-[1.12rem] font-light leading-relaxed">
-        Sept disciplines, une dizaine de professeurs. Les mêmes crédits fonctionnent partout,
+        Danser, bouger, respirer, une dizaine de professeurs. Les mêmes crédits fonctionnent partout,
         chez tout le monde, sans abonnement.
       </p>
     </header>
 
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 md:gap-8">
 
+      
       <li class="reveal">
         <a href="#horaire" class="card-hover block group">
           <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
@@ -355,6 +372,7 @@ tailwind.config = {
         </a>
       </li>
 
+      
       <li class="reveal">
         <a href="#horaire" class="card-hover block group">
           <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
@@ -369,6 +387,7 @@ tailwind.config = {
         </a>
       </li>
 
+      
       <li class="reveal">
         <a href="#horaire" class="card-hover block group">
           <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
@@ -383,6 +402,7 @@ tailwind.config = {
         </a>
       </li>
 
+      
       <li class="reveal">
         <a href="#horaire" class="card-hover block group">
           <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
@@ -397,6 +417,7 @@ tailwind.config = {
         </a>
       </li>
 
+      
       <li class="reveal">
         <a href="#horaire" class="card-hover block group">
           <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
@@ -411,6 +432,7 @@ tailwind.config = {
         </a>
       </li>
 
+      
       <li class="reveal">
         <a href="#horaire" class="card-hover block group">
           <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
@@ -425,6 +447,7 @@ tailwind.config = {
         </a>
       </li>
 
+      
       <li class="reveal">
         <a href="#horaire" class="card-hover block group">
           <div class="zig-sm overflow-hidden bg-char2 aspect-[4/5]">
@@ -439,6 +462,7 @@ tailwind.config = {
         </a>
       </li>
 
+      
       <li class="reveal hidden xl:block">
         <div class="zig-both h-full border border-gold/45 bg-cream2 flex flex-col items-center justify-center text-center px-8 py-12">
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none" class="mb-6" aria-hidden="true">
@@ -456,6 +480,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="horaire" class="bg-cream2 py-20 md:py-28 border-y border-gold/35">
   <div class="max-w-[1180px] mx-auto px-6 md:px-10">
 
@@ -466,14 +492,17 @@ tailwind.config = {
       <p class="text-warmd text-[1.05rem] font-light leading-relaxed">Réservez votre place en deux clics.</p>
     </header>
 
+    
     <div class="flex flex-wrap justify-center gap-2 mb-10 md:mb-12 reveal">
       <template x-for="d in ['Tout','Yoga','Pilates','Cyclodanse','Hip-hop','Heels','Salsa','Bachata']" :key="d">
         <button class="chip" :aria-pressed="disc === d ? 'true' : 'false'" @click="disc = d" x-text="d"></button>
       </template>
     </div>
 
+    
     <div class="border border-gold/50 bg-cream px-4 sm:px-7 md:px-10 py-8 md:py-11">
 
+      
       <div class="mb-9" x-show="['Tout','Pilates','Yoga','Salsa'].includes(disc)">
         <div class="flex items-center gap-4 mb-4">
           <span class="smallcaps text-char shrink-0">Lundi 24</span><div class="hair flex-1"></div>
@@ -500,6 +529,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div class="mb-9" x-show="['Tout','Yoga','Cyclodanse','Bachata'].includes(disc)">
         <div class="flex items-center gap-4 mb-4">
           <span class="smallcaps text-char shrink-0">Mardi 25</span><div class="hair flex-1"></div>
@@ -526,6 +556,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div class="mb-9" x-show="['Tout','Pilates','Hip-hop'].includes(disc)">
         <div class="flex items-center gap-4 mb-4">
           <span class="smallcaps text-char shrink-0">Mercredi 26</span><div class="hair flex-1"></div>
@@ -546,6 +577,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div class="mb-9" x-show="['Tout','Yoga','Heels','Salsa'].includes(disc)">
         <div class="flex items-center gap-4 mb-4">
           <span class="smallcaps text-char shrink-0">Jeudi 27</span><div class="hair flex-1"></div>
@@ -572,6 +604,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div class="mb-9" x-show="['Tout','Cyclodanse','Bachata'].includes(disc)">
         <div class="flex items-center gap-4 mb-4">
           <span class="smallcaps text-char shrink-0">Vendredi 28</span><div class="hair flex-1"></div>
@@ -592,6 +625,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div class="mb-9" x-show="['Tout','Yoga','Pilates','Heels'].includes(disc)">
         <div class="flex items-center gap-4 mb-4">
           <span class="smallcaps text-char shrink-0">Samedi 29 — portes ouvertes</span><div class="hair flex-1"></div>
@@ -618,6 +652,7 @@ tailwind.config = {
         </ul>
       </div>
 
+      
       <div x-show="['Tout','Pilates','Hip-hop'].includes(disc)">
         <div class="flex items-center gap-4 mb-4">
           <span class="smallcaps text-char shrink-0">Dimanche 30</span><div class="hair flex-1"></div>
@@ -647,6 +682,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="bg-cream py-20 md:py-28">
   <div class="max-w-[1180px] mx-auto px-6 md:px-10">
@@ -702,6 +739,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="lieu" class="bg-char text-cream pt-20 md:pt-28 pb-0">
   <div class="max-w-[1180px] mx-auto px-6 md:px-10">
     <header class="text-center max-w-[760px] mx-auto mb-14 md:mb-18 reveal">
@@ -714,6 +753,7 @@ tailwind.config = {
     </header>
   </div>
 
+  
   <figure class="relative reveal">
     <img src="assets/img/studio-28-16.jpg" alt="La grande salle vide du Studio 28 : parquet en chêne clair, murs charbon, colonnes habillées de lattes de bois"
          class="w-full h-[52vh] md:h-[76vh] object-cover grade">
@@ -724,6 +764,7 @@ tailwind.config = {
     </figcaption>
   </figure>
 
+  
   <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-16 md:py-20">
     <div class="grid md:grid-cols-3 gap-10 md:gap-8 text-center">
       <div class="reveal">
@@ -741,6 +782,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <svg class="w-full block" height="18" preserveAspectRatio="none" aria-hidden="true">
     <defs><pattern id="chev2" width="32" height="18" patternUnits="userSpaceOnUse">
       <path d="M0 14 L16 5 L32 14" fill="none" stroke="#B39247" stroke-width="1" opacity=".5"/>
@@ -748,6 +790,7 @@ tailwind.config = {
     <rect width="100%" height="18" fill="url(#chev2)"/>
   </svg>
 
+  
   <figure class="relative reveal">
     <img src="assets/img/studio-28-20.jpg" alt="Le jardin intérieur du Studio 28 : pergola en bois sombre, pavés en pierre bleue, fougères, graminées et haies denses"
          class="w-full h-[58vh] md:h-[84vh] object-cover grade">
@@ -765,6 +808,7 @@ tailwind.config = {
     </figcaption>
   </figure>
 
+  
   <div class="max-w-[1360px] mx-auto px-6 md:px-10 py-16 md:py-24">
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
       <figure class="reveal">
@@ -788,6 +832,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section id="profs" class="bg-cream py-20 md:py-28">
   <div class="max-w-[1360px] mx-auto px-6 md:px-10">
@@ -868,6 +914,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="agenda" class="bg-cream2 py-20 md:py-28 border-y border-gold/35">
   <div class="max-w-[1360px] mx-auto px-6 md:px-10">
 
@@ -929,6 +977,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="salle" class="bg-char text-cream py-20 md:py-28 relative overflow-hidden">
   <div class="watermark28 absolute -left-8 bottom-0 text-[15rem] md:text-[24rem] hidden sm:block" aria-hidden="true">28</div>
 
@@ -941,6 +991,7 @@ tailwind.config = {
 
     <div class="grid md:grid-cols-2 gap-8 md:gap-10">
 
+      
       <article class="reveal border border-gold/40 bg-char2 flex flex-col">
         <div class="overflow-hidden aspect-[16/9]">
           <img src="assets/img/studio-28-10.jpg" alt="La salle vide du Studio 28, prête pour un cours" class="w-full h-full object-cover grade-dark">
@@ -963,6 +1014,7 @@ tailwind.config = {
         </div>
       </article>
 
+      
       <article class="reveal border border-gold/40 bg-char2 flex flex-col">
         <div class="overflow-hidden aspect-[16/9]">
           <img src="assets/img/ros_9197.jpg" alt="La salle du Studio 28 en configuration réception d’entreprise" class="w-full h-full object-cover grade-dark">
@@ -988,6 +1040,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="bg-cream py-20 md:py-28">
   <div class="max-w-[880px] mx-auto px-6 md:px-10">
@@ -1073,6 +1127,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <footer id="venir" class="bg-char text-cream pt-20 md:pt-24 pb-28 md:pb-12">
   <svg class="w-full block mb-16" height="18" preserveAspectRatio="none" aria-hidden="true">
@@ -1179,6 +1235,8 @@ tailwind.config = {
   </div>
 </footer>
 
+
+
 <div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-char border-t border-gold/50 flex">
   <a href="#horaire" class="flex-1 btn btn-gold rounded-none py-4">Voir l’horaire</a>
   <a href="#venir" aria-label="WhatsApp" class="w-16 flex items-center justify-center text-gold border-l border-gold/40">
@@ -1208,6 +1266,7 @@ tailwind.config = {
 </script>
 
 <style>[x-cloak]{display:none !important}</style>
+
 
 </body>
 </html>

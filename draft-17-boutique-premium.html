@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Danse · Yoga · Pilates · Bruxelles</title>
-<meta name="description" content="Sept disciplines, une dizaine de professeurs et écoles indépendantes, une seule salle à Bruxelles. Rue des Deux Églises 28, métro Madou.">
+<meta name="description" content="Danser, bouger, respirer, une dizaine de professeurs et écoles indépendantes, une seule salle à Bruxelles. Rue des Deux Églises 28, métro Madou.">
 <link rel="icon" href="assets/logo/logo-studio28-3.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,6 +64,7 @@ tailwind.config = {
 
 <body class="bg-ink text-bone font-sans antialiased overflow-x-hidden">
 
+
 <header x-data="{ open:false, scrolled:false }"
         @scroll.window="scrolled = window.scrollY > 40"
         class="fixed top-0 inset-x-0 z-50 border-b transition-colors duration-300"
@@ -71,6 +72,7 @@ tailwind.config = {
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
     <div class="flex items-center justify-between h-[68px] lg:h-[76px]">
 
+      
       <a href="#" class="flex items-center gap-3 shrink-0">
         <img src="assets/logo/logo-studio28-3.png" alt="Studio 28" class="h-9 lg:h-10 w-auto">
         <span class="block leading-none">
@@ -80,6 +82,7 @@ tailwind.config = {
         </span>
       </a>
 
+      
       <nav class="hidden lg:flex items-center gap-7 text-[14px] font-medium text-bone/80">
         <a href="#cours"    class="hover:text-brand transition-colors">Cours</a>
         <a href="#horaire"  class="hover:text-brand transition-colors">Horaire</a>
@@ -107,6 +110,7 @@ tailwind.config = {
     </div>
   </div>
 
+  
   <div x-show="open" x-cloak x-transition.opacity class="lg:hidden bg-ink border-t border-white/10">
     <nav class="px-5 py-5 flex flex-col gap-1 text-[16px]">
       <a @click="open=false" href="#cours"   class="py-3 border-b border-white/10">Cours</a>
@@ -124,6 +128,8 @@ tailwind.config = {
   </div>
 </header>
 
+
+
 <section class="relative min-h-[640px] h-[100svh] max-h-[900px] w-full overflow-hidden">
   <img src="assets/img/studio-28-27.jpg" alt="La salle du Studio 28 : parquet en chêne clair, murs sombres et le jardin visible à travers les fenêtres" class="absolute inset-0 w-full h-full object-cover object-center">
   <div class="absolute inset-0 bg-ink/70"></div>
@@ -137,7 +143,7 @@ tailwind.config = {
       </div>
 
       <h1 class="font-display font-700 h-tight text-[38px] leading-[1.04] sm:text-[54px] lg:text-[72px] text-bone">
-        Sept disciplines.<br>Plusieurs écoles.<br><span class="text-brand">Une seule porte.</span>
+        Danser, bouger, respirer.<br>Plusieurs écoles.<br><span class="text-brand">Une seule adresse.</span>
       </h1>
 
       <p class="mt-6 text-[17px] lg:text-[19px] leading-relaxed text-bone/80 max-w-[560px]">
@@ -154,6 +160,7 @@ tailwind.config = {
         </a>
       </div>
 
+      
       <div class="mt-10 flex flex-wrap gap-2">
         <a href="#cours" class="px-4 py-2 rounded-full border border-bone/25 text-[13.5px] font-medium text-bone/85 hover:border-brand hover:text-brand transition-colors">Yoga</a>
         <a href="#cours" class="px-4 py-2 rounded-full border border-bone/25 text-[13.5px] font-medium text-bone/85 hover:border-brand hover:text-brand transition-colors">Pilates</a>
@@ -168,6 +175,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="bg-ink2 border-y border-white/10">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
@@ -188,6 +197,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="cours" class="bg-ink py-20 lg:py-28">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
 
@@ -195,7 +206,7 @@ tailwind.config = {
       <div>
         <div class="flex items-center gap-3 mb-4">
           <span class="h-[2px] w-8 bg-brand"></span>
-          <span class="text-[11px] eyebrow uppercase font-semibold text-brand">Sept disciplines, une dizaine de professeurs</span>
+          <span class="text-[11px] eyebrow uppercase font-semibold text-brand">Danser, bouger, respirer, une dizaine de professeurs</span>
         </div>
         <h2 class="font-display font-700 h-tight text-[34px] lg:text-[52px] leading-[1.06] text-bone">Les cours</h2>
       </div>
@@ -206,6 +217,7 @@ tailwind.config = {
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
+      
       <a href="#horaire" class="group card-hover block rounded-xl2 overflow-hidden bg-ink2 border border-white/10 hover:border-white/20 shadow-card hover:shadow-lift">
         <div class="relative aspect-[4/3] overflow-hidden">
           <img src="assets/img/ph-yoga.jpg" alt="Cours de yoga sur tapis" class="img-zoom w-full h-full object-cover">
@@ -220,6 +232,7 @@ tailwind.config = {
         </div>
       </a>
 
+      
       <a href="#horaire" class="group card-hover block rounded-xl2 overflow-hidden bg-ink2 border border-white/10 hover:border-white/20 shadow-card hover:shadow-lift">
         <div class="relative aspect-[4/3] overflow-hidden">
           <img src="assets/img/ph-pilates.jpg" alt="Cours de pilates dans un studio lumineux" class="img-zoom w-full h-full object-cover">
@@ -234,6 +247,7 @@ tailwind.config = {
         </div>
       </a>
 
+      
       <a href="#horaire" class="group card-hover block rounded-xl2 overflow-hidden bg-ink2 border border-white/10 hover:border-white/20 shadow-card hover:shadow-lift">
         <div class="relative aspect-[4/3] overflow-hidden">
           <img src="assets/img/ph-cyclodanse.jpg" alt="Cours de cyclodanse en lumière colorée" class="img-zoom w-full h-full object-cover">
@@ -251,6 +265,7 @@ tailwind.config = {
         </div>
       </a>
 
+      
       <a href="#horaire" class="group card-hover block rounded-xl2 overflow-hidden bg-ink2 border border-white/10 hover:border-white/20 shadow-card hover:shadow-lift">
         <div class="relative aspect-[4/3] overflow-hidden">
           <img src="assets/img/ros_9403.jpg" alt="Un cours en cours sur le plateau noir du Studio 28, mur de miroirs" class="img-zoom w-full h-full object-cover">
@@ -265,6 +280,7 @@ tailwind.config = {
         </div>
       </a>
 
+      
       <a href="#horaire" class="group card-hover block rounded-xl2 overflow-hidden bg-ink2 border border-white/10 hover:border-white/20 shadow-card hover:shadow-lift">
         <div class="relative aspect-[4/3] overflow-hidden">
           <img src="assets/img/studio-28-11.jpg" alt="La salle du Studio 28 : parquet en chêne, lattes de bois et façade vitrée sur le jardin" class="img-zoom w-full h-full object-cover">
@@ -279,6 +295,7 @@ tailwind.config = {
         </div>
       </a>
 
+      
       <a href="#horaire" class="group card-hover block rounded-xl2 overflow-hidden bg-ink2 border border-white/10 hover:border-white/20 shadow-card hover:shadow-lift">
         <div class="relative aspect-[4/3] overflow-hidden">
           <img src="assets/img/studio-28-16.jpg" alt="La grande salle du Studio 28, parquet en chêne et colonnes en lattes de bois" class="img-zoom w-full h-full object-cover">
@@ -293,6 +310,7 @@ tailwind.config = {
         </div>
       </a>
 
+      
       <a href="#horaire" class="group card-hover block rounded-xl2 overflow-hidden bg-ink2 border border-white/10 hover:border-white/20 shadow-card hover:shadow-lift">
         <div class="relative aspect-[4/3] overflow-hidden">
           <img src="assets/img/ph-bachata.jpg" alt="Un couple danse la bachata dans une salle avec miroirs" class="img-zoom w-full h-full object-cover">
@@ -307,6 +325,7 @@ tailwind.config = {
         </div>
       </a>
 
+      
       <div class="rounded-xl2 bg-ink2 border border-brand/40 shadow-card p-5 flex flex-col justify-between min-h-[260px]">
         <div>
           <span class="inline-block px-2.5 py-1 rounded-md bg-brand text-ink text-[11px] font-semibold uppercase eyebrow">Première fois</span>
@@ -327,6 +346,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="horaire" class="bg-bone text-ink py-20 lg:py-28"
          x-data="{ f:'Tout' }">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
@@ -345,6 +366,7 @@ tailwind.config = {
       </a>
     </div>
 
+    
     <div class="flex flex-wrap gap-2 mb-8">
       <template x-for="d in ['Tout','Yoga','Pilates','Cyclodanse','Hip-hop','Heels','Salsa','Bachata']" :key="d">
         <button @click="f = d"
@@ -354,14 +376,17 @@ tailwind.config = {
       </template>
     </div>
 
+    
     <div class="rounded-xl2 bg-white border border-ink/10 shadow-light overflow-hidden">
 
+      
       <div class="hidden md:grid grid-cols-[110px_88px_1fr_170px_130px_170px] gap-4 px-6 py-3.5 bg-bone2 text-[11px] eyebrow uppercase font-semibold text-ink/55">
         <span>Jour</span><span>Heure</span><span>Cours</span><span>Professeur</span><span>Tarif</span><span></span>
       </div>
 
       <div class="divide-y divide-ink/10">
 
+        
         
         <div x-show="f==='Tout'||f==='Yoga'" class="md:grid md:grid-cols-[110px_88px_1fr_170px_130px_170px] gap-4 px-5 md:px-6 py-4 items-center hover:bg-bone2/60 transition-colors">
           <span class="text-[14px] font-semibold md:font-medium">Lundi</span>
@@ -381,6 +406,7 @@ tailwind.config = {
           <a href="#" class="mt-3 md:mt-0 inline-flex items-center justify-center h-[40px] px-4 rounded-xl2 bg-brand text-ink font-display font-600 text-[13.5px] hover:brightness-110 transition-all">Pré-inscription</a>
         </div>
 
+        
         <div x-show="f==='Tout'||f==='Pilates'" class="md:grid md:grid-cols-[110px_88px_1fr_170px_130px_170px] gap-4 px-5 md:px-6 py-4 items-center hover:bg-bone2/60 transition-colors">
           <span class="text-[14px] font-semibold md:font-medium">Mardi</span>
           <span class="num text-[15px] font-semibold text-brandink md:mt-0 mt-1 block">12:30</span>
@@ -399,6 +425,7 @@ tailwind.config = {
           <a href="#" class="mt-3 md:mt-0 inline-flex items-center justify-center h-[40px] px-4 rounded-xl2 bg-brand text-ink font-display font-600 text-[13.5px] hover:brightness-110 transition-all">Pré-inscription</a>
         </div>
 
+        
         <div x-show="f==='Tout'||f==='Hip-hop'" class="md:grid md:grid-cols-[110px_88px_1fr_170px_130px_170px] gap-4 px-5 md:px-6 py-4 items-center hover:bg-bone2/60 transition-colors">
           <span class="text-[14px] font-semibold md:font-medium">Mercredi</span>
           <span class="num text-[15px] font-semibold text-brandink md:mt-0 mt-1 block">19:00</span>
@@ -417,6 +444,7 @@ tailwind.config = {
           <a href="#" class="mt-3 md:mt-0 inline-flex items-center justify-center h-[40px] px-4 rounded-xl2 bg-brand text-ink font-display font-600 text-[13.5px] hover:brightness-110 transition-all">Pré-inscription</a>
         </div>
 
+        
         <div x-show="f==='Tout'||f==='Yoga'" class="md:grid md:grid-cols-[110px_88px_1fr_170px_130px_170px] gap-4 px-5 md:px-6 py-4 items-center hover:bg-bone2/60 transition-colors">
           <span class="text-[14px] font-semibold md:font-medium">Jeudi</span>
           <span class="num text-[15px] font-semibold text-brandink md:mt-0 mt-1 block">18:00</span>
@@ -435,6 +463,7 @@ tailwind.config = {
           <a href="#" class="mt-3 md:mt-0 inline-flex items-center justify-center h-[40px] px-4 rounded-xl2 bg-brand text-ink font-display font-600 text-[13.5px] hover:brightness-110 transition-all">Pré-inscription</a>
         </div>
 
+        
         <div x-show="f==='Tout'||f==='Pilates'" class="md:grid md:grid-cols-[110px_88px_1fr_170px_130px_170px] gap-4 px-5 md:px-6 py-4 items-center hover:bg-bone2/60 transition-colors">
           <span class="text-[14px] font-semibold md:font-medium">Vendredi</span>
           <span class="num text-[15px] font-semibold text-brandink md:mt-0 mt-1 block">12:30</span>
@@ -453,6 +482,7 @@ tailwind.config = {
           <a href="#" class="mt-3 md:mt-0 inline-flex items-center justify-center h-[40px] px-4 rounded-xl2 bg-brand text-ink font-display font-600 text-[13.5px] hover:brightness-110 transition-all">Pré-inscription</a>
         </div>
 
+        
         <div x-show="f==='Tout'||f==='Yoga'" class="md:grid md:grid-cols-[110px_88px_1fr_170px_130px_170px] gap-4 px-5 md:px-6 py-4 items-center hover:bg-bone2/60 transition-colors">
           <span class="text-[14px] font-semibold md:font-medium">Samedi</span>
           <span class="num text-[15px] font-semibold text-brandink md:mt-0 mt-1 block">11:00</span>
@@ -480,6 +510,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="bg-ink2 py-20 lg:py-28 border-b border-white/10">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
@@ -531,6 +563,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="lieu" class="bg-ink py-20 lg:py-28">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
 
@@ -548,10 +582,12 @@ tailwind.config = {
       </p>
     </div>
 
+    
     <div class="rounded-xl2 overflow-hidden shadow-lift border border-white/10">
       <img src="assets/img/ros_9180.jpg" alt="Vue large de la salle du Studio 28 en journée : parquet en chêne, mur de miroirs au fond" class="w-full h-[280px] sm:h-[420px] lg:h-[560px] object-cover">
     </div>
 
+    
     <div class="mt-5 grid lg:grid-cols-[1.65fr_1fr] gap-5">
       <div class="relative rounded-xl2 overflow-hidden shadow-lift border border-white/10">
         <img src="assets/img/studio-28-20.jpg" alt="Le jardin intérieur du Studio 28 : pergola en bois sombre, pavés bleus, fougères et graminées" class="w-full h-[300px] sm:h-[440px] lg:h-[600px] object-cover">
@@ -573,6 +609,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div class="mt-5 grid sm:grid-cols-3 gap-5">
       <div class="rounded-xl2 bg-ink2 border border-white/10 shadow-card p-6">
         <h4 class="font-display font-600 text-[17px] text-bone">Le sol</h4>
@@ -589,6 +626,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="bg-ink2 py-20 lg:py-28 border-y border-white/10">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
@@ -677,6 +716,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="agenda" class="bg-ink py-20 lg:py-28">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
 
@@ -724,6 +765,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <section id="salle" class="relative py-20 lg:py-28 overflow-hidden bg-[#141519]">
   <img src="assets/img/ros_9197.jpg" alt="La salle du Studio 28 en configuration réception d'entreprise" class="absolute inset-0 w-full h-full object-cover opacity-20">
   <div class="absolute inset-0 bg-[#141519]/85"></div>
@@ -737,6 +780,7 @@ tailwind.config = {
 
     <div class="grid lg:grid-cols-2 gap-5">
 
+      
       <div class="rounded-xl2 bg-ink2 border border-white/10 shadow-lift overflow-hidden flex flex-col">
         <div class="aspect-[16/9] overflow-hidden">
           <img src="assets/img/studio-28-16.jpg" alt="La grande salle vide, prête à accueillir un cours" class="w-full h-full object-cover">
@@ -758,6 +802,7 @@ tailwind.config = {
         </div>
       </div>
 
+      
       <div class="rounded-xl2 bg-ink2 border border-white/10 shadow-lift overflow-hidden flex flex-col">
         <div class="aspect-[16/9] overflow-hidden">
           <img src="assets/img/studio-28-23.jpg" alt="Le jardin du Studio 28 : pelouse, tables en bois et haies denses" class="w-full h-full object-cover">
@@ -781,6 +826,8 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+
 
 <section class="bg-bone text-ink py-20 lg:py-28">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
@@ -866,6 +913,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <footer id="venir" class="bg-ink border-t border-white/10 pt-20 lg:pt-24 pb-32 lg:pb-14">
   <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
 
@@ -948,6 +997,7 @@ tailwind.config = {
       </div>
     </div>
 
+    
     <div class="mt-14 rounded-xl2 bg-ink2 border border-white/10 shadow-card p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-5">
       <div class="lg:max-w-[420px]">
         <h3 class="font-display font-600 h-tight-sm text-[21px] text-bone">Recevoir l'horaire chaque semaine</h3>
@@ -971,6 +1021,8 @@ tailwind.config = {
   </div>
 </footer>
 
+
+
 <div class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-ink2/95 backdrop-blur-sm border-t border-white/10 px-4 py-3 flex gap-2.5">
   <a href="#horaire" class="flex-1 inline-flex items-center justify-center h-[48px] rounded-xl2 bg-brand text-ink font-display font-600 text-[15px]">Voir l'horaire</a>
   <a href="#venir" aria-label="WhatsApp" class="grid place-items-center h-[48px] w-[48px] rounded-xl2 border border-white/20 text-bone shrink-0">
@@ -979,6 +1031,7 @@ tailwind.config = {
 </div>
 
 <style>[x-cloak]{display:none!important}</style>
+
 
 </body>
 </html>

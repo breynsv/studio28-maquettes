@@ -22,12 +22,13 @@
   <div class="max-w-[1600px] mx-auto px-6 py-4 flex flex-wrap items-center gap-4">
     <div>
       <h1 class="text-2xl font-semibold leading-none tracking-tight">Studio 28 — maquettes du site</h1>
-      <p class="text-sm text-[#1A1F27]/60 mt-1">Vingt-sept maquettes : 10 structures, 7 styles, et 10 variantes avec un hero sur les disciplines. Notez-les, laissez un commentaire, puis copiez le retour.</p>
+      <p class="text-sm text-[#1A1F27]/60 mt-1">Trente et une maquettes : 10 structures, 7 styles, 10 variantes « hero disciplines », et 4 variantes de texte. Notez-les, laissez un commentaire, puis copiez le retour.</p>
     </div>
 
     <div class="ml-auto flex items-center gap-2 text-sm">
-      <button @click="round=0" :class="round===0 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Les 27</button>
+      <button @click="round=0" :class="round===0 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Les 31</button>
       <button @click="round=1" :class="round===1 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Structures</button>
+      <button @click="round=4" :class="round===4 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Textes</button>
       <button @click="round=3" :class="round===3 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Hero activités</button>
       <button @click="round=2" :class="round===2 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Styles</button>
       <span class="w-px h-6 bg-[#1A1F27]/20 mx-1"></span>
@@ -127,7 +128,7 @@ function picker() {
         concept:'L\'horaire EST la page d\'accueil. La grille de la semaine, énorme, en haut. Le reste sert de preuve.',
         angle:'Utilité radicale · l\'énergie d\'une salle de concert' },
       { n:'03', r:1, file:'draft-03-le-jardin.html', title:'Le jardin',
-        concept:'Ouvre sur la cour, pas sur le studio. Une adresse calme à Bruxelles qui contient sept disciplines.',
+        concept:'Ouvre sur la cour, pas sur le studio. Une adresse calme à Bruxelles qui contient toutes nos disciplines.',
         angle:'Le calme · vend la pause, pas l\'effort' },
       { n:'04', r:1, file:'draft-04-sept-portes.html', title:'Sept portes',
         concept:'Sept panneaux égaux, une discipline chacun, chacun ouvrant sur son propre monde. La grille est la marque.',
@@ -172,7 +173,7 @@ function picker() {
         concept:'La lecture la plus chaude et la plus attendue. Argile, sable, chêne. Le témoin de référence.',
         angle:'Fraunces + Inter · argile/avoine/chêne' },
       { n:"01b", r:3, file:"draft-01b-le-plan-de-salle.html", title:"Le plan de salle \u2014 activit\u00e9s",
-        concept:"Le plan devient un tableau de sp\u00e9cimens : sept disciplines en plaques num\u00e9rot\u00e9es, chacune cliquable pour filtrer l'horaire.",
+        concept:"Le plan devient un tableau de sp\u00e9cimens : toutes nos disciplines en plaques num\u00e9rot\u00e9es, chacune cliquable pour filtrer l'horaire.",
         angle:"M\u00eame design, hero sur les disciplines" },
       { n:"02b", r:3, file:"draft-02b-l-horaire.html", title:"L'horaire \u2014 activit\u00e9s",
         concept:"Mosa\u00efque de huit tuiles \u00e0 c\u00f4t\u00e9 du texte \u2014 et le hero est plus court qu'avant, l'horaire atteint toujours le haut de page.",
@@ -201,6 +202,18 @@ function picker() {
       { n:"10b", r:3, file:"draft-10b-silence-et-bruit.html", title:"Silence et bruit \u2014 activit\u00e9s",
         concept:"Mosa\u00efque 3\u00d73 o\u00f9 les tuiles calmes c\u00f4toient les sombres \u2014 le contraste port\u00e9 par le m\u00e9lange lui-m\u00eame.",
         angle:"M\u00eame design, hero sur les disciplines" },
+      { n:"18c1", r:4, file:"draft-18c1-terre-et-argile.html", title:"Texte \u2014 Danse et art de vivre",
+        concept:"\u00ab Danse et art de vivre. Plusieurs \u00e9coles. Une seule adresse \u00e0 Bruxelles. \u00bb",
+        angle:"Au plus pr\u00e8s du slogan du logo, en fran\u00e7ais" },
+      { n:"18c2", r:4, file:"draft-18c2-terre-et-argile.html", title:"Texte \u2014 Toutes les danses",
+        concept:"\u00ab Toutes les danses. Tous les mouvements. Une seule adresse. \u00bb",
+        angle:"Exhaustivit\u00e9 plut\u00f4t qu'\u00e9num\u00e9ration" },
+      { n:"18c3", r:4, file:"draft-18c3-terre-et-argile.html", title:"Texte \u2014 Bouger ensemble",
+        concept:"\u00ab Bouger ensemble, \u00e0 Bruxelles. \u00bb",
+        angle:"La plus courte \u2014 la communaut\u00e9 d'abord" },
+      { n:"18c4", r:4, file:"draft-18c4-terre-et-argile.html", title:"Texte \u2014 Une salle, plusieurs \u00e9coles",
+        concept:"\u00ab Une salle. Plusieurs \u00e9coles. Toutes les envies. \u00bb",
+        angle:"Le mod\u00e8le du lieu \u2014 parle aux profs et aux \u00e9coles" },
     ],
     get drafts() { return this.all; },
     init() { try { this.state = JSON.parse(localStorage.getItem(this.KEY)) || {}; } catch { this.state = {}; } },
