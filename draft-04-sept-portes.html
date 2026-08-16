@@ -407,7 +407,7 @@ details summary::-webkit-details-marker{ display:none }
                  :class="{'is-open': open===i}"
                  @mouseenter="if(canHover) open=i"
                  @focus="open=i"
-                 @click="open = (open===i ? null : i)"
+                 @click="open = i"
                  :aria-label="'Discipline : ' + d.name">
           <img class="door-img" :src="d.img" :alt="d.alt" :style="'object-position:'+d.pos" loading="eager">
           <div class="door-scrim"></div>
