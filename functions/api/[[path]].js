@@ -178,6 +178,32 @@ export async function onRequest(context) {
     const clean = cleanPayload(data);
     await ensureSchema(DB);
 
+    /* Le verrou est imposé ICI, pas seulement dans l'interface. Une remarque déjà
+       envoyée ne peut plus être modifiée ni supprimée, quoi qu'envoie le client :
+       on réimpose la copie du serveur. Sans cela, un onglet resté ouvert ou une
+       requête fabriquée suffirait à réécrire un retour que le client a signé. */
+    const prev = await DB.prepare('SELECT payload FROM reviews WHERE project = ?')
+      .bind(project).first();
+    if (prev) {
+      let old = null;
+      try { old = JSON.parse(prev.payload); } catch {}
+      const scelles = new Map(
+        ((old && old.pins) || []).filter((p) => p.sealed).map((p) => [p.id, p])
+      );
+      if (scelles.size) {
+        const vus = new Set();
+        clean.pins = clean.pins.map((p) => {
+          if (scelles.has(p.id)) { vus.add(p.id); return scelles.get(p.id); }
+          return p;
+        });
+        // une remarque scellée que le client aurait « oubliée » est remise
+        for (const [id, p] of scelles) if (!vus.has(id)) clean.pins.push(p);
+        clean.pins.sort((a, b) => (a.n || 0) - (b.n || 0));
+        // et une pierre tombale ne peut pas effacer un retour déjà envoyé
+        clean.deleted = (clean.deleted || []).filter((d) => !scelles.has(d.id));
+      }
+    }
+
     /* Écriture conditionnelle. Le client annonce la version qu'il a lue ; si le
        serveur a bougé depuis (un autre onglet, un autre appareil), on refuse et on
        lui renvoie l'état courant pour qu'il fusionne. Sans ce garde-fou, deux
@@ -272,10 +298,18 @@ export async function onRequest(context) {
 
   if (action === 'rounds' && request.method === 'GET') {
     await ensureSchema(DB);
+    /* Le contenu du tour est renvoyé aussi : c'est la seule copie figée d'un retour
+       signé par le client, elle doit être relisible (sauvegarde et fetch-review). */
     const r = await DB.prepare(
-      'SELECT round, version, name, finalized_at, mail FROM review_rounds WHERE project = ? ORDER BY round'
+      'SELECT round, version, name, finalized_at, mail, payload FROM review_rounds WHERE project = ? ORDER BY round'
     ).bind(project).all();
-    return json({ rounds: r.results || [] });
+    const rows = (r.results || []).map((x) => {
+      let pins = [];
+      try { pins = JSON.parse(x.payload || '[]'); } catch {}
+      const { payload, ...rest } = x;
+      return { ...rest, count: pins.length, pins };
+    });
+    return json({ rounds: rows });
   }
 
   return fail(404, 'action inconnue');

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="2.1+20260913">
-<meta name="maquette-version-lisible" content="v2.1 — 13 septembre 2026">
+<meta name="maquette-version" content="2.2+20260913">
+<meta name="maquette-version-lisible" content="v2.2 — 13 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — vos remarques sur la maquette</title>
@@ -572,8 +572,10 @@ function drawThumbs(p){
   t.innerHTML = '';
   (p.photos || []).forEach((url, i) => {
     const f = document.createElement('figure');
-    f.innerHTML = `<img src="${url}" alt=""><button title="Retirer">×</button>`;
-    f.querySelector('button').onclick = () => { p.photos.splice(i,1); touch(p); save(); drawThumbs(p); render(); };
+    // Une remarque envoyée est verrouillée : ses photos ne s'enlèvent plus non plus.
+    f.innerHTML = `<img src="${url}" alt="">` + (p.sealed ? '' : `<button title="Retirer">×</button>`);
+    const b = f.querySelector('button');
+    if (b) b.onclick = () => { p.photos.splice(i,1); touch(p); save(); drawThumbs(p); render(); };
     t.appendChild(f);
   });
 }
