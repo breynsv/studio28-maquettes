@@ -63,6 +63,7 @@ function cleanPayload(data) {
       status: ['ok', 'change', 'remove'].includes(p.status) ? p.status : 'change',
       mt:     Number.isFinite(+p.mt) ? +p.mt : 0,
       vw:     p.vw === 'phone' ? 'phone' : 'desktop',   // sur quel écran la remarque a été faite
+      ver:    String(p.ver ?? '').slice(0, 40),          // sur quelle version de la maquette
       photos: (Array.isArray(p.photos) ? p.photos : [])
         .slice(0, 12)
         .map(String)

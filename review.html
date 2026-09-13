@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<meta name="maquette-version" content="2.1+20260913">
+<meta name="maquette-version-lisible" content="v2.1 — 13 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — vos remarques sur la maquette</title>
@@ -37,10 +39,12 @@
   .btn.primary{background:var(--terra);color:#fff;border-color:var(--terra)}
   .btn.primary:hover{background:#743C26}
   #who{font:inherit;padding:8px 12px;border:1px solid var(--hair);border-radius:8px;width:170px;background:#fff}
-  #state{margin-left:auto;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+  #state{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
   #dot{width:8px;height:8px;border-radius:999px;background:#C6BCAA}
   #dot.ok{background:var(--ok)} #dot.busy{background:var(--oak)} #dot.err{background:#B4433F}
   .hint{font-size:13px;color:var(--muted)}
+  #ver{margin-left:auto;padding-right:10px;white-space:nowrap}
+  .vieille{color:var(--chg);font-style:normal}
 
   /* ── scène ─────────────────────────────────────────────── */
   #wrap{position:absolute;inset:var(--bar) 0 0 0;display:flex}
@@ -150,6 +154,7 @@
   <div class="sep hideSm"></div>
   <button class="btn" id="toggleList">Liste</button>
   <input id="who" placeholder="Votre nom" autocomplete="name">
+  <span class="hint hideSm" id="ver" title="Version de la maquette affichée"></span>
   <div id="state"><span id="dot"></span><span id="stateTxt">—</span></div>
 </div>
 
@@ -382,10 +387,22 @@ function shortText(el){
 }
 function doc(){ try { return frame.contentDocument; } catch(e){ return null; } }
 
+/* La version est gravée dans la maquette par publish.py. On la retient sur chaque
+   remarque : si la maquette change ensuite, on sait quelles remarques sont antérieures. */
+let maquetteVer = '', maquetteVerLisible = '';
+function readVersion(){
+  const d = doc(); if (!d) return;
+  const g = n => d.querySelector('meta[name="' + n + '"]')?.content || '';
+  maquetteVer        = g('maquette-version');
+  maquetteVerLisible = g('maquette-version-lisible');
+  document.getElementById('ver').textContent = maquetteVerLisible ? 'Maquette ' + maquetteVerLisible : '';
+}
+
 /* ── clics dans la maquette ────────────────────────────────── */
 function onFrameLoad(){
   const d = doc();
   if (!d){ setState('err', 'maquette inaccessible'); return; }
+  readVersion();
   d.addEventListener('click', onDocClick, true);
   d.addEventListener('scroll', drawPins, { passive:true });
   frame.contentWindow.addEventListener('resize', drawPins);
@@ -408,7 +425,7 @@ function onDocClick(e){
     rx: r.width  ? (e.clientX - r.left) / r.width  : .5,
     ry: r.height ? (e.clientY - r.top)  / r.height : .5,
     ctx: shortText(el),
-    text: '', status: 'change', photos: [], mt: Date.now(), fresh: true, vw: viewMode
+    text: '', status: 'change', photos: [], mt: Date.now(), fresh: true, vw: viewMode, ver: maquetteVer
   };
   store.pins.push(pin);
   save(); render();
@@ -456,7 +473,9 @@ function render(){
     c.innerHTML =
       `<div class="top"><span class="num">${p.n}</span><span class="tag ${p.status}">${LBL[p.status]}</span></div>` +
       `<p>${(p.text || '<span style="color:#9a948a">(pas encore de texte)</span>')}</p>` +
-      `<div class="ctx">« ${p.ctx} »${p.vw === 'phone' ? ' — vu sur téléphone' : ''}</div>` +
+      `<div class="ctx">« ${p.ctx} »${p.vw === 'phone' ? ' — vu sur téléphone' : ''}` +
+        (p.ver && maquetteVer && p.ver !== maquetteVer
+          ? ` <span class="vieille">— faite sur une version antérieure</span>` : '') + `</div>` +
       (pics ? `<div class="pics">${pics}</div>` : '');
     listEl.appendChild(c);
   }
