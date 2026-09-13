@@ -287,7 +287,9 @@ async function sendMail(env, project, round, version, name, pins, origin) {
   if (!key) return 'non configuré';
 
   const to   = env.REVIEW_MAIL_TO   || 'sven@membrero.com';
-  const from = env.REVIEW_MAIL_FROM || 'Studio 28 <onboarding@resend.dev>';
+  /* Le domaine vérifié chez Resend est l'apex membrero.com ; send.membrero.com ne
+     porte que les enregistrements SPF/MX et n'est PAS un expéditeur valide. */
+  const from = env.REVIEW_MAIL_FROM || 'Studio 28 <studio28@membrero.com>';
   const LBL  = { ok: 'Ça me va', change: 'À changer', remove: 'À supprimer' };
   const esc  = (x) => String(x ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
 
