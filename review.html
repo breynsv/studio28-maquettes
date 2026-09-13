@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio 28 — vos remarques sur la maquette</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/logo/studio28-mark-terra.png">
+<style>
+  :root{
+    --paper:#F7F2EA; --oat:#EFE6D8; --clay:#B4643F; --terra:#8C4A2E;
+    --oak:#C9A87C; --ink:#33302B; --muted:#7C7468;
+    --hair:rgba(201,168,124,.55);
+    --ok:#4F6B52; --chg:#B4643F; --del:#8A5A5A;
+    --bar:64px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--ink); color:var(--ink); overflow:hidden;
+  }
+
+  /* ── barre du haut ─────────────────────────────────────── */
+  #bar{
+    height:var(--bar); background:var(--paper); border-bottom:1px solid var(--hair);
+    display:flex; align-items:center; gap:14px; padding:0 16px; position:relative; z-index:5;
+  }
+  #bar img{height:30px;width:auto}
+  #bar .sep{width:1px;height:26px;background:var(--hair)}
+  .btn{
+    font:inherit; font-weight:500; cursor:pointer; border-radius:999px;
+    padding:8px 15px; border:1px solid var(--hair); background:#fff; color:var(--ink);
+  }
+  .btn:hover{border-color:var(--terra)}
+  .btn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn.primary{background:var(--terra);color:#fff;border-color:var(--terra)}
+  .btn.primary:hover{background:#743C26}
+  #who{font:inherit;padding:8px 12px;border:1px solid var(--hair);border-radius:8px;width:170px;background:#fff}
+  #state{margin-left:auto;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+  #dot{width:8px;height:8px;border-radius:999px;background:#C6BCAA}
+  #dot.ok{background:var(--ok)} #dot.busy{background:var(--oak)} #dot.err{background:#B4433F}
+  .hint{font-size:13px;color:var(--muted)}
+
+  /* ── scène ─────────────────────────────────────────────── */
+  #wrap{position:absolute;inset:var(--bar) 0 0 0;display:flex}
+  #stage{position:relative;flex:1;background:#fff;overflow:hidden}
+  #frame{width:100%;height:100%;border:0;display:block}
+  #stage.commenting{cursor:crosshair}
+  /* Aperçu téléphone : la maquette est rendue à 390 px, la vraie largeur d'un mobile. */
+  #stage.phone{background:#e8e2d7;overflow:auto}
+  #stage.phone #frame{
+    width:390px;height:calc(100% - 24px);margin:12px auto;display:block;
+    border-radius:14px;box-shadow:0 6px 26px rgba(0,0,0,.22);background:#fff;
+  }
+
+  /* ── panneau latéral ───────────────────────────────────── */
+  #side{
+    width:340px;flex:0 0 340px;background:var(--paper);border-left:1px solid var(--hair);
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  #side h2{margin:0;padding:14px 16px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);border-bottom:1px solid var(--hair);font-weight:600}
+  #list{flex:1;overflow:auto;padding:8px}
+  .card{background:#fff;border:1px solid var(--hair);border-radius:10px;padding:11px 12px;margin-bottom:8px;cursor:pointer}
+  .card:hover{border-color:var(--terra)}
+  .card.sel{border-color:var(--terra);box-shadow:0 0 0 2px rgba(140,74,46,.14)}
+  .card .top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .num{width:21px;height:21px;border-radius:999px;background:var(--terra);color:#fff;
+    font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .tag{font-size:11px;padding:2px 8px;border-radius:999px;color:#fff}
+  .tag.ok{background:var(--ok)} .tag.change{background:var(--chg)} .tag.remove{background:var(--del)}
+  .card p{margin:0;font-size:13.5px;color:#4a453d;white-space:pre-wrap;word-break:break-word}
+  .card .ctx{font-size:11.5px;color:var(--muted);margin-top:5px;font-style:italic}
+  .card .pics{display:flex;gap:4px;margin-top:7px;flex-wrap:wrap}
+  .card .pics img{width:38px;height:38px;object-fit:cover;border-radius:5px;border:1px solid var(--hair)}
+  #empty{padding:22px 16px;color:var(--muted);font-size:13.5px;line-height:1.6}
+
+  /* ── éditeur ───────────────────────────────────────────── */
+  #ed{position:absolute;inset:0;background:rgba(30,28,25,.45);display:none;align-items:center;justify-content:center;z-index:40}
+  #ed.open{display:flex}
+  #edbox{background:var(--paper);border-radius:12px;width:min(520px,92vw);max-height:88vh;overflow:auto;padding:20px}
+  #edbox h3{margin:0 0 4px;font-size:17px}
+  #edbox .ctx{font-size:12.5px;color:var(--muted);margin:0 0 14px;font-style:italic}
+  #edbox textarea{width:100%;min-height:110px;font:inherit;padding:11px;border:1px solid var(--hair);
+    border-radius:8px;resize:vertical;background:#fff}
+  .row{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+  .seg{flex:1;min-width:110px;padding:9px;border:1px solid var(--hair);border-radius:8px;background:#fff;
+    cursor:pointer;font:inherit;text-align:center}
+  .seg.on{color:#fff;border-color:transparent}
+  .seg.on[data-s=ok]{background:var(--ok)} .seg.on[data-s=change]{background:var(--chg)} .seg.on[data-s=remove]{background:var(--del)}
+  #thumbs{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+  #thumbs figure{margin:0;position:relative}
+  #thumbs img{width:64px;height:64px;object-fit:cover;border-radius:7px;border:1px solid var(--hair);display:block}
+  #thumbs button{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:999px;border:0;
+    background:var(--ink);color:#fff;cursor:pointer;font-size:12px;line-height:1}
+  .edfoot{display:flex;gap:8px;margin-top:16px;align-items:center}
+  .edfoot .grow{flex:1}
+  .danger{color:#9b3b36;border-color:rgba(155,59,54,.4)}
+
+  /* ── épingles dans la page ─────────────────────────────── */
+  #pins{position:absolute;inset:0;pointer-events:none;z-index:20}
+  .pin{
+    position:absolute;width:26px;height:26px;border-radius:999px;background:var(--terra);color:#fff;
+    font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    transform:translate(-50%,-50%);pointer-events:auto;cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.3);border:2px solid #fff;
+  }
+  .pin.ok{background:var(--ok)} .pin.remove{background:var(--del)}
+  .pin.sel{outline:3px solid rgba(140,74,46,.35)}
+
+  #toggleList{display:none}
+  /* Sur un vrai téléphone, la barre doit tenir : on ne garde que l'essentiel.
+     Le choix ordinateur/téléphone n'a plus de sens — on y est déjà. */
+  @media (max-width:640px){
+    :root{ --bar:56px }
+    #bar{gap:6px;padding:0 8px;flex-wrap:nowrap;overflow:hidden}
+    #bar img{height:22px;flex:0 0 auto}
+    #vDesk,#vPhone{display:none}
+    #who{width:86px;padding:7px 8px;flex:0 1 auto;min-width:0}
+    .btn{padding:7px 10px;font-size:13px;white-space:nowrap}
+    #state{font-size:11px;gap:5px;flex:0 0 auto}
+    #stateTxt{max-width:82px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    #edbox{width:94vw;padding:16px}
+  }
+  @media (max-width:900px){
+    #bar{gap:8px;padding:0 10px}
+    #bar .hideSm{display:none}
+    #toggleList{display:inline-flex}
+    #side{
+      position:absolute;inset:var(--bar) 0 0 0;width:auto;flex:none;z-index:30;
+      display:none;border-left:0;
+    }
+    #side.open{display:flex}
+    #who{width:120px}
+  }
+</style>
+</head>
+<body>
+
+<div id="bar">
+  <img src="assets/logo/studio28-lockup-plain-terra.png" alt="Studio 28">
+  <div class="sep hideSm"></div>
+  <button class="btn on" id="mComment">✎ Commenter</button>
+  <button class="btn" id="mBrowse">✋ Naviguer</button>
+  <div class="sep hideSm"></div>
+  <button class="btn on" id="vDesk" title="Voir la version ordinateur">🖥 Ordinateur</button>
+  <button class="btn" id="vPhone" title="Voir la version téléphone">📱 Téléphone</button>
+  <span class="hint hideSm" id="hint">Cliquez sur la page pour placer une remarque.</span>
+  <div class="sep hideSm"></div>
+  <button class="btn" id="toggleList">Liste</button>
+  <input id="who" placeholder="Votre nom" autocomplete="name">
+  <div id="state"><span id="dot"></span><span id="stateTxt">—</span></div>
+</div>
+
+<div id="wrap">
+  <div id="stage">
+    <iframe id="frame" src="draft-v2.html"></iframe>
+    <div id="pins"></div>
+  </div>
+  <aside id="side">
+    <h2>Vos remarques (<span id="count">0</span>)</h2>
+    <div id="list"></div>
+    <div id="empty">
+      Aucune remarque pour l'instant.<br><br>
+      Cliquez n'importe où sur la maquette, à l'endroit qui vous intéresse. Une pastille numérotée
+      s'y pose et vous écrivez ce qu'il faut changer. Vous pouvez joindre une photo.<br><br>
+      Tout est enregistré automatiquement — rien à envoyer.
+    </div>
+  </aside>
+</div>
+
+<div id="ed">
+  <div id="edbox">
+    <h3 id="edTitle">Remarque</h3>
+    <p class="ctx" id="edCtx"></p>
+    <textarea id="edText" maxlength="20000" placeholder="Qu'est-ce qu'il faut changer ici ?"></textarea>
+    <div class="row">
+      <button class="seg" data-s="ok">Ça me va</button>
+      <button class="seg" data-s="change">À changer</button>
+      <button class="seg" data-s="remove">À supprimer</button>
+    </div>
+    <div>
+      <label class="btn" style="display:inline-block">
+        📎 Joindre une photo
+        <input type="file" id="edFile" accept="image/*" multiple hidden>
+      </label>
+      <div id="thumbs"></div>
+    </div>
+    <div class="edfoot">
+      <button class="btn danger" id="edDel">Supprimer</button>
+      <span class="grow"></span>
+      <button class="btn primary" id="edOk">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   Studio 28 — outil de remarques
+   Les remarques sont enregistrées sur le serveur (API_BASE).
+   Sans serveur configuré, tout reste dans le navigateur.
+   ══════════════════════════════════════════════════════════════ */
+
+const qs       = new URLSearchParams(location.search);
+/* Par défaut l'API vit sur le même domaine (/api, la Pages Function).
+   ?api=… permet de viser le review-api.php si on l'héberge ailleurs.
+   ?api=off force le mode « tout reste dans ce navigateur ». */
+const _api = qs.get('api');
+const API_BASE = _api === 'off' ? '' : (_api || window.REVIEW_API || '/api');
+const TOKEN    = qs.get('t')     || '';
+const PROJECT  = qs.get('p')     || 'studio28';
+/* La clef locale porte le projet : sans cela, deux clients relus dans le même
+   navigateur se mélangeraient (constaté en test). */
+const LS       = 'review-v1:' + PROJECT;
+
+let store   = { pins: [], counter: 0, name: '', deleted: [] };
+let version = null;          // la version du serveur que ce navigateur a lue
+let mode    = 'comment';
+let activeId = null;
+let dirty   = false;
+
+const frame  = document.getElementById('frame');
+const stage  = document.getElementById('stage');
+const pinsEl = document.getElementById('pins');
+const listEl = document.getElementById('list');
+const emptyEl= document.getElementById('empty');
+const dot    = document.getElementById('dot');
+const stateTxt = document.getElementById('stateTxt');
+
+/* ── état ──────────────────────────────────────────────────── */
+function setState(kind, text){
+  dot.className = kind;
+  stateTxt.textContent = text;
+}
+
+/* ── persistance ───────────────────────────────────────────── */
+function localLoad(){
+  try {
+    const s = JSON.parse(localStorage.getItem(LS));
+    if (s && s.pins) return { deleted: [], ...s };
+  } catch(e){}
+  return { pins: [], counter: 0, name: '', deleted: [] };
+}
+/** Toute modification d'une remarque est datée : c'est ce qui permet de fusionner. */
+function touch(p){ if (p) p.mt = Date.now(); }
+
+/**
+ * Fusion de deux états. Règle : on ne perd jamais une remarque.
+ *  — une remarque connue d'un seul côté est gardée ;
+ *  — présente des deux côtés, la version modifiée le plus récemment gagne ;
+ *  — une suppression n'efface que si elle est postérieure à la dernière modification.
+ */
+function merge(a, b){
+  const pins = new Map();
+  for (const p of [...(a.pins||[]), ...(b.pins||[])]) {
+    const prev = pins.get(p.id);
+    if (!prev || (p.mt||0) >= (prev.mt||0)) pins.set(p.id, p);
+  }
+  const tombs = new Map();
+  for (const d of [...(a.deleted||[]), ...(b.deleted||[])]) {
+    const prev = tombs.get(d.id);
+    if (!prev || (d.mt||0) > (prev.mt||0)) tombs.set(d.id, d);
+  }
+  for (const [id, d] of tombs) {
+    const p = pins.get(id);
+    if (p && (d.mt||0) >= (p.mt||0)) pins.delete(id);
+  }
+  return {
+    pins: [...pins.values()].sort((x,y) => (x.n||0) - (y.n||0)),
+    deleted: [...tombs.values()],
+    counter: Math.max(a.counter||0, b.counter||0),
+    name: b.name || a.name || '',
+  };
+}
+function localSave(){ try { localStorage.setItem(LS, JSON.stringify(store)); } catch(e){} }
+
+async function api(path, opts){
+  const url = API_BASE.replace(/\/$/,'') + path +
+    (path.includes('?') ? '&' : '?') + 'p=' + encodeURIComponent(PROJECT) +
+    (TOKEN ? '&t=' + encodeURIComponent(TOKEN) : '');
+  const r = await fetch(url, opts);
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r.json();
+}
+
+async function boot(){
+  store = localLoad();
+  document.getElementById('who').value = store.name || '';
+  if (!API_BASE){ setState('', 'enregistré sur cet appareil'); return; }
+  setState('busy', 'chargement…');
+  try {
+    const d = await api('/feedback', { method:'GET' });
+    if (d && Array.isArray(d.pins)) {
+      version = d.updated_at || '';
+      // Ce que ce navigateur avait en attente n'est pas jeté : il est fusionné.
+      store = merge({ pins:d.pins, deleted:d.deleted||[], counter:d.counter||0, name:d.name||'' }, store);
+      store.counter = Math.max(store.counter||0, ...store.pins.map(p=>p.n||0), 0);
+      localSave();
+    }
+    document.getElementById('who').value = store.name || '';
+    setState('ok', 'enregistré');
+  } catch(e){
+    setState('err', 'hors ligne — sauvegardé ici');
+  }
+}
+
+let saveTimer = null;
+function body(){ return JSON.stringify({ pins: store.pins, deleted: store.deleted, counter: store.counter, name: store.name }); }
+
+async function pushNow(){
+  const q = version === null ? '' : '&base=' + encodeURIComponent(version);
+  const url = API_BASE.replace(/\/$/,'') + '/feedback?p=' + encodeURIComponent(PROJECT) +
+              (TOKEN ? '&t=' + encodeURIComponent(TOKEN) : '') + q;
+  const r = await fetch(url, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: body() });
+
+  if (r.status === 409) {
+    // Quelqu'un d'autre (un autre onglet, le téléphone) a écrit entre-temps.
+    const d = await r.json();
+    store   = merge(d.current || { pins:[] }, store);
+    version = (d.current && d.current.updated_at) || '';
+    localSave(); render();
+    const again = await fetch(url.replace(/&base=[^&]*/, '') + '&base=' + encodeURIComponent(version),
+                              { method:'POST', headers:{ 'Content-Type':'application/json' }, body: body() });
+    if (!again.ok) throw new Error('HTTP ' + again.status);
+    version = (await again.json()).updated_at || version;
+    return;
+  }
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  version = (await r.json()).updated_at || version;
+}
+
+function save(){
+  localSave();
+  if (!API_BASE) return;
+  dirty = true;
+  setState('busy', 'enregistrement…');
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    try { await pushNow(); dirty = false; setState('ok', 'enregistré'); }
+    catch(e){ setState('err', 'pas enregistré — nouvel essai'); setTimeout(save, 4000); }
+  }, 700);
+}
+
+/* Si l'onglet se ferme avant la fin du délai, on envoie quand même : sendBeacon
+   part même pendant la fermeture, là où un fetch normal serait annulé. */
+function flush(){
+  if (!dirty || !API_BASE) return;
+  try {
+    const url = API_BASE.replace(/\/$/,'') + '/feedback?p=' + encodeURIComponent(PROJECT) +
+                (TOKEN ? '&t=' + encodeURIComponent(TOKEN) : '');
+    navigator.sendBeacon(url, new Blob([body()], { type:'application/json' }));
+    dirty = false;
+  } catch(e){}
+}
+addEventListener('pagehide', flush);
+addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); });
+window.addEventListener('beforeunload', () => flush());
+
+/* ── ancrage d'une épingle sur un élément ──────────────────── */
+function cssPath(el){
+  if (!el || el.nodeType !== 1) return 'body';
+  const parts = [];
+  while (el && el.nodeType === 1 && el.tagName !== 'HTML' && parts.length < 6){
+    let s = el.tagName.toLowerCase();
+    if (el.id){ parts.unshift('#' + CSS.escape(el.id)); break; }
+    const p = el.parentElement;
+    if (p){
+      const same = [...p.children].filter(c => c.tagName === el.tagName);
+      if (same.length > 1) s += ':nth-of-type(' + (same.indexOf(el) + 1) + ')';
+    }
+    parts.unshift(s);
+    el = p;
+  }
+  return parts.join('>');
+}
+function shortText(el){
+  // innerText respecte les <br> et les blocs ; textContent collait les mots entre eux.
+  const raw = (el.innerText != null ? el.innerText : el.textContent) || '';
+  const t = raw.trim().replace(/\s+/g,' ');
+  return t ? t.slice(0, 70) + (t.length > 70 ? '…' : '') : el.tagName.toLowerCase();
+}
+function doc(){ try { return frame.contentDocument; } catch(e){ return null; } }
+
+/* ── clics dans la maquette ────────────────────────────────── */
+function onFrameLoad(){
+  const d = doc();
+  if (!d){ setState('err', 'maquette inaccessible'); return; }
+  d.addEventListener('click', onDocClick, true);
+  d.addEventListener('scroll', drawPins, { passive:true });
+  frame.contentWindow.addEventListener('resize', drawPins);
+  drawPins();
+}
+frame.addEventListener('load', onFrameLoad);
+
+function onDocClick(e){
+  if (mode !== 'comment') return;
+  e.preventDefault(); e.stopPropagation();
+  const el = e.target;
+  const r  = el.getBoundingClientRect();
+  /* L'identifiant doit être unique au monde, pas au navigateur : deux appareils
+     ouverts en même temps produisaient tous les deux « p1 », et la fusion n'en
+     gardait qu'un. Le numéro affiché (n) reste un simple compteur lisible. */
+  const pin = {
+    id: 'p' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8),
+    n: ++store.counter,
+    sel: cssPath(el),
+    rx: r.width  ? (e.clientX - r.left) / r.width  : .5,
+    ry: r.height ? (e.clientY - r.top)  / r.height : .5,
+    ctx: shortText(el),
+    text: '', status: 'change', photos: [], mt: Date.now(), fresh: true, vw: viewMode
+  };
+  store.pins.push(pin);
+  save(); render();
+  openEditor(pin.id);
+}
+
+/* ── dessiner les épingles ─────────────────────────────────── */
+function drawPins(){
+  const d = doc();
+  pinsEl.innerHTML = '';
+  if (!d) return;
+  const fr = frame.getBoundingClientRect();
+  const st = stage.getBoundingClientRect();
+  const offX = fr.left - st.left, offY = fr.top - st.top;   // non nul en aperçu téléphone
+  for (const p of store.pins){
+    let el = null;
+    try { el = d.querySelector(p.sel); } catch(e){}
+    if (!el) continue;
+    const r = el.getBoundingClientRect();
+    const x = offX + r.left + r.width  * p.rx;
+    const y = offY + r.top  + r.height * p.ry;
+    if (y < offY - 40 || y > offY + fr.height + 40) continue;
+    const b = document.createElement('button');
+    b.className = 'pin ' + (p.status || 'change') + (p.id === activeId ? ' sel' : '');
+    b.style.left = x + 'px';
+    b.style.top  = y + 'px';
+    b.textContent = p.n;
+    b.title = p.text || 'Remarque ' + p.n;
+    b.onclick = ev => { ev.stopPropagation(); openEditor(p.id); };
+    pinsEl.appendChild(b);
+  }
+}
+
+/* ── liste latérale ────────────────────────────────────────── */
+function render(){
+  document.getElementById('count').textContent = store.pins.length;
+  emptyEl.style.display = store.pins.length ? 'none' : 'block';
+  listEl.innerHTML = '';
+  const LBL = { ok:'Ça me va', change:'À changer', remove:'À supprimer' };
+  for (const p of store.pins){
+    const c = document.createElement('div');
+    c.className = 'card' + (p.id === activeId ? ' sel' : '');
+    c.onclick = () => { scrollToPin(p); openEditor(p.id); };
+    const pics = (p.photos || []).map(u => `<img src="${u}" alt="">`).join('');
+    c.innerHTML =
+      `<div class="top"><span class="num">${p.n}</span><span class="tag ${p.status}">${LBL[p.status]}</span></div>` +
+      `<p>${(p.text || '<span style="color:#9a948a">(pas encore de texte)</span>')}</p>` +
+      `<div class="ctx">« ${p.ctx} »${p.vw === 'phone' ? ' — vu sur téléphone' : ''}</div>` +
+      (pics ? `<div class="pics">${pics}</div>` : '');
+    listEl.appendChild(c);
+  }
+  drawPins();
+}
+
+function scrollToPin(p){
+  const d = doc(); if (!d) return;
+  let el = null; try { el = d.querySelector(p.sel); } catch(e){}
+  if (el) el.scrollIntoView({ block:'center', behavior:'smooth' });
+  setTimeout(drawPins, 450);
+}
+
+/* ── éditeur ───────────────────────────────────────────────── */
+const ed = document.getElementById('ed');
+function pinById(id){ return store.pins.find(p => p.id === id); }
+
+function openEditor(id){
+  const p = pinById(id); if (!p) return;
+  activeId = id;
+  document.getElementById('edTitle').textContent = 'Remarque ' + p.n;
+  document.getElementById('edCtx').textContent = '« ' + p.ctx + ' »';
+  document.getElementById('edText').value = p.text || '';
+  document.querySelectorAll('.seg').forEach(s => s.classList.toggle('on', s.dataset.s === p.status));
+  drawThumbs(p);
+  ed.classList.add('open');
+  render();
+  setTimeout(() => document.getElementById('edText').focus(), 40);
+}
+function closeEditor(){
+  const p = pinById(activeId);
+  if (p){
+    const before = p.text;
+    p.text = document.getElementById('edText').value.trim();
+    if (p.text !== before) touch(p);
+    // On ne retire que l'épingle posée par erreur, jamais une remarque déjà écrite.
+    if (p.fresh && !p.text && !(p.photos || []).length){
+      store.pins = store.pins.filter(x => x.id !== p.id);
+    } else {
+      p.fresh = false;
+    }
+    save();
+  }
+  activeId = null; ed.classList.remove('open'); render();
+}
+document.getElementById('edOk').onclick = closeEditor;
+ed.onclick = e => { if (e.target === ed) closeEditor(); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && ed.classList.contains('open')) closeEditor(); });
+
+document.querySelectorAll('.seg').forEach(s => s.onclick = () => {
+  const p = pinById(activeId); if (!p) return;
+  p.status = s.dataset.s; p.fresh = false; touch(p);
+  document.querySelectorAll('.seg').forEach(x => x.classList.toggle('on', x === s));
+  save(); render();
+});
+
+document.getElementById('edDel').onclick = () => {
+  const p = pinById(activeId);
+  if (p && !p.fresh && !confirm('Supprimer définitivement la remarque ' + p.n + ' ?')) return;
+  store.deleted = store.deleted || [];
+  store.deleted.push({ id: activeId, mt: Date.now() });
+  store.pins = store.pins.filter(x => x.id !== activeId);
+  activeId = null; ed.classList.remove('open'); save(); render();
+};
+
+function drawThumbs(p){
+  const t = document.getElementById('thumbs');
+  t.innerHTML = '';
+  (p.photos || []).forEach((url, i) => {
+    const f = document.createElement('figure');
+    f.innerHTML = `<img src="${url}" alt=""><button title="Retirer">×</button>`;
+    f.querySelector('button').onclick = () => { p.photos.splice(i,1); touch(p); save(); drawThumbs(p); render(); };
+    t.appendChild(f);
+  });
+}
+
+/* Une photo de téléphone pèse plusieurs Mo alors qu'on a seulement besoin
+   de la voir. On la réduit dans le navigateur avant de l'envoyer : envoi plus
+   rapide en 4G, et stockage bien plus léger. */
+async function shrink(file, maxSide = 1800, quality = 0.82){
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return file;   // gif : laissé tel quel
+  try {
+    const bmp = await createImageBitmap(file);
+    const scale = Math.min(1, maxSide / Math.max(bmp.width, bmp.height));
+    if (scale === 1 && file.size < 900 * 1024) { bmp.close?.(); return file; }
+    const w = Math.round(bmp.width * scale), h = Math.round(bmp.height * scale);
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    cv.getContext('2d').drawImage(bmp, 0, 0, w, h);
+    bmp.close?.();
+    const blob = await new Promise(res => cv.toBlob(res, 'image/jpeg', quality));
+    if (!blob || blob.size >= file.size) return file;
+    return new File([blob], (file.name || 'photo').replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' });
+  } catch (e) { return file; }
+}
+
+document.getElementById('edFile').onchange = async e => {
+  const p = pinById(activeId); if (!p) return;
+  p.photos = p.photos || [];
+  for (const file of [...e.target.files]){
+    if (!file.type.startsWith('image/')) continue;
+    setState('busy', 'envoi de la photo…');
+    try {
+      if (API_BASE){
+        const small = await shrink(file);
+        const fd = new FormData(); fd.append('photo', small); fd.append('pin', p.id);
+        const r = await api('/upload', { method:'POST', body: fd });
+        p.photos.push(r.url);
+      } else {
+        p.photos.push(await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(file); }));
+      }
+      setState('ok', 'enregistré');
+    } catch(err){ setState('err', "photo non envoyée"); }
+  }
+  e.target.value = '';
+  p.fresh = false; touch(p);
+  save(); drawThumbs(p); render();
+};
+
+/* ── modes ─────────────────────────────────────────────────── */
+function setMode(m){
+  mode = m;
+  document.getElementById('mComment').classList.toggle('on', m === 'comment');
+  document.getElementById('mBrowse').classList.toggle('on', m === 'browse');
+  stage.classList.toggle('commenting', m === 'comment');
+  document.getElementById('hint').textContent = m === 'comment'
+    ? 'Cliquez sur la page pour placer une remarque.'
+    : 'Navigation libre — les liens fonctionnent.';
+}
+let viewMode = 'desktop';
+function setView(v){
+  viewMode = v;
+  stage.classList.toggle('phone', v === 'phone');
+  document.getElementById('vDesk').classList.toggle('on', v === 'desktop');
+  document.getElementById('vPhone').classList.toggle('on', v === 'phone');
+  setTimeout(drawPins, 260);
+}
+document.getElementById('vDesk').onclick  = () => setView('desktop');
+document.getElementById('vPhone').onclick = () => setView('phone');
+stage.addEventListener('scroll', drawPins, { passive:true });
+addEventListener('resize', drawPins);
+
+document.getElementById('toggleList').onclick = () =>
+  document.getElementById('side').classList.toggle('open');
+
+document.getElementById('mComment').onclick = () => setMode('comment');
+document.getElementById('mBrowse').onclick  = () => setMode('browse');
+setMode('comment');
+
+document.getElementById('who').oninput = e => { store.name = e.target.value; save(); };
+
+boot().then(render);
+</script>
+</body>
+</html>

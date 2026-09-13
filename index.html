@@ -26,7 +26,8 @@
     </div>
 
     <div class="ml-auto flex items-center gap-2 text-sm">
-      <button @click="round=0" :class="round===0 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Les 29</button>
+      <button @click="round=5" :class="round===5 ? 'bg-[#C05A34] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#C05A34]/40 font-medium">La proposition</button>
+      <button @click="round=0" :class="round===0 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Tout</button>
       <button @click="round=1" :class="round===1 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Structures</button>
       <button @click="round=4" :class="round===4 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Textes</button>
       <button @click="round=3" :class="round===3 ? 'bg-[#1A1F27] text-white' : 'bg-white'" class="px-3 py-1.5 rounded-full border border-[#1A1F27]/20">Hero activités</button>
@@ -91,8 +92,8 @@
 
   <p x-show="!visible().length" class="text-center text-[#1A1F27]/50 py-20">Rien dans ce filtre.</p>
 
+  
 </main>
-
 
 <div x-show="current" class="fixed inset-0 z-50 bg-[#1A1F27]/85 flex flex-col" @keydown.escape.window="current=null" x-cloak>
   <div class="flex items-center gap-3 p-3 text-white">
@@ -130,6 +131,9 @@ function picker() {
       { n:'03', r:1, file:'draft-03-le-jardin.html', title:'Le jardin',
         concept:'Ouvre sur la cour, pas sur le studio. Une adresse calme à Bruxelles qui contient toutes nos disciplines.',
         angle:'Le calme · vend la pause, pas l\'effort' },
+      { n:'v2', r:5, file:'draft-v2.html', title:'La proposition — v2',
+        concept:'Vos retours assemblés en une seule page : le style Terre et argile, la ligne de temps en direct, l\'information essentielle en haut, les activités à la verticale (et qui marchent sur téléphone), les profs après les activités, l\'agenda sans encadrés avec l\'étiquette « prochain event ».',
+        angle:'Terre et argile · logo terracotta sur fond clair, crème sur fond sombre' },
       { n:'04', r:1, file:'draft-04-sept-portes.html', title:'Sept portes',
         concept:'Sept panneaux égaux, une discipline chacun, chacun ouvrant sur son propre monde. La grille est la marque.',
         angle:'Structure · empêche mathématiquement la domination latine' },
