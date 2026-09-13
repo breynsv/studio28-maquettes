@@ -79,6 +79,13 @@
   .card .pics{display:flex;gap:4px;margin-top:7px;flex-wrap:wrap}
   .card .pics img{width:38px;height:38px;object-fit:cover;border-radius:5px;border:1px solid var(--hair)}
   #empty{padding:22px 16px;color:var(--muted);font-size:13.5px;line-height:1.6}
+  #sendbox{padding:12px;border-top:1px solid var(--hair);background:var(--oat)}
+  #sendNote{margin:8px 2px 0;font-size:12.5px;color:var(--muted);line-height:1.5}
+  #sendbox.done .btn{opacity:.5;pointer-events:none}
+  .card.scelle{background:#faf7f1}
+  .card.scelle .num{background:var(--muted)}
+  .envoye{font-size:11px;color:var(--muted);font-style:normal}
+  .pin.scelle{background:var(--muted)}
 
   /* ── éditeur ───────────────────────────────────────────── */
   #ed{position:absolute;inset:0;background:rgba(30,28,25,.45);display:none;align-items:center;justify-content:center;z-index:40}
@@ -171,6 +178,10 @@
       Cliquez n'importe où sur la maquette, à l'endroit qui vous intéresse. Une pastille numérotée
       s'y pose et vous écrivez ce qu'il faut changer. Vous pouvez joindre une photo.<br><br>
       Tout est enregistré automatiquement — rien à envoyer.
+    </div>
+    <div id="sendbox">
+      <button class="btn primary" id="send" style="width:100%">Terminer et envoyer mes remarques</button>
+      <p id="sendNote"></p>
     </div>
   </aside>
 </div>
@@ -413,6 +424,7 @@ frame.addEventListener('load', onFrameLoad);
 
 function onDocClick(e){
   if (mode !== 'comment') return;
+  if (e.target.closest && e.target.closest('a')) { /* laisser les liens tranquilles */ }
   e.preventDefault(); e.stopPropagation();
   const el = e.target;
   const r  = el.getBoundingClientRect();
@@ -450,7 +462,7 @@ function drawPins(){
     const y = offY + r.top  + r.height * p.ry;
     if (y < offY - 40 || y > offY + fr.height + 40) continue;
     const b = document.createElement('button');
-    b.className = 'pin ' + (p.status || 'change') + (p.id === activeId ? ' sel' : '');
+    b.className = 'pin ' + (p.status || 'change') + (p.sealed ? ' scelle' : '') + (p.id === activeId ? ' sel' : '');
     b.style.left = x + 'px';
     b.style.top  = y + 'px';
     b.textContent = p.n;
@@ -463,12 +475,13 @@ function drawPins(){
 /* ── liste latérale ────────────────────────────────────────── */
 function render(){
   document.getElementById('count').textContent = store.pins.length;
+  majSend();
   emptyEl.style.display = store.pins.length ? 'none' : 'block';
   listEl.innerHTML = '';
   const LBL = { ok:'Ça me va', change:'À changer', remove:'À supprimer' };
   for (const p of store.pins){
     const c = document.createElement('div');
-    c.className = 'card' + (p.id === activeId ? ' sel' : '');
+    c.className = 'card' + (p.sealed ? ' scelle' : '') + (p.id === activeId ? ' sel' : '');
     c.onclick = () => { scrollToPin(p); openEditor(p.id); };
     const pics = (p.photos || []).map(u => `<img src="${u}" alt="">`).join('');
     c.innerHTML =
@@ -476,7 +489,8 @@ function render(){
       `<p>${(p.text || '<span style="color:#9a948a">(pas encore de texte)</span>')}</p>` +
       `<div class="ctx">« ${p.ctx} »${p.vw === 'phone' ? ' — vu sur téléphone' : ''}` +
         (p.ver && maquetteVer && p.ver !== maquetteVer
-          ? ` <span class="vieille">— faite sur une version antérieure</span>` : '') + `</div>` +
+          ? ` <span class="vieille">— faite sur une version antérieure</span>` : '') +
+        (p.sealed ? ` <span class="envoye">— envoyée (retour n° ${p.round || '?'})</span>` : '') + `</div>` +
       (pics ? `<div class="pics">${pics}</div>` : '');
     listEl.appendChild(c);
   }
@@ -497,10 +511,20 @@ function pinById(id){ return store.pins.find(p => p.id === id); }
 function openEditor(id){
   const p = pinById(id); if (!p) return;
   activeId = id;
-  document.getElementById('edTitle').textContent = 'Remarque ' + p.n;
   document.getElementById('edCtx').textContent = '« ' + p.ctx + ' »';
-  document.getElementById('edText').value = p.text || '';
-  document.querySelectorAll('.seg').forEach(s => s.classList.toggle('on', s.dataset.s === p.status));
+  const ta = document.getElementById('edText');
+  ta.value = p.text || '';
+  // Une remarque déjà envoyée est verrouillée : on peut la relire, pas la refaire.
+  ta.readOnly = !!p.sealed;
+  document.getElementById('edDel').style.display = p.sealed ? 'none' : '';
+  document.getElementById('edFile').disabled = !!p.sealed;
+  document.querySelectorAll('.seg').forEach(s => {
+    s.classList.toggle('on', s.dataset.s === p.status);
+    s.disabled = !!p.sealed;
+    s.style.opacity = p.sealed ? .55 : 1;
+  });
+  document.getElementById('edTitle').textContent =
+    'Remarque ' + p.n + (p.sealed ? ' — envoyée, non modifiable' : '');
   drawThumbs(p);
   ed.classList.add('open');
   render();
@@ -508,6 +532,7 @@ function openEditor(id){
 }
 function closeEditor(){
   const p = pinById(activeId);
+  if (p && p.sealed){ activeId = null; ed.classList.remove('open'); render(); return; }
   if (p){
     const before = p.text;
     p.text = document.getElementById('edText').value.trim();
@@ -527,7 +552,7 @@ ed.onclick = e => { if (e.target === ed) closeEditor(); };
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && ed.classList.contains('open')) closeEditor(); });
 
 document.querySelectorAll('.seg').forEach(s => s.onclick = () => {
-  const p = pinById(activeId); if (!p) return;
+  const p = pinById(activeId); if (!p || p.sealed) return;
   p.status = s.dataset.s; p.fresh = false; touch(p);
   document.querySelectorAll('.seg').forEach(x => x.classList.toggle('on', x === s));
   save(); render();
@@ -626,6 +651,48 @@ document.getElementById('mBrowse').onclick  = () => setMode('browse');
 setMode('comment');
 
 document.getElementById('who').oninput = e => { store.name = e.target.value; save(); };
+
+/* Terminer : on fige les remarques en cours dans un « retour » numéroté, et Sven
+   reçoit un mail. Ce qui est envoyé ne se modifie plus ; on peut toujours en
+   ajouter de nouvelles ensuite, elles formeront le retour suivant. */
+function majSend(){
+  const box  = document.getElementById('sendbox');
+  const note = document.getElementById('sendNote');
+  const open = store.pins.filter(p => !p.sealed).length;
+  const sent = store.pins.filter(p => p.sealed).length;
+  box.classList.toggle('done', open === 0);
+  document.getElementById('send').textContent =
+    open ? `Terminer et envoyer (${open})` : 'Tout est envoyé';
+  note.textContent = open
+    ? "Vos remarques sont déjà enregistrées. Ce bouton prévient Sven que vous avez terminé et fige ce retour."
+    : (sent ? "Sven a été prévenu. Vous pouvez continuer à ajouter des remarques : elles formeront le retour suivant."
+            : "Ajoutez une remarque en cliquant sur la maquette.");
+}
+
+document.getElementById('send').onclick = async () => {
+  const open = store.pins.filter(p => !p.sealed);
+  if (!open.length) return;
+  if (!confirm(`Envoyer ${open.length} remarque(s) à Sven ?\n\nElles seront figées : vous pourrez les relire, mais plus les modifier. Vous pourrez toujours en ajouter de nouvelles.`)) return;
+
+  const btn = document.getElementById('send');
+  btn.disabled = true; btn.textContent = 'Envoi…';
+  try {
+    clearTimeout(saveTimer);
+    await pushNow();                              // rien ne doit rester en attente
+    const r = await api('/finalize', { method:'POST' });
+    const d = await api('/feedback', { method:'GET' });
+    version = d.updated_at || '';
+    store = { pins:d.pins||[], deleted:d.deleted||[], counter:d.counter||0, name:d.name||store.name };
+    localSave(); render();
+    setState('ok', 'envoyé');
+    alert(`Merci ! ${r.count} remarque(s) envoyées (retour n° ${r.round}).` +
+          (String(r.mail||'').startsWith('envoyé') ? '' : "\n\nLe mail n'a pas pu partir, mais vos remarques sont bien enregistrées."));
+  } catch(e){
+    alert("L'envoi n'a pas abouti. Vos remarques restent enregistrées — réessayez dans un instant.");
+    setState('err', 'envoi impossible');
+  }
+  btn.disabled = false; majSend();
+};
 
 boot().then(render);
 </script>

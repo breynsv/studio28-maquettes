@@ -7,12 +7,16 @@
  *   GET  /api/feedback?p=studio28&t=JETON     → { pins, counter, name, updated_at }
  *   POST /api/feedback?p=studio28&t=JETON     ← { pins, counter, name }
  *   POST /api/upload?p=studio28&t=JETON       ← multipart "photo"   → { url }
+ *   POST /api/finalize?p=studio28&t=JETON     scelle un tour et prévient par mail
  *   GET  /api/photo/<clef>                    → l'image
  *
  * Bindings attendus (voir wrangler.toml) :
  *   DB (ou D1)    D1        les remarques + leur historique
  *   PHOTOS        KV        les images
  *   REVIEW_TOKEN  secret    le jeton qui vaut mot de passe
+ *   RESEND_API_KEY  secret  (facultatif) pour l'envoi du mail à la clôture
+ *   REVIEW_MAIL_TO  var     (facultatif) destinataire, défaut sven@membrero.com
+ *   REVIEW_MAIL_FROM var    (facultatif) expéditeur vérifié chez Resend
  *
  * Les clefs de photo sont aléatoires et indevinables : la lecture d'une image ne
  * demande donc pas le jeton, ce qui évite de le recopier dans chaque <img src>.
@@ -64,6 +68,8 @@ function cleanPayload(data) {
       mt:     Number.isFinite(+p.mt) ? +p.mt : 0,
       vw:     p.vw === 'phone' ? 'phone' : 'desktop',   // sur quel écran la remarque a été faite
       ver:    String(p.ver ?? '').slice(0, 40),          // sur quelle version de la maquette
+      round:  Number.isFinite(+p.round) ? +p.round : 0,  // 0 = pas encore envoyé
+      sealed: !!p.sealed,
       photos: (Array.isArray(p.photos) ? p.photos : [])
         .slice(0, 12)
         .map(String)
@@ -87,6 +93,18 @@ async function ensureSchema(db) {
          project    TEXT PRIMARY KEY,
          payload    TEXT NOT NULL,
          updated_at TEXT NOT NULL
+       )`
+    ),
+    db.prepare(
+      `CREATE TABLE IF NOT EXISTS review_rounds (
+         id           INTEGER PRIMARY KEY AUTOINCREMENT,
+         project      TEXT NOT NULL,
+         round        INTEGER NOT NULL,
+         version      TEXT,
+         name         TEXT,
+         payload      TEXT NOT NULL,
+         finalized_at TEXT NOT NULL,
+         mail         TEXT
        )`
     ),
     db.prepare(
@@ -213,7 +231,105 @@ export async function onRequest(context) {
     return json({ ok: true, url: `${url.origin}/api/photo/${key}`, key });
   }
 
+  /* ── clôture d'un tour ────────────────────────────────────────────────── */
+  if (action === 'finalize' && request.method === 'POST') {
+    await ensureSchema(DB);
+
+    const cur = await DB.prepare('SELECT payload, updated_at FROM reviews WHERE project = ?')
+      .bind(project).first();
+    if (!cur) return fail(400, 'aucune remarque à envoyer');
+
+    let doc;
+    try { doc = JSON.parse(cur.payload); } catch { return fail(500, 'données illisibles'); }
+
+    const ouvertes = (doc.pins || []).filter((p) => !p.sealed);
+    if (!ouvertes.length) return fail(400, 'aucune nouvelle remarque à envoyer');
+
+    const last = await DB.prepare('SELECT MAX(round) AS n FROM review_rounds WHERE project = ?')
+      .bind(project).first();
+    const round = ((last && last.n) || 0) + 1;
+    const now = new Date().toISOString();
+    const version = String(ouvertes.find((p) => p.ver)?.ver || '');
+
+    // On scelle : ces remarques ne bougeront plus, ni ici ni dans l'interface.
+    doc.pins = (doc.pins || []).map((p) => (p.sealed ? p : { ...p, sealed: true, round }));
+    const payload = JSON.stringify(doc);
+
+    let mail = 'non configuré';
+    try { mail = await sendMail(env, project, round, version, doc.name, ouvertes, url.origin); }
+    catch (e) { mail = 'échec : ' + String(e).slice(0, 180); }
+
+    await DB.batch([
+      DB.prepare(`INSERT INTO review_rounds (project, round, version, name, payload, finalized_at, mail)
+                  VALUES (?, ?, ?, ?, ?, ?, ?)`)
+        .bind(project, round, version, String(doc.name || ''), JSON.stringify(ouvertes), now, mail),
+      DB.prepare(`UPDATE reviews SET payload = ?, updated_at = ? WHERE project = ?`)
+        .bind(payload, now, project),
+    ]);
+
+    return json({ ok: true, round, count: ouvertes.length, finalized_at: now, mail });
+  }
+
+  if (action === 'rounds' && request.method === 'GET') {
+    await ensureSchema(DB);
+    const r = await DB.prepare(
+      'SELECT round, version, name, finalized_at, mail FROM review_rounds WHERE project = ? ORDER BY round'
+    ).bind(project).all();
+    return json({ rounds: r.results || [] });
+  }
+
   return fail(404, 'action inconnue');
+}
+
+/** Prévient par mail que le client a terminé. Silencieux si Resend n'est pas configuré. */
+async function sendMail(env, project, round, version, name, pins, origin) {
+  const key = env.RESEND_API_KEY;
+  if (!key) return 'non configuré';
+
+  const to   = env.REVIEW_MAIL_TO   || 'sven@membrero.com';
+  const from = env.REVIEW_MAIL_FROM || 'Studio 28 <onboarding@resend.dev>';
+  const LBL  = { ok: 'Ça me va', change: 'À changer', remove: 'À supprimer' };
+  const esc  = (x) => String(x ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+  const lignes = pins.map((p) => `
+    <tr>
+      <td style="padding:10px 12px;border-bottom:1px solid #e7ddcc;vertical-align:top;white-space:nowrap">
+        <b>${esc(p.n)}</b><br>
+        <span style="color:#8C4A2E;font-size:12px">${esc(LBL[p.status] || p.status)}</span>
+        ${p.vw === 'phone' ? '<br><span style="color:#7C7468;font-size:11px">téléphone</span>' : ''}
+      </td>
+      <td style="padding:10px 12px;border-bottom:1px solid #e7ddcc">
+        ${esc(p.text) || '<i style="color:#9a948a">(sans texte)</i>'}
+        <div style="color:#7C7468;font-size:12px;margin-top:4px">« ${esc(p.ctx)} »</div>
+        ${(p.photos || []).length ? `<div style="font-size:12px;margin-top:4px">${p.photos.length} photo(s) jointe(s)</div>` : ''}
+      </td>
+    </tr>`).join('');
+
+  const html = `
+    <div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;color:#33302B;max-width:640px">
+      <h2 style="font-weight:600">${esc(name) || 'Le client'} a terminé ses remarques</h2>
+      <p style="color:#6A6357">
+        Projet <b>${esc(project)}</b> — retour n° <b>${round}</b> — <b>${pins.length}</b> remarque(s)
+        ${version ? `sur la maquette <code>${esc(version)}</code>` : ''}.
+      </p>
+      <table style="border-collapse:collapse;width:100%;font-size:14px">${lignes}</table>
+      <p style="color:#6A6357;font-size:13px;margin-top:18px">
+        Tout récupérer :<br>
+        <code>python3 fetch-review.py ${esc(origin)}/api LE_JETON ${esc(project)}</code>
+      </p>
+    </div>`;
+
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+    body: JSON.stringify({
+      from, to: [to],
+      subject: `Studio 28 — ${pins.length} remarque(s), retour n° ${round}`,
+      html,
+    }),
+  });
+  if (!r.ok) return `échec ${r.status} : ${(await r.text()).slice(0, 160)}`;
+  return 'envoyé à ' + to;
 }
 
 /**
