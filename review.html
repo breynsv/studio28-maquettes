@@ -403,6 +403,7 @@ function onFrameLoad(){
   const d = doc();
   if (!d){ setState('err', 'maquette inaccessible'); return; }
   readVersion();
+  render();   // la version n'est connue qu'ici : la liste doit être redessinée
   d.addEventListener('click', onDocClick, true);
   d.addEventListener('scroll', drawPins, { passive:true });
   frame.contentWindow.addEventListener('resize', drawPins);
