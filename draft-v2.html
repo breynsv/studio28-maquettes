@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="2.2+20260913">
-<meta name="maquette-version-lisible" content="v2.2 — 13 septembre 2026">
+<meta name="maquette-version" content="2.3+20260914">
+<meta name="maquette-version-lisible" content="v2.3 — 14 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Bouger ensemble à Bruxelles</title>
@@ -446,8 +446,22 @@ details[open] .faq-plus{ transform:rotate(45deg); }
           </template>
         </div>
 
+        
+        <div class="flex flex-wrap items-center gap-2 mb-8">
+          <button type="button" @click="filtre = 'tout'"
+            class="px-3 py-1.5 text-[13px] rounded-full transition"
+            :style="filtre === 'tout' ? 'background:var(--terra);color:var(--paper)' : 'border:1px solid var(--hair);color:var(--mutedink)'"
+            :aria-pressed="filtre === 'tout'">Toutes</button>
+          <template x-for="d in disciplines" :key="d">
+            <button type="button" @click="filtre = d"
+              class="px-3 py-1.5 text-[13px] rounded-full transition"
+              :style="filtre === d ? 'background:var(--terra);color:var(--paper)' : 'border:1px solid var(--hair);color:var(--mutedink)'"
+              :aria-pressed="filtre === d" x-text="d"></button>
+          </template>
+        </div>
+
         <div class="rail">
-          <template x-for="(c, idx) in coursDuJour" :key="c.id">
+          <template x-for="(c, idx) in coursAffiches" :key="c.id">
             <div>
               <template x-if="estAujourdhui && marqueurAvant === c.id">
                 <div class="now-mark py-3">
@@ -472,11 +486,14 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                   <span x-text="c.salle.toLowerCase()"></span>, <span class="num" x-text="c.duree + ' min'"></span>
                 </p>
               </div>
-              <hr x-show="idx < coursDuJour.length - 1" style="border:0;border-top:1px solid var(--hair)">
+              <hr x-show="idx < coursAffiches.length - 1" style="border:0;border-top:1px solid var(--hair)">
             </div>
           </template>
-          <template x-if="coursDuJour.length === 0">
-            <p class="cran py-6 text-[15px]" style="color:var(--muted)">Pas de cours ce jour-là. La salle reste disponible à la location.</p>
+          <template x-if="coursAffiches.length === 0">
+            <p class="cran py-6 text-[15px]" style="color:var(--muted)"
+               x-text="filtre === 'tout'
+                 ? 'Pas de cours ce jour-là. La salle reste disponible à la location.'
+                 : 'Pas de ' + filtre.toLowerCase() + ' ce jour-là. Essayez un autre jour, ou revenez à toutes les disciplines.'"></p>
           </template>
         </div>
       </div>
@@ -1415,7 +1432,10 @@ function jour28(){
   return {
     tick: Date.now(),
     jourActif: new Date().getDay(),
+    filtre: 'tout',
     joursAbbr: JA28,
+    
+    disciplines: ['Yoga','Pilates','Cyclodanse','Hip-hop','Heels','Salsa','Bachata'],
     init(){ setInterval(() => { this.tick = Date.now(); }, 1000); },
     get maintenant(){ return new Date(this.tick); },
     get jour(){ return this.maintenant.getDay(); },
@@ -1430,6 +1450,13 @@ function jour28(){
     hm(m){ const h = Math.floor(m/60)%24, x = m%60; return h+'h'+String(x).padStart(2,'0'); },
     get estAujourdhui(){ return this.jourActif === this.jour; },
     get coursDuJour(){ return IDX28[this.jourActif] || []; },
+    /* Le filtre ne change que la liste du jour. « En ce moment » et « Ensuite »
+       continuent de dire ce qui se passe réellement dans la salle — sinon filtrer
+       sur le yoga annoncerait un parquet libre pendant un cours de salsa. */
+    get coursAffiches(){
+      const l = this.coursDuJour;
+      return this.filtre === 'tout' ? l : l.filter(c => c.disc === this.filtre);
+    },
     get enCours(){ if (!this.estAujourdhui) return [];
       return this.coursDuJour.filter(c => c.debut <= this.min && this.min < c.fin); },
     get enCoursIds(){ return this.enCours.map(c => c.id); },
