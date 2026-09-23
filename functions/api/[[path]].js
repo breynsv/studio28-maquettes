@@ -51,7 +51,7 @@ function safeEqual(a, b) {
 /* Un projet de test : « smoke-… » ou « test-… ». Ces projets ne déclenchent aucun
    mail et sont les seuls que /api/purge accepte d'effacer. La règle existe parce
    qu'un essai de la clôture, le 23 septembre 2026, a envoyé deux vrais mails. */
-const EST_TEST = /^(smoke|test)[-_]/;
+const EST_TEST = /^(smoke|test)\d*[-_]/;
 
 function projectName(url) {
   const p = (url.searchParams.get('p') || 'studio28').toLowerCase();
