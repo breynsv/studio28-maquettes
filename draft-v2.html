@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="2.3+20260914">
-<meta name="maquette-version-lisible" content="v2.3 — 14 septembre 2026">
+<meta name="maquette-version" content="3.0+20260923">
+<meta name="maquette-version-lisible" content="v3.0 — 23 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Bouger ensemble à Bruxelles</title>
-<meta name="description" content="Danser, bouger, respirer, une dizaine de professeurs indépendants, une seule salle. Rue des Deux Églises 28, 1000 Bruxelles — métro Arts-Loi.">
+<meta name="description" content="Danser, bouger, respirer, une dizaine de professeurs indépendants, une seule salle. Rue des Deux Églises 26-28, 1000 Bruxelles — métro Arts-Loi.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/logo/studio28-mark-terra.png">
 
@@ -264,6 +264,15 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 <body class="antialiased">
 
 <header id="hdr" class="over fixed top-0 inset-x-0 z-50 transition-all duration-500">
+<div x-data="annonce28()" x-show="visible" x-cloak
+     style="background:var(--ink);color:var(--paper)" class="relative">
+  <div class="mx-auto max-w-shell px-5 md:px-8 py-2.5 flex items-center gap-4 text-[14.5px]">
+    <span class="w-[7px] h-[7px] rounded-full shrink-0" style="background:var(--clay)"></span>
+    <p class="flex-1" x-text="message"></p>
+    <button @click="fermer()" aria-label="Fermer l'annonce"
+            class="shrink-0 text-[20px] leading-none" style="color:rgba(247,242,234,.6)">&times;</button>
+  </div>
+</div>
   <div class="mx-auto max-w-shell px-5 md:px-8">
     <div id="hdrbar" class="flex items-center justify-between gap-6 py-4 md:py-5 transition-all duration-500">
 
@@ -278,11 +287,12 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       </a>
 
       <nav class="relative z-10 hidden xl:flex items-center gap-7 text-[14.5px] font-medium">
-        <a href="#cours" class="navlnk">Cours</a>
         <a href="#horaire" class="navlnk">Horaire</a>
-        <a href="#lieu" class="navlnk">Le lieu</a>
+        <a href="#cours" class="navlnk">Cours</a>
+        <a href="#bootcamps" class="navlnk">Bootcamps</a>
+        <a href="#agenda" class="navlnk">Événements</a>
+        <a href="#lieu" class="navlnk">Studio 28</a>
         <a href="#salle" class="navlnk">Louer la salle</a>
-        <a href="#salle" class="navlnk">Entreprises</a>
         <a href="#venir" class="navlnk">Contact</a>
       </nav>
 
@@ -360,14 +370,14 @@ details[open] .faq-plus{ transform:rotate(45deg); }
         <div class="flex flex-wrap items-center gap-2 md:gap-2.5">
           <a href="#cours" class="pill">Yoga</a>
           <a href="#cours" class="pill">Pilates</a>
-          <a href="#cours" class="pill">Cyclodanse</a>
+          <a href="#cours" class="pill">Cyclodance Fusion</a>
           <a href="#cours" class="pill">Hip-hop</a>
           <a href="#cours" class="pill">Heels</a>
           <a href="#cours" class="pill">Salsa</a>
           <a href="#cours" class="pill">Bachata</a>
         </div>
         <p class="mt-4 text-[13.5px] num" style="color:rgba(251,246,238,.72)">
-          Rue des Deux Églises 28, 1000 Bruxelles — métro <strong class="font-semibold" style="color:var(--oak)">Arts-Loi</strong>, 3 min à pied.
+          Rue des Deux Églises 26-28, 1000 Bruxelles — métro <strong class="font-semibold" style="color:var(--oak)">Arts-Loi</strong>, 3 min à pied.
         </p>
       </div>
 
@@ -389,7 +399,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
               <span x-text="enCours[0].disc"></span><span class="num" style="color:var(--clay)"> — jusqu'à <span x-text="hm(enCours[0].fin)"></span></span>
             </p>
             <p class="mt-2 text-[15px]" style="color:var(--mutedink)">
-              <span x-text="enCours[0].prof"></span>, <span x-text="enCours[0].salle.toLowerCase()"></span>.
+              <span x-text="ligne(enCours[0])"></span>
               <a href="#maintenant" class="underline decoration-1 underline-offset-2">Voir la journée</a>
             </p>
           </div>
@@ -410,7 +420,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
         <p class="mt-2 text-[15px]" style="color:var(--mutedink)">Pas d'abonnement, pas d'engagement.</p>
       </div>
       <div class="py-7 md:py-9 md:pl-10 rv" style="border-color:var(--hair);transition-delay:.18s">
-        <p class="d d-600 text-[21px] md:text-[23px] leading-snug num">Rue des Deux Églises 28, Bruxelles — ouvert 7j/7</p>
+        <p class="d d-600 text-[21px] md:text-[23px] leading-snug num">Rue des Deux Églises 26-28, Bruxelles — du mardi au dimanche</p>
         <p class="mt-2 text-[15px]" style="color:var(--mutedink)">Métro Arts-Loi, 3 minutes à pied.</p>
       </div>
     </div>
@@ -481,19 +491,26 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                     <span class="text-[12.5px]" style="color:var(--clay)">en ce moment</span>
                   </template>
                 </div>
-                <p class="mt-1 text-[14.5px]" style="color:var(--mutedink)">
-                  <span x-text="c.prof"></span> — <span x-text="c.niveau"></span>,
-                  <span x-text="c.salle.toLowerCase()"></span>, <span class="num" x-text="c.duree + ' min'"></span>
-                </p>
+                <p class="mt-1 text-[14.5px]" style="color:var(--mutedink)" x-text="ligne(c)"></p>
               </div>
               <hr x-show="idx < coursAffiches.length - 1" style="border:0;border-top:1px solid var(--hair)">
             </div>
           </template>
           <template x-if="coursAffiches.length === 0">
-            <p class="cran py-6 text-[15px]" style="color:var(--muted)"
-               x-text="filtre === 'tout'
-                 ? 'Pas de cours ce jour-là. La salle reste disponible à la location.'
-                 : 'Pas de ' + filtre.toLowerCase() + ' ce jour-là. Essayez un autre jour, ou revenez à toutes les disciplines.'"></p>
+            <div class="cran py-6">
+              <p class="text-[15px]" style="color:var(--muted)"
+                 x-text="filtre === 'tout'
+                   ? 'Pas de cours ce jour-là — la salle est disponible à la location.'
+                   : 'Pas de ' + filtre.toLowerCase() + ' ce jour-là.'"></p>
+              <template x-if="suivantSemaine">
+                <p class="mt-3 text-[15px]" style="color:var(--mutedink)">
+                  Prochain cours : <span class="d d-600" x-text="suivantSemaine.disc"></span>
+                  <span class="num" style="color:var(--terra)">
+                    — <span x-text="J28[suivantSemaine.jour]"></span> à <span x-text="hm(suivantSemaine.debut)"></span>
+                  </span>
+                </p>
+              </template>
+            </div>
           </template>
         </div>
       </div>
@@ -508,9 +525,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
             <template x-for="c in enCours" :key="'l'+c.id">
               <div class="mt-4">
                 <p class="d d-600 text-[28px]" x-text="c.disc"></p>
-                <p class="mt-1.5 text-[15px]" style="color:rgba(246,241,232,.72)">
-                  <span x-text="c.prof"></span> — <span x-text="c.salle.toLowerCase()"></span>
-                </p>
+                <p class="mt-1.5 text-[15px]" style="color:rgba(246,241,232,.72)" x-text="ligne(c)"></p>
                 <p class="mt-3 num text-[15px]" style="color:var(--oak)">
                   <span x-text="hm(c.debut)"></span> à <span x-text="hm(c.fin)"></span>
                   <span style="color:rgba(246,241,232,.55)"> — il reste <span x-text="c.fin - min"></span> min</span>
@@ -536,7 +551,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
             <span class="num d-it" style="color:var(--clay)"> — <span x-text="prochain && hm(prochain.debut)"></span></span>
           </p>
           <p class="mt-1 text-[14.5px]" style="color:var(--mutedink)">
-            <span x-text="prochain && prochain.prof"></span>, <span x-text="prochain && prochain.salle.toLowerCase()"></span><template x-if="estAujourdhui && prochain"><span> — dans <span class="num" x-text="prochain.debut - min"></span> min</span></template>
+            <span x-text="prochain ? ligne(prochain) : ''"></span><template x-if="estAujourdhui && prochain"><span> — dans <span class="num" x-text="prochain.debut - min"></span> min</span></template>
           </p>
           <a href="#horaire" class="btn btn-ghost mt-6 w-full justify-center">Voir la semaine</a>
         </div>
@@ -588,8 +603,8 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       <a href="#horaire" class="group rv rounded-[6px] overflow-hidden border transition duration-500 grid sm:grid-cols-[240px_minmax(0,1fr)] md:grid-cols-[300px_minmax(0,1fr)]" style="border-color:var(--hair);background:var(--oat);transition-delay:.12s">
         <div class="ph ph-hover aspect-[4/3] sm:aspect-auto sm:h-full"><img src="assets/img/disc-cyclodanse.jpg" alt="Un cours de cyclodanse : danse en fauteuil roulant, en studio"></div>
         <div class="p-6 md:p-8 flex flex-col justify-center">
-          <h3 class="d d-600 text-[24px]">Cyclodanse</h3>
-          <p class="mt-2 text-[15px] leading-[1.62]" style="color:var(--mutedink)">La danse en fauteuil roulant, seul·e ou à deux. Un cours ouvert à tout le monde, valides et non-valides.</p>
+          <h3 class="d d-600 text-[24px]">Cyclodance Fusion</h3>
+          <p class="mt-2 text-[15px] leading-[1.62]" style="color:var(--mutedink)">La danse à deux, en fauteuil ou debout. Un cours ouvert à tout le monde, personne à mobilité réduite ou non.</p>
           <span class="mt-4 inline-block text-[13.5px] font-semibold" style="color:var(--terra)">Voir les horaires →</span>
         </div>
       </a>
@@ -649,7 +664,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   </div>
 </section>
 
-<section id="horaire" class="py-16 md:py-24" style="background:var(--oat)">
+<section id="horaire" class="py-16 md:py-24" style="background:var(--oat)" x-data="semaine28()">
   <div class="mx-auto max-w-shell px-5 md:px-8">
 
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-9 md:mb-12 rv">
@@ -662,186 +677,76 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 
       <div class="lg:pb-3">
         <p class="text-[12px] tracking-[.14em] uppercase mb-3" style="color:var(--muted)">Filtrer</p>
-        <div class="flex flex-wrap gap-2" id="filters">
-          <button class="chip" data-f="all" aria-pressed="true">Tout</button>
-          <button class="chip" data-f="yoga" aria-pressed="false">Yoga</button>
-          <button class="chip" data-f="pilates" aria-pressed="false">Pilates</button>
-          <button class="chip" data-f="cyclodanse" aria-pressed="false">Cyclodanse</button>
-          <button class="chip" data-f="hiphop" aria-pressed="false">Hip-hop</button>
-          <button class="chip" data-f="heels" aria-pressed="false">Heels</button>
-          <button class="chip" data-f="salsa" aria-pressed="false">Salsa</button>
-          <button class="chip" data-f="bachata" aria-pressed="false">Bachata</button>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="chip" @click="f='tout'" :aria-pressed="f==='tout'"
+            :style="f==='tout' ? 'background:var(--terra);color:var(--paper);border-color:var(--terra)' : ''">Tout</button>
+          <template x-for="d in disciplines" :key="d">
+            <button type="button" class="chip" @click="f=d" :aria-pressed="f===d"
+              :style="f===d ? 'background:var(--terra);color:var(--paper);border-color:var(--terra)' : ''"
+              x-text="d"></button>
+          </template>
         </div>
       </div>
     </div>
 
     
     <div class="row-grid hidden lg:grid pb-3 text-[11px] tracking-[.15em] uppercase" style="color:var(--muted);border-bottom:1px solid var(--hair)">
-      <div>Heure</div><div>Cours</div><div>Professeur·e</div><div>Crédits</div><div class="text-right">Place</div>
+      <div>Heure</div><div>Cours</div><div>Professeur·e / école</div><div>Crédits</div><div class="text-right">Carte LDE</div>
     </div>
 
     <div id="sched" class="rv">
+      <template x-for="j in ordreJours" :key="j">
+        <div>
+          <div class="day pt-8 pb-2">
+            <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)" x-text="cap(J28[j])"></h3>
+          </div>
 
-      
-      <div class="day pt-8 pb-2" data-day>
-        <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)">Lundi <span class="num" style="color:var(--muted)">17 août</span></h3>
-      </div>
-      <div class="cls row-grid py-4" data-d="pilates" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">12:30</div>
-        <div><span class="font-semibold text-[16.5px]">Pilates — tous niveaux</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Laura · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Laura</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="yoga" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">18:30</div>
-        <div><span class="font-semibold text-[16.5px]">Yoga doux — débutant·e·s</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Nivram · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Nivram</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="salsa" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">20:00</div>
-        <div><span class="font-semibold text-[16.5px]">Salsa — débutant·e·s</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Caro · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Caro</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
+          <template x-if="duJour(j).length === 0">
+            <p class="py-5 text-[15px]" style="color:var(--muted);border-top:1px solid var(--hair)"
+               x-text="f === 'tout'
+                 ? 'Pas de cours — la salle est disponible à la location.'
+                 : 'Pas de ' + f.toLowerCase() + ' ce jour-là.'"></p>
+          </template>
 
-      
-      <div class="day pt-9 pb-2" data-day>
-        <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)">Mardi <span class="num" style="color:var(--muted)">18 août</span></h3>
-      </div>
-      <div class="cls row-grid py-4" data-d="yoga" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">12:30</div>
-        <div><span class="font-semibold text-[16.5px]">Yoga sur la pause de midi</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Nivram · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Nivram</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="cyclodanse" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">19:00</div>
-        <div><span class="font-semibold text-[16.5px]">Cyclodanse — aucune expérience nécessaire</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Andy · 10 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Andy</div>
-        <div class="hidden lg:block num text-[15px]">10 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="bachata" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">20:15</div>
-        <div><span class="font-semibold text-[16.5px]">Bachata — débutant·e·s</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Ahmedy · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Ahmedy</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-
-      
-      <div class="day pt-9 pb-2" data-day>
-        <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)">Mercredi <span class="num" style="color:var(--muted)">19 août</span></h3>
-      </div>
-      <div class="cls row-grid py-4" data-d="pilates" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">18:30</div>
-        <div><span class="font-semibold text-[16.5px]">Pilates — dos et centre</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Elena · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Elena</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="hiphop" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">19:45</div>
-        <div><span class="font-semibold text-[16.5px]">Hip-hop — tous niveaux</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Jamel · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Jamel</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-
-      
-      <div class="day pt-9 pb-2" data-day>
-        <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)">Jeudi <span class="num" style="color:var(--muted)">20 août</span></h3>
-      </div>
-      <div class="cls row-grid py-4" data-d="yoga" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">12:30</div>
-        <div><span class="font-semibold text-[16.5px]">Yoga dynamique</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Laura · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Laura</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="heels" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">19:00</div>
-        <div><span class="font-semibold text-[16.5px]">Heels &amp; confidence</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Charline · 30 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Charline</div>
-        <div class="hidden lg:block num text-[15px]">30 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="bachata" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">20:30</div>
-        <div><span class="font-semibold text-[16.5px]">Bachata — intermédiaire</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Caro · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Caro</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-
-      
-      <div class="day pt-9 pb-2" data-day>
-        <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)">Vendredi <span class="num" style="color:var(--muted)">21 août</span></h3>
-      </div>
-      <div class="cls row-grid py-4" data-d="cyclodanse" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">18:30</div>
-        <div><span class="font-semibold text-[16.5px]">Cyclodanse</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Andy · 10 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Andy</div>
-        <div class="hidden lg:block num text-[15px]">10 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="salsa" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">20:00</div>
-        <div><span class="font-semibold text-[16.5px]">Salsa — intermédiaire</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Ahmedy · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Ahmedy</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-
-      
-      <div class="day pt-9 pb-2" data-day>
-        <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)">Samedi <span class="num" style="color:var(--muted)">22 août</span></h3>
-      </div>
-      <div class="cls row-grid py-4" data-d="yoga" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">10:30</div>
-        <div><span class="font-semibold text-[16.5px]">Yoga du samedi matin</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Nivram · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Nivram</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-      <div class="cls row-grid py-4" data-d="heels" style="border-top:1px solid var(--hair)">
-        <div class="num d text-[21px]">15:00</div>
-        <div><span class="font-semibold text-[16.5px]">Heels — atelier de deux heures</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Charline · 30 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Charline</div>
-        <div class="hidden lg:block num text-[15px]">30 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-
-      
-      <div class="day pt-9 pb-2" data-day>
-        <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)">Dimanche <span class="num" style="color:var(--muted)">23 août</span></h3>
-      </div>
-      <div class="cls row-grid py-4" data-d="pilates" style="border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)">
-        <div class="num d text-[21px]">11:00</div>
-        <div><span class="font-semibold text-[16.5px]">Pilates — reprise en douceur</span><span class="lg:hidden text-[14px] block" style="color:var(--mutedink)">Elena · 15 crédits</span></div>
-        <div class="hidden lg:block text-[15px]" style="color:var(--mutedink)">Elena</div>
-        <div class="hidden lg:block num text-[15px]">15 crédits</div>
-        <div class="lg:text-right mt-2 lg:mt-0"><a href="#" class="btn btn-ghost !py-1.5 !px-3.5 !text-[13px]">Pré-inscription</a></div>
-      </div>
-
-      <p id="empty" class="hidden py-10 text-center lead">Aucun cours de cette discipline cette semaine. <a href="#" class="lnk">Voir l'horaire complet</a>.</p>
+          <template x-for="c in duJour(j)" :key="c.id">
+            <div class="cls row-grid py-4" style="border-top:1px solid var(--hair)">
+              <div class="num d text-[21px]" x-text="c.h.replace(':','h')"></div>
+              <div>
+                <span class="font-semibold text-[16.5px]" x-text="c.disc"></span>
+                <template x-if="c.niveau">
+                  <span class="text-[14px]" style="color:var(--mutedink)"> — <span x-text="c.niveau"></span></span>
+                </template>
+                <template x-if="c.mensuel">
+                  <span class="text-[13px] ml-2" style="color:var(--clay)">une fois par mois</span>
+                </template>
+              </div>
+              <div class="text-[15px]" style="color:var(--mutedink)"
+                   x-text="c.prof ? c.prof : (c.ecole !== 'LDE' ? c.ecole : '—')"></div>
+              <div class="num text-[15px]" x-text="c.lde ? c.credits + ' crédits' : '—'"></div>
+              <div class="lg:text-right text-[14px]">
+                <template x-if="c.lde">
+                  <span style="color:var(--terra)">comprise</span>
+                </template>
+                <template x-if="!c.lde">
+                  <span style="color:var(--muted)" x-text="'paiement séparé · ' + c.ecole"></span>
+                </template>
+              </div>
+            </div>
+          </template>
+        </div>
+      </template>
     </div>
 
     <div class="mt-9 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
-      <p class="text-[14px] num" style="color:var(--mutedink)">
-        Tarifs en crédits — <span class="num">[à confirmer]</span>. Pré-inscription : 13 € au lieu de 15 €.
+      <p class="text-[14px]" style="color:var(--mutedink)">
+        <span class="num">20</span> crédits le yoga et le pilates, <span class="num">15</span> les danses,
+        <span class="num">10</span> la cyclodance fusion. Pré-inscription : <span class="num">13 €</span> au lieu de
+        <span class="num">15 €</span>.
       </p>
-      <a href="#" class="lnk text-[15px] font-medium">Voir l'horaire complet de la semaine →</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="py-16 md:py-28">
+<section class="py-16 md:py-28" x-data="packs28()">
   <div class="mx-auto max-w-shell px-5 md:px-8">
 
     <div class="grid lg:grid-cols-[1fr_360px] gap-10 lg:gap-16 items-start">
@@ -854,12 +759,35 @@ details[open] .faq-plus{ transform:rotate(45deg); }
         </div>
 
         <ol class="mt-10 md:mt-12 grid gap-px" style="background:var(--hair)">
-          <li class="rv p-6 md:p-8 flex gap-6 md:gap-9" style="background:var(--paper)">
-            <span class="d shrink-0" style="font-size:clamp(44px,6vw,64px);color:var(--oak);line-height:.9">1</span>
-            <div>
-              <h3 class="d d-600 text-[23px]">Achetez des crédits.</h3>
-              <p class="mt-2 lead">Un pack de 65 € ou de 120 €, ou un cours à l'unité. Pas d'abonnement, pas d'engagement. <span class="num text-[14px]" style="color:var(--muted)">[à confirmer]</span></p>
+          <li class="rv p-6 md:p-8" style="background:var(--paper)">
+            <h3 class="d d-600 text-[23px]">Achetez des crédits.</h3>
+            <p class="mt-2 lead">Un cours coûte entre 10 et 20 crédits selon la discipline. Pas d'abonnement,
+              pas d'engagement.</p>
+
+            <div class="grid sm:grid-cols-3 gap-4 mt-7">
+              <template x-for="p in packs" :key="p.nom">
+                <div class="relative p-6 flex flex-col" style="border:1px solid var(--hair);border-radius:10px;background:#fff">
+                  <template x-if="p.populaire">
+                    <span class="absolute -top-3 left-6 text-[11px] px-3 py-1 rounded-full"
+                          style="background:var(--terra);color:var(--paper)">le plus pris</span>
+                  </template>
+                  <p class="kicker" style="color:var(--muted)" x-text="p.nom"></p>
+                  <p class="d mt-3" style="font-size:44px;line-height:1" x-text="p.credits"></p>
+                  <p class="text-[13.5px]" style="color:var(--muted)">crédits</p>
+                  <p class="d d-600 mt-4 text-[22px]" style="color:var(--terra)" x-text="p.prix"></p>
+                  <ul class="mt-4 space-y-1.5 text-[14.5px]" style="color:var(--mutedink)">
+                    <template x-for="l in p.lignes" :key="l">
+                      <li class="flex gap-2"><span style="color:var(--oak)">·</span><span x-text="l"></span></li>
+                    </template>
+                  </ul>
+                </div>
+              </template>
             </div>
+
+            <p class="mt-5 text-[13.5px]" style="color:var(--muted)">
+              Les crédits valent pour tous les cours de la carte LDE. Les cours donnés par les écoles invitées se
+              paient séparément — c'est indiqué dans l'horaire.
+            </p>
           </li>
           <li class="rv p-6 md:p-8 flex gap-6 md:gap-9" style="background:var(--paper);transition-delay:.09s">
             <span class="d shrink-0" style="font-size:clamp(44px,6vw,64px);color:var(--oak);line-height:.9">2</span>
@@ -880,7 +808,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
         <p class="mt-8 text-[16px] leading-[1.75] max-w-[620px] pl-0 md:pl-1" style="color:var(--mutedink)">
           Un cours de danse : <strong class="num font-semibold" style="color:var(--terra)">15 crédits</strong>.
           Un cours de heels : <strong class="num font-semibold" style="color:var(--terra)">30 crédits</strong>.
-          La cyclodanse est le cours le moins cher du studio. <span class="num text-[14px]" style="color:var(--muted)">[à confirmer]</span>
+          La cyclodance fusion est le cours le moins cher du studio. <span class="num text-[14px]" style="color:var(--muted)">[à confirmer]</span>
         </p>
       </div>
 
@@ -950,7 +878,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     </div>
 
     <p class="mt-8 text-[13px]" style="color:var(--muted)">
-      Surface et capacité de la salle : <span class="num">[à confirmer]</span> m², <span class="num">[à confirmer]</span> personnes. Vestiaires et douches : <span class="num">[à confirmer]</span>.
+      Surface et capacité de la salle : <span class="num">276</span> m², <span class="num">250</span> personnes. Des vestiaires et des douches sont prévus à l'arrière, dès que le propriétaire aura donné son accord.
     </p>
   </div>
 </section>
@@ -974,7 +902,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       <div class="rv">
         <div class="tile" style="background:#D9C3A4"><span style="color:#5E4A33">L</span></div>
         <h3 class="d d-600 text-[21px] mt-4">Laura</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Yoga · Pilates</p>
+        <p class="text-[14.5px]" style="color:var(--mutedink)">Pilates · Salsa</p>
         <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante · portrait à venir</p>
       </div>
 
@@ -987,43 +915,43 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 
       <div class="rv" style="transition-delay:.1s">
         <div class="tile" style="background:#B4643F"><span style="color:#F7F2EA">C</span></div>
-        <h3 class="d d-600 text-[21px] mt-4">Caro</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Salsa · Bachata</p>
+        <h3 class="d d-600 text-[21px] mt-4">Selasi</h3>
+        <p class="text-[14.5px]" style="color:var(--mutedink)">Hip-hop</p>
         <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante · portrait à venir</p>
       </div>
 
       <div class="rv" style="transition-delay:.15s">
         <div class="tile" style="background:#E4D6C0"><span style="color:#6B5540">E</span></div>
         <h3 class="d d-600 text-[21px] mt-4">Elena</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Pilates <span class="num" style="color:var(--muted)">[à confirmer]</span></p>
+        <p class="text-[14.5px]" style="color:var(--mutedink)">Heels</p>
         <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante · portrait à venir</p>
       </div>
 
       <div class="rv">
         <div class="tile" style="background:#8C4A2E"><span style="color:#F7F2EA">A</span></div>
         <h3 class="d d-600 text-[21px] mt-4">Andy</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Cyclodanse <span class="num" style="color:var(--muted)">[à confirmer]</span></p>
+        <p class="text-[14.5px]" style="color:var(--mutedink)">Yoga</p>
         <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeur indépendant · portrait à venir</p>
       </div>
 
       <div class="rv" style="transition-delay:.05s">
         <div class="tile" style="background:#D9C3A4"><span style="color:#5E4A33">C</span></div>
         <h3 class="d d-600 text-[21px] mt-4">Charline</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Heels <span class="num" style="color:var(--muted)">[à confirmer]</span></p>
+        <p class="text-[14.5px]" style="color:var(--mutedink)">Cyclodance Fusion</p>
         <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante · portrait à venir</p>
       </div>
 
       <div class="rv" style="transition-delay:.1s">
         <div class="tile" style="background:#C9A87C"><span style="color:#4C3A26">J</span></div>
         <h3 class="d d-600 text-[21px] mt-4">Jamel</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Hip-hop <span class="num" style="color:var(--muted)">[à confirmer]</span></p>
+        <p class="text-[14.5px]" style="color:var(--mutedink)">Cyclodance Fusion</p>
         <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeur indépendant · portrait à venir</p>
       </div>
 
       <div class="rv" style="transition-delay:.15s">
         <div class="tile" style="background:#E4D6C0"><span style="color:#6B5540">A</span></div>
         <h3 class="d d-600 text-[21px] mt-4">Ahmedy</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Salsa · Bachata</p>
+        <p class="text-[14.5px]" style="color:var(--mutedink)">Salsa</p>
         <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeur indépendant · portrait à venir</p>
       </div>
 
@@ -1038,12 +966,52 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   </div>
 </section>
 
+<section id="bootcamps" class="pb-16 md:pb-24" x-data="{ liste: IDX28[0] }">
+  <div class="mx-auto max-w-shell px-5 md:px-8">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-9 md:mb-12 rv">
+      <div>
+        <p class="kicker">07 — Les bootcamps</p>
+        <span class="tick mt-3 mb-5"></span>
+        <h2 class="d" style="font-size:clamp(32px,4.2vw,54px)">
+          Un dimanche<br><span class="d-it" style="color:var(--clay)">par mois</span>
+        </h2>
+      </div>
+      <p class="lead max-w-[380px] md:text-right md:pb-2">
+        Deux heures sur une seule discipline, une fois par mois. On y entre sans rien connaître.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 rv">
+      <template x-for="c in liste" :key="c.id">
+        <article class="p-7 flex flex-col" style="background:var(--oat);border-radius:8px">
+          <p class="num text-[15px]" style="color:var(--terra)" x-text="c.h.replace(':','h') + ' — ' + c.fin_h"></p>
+          <h3 class="d d-600 text-[24px] mt-2" x-text="c.disc"></h3>
+          <template x-if="c.niveau">
+            <p class="text-[15px] mt-1" style="color:var(--mutedink)" x-text="c.niveau"></p>
+          </template>
+          <p class="mt-4 text-[15px]" style="color:var(--mutedink)">
+            Avec <span class="font-semibold" x-text="c.prof"></span>
+          </p>
+          <p class="mt-1 text-[14px]" style="color:var(--muted)">
+            <span class="num" x-text="c.credits"></span> crédits · une fois par mois
+          </p>
+        </article>
+      </template>
+    </div>
+
+    <p class="mt-6 text-[13px]" style="color:var(--muted)">
+      Un seul de ces trois rendez-vous a lieu chaque mois. La date exacte est annoncée en haut de page.
+    </p>
+  </div>
+</section>
+
 <section id="agenda" class="pb-16 md:pb-24" x-data="agenda28()">
   <div class="mx-auto max-w-shell px-5 md:px-8">
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-12 rv">
       <div>
-        <p class="kicker">07 — Ce qui se passe au studio</p>
+        <p class="kicker">08 — Ce qui se passe au studio</p>
         <span class="tick mt-3 mb-5"></span>
         <h2 class="d" style="font-size:clamp(32px,4.2vw,54px)">
           Soirées, stages<br><span class="d-it" style="color:var(--clay)">et portes ouvertes</span>
@@ -1088,7 +1056,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   <div class="mx-auto max-w-shell px-5 md:px-8">
 
     <div class="max-w-[720px] rv">
-      <p class="kicker" style="color:var(--oak)">08 — Pour enseigner, pour se réunir, pour fêter</p>
+      <p class="kicker" style="color:var(--oak)">09 — Pour enseigner, pour se réunir, pour fêter</p>
       <span class="tick mt-3 mb-5" style="background:var(--oak)"></span>
       <h2 class="d" style="font-size:clamp(32px,4.2vw,54px)">La salle est aussi<br><span class="d-it" style="color:var(--oak)">la vôtre</span></h2>
     </div>
@@ -1118,11 +1086,11 @@ details[open] .faq-plus{ transform:rotate(45deg); }
         <div class="p-7 md:p-9 flex-1 flex flex-col">
           <h3 class="d d-600 text-[27px] md:text-[31px]">Privatiser la salle</h3>
           <p class="mt-4 text-[16.5px] leading-[1.75]" style="color:rgba(246,241,232,.80)">
-            Team building, réunion, atelier, anniversaire, tournage. Une salle de <span class="num">[X]</span> m² pour <span class="num">[X]</span> personnes, un jardin, un système son, des vestiaires — à 3 minutes du métro Arts-Loi. À partir de <span class="num">[X]</span> €.
+            Team building, réunion, atelier, anniversaire, tournage. Une salle de <span class="num">276</span> m² pour <span class="num">250</span> personnes, un jardin et un système son — à 3 minutes du métro Arts-Loi. À partir de <span class="num">[X]</span> €.
           </p>
           <ul class="mt-6 space-y-2.5 text-[15px]" style="color:rgba(246,241,232,.72)">
             <li class="flex gap-3"><span style="color:var(--oak)">—</span> Jardin intérieur privatif</li>
-            <li class="flex gap-3"><span style="color:var(--oak)">—</span> Son, lumière et vestiaires sur place</li>
+            <li class="flex gap-3"><span style="color:var(--oak)">—</span> Son et lumière sur place</li>
             <li class="flex gap-3"><span style="color:var(--oak)">—</span> Facturation avec TVA, réponse sous 24 h</li>
           </ul>
           <a href="#venir" class="btn mt-8 self-start" style="background:var(--oak);color:#2A2721">Demander une date</a>
@@ -1137,12 +1105,49 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   </div>
 </section>
 
+<section id="avis" class="py-16 md:py-24" style="background:var(--oat)" x-data="avis28()">
+  <div class="mx-auto max-w-shell px-5 md:px-8">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-12 rv">
+      <div>
+        <p class="kicker">10 — Ce qu'en disent les danseurs</p>
+        <span class="tick mt-3 mb-5"></span>
+        <h2 class="d" style="font-size:clamp(32px,4.2vw,54px)">
+          Ils sont passés<br><span class="d-it" style="color:var(--clay)">par le parquet</span>
+        </h2>
+      </div>
+      <p class="lead max-w-[380px] md:text-right md:pb-2">
+        Les avis laissés sur la fiche Google de Latin Dance Evolution, l'école qui vit ici toute l'année.
+      </p>
+    </div>
+
+    <div class="grid gap-5 md:gap-6 md:grid-cols-3 rv">
+      <template x-for="a in avis" :key="a.nom">
+        <figure class="flex flex-col p-6 md:p-7"
+                style="background:var(--paper);border:1px solid var(--hair);border-radius:3px">
+          <div class="num text-[14px] tracking-[0.18em]" style="color:var(--oak)" aria-hidden="true">★★★★★</div>
+          <blockquote class="d mt-4 text-[19px] md:text-[20px] leading-[1.5] flex-1" x-text="'«\u202f' + a.texte + '\u202f»'"></blockquote>
+          <figcaption class="mt-5 pt-4 text-[14px]" style="border-top:1px solid var(--hair);color:var(--mutedink)">
+            <span x-text="a.nom"></span>
+            <span style="color:var(--muted)"> — <span x-text="a.quand"></span></span>
+          </figcaption>
+        </figure>
+      </template>
+    </div>
+
+    <p class="mt-6 text-[13px]" style="color:var(--muted)">
+      Avis publics repris de la fiche Google de Latin Dance Evolution (5/5, 37 avis).
+      <span class="num">[Ahmedy : dis-nous lesquels tu préfères, on les remplace.]</span>
+    </p>
+  </div>
+</section>
+
 <section id="faq" class="py-16 md:py-28">
   <div class="mx-auto max-w-shell px-5 md:px-8">
     <div class="grid lg:grid-cols-[340px_1fr] gap-10 lg:gap-20">
 
       <div class="rv">
-        <p class="kicker">09 — Questions fréquentes</p>
+        <p class="kicker">11 — Questions fréquentes</p>
         <span class="tick mt-3 mb-5"></span>
         <h2 class="d" style="font-size:clamp(30px,3.6vw,46px)">Les questions<br><span class="d-it" style="color:var(--clay)">qu'on nous pose</span></h2>
         <p class="lead mt-5">Il en reste une ? <a href="#venir" class="lnk">Écrivez-nous sur WhatsApp</a>, on répond dans la journée.</p>
@@ -1209,7 +1214,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 
       <div>
         <p class="kicker" style="color:var(--oak)">Venir au Studio 28</p>
-        <h2 class="d mt-4" style="font-size:clamp(30px,3.4vw,44px)">Rue des Deux Églises 28<br><span class="num">1000 Bruxelles</span></h2>
+        <h2 class="d mt-4" style="font-size:clamp(30px,3.4vw,44px)">Rue des Deux Églises 26-28<br><span class="num">1000 Bruxelles</span></h2>
         <p class="mt-5 text-[16.5px] leading-[1.75]" style="color:rgba(246,241,232,.78)">
           Métro <strong style="color:var(--oak)">Arts-Loi</strong> — 3 minutes à pied.
         </p>
@@ -1218,8 +1223,8 @@ details[open] .faq-plus{ transform:rotate(45deg); }
           <a href="#" class="btn" style="border:1px solid rgba(201,168,124,.45);color:#F6F1E8">Itinéraire</a>
         </div>
         <p class="mt-6 text-[15px] num" style="color:rgba(246,241,232,.62)">
-          Téléphone : <span style="color:rgba(246,241,232,.45)">[à confirmer]</span><br>
-          Ouvert 7j/7 — horaires d'accueil <span style="color:rgba(246,241,232,.45)">[à confirmer]</span>
+          Téléphone : <span class="num">+32 472 54 30 27</span><br>
+          Informations et inscriptions par WhatsApp ou par mail
         </p>
       </div>
 
@@ -1228,7 +1233,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
         <ul class="space-y-2.5 text-[15.5px]" style="color:rgba(246,241,232,.78)">
           <li><a href="#cours" class="hover:text-white transition">Cours de yoga à Bruxelles</a></li>
           <li><a href="#cours" class="hover:text-white transition">Cours de pilates à Bruxelles</a></li>
-          <li><a href="#cours" class="hover:text-white transition">Cyclodanse à Bruxelles</a></li>
+          <li><a href="#cours" class="hover:text-white transition">Cyclodance Fusion à Bruxelles</a></li>
           <li><a href="#cours" class="hover:text-white transition">Cours de hip-hop à Bruxelles</a></li>
           <li><a href="#cours" class="hover:text-white transition">Cours de heels à Bruxelles</a></li>
           <li><a href="#cours" class="hover:text-white transition">Cours de salsa à Bruxelles</a></li>
@@ -1316,31 +1321,7 @@ document.querySelectorAll('#drawer a').forEach(function(a){
   a.addEventListener('click', function(){ document.getElementById('drawer').classList.add('hidden'); });
 });
 
-/* schedule filter — real HTML rows, shown and hidden */
-(function(){
-  var box = document.getElementById('sched');
-  var empty = document.getElementById('empty');
-  document.querySelectorAll('#filters .chip').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var f = btn.dataset.f;
-      document.querySelectorAll('#filters .chip').forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
-      box.querySelectorAll('.cls').forEach(function(r){
-        r.style.display = (f === 'all' || r.dataset.d === f) ? '' : 'none';
-      });
-      var any = false;
-      box.querySelectorAll('[data-day]').forEach(function(d){
-        var n = d.nextElementSibling, shown = false;
-        while (n && n.classList.contains('cls')){
-          if (n.style.display !== 'none') shown = true;
-          n = n.nextElementSibling;
-        }
-        d.style.display = shown ? '' : 'none';
-        if (shown) any = true;
-      });
-      empty.classList.toggle('hidden', any);
-    });
-  });
-})();
+/* Le filtre de l'horaire est désormais géré par Alpine (semaine28). */
 
 /* gentle reveal */
 (function(){
@@ -1353,64 +1334,67 @@ document.querySelectorAll('#drawer a').forEach(function(a){
 
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 <script>
-/* ═══════ données d'exemple — à remplacer ═══════
-   Deux options possibles, voir le devis : une liste fixe que l'on modifie à la
-   demande, ou un branchement sur le logiciel de l'école et tout se met à jour seul.
-   ══════════════════════════════════════════════ */
-const OUVERTURE = { debut:'07:30', fin:'22:00' };
+/* ═══════ horaire réel — saison 2026-2027 ═══════
+   Source : l'affiche d'Ahmedy (« Programme saison 2026-2027, rentrée le 29 août 2026 »)
+   et ses trois corrections du 23 septembre : enfants IMPULS de 14h à 16h,
+   kizomba à 21h le mercredi, Afro-Latin Move à 12h30.
+
+   lde: true  → compris dans la carte LDE (le badge noir sur son affiche)
+   mensuel    → une fois par mois seulement (les rendez-vous du dimanche)
+   ═══════════════════════════════════════════════ */
+const OUVERTURE = { debut:'12:00', fin:'22:30' };
+
+/* Les danses coûtent 15 crédits ; seules ces trois-là font exception. */
+const CREDITS = { 'Yoga':20, 'Pilates':20, 'Cyclodance Fusion':10 };
+
 const HORAIRE = {
-  1:[{h:'07:30',duree:60,disc:'Pilates',prof:'Elena',salle:'Grande salle',niveau:'Tous niveaux'},
-     {h:'12:30',duree:45,disc:'Yoga',prof:'Laura',salle:'Grande salle',niveau:'Midi'},
-     {h:'18:00',duree:45,disc:'Cyclodanse',prof:'Andy',salle:'Salle noire',niveau:'Tous niveaux'},
-     {h:'19:00',duree:75,disc:'Heels',prof:'Jade',salle:'Salle noire',niveau:'Débutant·e'},
-     {h:'19:30',duree:60,disc:'Salsa',prof:'Ahmedy',salle:'Grande salle',niveau:'Débutant·e'},
-     {h:'20:45',duree:60,disc:'Bachata',prof:'Nadia',salle:'Grande salle',niveau:'Intermédiaire'}],
-  2:[{h:'09:00',duree:60,disc:'Yoga',prof:'Nivram',salle:'Grande salle',niveau:'Doux'},
-     {h:'12:30',duree:45,disc:'Pilates',prof:'Laura',salle:'Grande salle',niveau:'Débutant·e'},
-     {h:'18:30',duree:75,disc:'Hip-hop',prof:'Jamel',salle:'Salle noire',niveau:'Tous niveaux'},
-     {h:'19:45',duree:60,disc:'Bachata',prof:'Nadia',salle:'Grande salle',niveau:'Débutant·e'},
-     {h:'21:00',duree:60,disc:'Salsa',prof:'Ahmedy',salle:'Grande salle',niveau:'Intermédiaire'}],
-  3:[{h:'07:30',duree:60,disc:'Pilates',prof:'Elena',salle:'Grande salle',niveau:'Tous niveaux'},
-     {h:'12:30',duree:45,disc:'Yoga',prof:'Laura',salle:'Grande salle',niveau:'Midi'},
-     {h:'17:30',duree:45,disc:'Cyclodanse',prof:'Andy',salle:'Salle noire',niveau:'Débutant·e'},
-     {h:'18:30',duree:60,disc:'Yoga',prof:'Nivram',salle:'Grande salle',niveau:'Doux'},
-     {h:'19:00',duree:75,disc:'Heels',prof:'Jade',salle:'Salle noire',niveau:'Tous niveaux'},
-     {h:'20:15',duree:60,disc:'Bachata',prof:'Nadia',salle:'Grande salle',niveau:'Intermédiaire'}],
-  4:[{h:'07:30',duree:60,disc:'Pilates',prof:'Elena',salle:'Grande salle',niveau:'Tous niveaux'},
-     {h:'12:30',duree:45,disc:'Yoga',prof:'Laura',salle:'Grande salle',niveau:'Midi'},
-     {h:'18:00',duree:45,disc:'Cyclodanse',prof:'Andy',salle:'Salle noire',niveau:'Tous niveaux'},
-     {h:'19:00',duree:75,disc:'Heels',prof:'Jade',salle:'Salle noire',niveau:'Tous niveaux'},
-     {h:'19:30',duree:60,disc:'Salsa',prof:'Ahmedy',salle:'Grande salle',niveau:'Tous niveaux'},
-     {h:'20:45',duree:60,disc:'Bachata',prof:'Caro',salle:'Grande salle',niveau:'Intermédiaire'}],
-  5:[{h:'09:00',duree:60,disc:'Yoga',prof:'Nivram',salle:'Grande salle',niveau:'Doux'},
-     {h:'12:30',duree:45,disc:'Pilates',prof:'Laura',salle:'Grande salle',niveau:'Débutant·e'},
-     {h:'17:30',duree:45,disc:'Cyclodanse',prof:'Andy',salle:'Salle noire',niveau:'Tous niveaux'},
-     {h:'18:30',duree:75,disc:'Hip-hop',prof:'Jamel',salle:'Salle noire',niveau:'Tous niveaux'},
-     {h:'18:45',duree:60,disc:'Bachata',prof:'Nadia',salle:'Grande salle',niveau:'Débutant·e'},
-     {h:'20:15',duree:75,disc:'Salsa',prof:'Ahmedy',salle:'Salle noire',niveau:'Tous niveaux'}],
-  6:[{h:'10:00',duree:75,disc:'Yoga',prof:'Laura',salle:'Grande salle',niveau:'Tous niveaux'},
-     {h:'11:30',duree:60,disc:'Pilates',prof:'Elena',salle:'Grande salle',niveau:'Débutant·e'},
-     {h:'13:00',duree:90,disc:'Heels',prof:'Jade',salle:'Salle noire',niveau:'Atelier'},
-     {h:'15:00',duree:75,disc:'Hip-hop',prof:'Jamel',salle:'Salle noire',niveau:'Tous niveaux'},
-     {h:'17:00',duree:60,disc:'Bachata',prof:'Nadia',salle:'Grande salle',niveau:'Tous niveaux'},
-     {h:'18:30',duree:75,disc:'Salsa',prof:'Ahmedy',salle:'Salle noire',niveau:'Débutant·e'}],
-  0:[{h:'10:00',duree:75,disc:'Yoga',prof:'Nivram',salle:'Grande salle',niveau:'Doux'},
-     {h:'11:30',duree:60,disc:'Pilates',prof:'Laura',salle:'Grande salle',niveau:'Tous niveaux'},
-     {h:'16:00',duree:45,disc:'Cyclodanse',prof:'Andy',salle:'Salle noire',niveau:'Débutant·e'},
-     {h:'17:30',duree:60,disc:'Hip-hop',prof:'Jamel',salle:'Salle noire',niveau:'Débutant·e'}]
+  1: [],                                                     /* lundi — rien pour le moment */
+  2: [
+    {h:'12:30', fin:'13:30', disc:'Pilates', prof:'Laura', ecole:'LDE', lde:true},
+    {h:'19:00', fin:'19:30', disc:'Bachata', niveau:'Initiation',     ecole:'LDE', lde:true},
+    {h:'19:30', fin:'20:30', disc:'Bachata', niveau:'Open level',     ecole:'LDE', lde:true},
+    {h:'20:30', fin:'21:30', disc:'Bachata', niveau:'Intermédiaire',  ecole:'LDE', lde:true},
+    {h:'21:30', fin:'22:30', disc:'Bachata', niveau:'Practica',       ecole:'LDE', lde:true}
+  ],
+  3: [
+    {h:'14:00', fin:'16:00', disc:'Enfants', niveau:'Pré-danse, ballet, dance mix, K-pop', ecole:'IMPULS', lde:false},
+    {h:'18:00', fin:'19:00', disc:'Tango',   ecole:'IMPULS',  lde:false},
+    {h:'19:00', fin:'20:00', disc:'Salsa',   ecole:"O'Dance", lde:false},
+    {h:'20:00', fin:'21:00', disc:'Salsa',   ecole:"O'Dance", lde:false},
+    {h:'21:00', fin:'22:00', disc:'Kizomba', ecole:"O'Dance", lde:false}
+  ],
+  4: [
+    {h:'12:30', fin:'13:30', disc:'Yoga',  prof:'Nivram',   ecole:'LDE',     lde:true},
+    {h:'18:00', fin:'19:00', disc:'Zumba', prof:'Nastasia', ecole:'Invitée', lde:false},
+    {h:'19:00', fin:'19:30', disc:'Salsa', niveau:'Initiation',              ecole:'LDE', lde:true},
+    {h:'19:30', fin:'20:30', disc:'Salsa', niveau:'Débutant·e',              ecole:'LDE', lde:true},
+    {h:'20:30', fin:'21:30', disc:'Salsa', niveau:'Intermédiaire',           ecole:'LDE', lde:true},
+    {h:'21:30', fin:'22:30', disc:'Salsa', niveau:'Practica salsa-bachata',  ecole:'LDE', lde:true}
+  ],
+  5: [
+    {h:'12:30', fin:'13:30', disc:'Afro-Latin Move', ecole:'LDE', lde:true},
+    {h:'17:30', fin:'18:30', disc:'Yoga', prof:'Andy', ecole:'LDE', lde:true}
+  ],
+  6: [],                                                     /* samedi — rien pour le moment */
+  0: [
+    {h:'15:00', fin:'17:00', disc:'Cyclodance Fusion', prof:'Jamel et Charline', ecole:'LDE', lde:true, mensuel:true},
+    {h:'16:00', fin:'18:00', disc:'Heels',   niveau:'Confidence',    prof:'Elena',  ecole:'LDE', lde:true, mensuel:true},
+    {h:'16:00', fin:'18:00', disc:'Hip-hop', niveau:'Back to Basic', prof:'Selasi', ecole:'LDE', lde:true, mensuel:true}
+  ]
 };
+
 const EVENEMENTS = [
   { jourNum:'26', mois:'septembre', titre:'Soirée sociale',
     ligne:"Le parquet est à vous. Une heure d'initiation, puis on danse jusqu'à la fermeture.",
     heure:'20h00 — 00h00', prix:'8 €' },
-  { jourNum:'04', mois:'octobre', titre:'Stage de cyclodanse',
-    ligne:'Une après-midi complète, en fauteuil et debout. Ouvert à tout le monde, sans expérience.',
+  { jourNum:'04', mois:'octobre', titre:'Stage de Cyclodance Fusion',
+    ligne:"Une après-midi complète, personne à mobilité réduite ou non. Ouvert à tout le monde, sans expérience.",
     heure:'14h00 — 18h00', prix:'35 €' },
   { jourNum:'12', mois:'octobre', titre:'Yoga et brunch au jardin',
     ligne:"Un cours doux le dimanche matin, suivi d'un brunch dehors si le temps le permet.",
     heure:'10h00 — 13h00', prix:'25 €' },
   { jourNum:'25', mois:'octobre', titre:'Atelier heels',
-    ligne:'Trois heures sur une seule chorégraphie, avec Jade. Places limitées.',
+    ligne:'Trois heures sur une seule chorégraphie, avec Elena. Places limitées.',
     heure:'13h00 — 16h00', prix:'40 €' }
 ];
 
@@ -1419,14 +1403,91 @@ const JA28 = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
 const M28  = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
 function toMin28(x){ const p = x.split(':'); return (+p[0])*60 + (+p[1]); }
 function cap28(x){ return x.charAt(0).toUpperCase() + x.slice(1); }
+
+const ORDRE = ['Yoga','Pilates','Cyclodance Fusion','Heels','Hip-hop','Enfants','Tango','Zumba','Afro-Latin Move','Salsa','Bachata','Kizomba'];
+const DISCIPLINES = (function(){
+  const vues = new Set();
+  for (let d = 0; d < 7; d++) for (const c of (HORAIRE[d]||[])) vues.add(c.disc);
+  const ordonnees = ORDRE.filter(x => vues.has(x));
+  for (const x of vues) if (!ordonnees.includes(x)) ordonnees.push(x);
+  return ordonnees;
+})();
+
 const IDX28 = {};
 for (let d = 0; d < 7; d++){
   IDX28[d] = (HORAIRE[d]||[]).map(function(c,i){
-    return Object.assign({}, c, { id:d+'-'+i, jour:d, debut:toMin28(c.h), fin:toMin28(c.h)+c.duree });
+    return Object.assign({}, c, {
+      id: d+'-'+i, jour: d,
+      debut: toMin28(c.h),
+      fin:   toMin28(c.fin || c.h) + (c.fin ? 0 : 60),
+      credits: CREDITS[c.disc] != null ? CREDITS[c.disc] : 15,
+      fin_h: (c.fin || '').replace(':','h')
+    });
   }).sort(function(a,b){ return a.debut - b.debut; });
 }
 
+/* L'annonce en haut de page. Changer le texte ici ; mettre ANNONCE à '' la retire.
+   La clef de mémorisation contient le message, donc un nouveau texte se réaffiche
+   même chez quelqu'un qui avait fermé le précédent. */
+const ANNONCE = "Rentrée le 29 août — l'horaire 2026-2027 est en ligne.";
+function annonce28(){
+  return {
+    message: ANNONCE,
+    visible: false,
+    init(){
+      if (!ANNONCE) return;
+      try { this.visible = localStorage.getItem('annonce28') !== ANNONCE; }
+      catch(e){ this.visible = true; }
+    },
+    fermer(){
+      this.visible = false;
+      try { localStorage.setItem('annonce28', ANNONCE); } catch(e){}
+    }
+  };
+}
+
+/* Les packs de crédits. Les prix restent à confirmer par Ahmedy ; les crédits,
+   eux, viennent de sa remarque 34 (20 le yoga et le pilates, 15 les danses,
+   10 la cyclodance fusion). */
+const PACKS = [
+  { nom:'Découverte', credits:'30',  prix:'[à confirmer]', populaire:false,
+    lignes:['deux cours de danse', 'valable 3 mois', 'sans engagement'] },
+  { nom:'Saison',     credits:'150', prix:'[à confirmer]', populaire:true,
+    lignes:['dix cours de danse', 'valable un an', 'toutes les disciplines de la carte LDE'] },
+  { nom:'À l\'unité', credits:'15',  prix:'[à confirmer]', populaire:false,
+    lignes:['un cours de danse', 'pré-inscription 13 € au lieu de 15 €', 'idéal pour essayer'] }
+];
+function packs28(){ return { packs: PACKS }; }
+
+/* Les avis viennent de la fiche Google de Latin Dance Evolution : Ahmedy les a
+   choisis parce qu'ils parlent des cours et des profs de la maison. */
+const AVIS = [
+  { texte:"Professionnalisme, bonne humeur et gentillesse sont les maîtres mots de cette école de danse\u00a0! Rejoignez-nous dans cette grande famille pour bouger, danser, vous amuser et progresser.",
+    nom:'Sandrine V.', quand:'il y a 3 ans' },
+  { texte:"Best party in town\u00a0!",
+    nom:'Marisa Van Andel', quand:'il y a 1 an' },
+  { texte:"Une très bonne ambiance.",
+    nom:'Nath L.', quand:'il y a 3 ans' }
+];
+function avis28(){ return { avis: AVIS }; }
+
 function agenda28(){ return { evenements: EVENEMENTS }; }
+
+/* L'horaire de la semaine lit exactement les mêmes données que le direct :
+   une seule source, donc impossible que les deux se contredisent. */
+function semaine28(){
+  return {
+    f: 'tout',
+    disciplines: DISCIPLINES,
+    J28,
+    ordreJours: [1,2,3,4,5,6,0],          /* la semaine commence le lundi */
+    cap: cap28,
+    duJour(j){
+      const l = IDX28[j] || [];
+      return this.f === 'tout' ? l : l.filter(c => c.disc === this.f);
+    }
+  };
+}
 
 function jour28(){
   return {
@@ -1435,7 +1496,7 @@ function jour28(){
     filtre: 'tout',
     joursAbbr: JA28,
     
-    disciplines: ['Yoga','Pilates','Cyclodanse','Hip-hop','Heels','Salsa','Bachata'],
+    disciplines: DISCIPLINES,
     init(){ setInterval(() => { this.tick = Date.now(); }, 1000); },
     get maintenant(){ return new Date(this.tick); },
     get jour(){ return this.maintenant.getDay(); },
@@ -1448,6 +1509,30 @@ function jour28(){
       return cap28(J28[this.jour])+' '+m.getDate()+' '+M28[m.getMonth()]; },
     get ouvert(){ return this.min >= toMin28(OUVERTURE.debut) && this.min < toMin28(OUVERTURE.fin); },
     hm(m){ const h = Math.floor(m/60)%24, x = m%60; return h+'h'+String(x).padStart(2,'0'); },
+    J28,
+
+    /* Une seule ligne qui dit l'essentiel : le niveau, qui donne le cours, quelle
+       école, et si c'est compris dans la carte LDE. */
+    ligne(c){
+      const bouts = [];
+      if (c.niveau) bouts.push(c.niveau);
+      if (c.prof)   bouts.push('avec ' + c.prof);
+      if (c.ecole && c.ecole !== 'LDE') bouts.push(c.ecole);
+      if (c.mensuel) bouts.push('une fois par mois');
+      bouts.push(c.lde ? 'carte LDE' : 'paiement séparé');
+      return bouts.join(' · ');
+    },
+
+    /* Le lundi et le samedi sont vides : plutôt que le silence, on annonce le
+       prochain rendez-vous de la semaine. */
+    get suivantSemaine(){
+      for (let i = 1; i <= 7; i++){
+        const d = (this.jourActif + i) % 7;
+        const l = (IDX28[d] || []).filter(c => this.filtre === 'tout' || c.disc === this.filtre);
+        if (l.length) return l[0];
+      }
+      return null;
+    },
     get estAujourdhui(){ return this.jourActif === this.jour; },
     get coursDuJour(){ return IDX28[this.jourActif] || []; },
     /* Le filtre ne change que la liste du jour. « En ce moment » et « Ensuite »
@@ -1457,13 +1542,18 @@ function jour28(){
       const l = this.coursDuJour;
       return this.filtre === 'tout' ? l : l.filter(c => c.disc === this.filtre);
     },
+    /* Les rendez-vous du dimanche n'ont lieu qu'une fois par mois : on ne peut pas
+       affirmer qu'ils se donnent aujourd'hui, donc ils ne pilotent pas le direct. */
     get enCours(){ if (!this.estAujourdhui) return [];
-      return this.coursDuJour.filter(c => c.debut <= this.min && this.min < c.fin); },
+      return this.coursDuJour.filter(c => !c.mensuel && c.debut <= this.min && this.min < c.fin); },
     get enCoursIds(){ return this.enCours.map(c => c.id); },
-    get prochain(){ if (!this.estAujourdhui) return this.coursDuJour[0] || null;
-      return this.coursDuJour.find(c => c.debut > this.min) || null; },
+    get prochain(){
+      const l = this.coursDuJour.filter(c => !c.mensuel);
+      if (!this.estAujourdhui) return l[0] || null;
+      return l.find(c => c.debut > this.min) || null;
+    },
     get marqueurAvant(){ if (!this.estAujourdhui) return null;
-      const n = this.coursDuJour.find(c => c.debut > this.min); return n ? n.id : null; },
+      const n = this.coursAffiches.find(c => c.debut > this.min); return n ? n.id : null; },
     get titreItal(){
       if (!this.estAujourdhui) return 'le ' + J28[this.jourActif];
       return this.enCours.length ? 'maintenant' : "aujourd'hui";
