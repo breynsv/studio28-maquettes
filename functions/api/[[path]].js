@@ -8,6 +8,7 @@
  *   POST /api/feedback?p=studio28&t=JETON     ← { pins, counter, name }
  *   POST /api/upload?p=studio28&t=JETON       ← multipart "photo"   → { url }
  *   POST /api/finalize?p=studio28&t=JETON     scelle un tour et prévient par mail
+ *   POST /api/purge?p=smoke-xxx&t=JETON       efface un projet de TEST, et rien d'autre
  *   GET  /api/photo/<clef>                    → l'image
  *
  * Bindings attendus (voir wrangler.toml) :
@@ -46,6 +47,11 @@ function safeEqual(a, b) {
   for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
   return diff === 0;
 }
+
+/* Un projet de test : « smoke-… » ou « test-… ». Ces projets ne déclenchent aucun
+   mail et sont les seuls que /api/purge accepte d'effacer. La règle existe parce
+   qu'un essai de la clôture, le 23 septembre 2026, a envoyé deux vrais mails. */
+const EST_TEST = /^(smoke|test)[-_]/;
 
 function projectName(url) {
   const p = (url.searchParams.get('p') || 'studio28').toLowerCase();
@@ -281,9 +287,13 @@ export async function onRequest(context) {
     doc.pins = (doc.pins || []).map((p) => (p.sealed ? p : { ...p, sealed: true, round }));
     const payload = JSON.stringify(doc);
 
-    let mail = 'non configuré';
-    try { mail = await sendMail(env, project, round, version, doc.name, ouvertes, url.origin); }
-    catch (e) { mail = 'échec : ' + String(e).slice(0, 180); }
+    let mail;
+    if (EST_TEST.test(project)) {
+      mail = 'projet de test — aucun mail envoyé';
+    } else {
+      try { mail = await sendMail(env, project, round, version, doc.name, ouvertes, url.origin); }
+      catch (e) { mail = 'échec : ' + String(e).slice(0, 180); }
+    }
 
     await DB.batch([
       DB.prepare(`INSERT INTO review_rounds (project, round, version, name, payload, finalized_at, mail)
@@ -294,6 +304,20 @@ export async function onRequest(context) {
     ]);
 
     return json({ ok: true, round, count: ouvertes.length, finalized_at: now, mail });
+  }
+
+  /* ── effacement d'un projet de test ───────────────────────────────────── */
+  if (action === 'purge' && request.method === 'POST') {
+    /* Volontairement incapable de toucher à un vrai projet : le nom doit annoncer
+       qu'il s'agit d'un essai. Un outil de nettoyage qui peut effacer les remarques
+       du client est plus dangereux que le désordre qu'il range. */
+    if (!EST_TEST.test(project)) return fail(403, 'seuls les projets de test peuvent être effacés');
+    await ensureSchema(DB);
+    await DB.batch([
+      DB.prepare('DELETE FROM review_rounds WHERE project = ?').bind(project),
+      DB.prepare('DELETE FROM reviews WHERE project = ?').bind(project),
+    ]);
+    return json({ ok: true, purged: project });
   }
 
   if (action === 'rounds' && request.method === 'GET') {
