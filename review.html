@@ -79,6 +79,13 @@
   .card .pics{display:flex;gap:4px;margin-top:7px;flex-wrap:wrap}
   .card .pics img{width:38px;height:38px;object-fit:cover;border-radius:5px;border:1px solid var(--hair)}
   #empty{padding:22px 16px;color:var(--muted);font-size:13.5px;line-height:1.6}
+  /* Les remarques d'un retour précédent, déjà traitées : repliées par défaut.
+     Les garder à l'écran sur une maquette qui les a toutes intégrées donne
+     l'impression qu'il reste du travail, et cache les nouvelles. */
+  #archive{display:none;margin:0 0 10px;padding:9px 11px;background:#faf7f1;
+           border:1px solid var(--hair);border-radius:10px;font-size:12.5px;color:var(--muted)}
+  #archive button{margin-top:5px;background:none;border:0;padding:0;cursor:pointer;
+           color:var(--chg);font:inherit;text-decoration:underline}
   #sendbox{padding:12px;border-top:1px solid var(--hair);background:var(--oat)}
   #sendNote{margin:8px 2px 0;font-size:12.5px;color:var(--muted);line-height:1.5}
   #sendbox.done .btn{opacity:.5;pointer-events:none}
@@ -172,6 +179,7 @@
   </div>
   <aside id="side">
     <h2>Vos remarques (<span id="count">0</span>)</h2>
+    <div id="archive"></div>
     <div id="list"></div>
     <div id="empty">
       Aucune remarque pour l'instant.<br><br>
@@ -454,6 +462,7 @@ function drawPins(){
   const st = stage.getBoundingClientRect();
   const offX = fr.left - st.left, offY = fr.top - st.top;   // non nul en aperçu téléphone
   for (const p of store.pins){
+    if (!archiveOuverte && archivee(p)) continue;
     let el = null;
     try { el = d.querySelector(p.sel); } catch(e){}
     if (!el) continue;
@@ -473,13 +482,43 @@ function drawPins(){
 }
 
 /* ── liste latérale ────────────────────────────────────────── */
+
+/* Une remarque est « archivée » quand elle a été envoyée ET qu'elle portait sur une
+   maquette antérieure : la version affichée l'a donc déjà intégrée. Elle n'est ni
+   supprimée ni modifiable — seulement repliée, pour que l'écran parle de ce qui reste
+   à faire. Une remarque envoyée sur CETTE maquette reste visible : elle porte sur ce
+   qu'on regarde. */
+function archivee(p){ return !!p.sealed && !!p.ver && !!maquetteVer && p.ver !== maquetteVer; }
+let archiveOuverte = false;
+
 function render(){
-  document.getElementById('count').textContent = store.pins.length;
+  const archivees = store.pins.filter(archivee);
+  const vives     = store.pins.filter(p => !archivee(p));
+  const visibles  = archiveOuverte ? store.pins : vives;
+
+  document.getElementById('count').textContent = vives.length;
   majSend();
-  emptyEl.style.display = store.pins.length ? 'none' : 'block';
+  emptyEl.style.display = vives.length ? 'none' : 'block';
+
+  const arch = document.getElementById('archive');
+  if (archivees.length){
+    const tours = [...new Set(archivees.map(p => p.round).filter(Boolean))].sort((a,b)=>a-b);
+    const quoi  = tours.length === 1 ? 'Retour n° ' + tours[0]
+                : tours.length  >  1 ? 'Retours n° ' + tours.join(', ')
+                : 'Remarques précédentes';
+    arch.style.display = 'block';
+    arch.innerHTML = quoi + ' — ' + archivees.length + ' remarque' + (archivees.length > 1 ? 's' : '') +
+      ', envoyée' + (archivees.length > 1 ? 's' : '') + ' et intégrée' + (archivees.length > 1 ? 's' : '') +
+      ' dans cette version.<br><button type="button">' +
+      (archiveOuverte ? 'Masquer' : 'Afficher') + '</button>';
+    arch.querySelector('button').onclick = () => { archiveOuverte = !archiveOuverte; render(); };
+  } else {
+    arch.style.display = 'none';
+  }
+
   listEl.innerHTML = '';
   const LBL = { ok:'Ça me va', change:'À changer', remove:'À supprimer' };
-  for (const p of store.pins){
+  for (const p of visibles){
     const c = document.createElement('div');
     c.className = 'card' + (p.sealed ? ' scelle' : '') + (p.id === activeId ? ' sel' : '');
     c.onclick = () => { scrollToPin(p); openEditor(p.id); };
