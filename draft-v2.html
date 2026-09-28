@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="3.5+20260928">
-<meta name="maquette-version-lisible" content="v3.5 — 28 septembre 2026">
+<meta name="maquette-version" content="3.6+20260928">
+<meta name="maquette-version-lisible" content="v3.6 — 28 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Bouger ensemble à Bruxelles</title>
@@ -1353,10 +1353,10 @@ const HORAIRE = {
   /* Lundi — Ahmedy avait dit « aucun cours » le 23 septembre, puis a donné ce cours
      le 28. C'est la réponse la plus récente qui vaut. */
   1: [
-    {h:'19:00', fin:'20:00', disc:'Tango', niveau:'Initiation', ecole:'La Tangueria', lde:false}
+    {h:'12:30', fin:'13:30', disc:'Pilates', niveau:'tous niveaux', prof:'Laura', ecole:'LDE', lde:true},
+    {h:'19:00', fin:'20:00', disc:'Tango',   niveau:'Initiation', ecole:'La Tangueria', lde:false}
   ],
   2: [
-    {h:'12:30', fin:'13:30', disc:'Pilates', niveau:'tous niveaux', prof:'Laura', ecole:'LDE', lde:true},
     {h:'19:00', fin:'20:00', disc:'Bachata', niveau:'Initiation',  ecole:'LDE', lde:true},
     {h:'19:30', fin:'20:30', disc:'Bachata', niveau:'Débutant',    ecole:'LDE', lde:true},
     {h:'20:30', fin:'21:30', disc:'Bachata', niveau:'Intermédiaire', ecole:'LDE', lde:true},
@@ -1385,7 +1385,12 @@ const HORAIRE = {
     {h:'12:30', fin:'13:30', disc:'Afro-Latin Move', ecole:'LDE', lde:true},
     {h:'17:30', fin:'18:30', disc:'Yoga', prof:'Andy', ecole:'LDE', lde:true}
   ],
-  6: [],   /* samedi — rien */
+  /* Samedi — vide jusqu'au 28 septembre, où il donne ce cours. Cela rejoint sa
+     remarque 32 du 20 (« samedi 14.00 impulse danse pour les enfants »), que son
+     affiche contredisait. C'est donc son affiche qui était incomplète. */
+  6: [
+    {h:'14:00', fin:'16:00', disc:'Enfants', ecole:'IMPULS', lde:false}
+  ],
   0: [
     {h:'15:00', fin:'17:00', disc:'Cyclodance Fusion', prof:'Jamel et Charline', ecole:'LDE', lde:true, mensuel:true},
     {h:'16:00', fin:'18:00', disc:'Heels',   niveau:'Heels & Confidence', prof:'Elena',  ecole:'LDE', lde:true, mensuel:true},
