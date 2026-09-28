@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="3.3+20260928">
-<meta name="maquette-version-lisible" content="v3.3 — 28 septembre 2026">
+<meta name="maquette-version" content="3.4+20260928">
+<meta name="maquette-version-lisible" content="v3.4 — 28 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Bouger ensemble à Bruxelles</title>
@@ -196,6 +196,10 @@ body::after{
   position:relative; overflow:hidden;
   box-shadow:inset 0 0 0 1px rgba(51,48,43,.06);
 }
+/* Un portrait dans une tuile : même traitement chaud que les autres photos, sinon
+   les deux profs qui en ont une jurent avec le reste de la page. */
+.tile img{ width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(.88) contrast(1.04) brightness(1.03) sepia(.14); }
 .tile::before{
   content:""; position:absolute; inset:0;
   background:radial-gradient(120% 90% at 28% 18%, rgba(255,255,255,.42), rgba(255,255,255,0) 62%);
@@ -921,17 +925,17 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       </div>
 
       <div class="rv" style="transition-delay:.1s">
-        <div class="tile" style="background:#B4643F"><span style="color:#F7F2EA">C</span></div>
+        <div class="tile"><img src="assets/img/prof-selasi.jpg" alt="Portrait de Selasi Dogbatse, professeure de hip-hop"></div>
         <h3 class="d d-600 text-[21px] mt-4">Selasi</h3>
         <p class="text-[14.5px]" style="color:var(--mutedink)">Hip-hop</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante · portrait à venir</p>
+        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante</p>
       </div>
 
       <div class="rv" style="transition-delay:.15s">
-        <div class="tile" style="background:#E4D6C0"><span style="color:#6B5540">E</span></div>
+        <div class="tile"><img src="assets/img/prof-elena.jpg" alt="Portrait d'Elena, professeure de heels"></div>
         <h3 class="d d-600 text-[21px] mt-4">Elena</h3>
         <p class="text-[14.5px]" style="color:var(--mutedink)">Heels</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante · portrait à venir</p>
+        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante</p>
       </div>
 
       <div class="rv">
