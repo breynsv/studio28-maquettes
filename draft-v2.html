@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="3.4+20260928">
-<meta name="maquette-version-lisible" content="v3.4 — 28 septembre 2026">
+<meta name="maquette-version" content="3.5+20260928">
+<meta name="maquette-version-lisible" content="v3.5 — 28 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Bouger ensemble à Bruxelles</title>
@@ -750,8 +750,8 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     <div class="mt-9 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
       <p class="text-[14px]" style="color:var(--mutedink)">
         <span class="num">20</span> crédits le yoga et le pilates, <span class="num">15</span> les danses,
-        <span class="num">10</span> la cyclodance fusion. Pré-inscription : <span class="num">13 €</span> au lieu de
-        <span class="num">15 €</span>.
+        <span class="num">10</span> la cyclodance fusion, <span class="num">35</span> un bootcamp du dimanche.
+        Pré-inscription : <span class="num">13 €</span> au lieu de <span class="num">15 €</span>.
       </p>
     </div>
   </section>
@@ -771,7 +771,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
         <ol class="mt-10 md:mt-12 grid gap-px" style="background:var(--hair)">
           <li class="rv p-6 md:p-8" style="background:var(--paper)">
             <h3 class="d d-600 text-[23px]">Achetez des crédits.</h3>
-            <p class="mt-2 lead">Un cours coûte entre 10 et 20 crédits selon la discipline. Pas d'abonnement,
+            <p class="mt-2 lead">Un cours coûte entre 10 et 35 crédits selon la discipline. Pas d'abonnement,
               pas d'engagement.</p>
 
             <div class="grid sm:grid-cols-3 gap-4 mt-7">
@@ -782,9 +782,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                           style="background:var(--terra);color:var(--paper)">le plus pris</span>
                   </template>
                   <p class="kicker" style="color:var(--muted)" x-text="p.nom"></p>
-                  <p class="d mt-3" style="font-size:44px;line-height:1" x-text="p.credits"></p>
-                  <p class="text-[13.5px]" style="color:var(--muted)">crédits</p>
-                  <p class="d d-600 mt-4 text-[22px]" style="color:var(--terra)" x-text="p.prix"></p>
+                  <p class="d mt-3" style="font-size:44px;line-height:1;color:var(--terra)" x-text="p.prix"></p>
                   <ul class="mt-4 space-y-1.5 text-[14.5px]" style="color:var(--mutedink)">
                     <template x-for="l in p.lignes" :key="l">
                       <li class="flex gap-2"><span style="color:var(--oak)">·</span><span x-text="l"></span></li>
@@ -792,6 +790,20 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                   </ul>
                 </div>
               </template>
+            </div>
+
+            <div class="mt-6 p-5" style="background:var(--oat);border-radius:10px">
+              <p class="kicker" style="color:var(--muted)">Sans pack, à l'unité</p>
+              <ul class="mt-3 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-[15px]" style="color:var(--mutedink)">
+                <li class="flex justify-between gap-4" style="border-bottom:1px solid var(--hair);padding-bottom:5px">
+                  <span>Un cours de danse</span><span class="num">15 €</span></li>
+                <li class="flex justify-between gap-4" style="border-bottom:1px solid var(--hair);padding-bottom:5px">
+                  <span>Un cours de yoga ou de pilates</span><span class="num">20 €</span></li>
+                <li class="flex justify-between gap-4" style="border-bottom:1px solid var(--hair);padding-bottom:5px">
+                  <span>Un bootcamp du dimanche</span><span class="num">35 €</span></li>
+                <li class="flex justify-between gap-4" style="border-bottom:1px solid var(--hair);padding-bottom:5px">
+                  <span>En pré-inscription</span><span class="num">13 €</span></li>
+              </ul>
             </div>
 
             <p class="mt-5 text-[13.5px]" style="color:var(--muted)">
@@ -894,7 +906,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   </div>
 </section>
 
-<section id="profs" class="py-16 md:py-28">
+<section id="profs" class="py-16 md:py-28" x-data="profs28()">
   <div class="mx-auto max-w-shell px-5 md:px-8">
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14 rv">
@@ -909,68 +921,31 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-7">
-
-      <div class="rv">
-        <div class="tile" style="background:#D9C3A4"><span style="color:#5E4A33">L</span></div>
-        <h3 class="d d-600 text-[21px] mt-4">Laura</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Pilates · Salsa</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante · portrait à venir</p>
-      </div>
-
-      <div class="rv" style="transition-delay:.05s">
-        <div class="tile" style="background:#C9A87C"><span style="color:#4C3A26">N</span></div>
-        <h3 class="d d-600 text-[21px] mt-4">Nivram</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Yoga</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeur indépendant · portrait à venir</p>
-      </div>
-
-      <div class="rv" style="transition-delay:.1s">
-        <div class="tile"><img src="assets/img/prof-selasi.jpg" alt="Portrait de Selasi Dogbatse, professeure de hip-hop"></div>
-        <h3 class="d d-600 text-[21px] mt-4">Selasi</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Hip-hop</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante</p>
-      </div>
-
-      <div class="rv" style="transition-delay:.15s">
-        <div class="tile"><img src="assets/img/prof-elena.jpg" alt="Portrait d'Elena, professeure de heels"></div>
-        <h3 class="d d-600 text-[21px] mt-4">Elena</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Heels</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante</p>
-      </div>
-
-      <div class="rv">
-        <div class="tile" style="background:#8C4A2E"><span style="color:#F7F2EA">A</span></div>
-        <h3 class="d d-600 text-[21px] mt-4">Andy</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Yoga</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeur indépendant · portrait à venir</p>
-      </div>
-
-      <div class="rv" style="transition-delay:.05s">
-        <div class="tile" style="background:#D9C3A4"><span style="color:#5E4A33">C</span></div>
-        <h3 class="d d-600 text-[21px] mt-4">Charline</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Cyclodance Fusion</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeure indépendante · portrait à venir</p>
-      </div>
-
-      <div class="rv" style="transition-delay:.1s">
-        <div class="tile" style="background:#C9A87C"><span style="color:#4C3A26">J</span></div>
-        <h3 class="d d-600 text-[21px] mt-4">Jamel</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Cyclodance Fusion</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeur indépendant · portrait à venir</p>
-      </div>
-
-      <div class="rv" style="transition-delay:.15s">
-        <div class="tile" style="background:#E4D6C0"><span style="color:#6B5540">A</span></div>
-        <h3 class="d d-600 text-[21px] mt-4">Ahmedy</h3>
-        <p class="text-[14.5px]" style="color:var(--mutedink)">Salsa</p>
-        <p class="text-[12.5px] mt-1" style="color:var(--muted)">Professeur indépendant · portrait à venir</p>
-      </div>
-
+      <template x-for="(p, i) in profs" :key="p.nom">
+        <div class="rv" :style="'transition-delay:' + (i % 4) * .05 + 's'">
+          <template x-if="p.photo">
+            <div class="tile"><img :src="p.photo" :alt="'Portrait de ' + p.nom + ', professeur de ' + p.disc"></div>
+          </template>
+          <template x-if="!p.photo">
+            <div class="tile" :style="'background:' + p.teinte">
+              <span :style="'color:' + p.encre" x-text="initiale(p)"></span>
+            </div>
+          </template>
+          <h3 class="d d-600 text-[21px] mt-4" x-text="p.nom"></h3>
+          <p class="text-[14.5px]" style="color:var(--mutedink)" x-text="p.disc"></p>
+          <template x-if="p.bio">
+            <p class="text-[13.5px] mt-2 leading-[1.6]" style="color:var(--mutedink)" x-html="p.bio"></p>
+          </template>
+          <template x-if="!p.bio">
+            <p class="text-[12.5px] mt-2" style="color:var(--muted)">Présentation à venir</p>
+          </template>
+        </div>
+      </template>
     </div>
 
     <div class="mt-10 md:mt-12 pt-8 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style="border-color:var(--hair)">
       <p class="text-[14.5px] max-w-[560px]" style="color:var(--mutedink)">
-        Portraits et logos des écoles partenaires à venir — mêmes cadrage, même lumière, photographiés dans la salle. <span class="num text-[13px]" style="color:var(--muted)">[à confirmer]</span>
+        Les portraits arrivent au fur et à mesure : Selasi et Elena ont le leur, les autres suivent. Même cadrage, même lumière, photographiés dans la salle.
       </p>
       <a href="#salle" class="lnk text-[15px] font-medium shrink-0">Vous enseignez ? Rejoignez la maison →</a>
     </div>
@@ -1294,9 +1269,9 @@ details[open] .faq-plus{ transform:rotate(45deg); }
         <span class="text-[12px] tracking-[.15em] uppercase" style="color:rgba(246,241,232,.55)">Danse · Yoga · Pilates · Bruxelles</span>
       </div>
       <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12.5px]" style="color:rgba(246,241,232,.42)">
-        <a href="#" class="hover:text-white transition">Instagram</a>
-        <a href="#" class="hover:text-white transition">Facebook</a>
-        <a href="#" class="hover:text-white transition">Mentions légales</a>
+        <a href="https://www.instagram.com/thestudio28_bxl" target="_blank" rel="noopener" class="hover:text-white transition">Instagram</a>
+        <a href="https://www.facebook.com/TheStudioDanceevolution/" target="_blank" rel="noopener" class="hover:text-white transition">Facebook</a>
+        <a href="mentions-legales.html" class="hover:text-white transition">Mentions légales</a>
         <a href="https://www.latindanceevolution.com/" target="_blank" rel="noopener" class="hover:text-white transition">Collaboration — Latin Dance Evolution</a>
       </div>
     </div>
@@ -1369,41 +1344,52 @@ document.querySelectorAll('#drawer a').forEach(function(a){
 const OUVERTURE = { debut:'12:00', fin:'22:30' };
 
 /* Les danses coûtent 15 crédits ; seules ces trois-là font exception. */
-const CREDITS = { 'Yoga':20, 'Pilates':20, 'Cyclodance Fusion':10 };
+/* Ce que coûte un cours. Ahmedy donne les mêmes chiffres en euros le 28 septembre
+   (danse 15 €, yoga et pilates 20 €, bootcamp 35 €), donc un crédit vaut un euro —
+   mais il ne l'a jamais écrit noir sur blanc, et la page ne l'affirme pas. */
+const CREDITS = { 'Yoga':20, 'Pilates':20, 'Cyclodance Fusion':10, 'Heels':35, 'Hip-hop':35 };
 
 const HORAIRE = {
-  1: [],                                                     /* lundi — rien pour le moment */
-  2: [
-    {h:'12:30', fin:'13:30', disc:'Pilates', prof:'Laura', ecole:'LDE', lde:true},
-    {h:'19:00', fin:'19:30', disc:'Bachata', niveau:'Initiation',     ecole:'LDE', lde:true},
-    {h:'19:30', fin:'20:30', disc:'Bachata', niveau:'Open level',     ecole:'LDE', lde:true},
-    {h:'20:30', fin:'21:30', disc:'Bachata', niveau:'Intermédiaire',  ecole:'LDE', lde:true},
-    {h:'21:30', fin:'22:30', disc:'Bachata', niveau:'Practica',       ecole:'LDE', lde:true}
+  /* Lundi — Ahmedy avait dit « aucun cours » le 23 septembre, puis a donné ce cours
+     le 28. C'est la réponse la plus récente qui vaut. */
+  1: [
+    {h:'19:00', fin:'20:00', disc:'Tango', niveau:'Initiation', ecole:'La Tangueria', lde:false}
   ],
+  2: [
+    {h:'12:30', fin:'13:30', disc:'Pilates', niveau:'tous niveaux', prof:'Laura', ecole:'LDE', lde:true},
+    {h:'19:00', fin:'20:00', disc:'Bachata', niveau:'Initiation',  ecole:'LDE', lde:true},
+    {h:'19:30', fin:'20:30', disc:'Bachata', niveau:'Débutant',    ecole:'LDE', lde:true},
+    {h:'20:30', fin:'21:30', disc:'Bachata', niveau:'Intermédiaire', ecole:'LDE', lde:true},
+    {h:'21:30', fin:'22:30', disc:'Bachata', niveau:'Practica',    ecole:'LDE', lde:true}
+  ],
+  /* Mercredi — le détail des cours enfants vient de son message du 28 septembre.
+     Il avait d'abord écrit « 14h à 16h » ; c'est en réalité trois créneaux jusqu'à 18h. */
   3: [
-    {h:'14:00', fin:'16:00', disc:'Enfants', niveau:'Pré-danse, ballet, dance mix, K-pop', ecole:'IMPULS', lde:false},
-    {h:'18:00', fin:'19:00', disc:'Tango',   ecole:'IMPULS',  lde:false},
-    {h:'19:00', fin:'20:00', disc:'Salsa',   ecole:"O'Dance", lde:false},
-    {h:'20:00', fin:'21:00', disc:'Salsa',   ecole:"O'Dance", lde:false},
+    {h:'14:00', fin:'15:00', disc:'Enfants', niveau:'Pré-danse, 3 à 5 ans', ecole:'IMPULS', lde:false},
+    {h:'15:00', fin:'16:00', disc:'Enfants', niveau:'Danse Mix, 8 ans',     ecole:'IMPULS', lde:false},
+    {h:'16:30', fin:'18:00', disc:'Enfants', niveau:'Danse Mix, 5 ans',     ecole:'IMPULS', lde:false},
+    {h:'18:00', fin:'19:00', disc:'Tango',   niveau:'Tango Barre, entre femmes', ecole:'IMPULS', lde:false},
+    {h:'19:00', fin:'20:00', disc:'Salsa',   niveau:'Débutant',      ecole:"O'Dance", lde:false},
+    {h:'20:00', fin:'21:00', disc:'Salsa',   niveau:'Intermédiaire', ecole:"O'Dance", lde:false},
     {h:'21:00', fin:'22:00', disc:'Kizomba', ecole:"O'Dance", lde:false}
   ],
   4: [
-    {h:'12:30', fin:'13:30', disc:'Yoga',  prof:'Nivram',   ecole:'LDE',     lde:true},
+    {h:'12:30', fin:'13:30', disc:'Yoga',  prof:'Nivram',   ecole:'LDE', lde:true},   /* « Marvin » dans son mail du 28 — à trancher */
     {h:'18:00', fin:'19:00', disc:'Zumba', prof:'Nastasia', ecole:'Invitée', lde:false},
-    {h:'19:00', fin:'19:30', disc:'Salsa', niveau:'Initiation',              ecole:'LDE', lde:true},
-    {h:'19:30', fin:'20:30', disc:'Salsa', niveau:'Débutant·e',              ecole:'LDE', lde:true},
-    {h:'20:30', fin:'21:30', disc:'Salsa', niveau:'Intermédiaire',           ecole:'LDE', lde:true},
-    {h:'21:30', fin:'22:30', disc:'Salsa', niveau:'Practica salsa-bachata',  ecole:'LDE', lde:true}
+    {h:'19:00', fin:'20:00', disc:'Salsa', niveau:'Initiation',    prof:'Ahmedy et Caro', ecole:'LDE', lde:true},
+    {h:'19:30', fin:'20:30', disc:'Salsa', niveau:'Débutant',      ecole:'LDE', lde:true},
+    {h:'20:30', fin:'21:30', disc:'Salsa', niveau:'Intermédiaire', ecole:'LDE', lde:true},
+    {h:'21:30', fin:'22:30', disc:'Salsa', niveau:'Practica',      ecole:'LDE', lde:true}
   ],
   5: [
     {h:'12:30', fin:'13:30', disc:'Afro-Latin Move', ecole:'LDE', lde:true},
     {h:'17:30', fin:'18:30', disc:'Yoga', prof:'Andy', ecole:'LDE', lde:true}
   ],
-  6: [],                                                     /* samedi — rien pour le moment */
+  6: [],   /* samedi — rien */
   0: [
     {h:'15:00', fin:'17:00', disc:'Cyclodance Fusion', prof:'Jamel et Charline', ecole:'LDE', lde:true, mensuel:true},
-    {h:'16:00', fin:'18:00', disc:'Heels',   niveau:'Confidence',    prof:'Elena',  ecole:'LDE', lde:true, mensuel:true},
-    {h:'16:00', fin:'18:00', disc:'Hip-hop', niveau:'Back to Basic', prof:'Selasi', ecole:'LDE', lde:true, mensuel:true}
+    {h:'16:00', fin:'18:00', disc:'Heels',   niveau:'Heels & Confidence', prof:'Elena',  ecole:'LDE', lde:true, mensuel:true},
+    {h:'16:00', fin:'18:00', disc:'Hip-hop', niveau:'Back to Basic',      prof:'Selasi', ecole:'LDE', lde:true, mensuel:true}
   ]
 };
 
@@ -1480,13 +1466,16 @@ function annonce28(){
 /* Les packs de crédits. Les prix restent à confirmer par Ahmedy ; les crédits,
    eux, viennent de sa remarque 34 (20 le yoga et le pilates, 15 les danses,
    10 la cyclodance fusion). */
+/* Les trois packs et leurs prix viennent de son mail du 28 septembre. Ce que chaque
+   pack donne en crédits, il ne l'a pas dit — d'où le « à confirmer », qui doit rester
+   tant qu'on ne sait pas : annoncer un nombre inventé serait une promesse de vente. */
 const PACKS = [
-  { nom:'Découverte', credits:'30',  prix:'[à confirmer]', populaire:false,
-    lignes:['deux cours de danse', 'valable 3 mois', 'sans engagement'] },
-  { nom:'Saison',     credits:'150', prix:'[à confirmer]', populaire:true,
-    lignes:['dix cours de danse', 'valable un an', 'toutes les disciplines de la carte LDE'] },
-  { nom:'À l\'unité', credits:'15',  prix:'[à confirmer]', populaire:false,
-    lignes:['un cours de danse', 'pré-inscription 13 € au lieu de 15 €', 'idéal pour essayer'] }
+  { nom:'Dance Essential', prix:'65 €',  populaire:false,
+    lignes:['crédits [à confirmer]', 'toutes les disciplines de la carte LDE'] },
+  { nom:'Dance Passion',   prix:'120 €', populaire:true,
+    lignes:['crédits [à confirmer]', 'toutes les disciplines de la carte LDE'] },
+  { nom:'Dance Prestige',  prix:'210 €', populaire:false,
+    lignes:['crédits [à confirmer]', 'toutes les disciplines de la carte LDE'] }
 ];
 function packs28(){ return { packs: PACKS }; }
 
@@ -1501,6 +1490,28 @@ const AVIS = [
     nom:'Nath L.', quand:'il y a 3 ans' }
 ];
 function avis28(){ return { avis: AVIS }; }
+
+/* Les professeurs et leur présentation. Les textes viennent d'Ahmedy (28 septembre),
+   resserrés : sa version complète fait deux cents mots par prof, ce qui noie la
+   grille. Un prof sans texte affiche « présentation à venir » plutôt qu'un vide. */
+const PROFS = [
+  { nom:'Laura',   disc:'Pilates · Salsa', teinte:'#D9C3A4', encre:'#5E4A33',
+    bio:"Pour elle, le pilates est autant une introspection qu'un exercice : posture, respiration consciente, alignement, mobilité. On y gagne en force centrale et on y perd des douleurs." },
+  { nom:'Nivram',  disc:'Yoga', teinte:'#C9A87C', encre:'#4C3A26',
+    bio:"Quinze ans de pratique, dix d'enseignement. Formé en Inde, il a enseigné en Allemagne, en France, à Singapour, en Thaïlande et au Nigeria. Des enchaînements construits, l'alignement, le souffle." },
+  { nom:'Selasi',  disc:'Hip-hop', photo:'assets/img/prof-selasi.jpg',
+    bio:"Selasi Dogbatse : le classique à 4 ans, le hip-hop à 12, Los Angeles à 20. A dansé pour Rihanna, Beyoncé, Missy Elliott, Cardi B et Drake. Son spectacle A Piece of Me est passé par Bozar." },
+  { nom:'Elena',   disc:'Heels', photo:'assets/img/prof-elena.jpg',
+    bio:"Elena Gambardella, pionnière du heels en Belgique et créatrice de la méthode Heels &amp; Confidence. X Factor, Eurovision, The Voice, Nike ; Booba, Angèle, Oscar and the Wolf." },
+  { nom:'Andy',    disc:'Yoga', teinte:'#8C4A2E', encre:'#F7F2EA' },
+  { nom:'Charline',disc:'Cyclodance Fusion', teinte:'#D9C3A4', encre:'#5E4A33' },
+  { nom:'Jamel',   disc:'Cyclodance Fusion', teinte:'#C9A87C', encre:'#4C3A26' },
+  { nom:'Ahmedy',  disc:'Salsa · Bachata', teinte:'#E4D6C0', encre:'#6B5540',
+    bio:"Les danses urbaines, puis la salsa en 2006 et la bachata moderna en 2012. Il fonde Latin Dance Evolution en 2016 ; la troupe court le World Bachata Masters dès 2017. Certifié Bachazouk depuis 2025." },
+  { nom:'Caro',    disc:'Salsa · Bachata · Lady Styling', teinte:'#B4643F', encre:'#F7F2EA',
+    bio:"Caroline enseigne la salsa et la bachata avec Ahmedy depuis 2019, en Belgique et à l'étranger. Le street jazz et le hip-hop girly nourrissent son styling ; elle anime les stages de Lady Styling de la maison." }
+];
+function profs28(){ return { profs: PROFS, initiale(p){ return p.nom.charAt(0); } }; }
 
 function agenda28(){ return { evenements: EVENEMENTS }; }
 

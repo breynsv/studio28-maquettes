@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="maquette-version" content="3.5+20260928">
+<meta name="maquette-version-lisible" content="v3.5 — 28 septembre 2026">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentions légales — Studio 28</title>
+<meta name="description" content="Danser, bouger, respirer, une dizaine de professeurs indépendants, une seule salle. Rue des Deux Églises 26-28, 1000 Bruxelles — métro Arts-Loi.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/logo/studio28-mark-terra.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        paper:   '#F7F2EA',
+        oat:     '#EFE6D8',
+        clay:    '#B4643F',
+        terra:   '#8C4A2E',
+        oak:     '#C9A87C',
+        ink:     '#33302B',
+        muted:   '#7C7468',
+        mutedink:'#6A6357'
+      },
+      fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif']
+      },
+      borderRadius: { xs: '4px', sm: '5px', DEFAULT: '6px', md: '8px' },
+      maxWidth: { shell: '1280px' }
+    }
+  }
+}
+</script>
+
+<style>
+:root{
+  --paper:#F7F2EA; --oat:#EFE6D8; --clay:#B4643F; --terra:#8C4A2E;
+  --oak:#C9A87C; --ink:#33302B; --muted:#7C7468; --mutedink:#6A6357;
+  --hair:rgba(201,168,124,.62);
+  --hair-strong:rgba(201,168,124,.9);
+}
+
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+@media (min-width:768px){ body{ font-size:17px; } }
+
+/* --- the grain. the whole point of "tactile". --- */
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:60; pointer-events:none;
+  opacity:.05; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- type --- */
+.d{
+  font-family:'Fraunces',Georgia,serif;
+  font-variation-settings:'SOFT' 40,'WONK' 0,'opsz' 120;
+  font-weight:400;
+  letter-spacing:-.018em;
+  line-height:1.06;
+}
+.d-600{ font-weight:600; }
+.d-it{ font-style:italic; font-variation-settings:'SOFT' 45,'WONK' 1,'opsz' 120; }
+.kicker{
+  font-size:11px; font-weight:600; letter-spacing:.19em; text-transform:uppercase;
+  color:var(--terra);
+}
+.num{ font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1; }
+.lead{ font-size:18px; line-height:1.78; color:var(--mutedink); }
+@media (max-width:640px){ .lead{ font-size:17px; } }
+
+/* --- warm grade on every photograph, so it is one venue, one afternoon --- */
+.ph{ position:relative; overflow:hidden; background:var(--oat); }
+.ph img{
+  display:block; width:100%; height:100%; object-fit:cover;
+  filter:saturate(.88) contrast(1.04) brightness(1.03) sepia(.14);
+  transition:transform 1.1s cubic-bezier(.2,.7,.2,1);
+}
+.ph::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(168deg, rgba(201,168,124,.16), rgba(180,100,63,.10) 60%, rgba(51,48,43,.14));
+}
+.ph-hover:hover img{ transform:scale(1.035); }
+
+.hero-scrim{
+  background:linear-gradient(to top,
+    rgba(38,35,31,.92) 0%,
+    rgba(45,41,36,.68) 28%,
+    rgba(51,48,43,.26) 52%,
+    rgba(45,41,36,.52) 82%,
+    rgba(40,37,32,.66) 100%);
+}
+@media (max-width:900px){
+  .hero-scrim{
+    background:linear-gradient(to top,
+      rgba(36,33,29,.94) 0%,
+      rgba(40,37,32,.82) 42%,
+      rgba(45,41,36,.58) 72%,
+      rgba(45,41,36,.46) 100%);
+  }
+}
+
+/* --- structure lines --- */
+.hair{ border-color:var(--hair); }
+.rule-top{ border-top:1px solid var(--hair); }
+.tick{ display:block; width:34px; height:2px; background:var(--clay); border-radius:2px; }
+
+/* --- controls --- */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  border-radius:5px; font-weight:600; font-size:15px; letter-spacing:.005em;
+  padding:.72rem 1.15rem; transition:.22s ease;
+}
+.btn-solid{ background:var(--terra); color:#FDF8F0; }
+.btn-solid:hover{ background:#793D24; transform:translateY(-1px); }
+.btn-ghost{ border:1px solid var(--hair-strong); color:var(--ink); background:transparent; }
+.btn-ghost:hover{ background:var(--oat); border-color:var(--clay); }
+.btn-onphoto{ border:1px solid rgba(247,242,234,.55); color:#FDF8F0; background:rgba(51,48,43,.30); backdrop-filter:blur(6px); }
+.btn-onphoto:hover{ background:rgba(51,48,43,.55); border-color:rgba(247,242,234,.9); }
+
+.lnk{ color:var(--terra); text-decoration:none; border-bottom:1px solid rgba(140,74,46,.35); padding-bottom:1px; transition:.2s; }
+.lnk:hover{ border-bottom-color:var(--clay); color:var(--clay); }
+
+/* header over the hero photograph vs. header on paper */
+#hdr::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:150px; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(38,35,31,.62), rgba(38,35,31,.28) 45%, rgba(38,35,31,0));
+  opacity:1; transition:opacity .45s ease;
+}
+#hdr.solid::before{ opacity:0; }
+#hdr.over .navlnk{ color:#F6F1E8; }
+#hdr.over .hdr-desc{ color:rgba(246,241,232,.82); border-color:rgba(201,168,124,.5) !important; }
+.hdr-lang{ color:var(--mutedink); }
+.hdr-lang .on{ color:var(--terra); }
+#hdr.over .hdr-lang{ color:rgba(246,241,232,.78); }
+#hdr.over .hdr-lang .on{ color:var(--oak); }
+#hdr.over .hdr-sep{ color:rgba(201,168,124,.55); }
+#hdr.over .hdr-wa{ border-color:rgba(246,241,232,.45) !important; background:rgba(51,48,43,.28); }
+#hdr.over .hdr-wa svg{ color:var(--oak) !important; }
+#hdr .hlogo{ display:none; }
+@media (min-width:640px){
+  #hdr:not(.over) .hlogo.lg-terra{ display:block; }
+  #hdr.over          .hlogo.lg-cream{ display:block; }
+}
+@media (max-width:639px){
+  #hdr:not(.over) .hlogo.sm-terra{ display:block; }
+  #hdr.over          .hlogo.sm-cream{ display:block; }
+}
+#hdr.over .hdr-burg{ border-color:rgba(246,241,232,.45) !important; color:#F6F1E8; }
+
+.navlnk{ position:relative; padding-bottom:3px; color:var(--ink); transition:color .35s ease; }
+.navlnk::after{
+  content:""; position:absolute; left:0; bottom:0; height:1.5px; width:0; background:var(--clay);
+  transition:width .28s cubic-bezier(.2,.7,.2,1);
+}
+.navlnk:hover::after{ width:100%; }
+
+.pill{
+  display:inline-flex; align-items:center; border-radius:999px;
+  border:1px solid rgba(247,242,234,.42); background:rgba(239,230,216,.16);
+  backdrop-filter:blur(7px);
+  color:#FBF6EE; font-size:13.5px; font-weight:500; letter-spacing:.02em;
+  padding:.34rem .82rem; transition:.22s;
+}
+.pill:hover{ background:rgba(239,230,216,.9); color:var(--ink); border-color:transparent; }
+
+.chip{
+  border:1px solid var(--hair); background:transparent; color:var(--mutedink);
+  border-radius:999px; font-size:13px; font-weight:500; padding:.3rem .8rem; transition:.2s;
+}
+.chip:hover{ border-color:var(--clay); color:var(--terra); }
+.chip[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--paper); }
+
+/* --- ceramic tiles for the roster --- */
+.tile{
+  aspect-ratio:1/1; border-radius:6px; display:grid; place-items:center;
+  font-family:'Fraunces',serif; font-variation-settings:'SOFT' 40,'opsz' 144;
+  font-size:clamp(34px,5vw,52px); letter-spacing:-.02em;
+  position:relative; overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(51,48,43,.06);
+}
+/* Un portrait dans une tuile : même traitement chaud que les autres photos, sinon
+   les deux profs qui en ont une jurent avec le reste de la page. */
+.tile img{ width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(.88) contrast(1.04) brightness(1.03) sepia(.14); }
+.tile::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(120% 90% at 28% 18%, rgba(255,255,255,.42), rgba(255,255,255,0) 62%);
+}
+.tile::after{
+  content:""; position:absolute; inset:0; opacity:.35; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+.tile span{ position:relative; z-index:2; }
+
+/* --- reveal --- */
+.rv{ opacity:0; transform:translateY(14px); transition:opacity .85s ease, transform .85s cubic-bezier(.2,.7,.2,1); }
+.rv.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .rv{ opacity:1 !important; transform:none !important; transition:none; }
+  html{ scroll-behavior:auto; }
+  .ph img{ transition:none; }
+}
+
+/* --- schedule --- */
+.row-grid{ display:grid; grid-template-columns: 92px minmax(0,1fr) 150px 108px 132px; align-items:center; gap:1rem; }
+@media (max-width:900px){ .row-grid{ grid-template-columns:1fr; gap:.35rem; } }
+
+details > summary{ list-style:none; cursor:pointer; }
+details > summary::-webkit-details-marker{ display:none; }
+details[open] .faq-plus{ transform:rotate(45deg); }
+.faq-plus{ transition:transform .3s cubic-bezier(.2,.7,.2,1); }
+
+::selection{ background:rgba(180,100,63,.22); }
+:focus-visible{ outline:2px solid var(--clay); outline-offset:3px; border-radius:3px; }
+</style>
+<style>
+  /* ── le rail du jour ─────────────────────────────────────────── */
+  .rail{ position:relative; }
+  .rail::before{
+    content:''; position:absolute; left:0; top:.6rem; bottom:.6rem; width:1px;
+    background:linear-gradient(to bottom, rgba(201,168,124,0), rgba(201,168,124,.9) 8%, rgba(201,168,124,.9) 92%, rgba(201,168,124,0));
+  }
+  .cran{ position:relative; padding-left:1.75rem; }
+  .cran::before{
+    content:''; position:absolute; left:-3.5px; top:1.2rem;
+    width:8px; height:8px; border-radius:9999px;
+    background:var(--paper); border:1px solid var(--oak);
+  }
+  .cran-passe{ opacity:.4; }
+  .cran-live::before{ background:var(--clay); border-color:var(--clay); width:10px; height:10px; left:-4.5px; }
+  .cran-live{ opacity:1; }
+  .now-mark{ position:relative; padding-left:1.75rem; }
+  .now-mark::before{
+    content:''; position:absolute; left:-4.5px; top:50%; transform:translateY(-50%);
+    width:10px; height:10px; border-radius:9999px; background:var(--clay);
+    box-shadow:0 0 0 4px rgba(180,100,63,.16);
+  }
+  .now-rule{ border:0; border-top:1px dashed rgba(180,100,63,.5); }
+  .pulse28{ animation:pulse28 2.6s cubic-bezier(.4,0,.6,1) infinite; }
+  @keyframes pulse28{ 0%,100%{opacity:1} 50%{opacity:.35} }
+  .pastille{
+    display:inline-block; font-size:11.5px; letter-spacing:.06em;
+    padding:.28rem .7rem; border-radius:9999px;
+    background:var(--terra); color:var(--paper); vertical-align:middle;
+  }
+  @media (prefers-reduced-motion: reduce){ .pulse28{ animation:none } }
+</style>
+</head>
+<body style="background:var(--paper);color:var(--ink)">
+
+<main class="mx-auto max-w-[760px] px-5 md:px-8 py-14 md:py-20">
+
+  <a href="draft-v2.html" class="lnk text-[15px]">← Retour au site</a>
+
+  <p class="kicker mt-8">Studio 28</p>
+  <span class="tick mt-3 mb-6"></span>
+  <h1 class="d" style="font-size:clamp(32px,4.2vw,48px)">Mentions légales</h1>
+
+  <div class="mt-10 space-y-8 text-[16px] leading-[1.7]" style="color:var(--mutedink)">
+
+    <section>
+      <h2 class="d d-600 text-[20px]" style="color:var(--ink)">Éditeur du site</h2>
+      <p class="mt-3">
+        ASBL <strong style="color:var(--ink)">Danse Creativity &amp; Event</strong><br>
+        Numéro d'entreprise : <span class="num">BE 0672.841.389</span><br>
+        Siège social : Avenue Docteur Lemoine 11, boîte 4, 1070 Anderlecht, Belgique
+      </p>
+    </section>
+
+    <section>
+      <h2 class="d d-600 text-[20px]" style="color:var(--ink)">Lieu d'activité</h2>
+      <p class="mt-3">
+        Studio 28 — Rue des Deux Églises 26-28, 1000 Bruxelles<br>
+        Métro Arts-Loi
+      </p>
+    </section>
+
+    <section>
+      <h2 class="d d-600 text-[20px]" style="color:var(--ink)">Contact</h2>
+      <p class="mt-3">
+        <a href="mailto:info@studio28.be" class="lnk">info@studio28.be</a><br>
+        <a href="tel:+32472543027" class="lnk num">+32 472 54 30 27</a>
+      </p>
+    </section>
+
+    <section>
+      <h2 class="d d-600 text-[20px]" style="color:var(--ink)">Données personnelles et cookies</h2>
+      <p class="mt-3">
+        Ce site ne dépose aucun cookie et ne collecte aucune donnée personnelle : il n'y a ni
+        formulaire, ni compte, ni outil de mesure d'audience. Votre navigateur retient seulement
+        que vous avez fermé le bandeau d'annonce, et cette information ne quitte pas votre appareil.
+      </p>
+      <p class="mt-3">
+        Les inscriptions aux cours se font par WhatsApp ou par mail, en dehors de ce site.
+      </p>
+      <p class="mt-3">
+        Deux bibliothèques d'affichage sont chargées depuis des serveurs externes
+        (<span class="num">cdn.jsdelivr.net</span> et <span class="num">cdn.tailwindcss.com</span>),
+        qui voient de ce fait votre adresse IP, comme pour toute page web.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="d d-600 text-[20px]" style="color:var(--ink)">Photographies</h2>
+      <p class="mt-3">
+        Les photographies de la salle et des professeurs sont publiées avec l'accord des personnes
+        représentées. Elles ne peuvent pas être réutilisées sans autorisation.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="d d-600 text-[20px]" style="color:var(--ink)">Écoles partenaires</h2>
+      <p class="mt-3">
+        Plusieurs écoles et professeurs indépendants enseignent au Studio 28 et restent responsables
+        de leurs propres cours, inscriptions et conditions.
+      </p>
+    </section>
+
+  </div>
+
+  <p class="mt-14 text-[13px]" style="color:var(--muted)">
+    Studio 28 — Rue des Deux Églises 26-28, 1000 Bruxelles.
+  </p>
+
+</main>
+
+</body>
+</html>
