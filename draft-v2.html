@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="3.2+20260924">
-<meta name="maquette-version-lisible" content="v3.2 — 24 septembre 2026">
+<meta name="maquette-version" content="3.3+20260928">
+<meta name="maquette-version-lisible" content="v3.3 — 28 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Bouger ensemble à Bruxelles</title>
@@ -611,20 +611,20 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 
       
       <a href="#horaire" class="group rv rounded-[6px] overflow-hidden border transition duration-500 grid sm:grid-cols-[240px_minmax(0,1fr)] md:grid-cols-[300px_minmax(0,1fr)]" style="border-color:var(--hair);background:var(--oat);transition-delay:.18s">
-        <div class="ph aspect-[4/3] sm:aspect-auto sm:h-full" style="background:var(--paper);display:flex;align-items:center;justify-content:center;min-height:150px"><span class="d d-it" style="font-size:34px;color:var(--oak)">Hip-hop</span></div>
+        <div class="ph ph-hover aspect-[4/3] sm:aspect-auto sm:h-full"><img src="assets/img/disc-hiphop.jpg" alt="Selasi Dogbatse, professeure de hip-hop, en mouvement dans la salle"></div>
         <div class="p-6 md:p-8 flex flex-col justify-center">
           <h3 class="d d-600 text-[24px]">Hip-hop</h3>
-          <p class="mt-2 text-[15px] leading-[1.62]" style="color:var(--mutedink)">Du groove, de la technique et de la sueur. Cours réguliers, tous niveaux, dans la salle noire.</p>
+          <p class="mt-2 text-[15px] leading-[1.62]" style="color:var(--mutedink)">Du groove, de la technique et de la sueur. Un dimanche par mois, deux heures, tous niveaux, avec Selasi.</p>
           <span class="mt-4 inline-block text-[13.5px] font-semibold" style="color:var(--terra)">Voir les horaires →</span>
         </div>
       </a>
 
       
       <a href="#horaire" class="group rv rounded-[6px] overflow-hidden border transition duration-500 grid sm:grid-cols-[240px_minmax(0,1fr)] md:grid-cols-[300px_minmax(0,1fr)]" style="border-color:var(--hair);background:var(--oat)">
-        <div class="ph aspect-[4/3] sm:aspect-auto sm:h-full" style="background:var(--paper);display:flex;align-items:center;justify-content:center;min-height:150px"><span class="d d-it" style="font-size:34px;color:var(--oak)">Heels</span></div>
+        <div class="ph ph-hover aspect-[4/3] sm:aspect-auto sm:h-full"><img src="assets/img/disc-heels.jpg" alt="Elena, professeure de heels, en robe noire et talons"></div>
         <div class="p-6 md:p-8 flex flex-col justify-center">
           <h3 class="d d-600 text-[24px]">Heels</h3>
-          <p class="mt-2 text-[15px] leading-[1.62]" style="color:var(--mutedink)">La danse en talons : technique, présence, confiance. Aucun niveau requis, juste l'envie.</p>
+          <p class="mt-2 text-[15px] leading-[1.62]" style="color:var(--mutedink)">La danse en talons : technique, présence, confiance. Un dimanche par mois, deux heures, avec Elena. Aucun niveau requis.</p>
           <span class="mt-4 inline-block text-[13.5px] font-semibold" style="color:var(--terra)">Voir les horaires →</span>
         </div>
       </a>
@@ -659,7 +659,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     </div>
 
     <p class="mt-6 text-[13px]" style="color:var(--muted)">
-      Le hip-hop et les heels sont les deux seules disciplines sans photo : ils attendent leurs images plutôt que d'emprunter celles d'un autre cours. <span class="num">[à confirmer]</span>
+      Les photos de Selasi (hip-hop) et d'Elena (heels) viennent d'arriver. Chaque discipline a maintenant la sienne.
     </p>
   </div>
 </section>
@@ -973,7 +973,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   </div>
 </section>
 
-<section id="bootcamps" class="pb-16 md:pb-24" x-data="{ liste: IDX28[0] }">
+<section id="bootcamps" class="pb-16 md:pb-24" x-data="bootcamps28()">
   <div class="mx-auto max-w-shell px-5 md:px-8">
 
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-9 md:mb-12 rv">
@@ -1003,6 +1003,18 @@ details[open] .faq-plus{ transform:rotate(45deg); }
           <p class="mt-1 text-[14px]" style="color:var(--muted)">
             <span class="num" x-text="c.credits"></span> crédits · une fois par mois
           </p>
+          
+          <template x-if="dates(c).length">
+            <p class="mt-4 pt-3 text-[14px]" style="border-top:1px solid var(--hair);color:var(--mutedink)">
+              <span style="color:var(--terra)">Prochaines dates —</span>
+              <span x-text="dates(c).join(' · ')"></span>
+            </p>
+          </template>
+          <template x-if="!dates(c).length">
+            <p class="mt-4 pt-3 text-[14px]" style="border-top:1px solid var(--hair);color:var(--muted)">
+              Dates <span class="num">[à confirmer]</span>
+            </p>
+          </template>
         </article>
       </template>
     </div>
@@ -1412,6 +1424,13 @@ const M28  = ['janvier','février','mars','avril','mai','juin','juillet','août'
 function toMin28(x){ const p = x.split(':'); return (+p[0])*60 + (+p[1]); }
 function cap28(x){ return x.charAt(0).toUpperCase() + x.slice(1); }
 
+/* Les dates du hip-hop viennent de l'affiche « Back to Basic » que Selasi nous a
+   envoyée le 28 septembre. Les quatre tombent bien un dimanche en 2026, vérifié.
+   Les heels et la Cyclodance Fusion n'ont pas encore livré les leurs. */
+const DATES_BOOTCAMP = {
+  'Hip-hop': ['2026-09-13','2026-10-18','2026-11-15','2026-12-06']
+};
+
 const ORDRE = ['Yoga','Pilates','Cyclodance Fusion','Heels','Hip-hop','Enfants','Tango','Zumba','Afro-Latin Move','Salsa','Bachata','Kizomba'];
 const DISCIPLINES = (function(){
   const vues = new Set();
@@ -1480,6 +1499,23 @@ const AVIS = [
 function avis28(){ return { avis: AVIS }; }
 
 function agenda28(){ return { evenements: EVENEMENTS }; }
+
+/* Les bootcamps du dimanche, avec leurs dates quand elles sont connues. Une date
+   déjà passée n'est plus proposée : une liste qui garde le mois dernier vieillit
+   toute seule et donne l'impression d'un site abandonné. */
+function bootcamps28(){
+  return {
+    liste: IDX28[0],
+    dates(c){
+      const brutes = DATES_BOOTCAMP[c.disc] || [];
+      const today = new Date(); today.setHours(0,0,0,0);
+      return brutes
+        .map(x => new Date(x + 'T00:00:00'))
+        .filter(d => d >= today)
+        .map(d => d.getDate() + ' ' + M28[d.getMonth()]);
+    }
+  };
+}
 
 /* L'horaire de la semaine lit exactement les mêmes données que le direct :
    une seule source, donc impossible que les deux se contredisent. */
