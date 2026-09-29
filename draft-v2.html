@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="3.6+20260928">
-<meta name="maquette-version-lisible" content="v3.6 — 28 septembre 2026">
+<meta name="maquette-version" content="3.7+20260929">
+<meta name="maquette-version-lisible" content="v3.7 — 29 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Bouger ensemble à Bruxelles</title>
@@ -313,7 +313,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
           <svg viewBox="0 0 24 24" class="h-[17px] w-[17px]" fill="currentColor" style="color:var(--terra)"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.94 1.35-.5.05-1.13.07-1.83-.11-.42-.11-.96-.29-1.65-.59-2.91-1.26-4.8-4.19-4.95-4.39-.14-.2-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.59.82 2.02.89 2.17.07.14.12.31.02.5-.09.2-.14.31-.27.48-.14.16-.29.36-.41.49-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.06.18-.27.36-.23.61-.14.24.09 1.55.73 1.82.87.27.14.45.2.51.31.07.11.07.64-.17 1.32Z"/></svg>
         </a>
 
-        <a href="#horaire" class="btn btn-solid hidden sm:inline-flex !py-2 !px-4 !text-[14px]">Réserver</a>
+        <a href="https://www.latindanceevolution.com/" target="_blank" rel="noopener" class="btn btn-solid hidden sm:inline-flex !py-2 !px-4 !text-[14px]">Réserver</a>
 
         <button id="burg" aria-label="Menu" class="hdr-burg xl:hidden grid place-items-center h-9 w-9 rounded-full border transition duration-500" style="border-color:var(--hair)">
           <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h16M4 16h16"/></svg>
@@ -783,6 +783,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                   </template>
                   <p class="kicker" style="color:var(--muted)" x-text="p.nom"></p>
                   <p class="d mt-3" style="font-size:44px;line-height:1;color:var(--terra)" x-text="p.prix"></p>
+                  <p class="text-[13.5px]" style="color:var(--muted)"><span class="num" x-text="p.credits"></span> crédits</p>
                   <ul class="mt-4 space-y-1.5 text-[14.5px]" style="color:var(--mutedink)">
                     <template x-for="l in p.lignes" :key="l">
                       <li class="flex gap-2"><span style="color:var(--oak)">·</span><span x-text="l"></span></li>
@@ -978,9 +979,14 @@ details[open] .faq-plus{ transform:rotate(45deg); }
           </template>
           <p class="mt-4 text-[15px]" style="color:var(--mutedink)">
             Avec <span class="font-semibold" x-text="c.prof"></span>
+            <template x-if="!c.lde">
+              <span> · <a :href="lienEcole(c)" target="_blank" rel="noopener" class="lnk"
+                          x-text="c.ecole" x-show="lienEcole(c)"></a></span>
+            </template>
           </p>
           <p class="mt-1 text-[14px]" style="color:var(--muted)">
-            <span class="num" x-text="c.credits"></span> crédits · une fois par mois
+            <template x-if="c.lde"><span><span class="num" x-text="c.credits"></span> crédits · une fois par mois</span></template>
+            <template x-if="!c.lde"><span>Paiement séparé · une fois par mois</span></template>
           </p>
           
           <template x-if="dates(c).length">
@@ -999,15 +1005,16 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     </div>
 
     <p class="mt-6 text-[13px]" style="color:var(--muted)">
-      Un seul de ces trois rendez-vous a lieu chaque mois. La date exacte est annoncée en haut de page.
+      Chaque discipline revient une fois par mois, à sa propre date. Les mois sans date annoncée
+      sont ceux qu'Ahmedy ne nous a pas encore donnés.
     </p>
   </div>
 </section>
 
-<section id="agenda" class="pb-16 md:pb-24" x-data="agenda28()">
+<section id="agenda" class="pb-16 md:pb-24">
   <div class="mx-auto max-w-shell px-5 md:px-8">
 
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-12 rv">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-9 md:mb-12 rv">
       <div>
         <p class="kicker">08 — Ce qui se passe au studio</p>
         <span class="tick mt-3 mb-5"></span>
@@ -1020,33 +1027,29 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       </p>
     </div>
 
-    <div class="rv">
-      <template x-for="(e, i) in evenements" :key="e.titre">
-        <article class="grid md:grid-cols-[130px_minmax(0,1fr)_auto] gap-x-8 gap-y-3 py-7 items-baseline"
-                 style="border-top:1px solid var(--hair)">
-          <div>
-            <p class="d num text-[28px]" style="color:var(--terra)" x-text="e.jourNum"></p>
-            <p class="text-[14px] mt-0.5" style="color:var(--mutedink)" x-text="e.mois"></p>
-          </div>
-          <div>
-            <div class="flex flex-wrap items-baseline gap-x-3 gap-y-2">
-              <h3 class="d d-600 text-[22px] md:text-[24px]" x-text="e.titre"></h3>
-              <template x-if="i === 0"><span class="pastille">prochain event</span></template>
-            </div>
-            <p class="mt-2 text-[15.5px] leading-[1.65] max-w-[52ch]" style="color:var(--mutedink)" x-text="e.ligne"></p>
-          </div>
-          <div class="md:text-right">
-            <p class="num text-[15px]" x-text="e.heure"></p>
-            <p class="num text-[14px] mt-1" style="color:var(--muted)" x-text="e.prix"></p>
-          </div>
-        </article>
-      </template>
-      <hr style="border:0;border-top:1px solid var(--hair)">
+    
+    <div class="rv grid md:grid-cols-[minmax(0,1fr)_auto] gap-7 items-center p-7 md:p-9"
+         style="background:var(--oat);border-radius:10px">
+      <div>
+        <h3 class="d d-600 text-[22px] md:text-[25px]">Les dates sont annoncées sur nos réseaux</h3>
+        <p class="mt-3 text-[15.5px] leading-[1.7] max-w-[56ch]" style="color:var(--mutedink)">
+          Soirées sociales, stages, portes ouvertes : tout passe par Instagram et Facebook, où
+          c'est publié le jour même. Les réservations se font sur le site de Latin Dance Evolution.
+        </p>
+        <p class="mt-4 text-[14.5px]" style="color:var(--muted)">
+          Les rendez-vous mensuels du dimanche, eux, sont
+          <a href="#bootcamps" class="lnk">dans les bootcamps</a>, avec leurs dates.
+        </p>
+      </div>
+      <div class="flex flex-col gap-3 md:w-[230px] shrink-0">
+        <a href="https://www.latindanceevolution.com/" target="_blank" rel="noopener" class="btn btn-solid justify-center">Réserver</a>
+        <div class="flex gap-3">
+          <a href="https://www.instagram.com/thestudio28_bxl" target="_blank" rel="noopener" class="btn btn-ghost flex-1 justify-center !px-3">Instagram</a>
+          <a href="https://www.facebook.com/TheStudioDanceevolution/" target="_blank" rel="noopener" class="btn btn-ghost flex-1 justify-center !px-3">Facebook</a>
+        </div>
+      </div>
     </div>
 
-    <p class="mt-6 text-[13px]" style="color:var(--muted)">
-      Événements donnés à titre d'exemple <span class="num">[à remplacer par les vrais]</span>.
-    </p>
   </div>
 </section>
 
@@ -1374,8 +1377,8 @@ const HORAIRE = {
     {h:'21:00', fin:'22:00', disc:'Kizomba', ecole:"O'Dance", lde:false}
   ],
   4: [
-    {h:'12:30', fin:'13:30', disc:'Yoga',  prof:'Nivram',   ecole:'LDE', lde:true},   /* « Marvin » dans son mail du 28 — à trancher */
-    {h:'18:00', fin:'19:00', disc:'Zumba', prof:'Nastasia', ecole:'Invitée', lde:false},
+    {h:'12:30', fin:'13:30', disc:'Yoga',  prof:'Marvin',   ecole:'LDE', lde:true},
+    {h:'18:00', fin:'19:00', disc:'Zumba', prof:'Nastasia', ecole:'Nastasia Van Loo', lde:false},
     {h:'19:00', fin:'20:00', disc:'Salsa', niveau:'Initiation',    prof:'Ahmedy et Caro', ecole:'LDE', lde:true},
     {h:'19:30', fin:'20:30', disc:'Salsa', niveau:'Débutant',      ecole:'LDE', lde:true},
     {h:'20:30', fin:'21:30', disc:'Salsa', niveau:'Intermédiaire', ecole:'LDE', lde:true},
@@ -1391,27 +1394,14 @@ const HORAIRE = {
   6: [
     {h:'14:00', fin:'16:00', disc:'Enfants', ecole:'IMPULS', lde:false}
   ],
+  /* Les quatre rendez-vous mensuels du dimanche. Heures et prix confirmés le 29. */
   0: [
-    {h:'15:00', fin:'17:00', disc:'Cyclodance Fusion', prof:'Jamel et Charline', ecole:'LDE', lde:true, mensuel:true},
+    {h:'14:00', fin:'16:00', disc:'Latin Fusion', prof:'Eva', ecole:'Pasión Latina', lde:false, mensuel:true},
     {h:'16:00', fin:'18:00', disc:'Heels',   niveau:'Heels & Confidence', prof:'Elena',  ecole:'LDE', lde:true, mensuel:true},
-    {h:'16:00', fin:'18:00', disc:'Hip-hop', niveau:'Back to Basic',      prof:'Selasi', ecole:'LDE', lde:true, mensuel:true}
+    {h:'16:00', fin:'18:00', disc:'Hip-hop', niveau:'Back to Basic',      prof:'Selasi', ecole:'LDE', lde:true, mensuel:true},
+    {h:'17:00', fin:'18:30', disc:'Cyclodance Fusion', prof:'Jamel et Charline', ecole:'LDE', lde:true, mensuel:true}
   ]
 };
-
-const EVENEMENTS = [
-  { jourNum:'26', mois:'septembre', titre:'Soirée sociale',
-    ligne:"Le parquet est à vous. Une heure d'initiation, puis on danse jusqu'à la fermeture.",
-    heure:'20h00 — 00h00', prix:'8 €' },
-  { jourNum:'04', mois:'octobre', titre:'Stage de Cyclodance Fusion',
-    ligne:"Une après-midi complète, personne à mobilité réduite ou non. Ouvert à tout le monde, sans expérience.",
-    heure:'14h00 — 18h00', prix:'35 €' },
-  { jourNum:'12', mois:'octobre', titre:'Yoga et brunch au jardin',
-    ligne:"Un cours doux le dimanche matin, suivi d'un brunch dehors si le temps le permet.",
-    heure:'10h00 — 13h00', prix:'25 €' },
-  { jourNum:'25', mois:'octobre', titre:'Atelier heels',
-    ligne:'Trois heures sur une seule chorégraphie, avec Elena. Places limitées.',
-    heure:'13h00 — 16h00', prix:'40 €' }
-];
 
 const J28  = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
 const JA28 = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
@@ -1423,10 +1413,26 @@ function cap28(x){ return x.charAt(0).toUpperCase() + x.slice(1); }
    envoyée le 28 septembre. Les quatre tombent bien un dimanche en 2026, vérifié.
    Les heels et la Cyclodance Fusion n'ont pas encore livré les leurs. */
 const DATES_BOOTCAMP = {
-  'Hip-hop': ['2026-09-13','2026-10-18','2026-11-15','2026-12-06']
+  'Hip-hop':           [{d:'2026-10-18'}, {d:'2026-11-15'}, {d:'2026-12-06'}],
+  'Heels':             [{d:'2026-10-25'}, {d:'2026-11-29'}, {d:'2027-05-23'}],
+  'Cyclodance Fusion': [{d:'2026-10-04'}, {d:'2026-11-08'}, {d:'2026-12-20'}],
+  /* Eva change d'heure d'un mois à l'autre, d'où l'heure par date. */
+  'Latin Fusion':      [{d:'2026-10-11', h:'14:00', fin:'16:00'},
+                        {d:'2026-11-15', h:'13:00', fin:'15:00'},
+                        {d:'2026-12-13', h:'14:00', fin:'16:00'}]
 };
 
-const ORDRE = ['Yoga','Pilates','Cyclodance Fusion','Heels','Hip-hop','Enfants','Tango','Zumba','Afro-Latin Move','Salsa','Bachata','Kizomba'];
+/* Les sites des écoles invitées. Leurs élèves s'inscrivent chez elles, pas ici :
+   le lien est donc l'information utile, pas un ornement. */
+const ECOLES = {
+  'IMPULS':          'https://impulsvzw.com/fr/',
+  "O'Dance":         'https://odanceevents.com/',
+  'La Tangueria':    'https://www.tangueria.be/fr/',
+  'Nastasia Van Loo':'https://www.zumba.com/fr-FR/p/nastasia-van-loo/101312',
+  'Pasión Latina':   'https://www.pasionlatina.be/latinfusion'
+};
+
+const ORDRE = ['Yoga','Pilates','Cyclodance Fusion','Heels','Hip-hop','Latin Fusion','Enfants','Tango','Zumba','Afro-Latin Move','Salsa','Bachata','Kizomba'];
 const DISCIPLINES = (function(){
   const vues = new Set();
   for (let d = 0; d < 7; d++) for (const c of (HORAIRE[d]||[])) vues.add(c.disc);
@@ -1471,16 +1477,17 @@ function annonce28(){
 /* Les packs de crédits. Les prix restent à confirmer par Ahmedy ; les crédits,
    eux, viennent de sa remarque 34 (20 le yoga et le pilates, 15 les danses,
    10 la cyclodance fusion). */
-/* Les trois packs et leurs prix viennent de son mail du 28 septembre. Ce que chaque
-   pack donne en crédits, il ne l'a pas dit — d'où le « à confirmer », qui doit rester
-   tant qu'on ne sait pas : annoncer un nombre inventé serait une promesse de vente. */
+/* Prix et crédits viennent d'Ahmedy (28 et 29 septembre). Un crédit ne vaut PAS un
+   euro : 65 € donnent 75 crédits, 210 € en donnent 300. C'est là qu'est la remise, et
+   c'est pour ça que le nombre de cours est écrit noir sur blanc — un visiteur ne fait
+   pas la division de tête. */
 const PACKS = [
-  { nom:'Dance Essential', prix:'65 €',  populaire:false,
-    lignes:['crédits [à confirmer]', 'toutes les disciplines de la carte LDE'] },
-  { nom:'Dance Passion',   prix:'120 €', populaire:true,
-    lignes:['crédits [à confirmer]', 'toutes les disciplines de la carte LDE'] },
-  { nom:'Dance Prestige',  prix:'210 €', populaire:false,
-    lignes:['crédits [à confirmer]', 'toutes les disciplines de la carte LDE'] }
+  { nom:'Dance Essential', prix:'65 €',  credits:'75',  populaire:false,
+    lignes:['5 cours de danse, ou 3 de yoga', 'toutes les disciplines de la carte LDE'] },
+  { nom:'Dance Passion',   prix:'120 €', credits:'150', populaire:true,
+    lignes:['10 cours de danse, ou 7 de yoga', 'toutes les disciplines de la carte LDE'] },
+  { nom:'Dance Prestige',  prix:'210 €', credits:'300', populaire:false,
+    lignes:['20 cours de danse, ou 15 de yoga', 'toutes les disciplines de la carte LDE'] }
 ];
 function packs28(){ return { packs: PACKS }; }
 
@@ -1502,7 +1509,7 @@ function avis28(){ return { avis: AVIS }; }
 const PROFS = [
   { nom:'Laura',   disc:'Pilates · Salsa', teinte:'#D9C3A4', encre:'#5E4A33',
     bio:"Pour elle, le pilates est autant une introspection qu'un exercice : posture, respiration consciente, alignement, mobilité. On y gagne en force centrale et on y perd des douleurs." },
-  { nom:'Nivram',  disc:'Yoga', teinte:'#C9A87C', encre:'#4C3A26',
+  { nom:'Marvin',  disc:'Yoga', teinte:'#C9A87C', encre:'#4C3A26',
     bio:"Quinze ans de pratique, dix d'enseignement. Formé en Inde, il a enseigné en Allemagne, en France, à Singapour, en Thaïlande et au Nigeria. Des enchaînements construits, l'alignement, le souffle." },
   { nom:'Selasi',  disc:'Hip-hop', photo:'assets/img/prof-selasi.jpg',
     bio:"Selasi Dogbatse : le classique à 4 ans, le hip-hop à 12, Los Angeles à 20. A dansé pour Rihanna, Beyoncé, Missy Elliott, Cardi B et Drake. Son spectacle A Piece of Me est passé par Bozar." },
@@ -1513,12 +1520,12 @@ const PROFS = [
   { nom:'Jamel',   disc:'Cyclodance Fusion', teinte:'#C9A87C', encre:'#4C3A26' },
   { nom:'Ahmedy',  disc:'Salsa · Bachata', teinte:'#E4D6C0', encre:'#6B5540',
     bio:"Les danses urbaines, puis la salsa en 2006 et la bachata moderna en 2012. Il fonde Latin Dance Evolution en 2016 ; la troupe court le World Bachata Masters dès 2017. Certifié Bachazouk depuis 2025." },
+  { nom:'Eva',     disc:'Latin Fusion', teinte:'#E4D6C0', encre:'#6B5540',
+    bio:"Elle anime le Latin Fusion un dimanche par mois, avec Pasión Latina. Cours hors carte LDE : l'inscription se fait chez elle." },
   { nom:'Caro',    disc:'Salsa · Bachata · Lady Styling', teinte:'#B4643F', encre:'#F7F2EA',
     bio:"Caroline enseigne la salsa et la bachata avec Ahmedy depuis 2019, en Belgique et à l'étranger. Le street jazz et le hip-hop girly nourrissent son styling ; elle anime les stages de Lady Styling de la maison." }
 ];
 function profs28(){ return { profs: PROFS, initiale(p){ return p.nom.charAt(0); } }; }
-
-function agenda28(){ return { evenements: EVENEMENTS }; }
 
 /* Les bootcamps du dimanche, avec leurs dates quand elles sont connues. Une date
    déjà passée n'est plus proposée : une liste qui garde le mois dernier vieillit
@@ -1526,13 +1533,21 @@ function agenda28(){ return { evenements: EVENEMENTS }; }
 function bootcamps28(){
   return {
     liste: IDX28[0],
+    lienEcole(c){ return ECOLES[c.ecole] || null; },
+    /* Les prochaines dates. Une date passée disparaît d'elle-même : une liste qui
+       garde le mois dernier vieillit toute seule et fait croire à un site abandonné.
+       L'heure n'est écrite que quand elle sort de l'ordinaire — sinon elle répète
+       celle déjà affichée en haut de la carte. */
     dates(c){
-      const brutes = DATES_BOOTCAMP[c.disc] || [];
       const today = new Date(); today.setHours(0,0,0,0);
-      return brutes
-        .map(x => new Date(x + 'T00:00:00'))
-        .filter(d => d >= today)
-        .map(d => d.getDate() + ' ' + M28[d.getMonth()]);
+      return (DATES_BOOTCAMP[c.disc] || [])
+        .map(x => ({ ...x, jour: new Date(x.d + 'T00:00:00') }))
+        .filter(x => x.jour >= today)
+        .map(x => {
+          const jour = x.jour.getDate() + ' ' + M28[x.jour.getMonth()];
+          const heure = (x.h && x.h !== c.h) ? ' (' + x.h.replace(':','h') + ')' : '';
+          return jour + heure;
+        });
     }
   };
 }
