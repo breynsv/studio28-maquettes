@@ -148,9 +148,16 @@ export async function onRequest(context) {
   }
 
   /* ── tout le reste demande le jeton ───────────────────────────────────── */
+  /* Deux façons de le présenter :
+     - `?t=…` dans l'adresse : l'ancien lien d'Ahmedy, gardé pour ne rien casser ;
+     - le cookie `s28`, posé par le mot de passe de /review. C'est la bonne voie :
+       le jeton ne traîne plus dans une adresse, un historique ou un mail transféré. */
   const expected = env.REVIEW_TOKEN;
   if (!expected) return fail(500, "le jeton du serveur n'a pas été configuré");
-  if (!safeEqual(expected, url.searchParams.get('t') || '')) return fail(403, 'lien invalide');
+  const cookie = (request.headers.get('Cookie') || '')
+    .split(';').map((x) => x.trim()).find((x) => x.startsWith('s28='));
+  const presente = url.searchParams.get('t') || (cookie ? cookie.slice(4) : '') || '';
+  if (!safeEqual(expected, presente)) return fail(403, 'lien invalide');
 
   const project = projectName(url);
   if (!project) return fail(400, 'projet invalide');
