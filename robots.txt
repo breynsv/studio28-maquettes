@@ -1,0 +1,5 @@
+# Studio 28 — maquette. Rien ne doit être indexé tant que le site n'est pas lancé :
+# ce domaine sert aussi les 29 maquettes de travail et l'outil de remarques du client.
+# `python3 publish.py --lancement` remplace ce fichier par la version d'ouverture.
+User-agent: *
+Disallow: /
