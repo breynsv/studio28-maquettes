@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="3.7+20260929">
-<meta name="maquette-version-lisible" content="v3.7 — 29 septembre 2026">
+<meta name="maquette-version" content="3.8+20260930">
+<meta name="maquette-version-lisible" content="v3.8 — 30 septembre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Studio 28 — Bouger ensemble à Bruxelles</title>
@@ -738,7 +738,12 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                   <span style="color:var(--terra)">comprise</span>
                 </template>
                 <template x-if="!c.lde">
-                  <span style="color:var(--muted)" x-text="'paiement séparé · ' + c.ecole"></span>
+                  <span style="color:var(--muted)">paiement séparé ·
+                    <template x-if="lienEcole(c)">
+                      <a :href="lienEcole(c)" target="_blank" rel="noopener" class="lnk" x-text="c.ecole"></a>
+                    </template>
+                    <template x-if="!lienEcole(c)"><span x-text="c.ecole"></span></template>
+                  </span>
                 </template>
               </div>
             </div>
@@ -1353,11 +1358,10 @@ const OUVERTURE = { debut:'12:00', fin:'22:30' };
 const CREDITS = { 'Yoga':20, 'Pilates':20, 'Cyclodance Fusion':10, 'Heels':35, 'Hip-hop':35 };
 
 const HORAIRE = {
-  /* Lundi — Ahmedy avait dit « aucun cours » le 23 septembre, puis a donné ce cours
-     le 28. C'est la réponse la plus récente qui vaut. */
+  /* Lundi — le tango de La Tangueria a existé une journée dans cette maquette :
+     ajouté le 28 sur sa demande, retiré le 29 sur sa demande. Ne reste que le pilates. */
   1: [
-    {h:'12:30', fin:'13:30', disc:'Pilates', niveau:'tous niveaux', prof:'Laura', ecole:'LDE', lde:true},
-    {h:'19:00', fin:'20:00', disc:'Tango',   niveau:'Initiation', ecole:'La Tangueria', lde:false}
+    {h:'12:30', fin:'13:30', disc:'Pilates', niveau:'tous niveaux', prof:'Laura', ecole:'LDE', lde:true}
   ],
   2: [
     {h:'19:00', fin:'20:00', disc:'Bachata', niveau:'Initiation',  ecole:'LDE', lde:true},
@@ -1427,7 +1431,6 @@ const DATES_BOOTCAMP = {
 const ECOLES = {
   'IMPULS':          'https://impulsvzw.com/fr/',
   "O'Dance":         'https://odanceevents.com/',
-  'La Tangueria':    'https://www.tangueria.be/fr/',
   'Nastasia Van Loo':'https://www.zumba.com/fr-FR/p/nastasia-van-loo/101312',
   'Pasión Latina':   'https://www.pasionlatina.be/latinfusion'
 };
@@ -1557,6 +1560,9 @@ function bootcamps28(){
 function semaine28(){
   return {
     f: 'tout',
+    /* Les écoles invitées gèrent leurs propres inscriptions : leur site est
+       l'information utile, pas un ornement. */
+    lienEcole(c){ return ECOLES[c.ecole] || null; },
     disciplines: DISCIPLINES,
     J28,
     ordreJours: [1,2,3,4,5,6,0],          /* la semaine commence le lundi */
