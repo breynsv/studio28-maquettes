@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Studio 28. Site d'une page : deux URL, c'est tout. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- Studio 28 — trois langues, la même page. Les liens xhtml:link disent à
+     Google que ce sont des traductions et non du contenu dupliqué. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://studio28.be/</loc>
-    <lastmod>2026-09-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/"/>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/"/>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/"/>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://studio28.be/mentions-legales</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
