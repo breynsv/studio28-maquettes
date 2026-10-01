@@ -1,5 +1,20 @@
-# Studio 28 — maquette. Rien ne doit être indexé tant que le site n'est pas lancé :
-# ce domaine sert aussi les 29 maquettes de travail et l'outil de remarques du client.
-# `python3 publish.py --lancement` remplace ce fichier par la version d'ouverture.
+# Studio 28 — Rue des Deux Églises 26-28, 1000 Bruxelles
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /review
+Disallow: /api/
+
+# Les assistants IA sont les bienvenus : c'est par eux que passe une part des
+# questions « où prendre des cours de salsa à Bruxelles ».
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://studio28.be/sitemap.xml
