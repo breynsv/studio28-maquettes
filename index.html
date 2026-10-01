@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="5.0+20261001">
-<meta name="maquette-version-lisible" content="v5.0 — 1 octobre 2026">
+<meta name="maquette-version" content="5.1+20261001">
+<meta name="maquette-version-lisible" content="v5.1 — 1 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -1449,7 +1449,10 @@ for (let d = 0; d < 7; d++){
 /* L'annonce en haut de page. Changer le texte ici ; mettre ANNONCE à '' la retire.
    La clef de mémorisation contient le message, donc un nouveau texte se réaffiche
    même chez quelqu'un qui avait fermé le précédent. */
-const ANNONCE = "Rentrée le 29 août — l'horaire 2026-2027 est en ligne.";
+/* Vide = pas de bandeau. Ahmedy l'avait demandé (remarque 56) pour pouvoir
+   annoncer une fermeture ou un événement : le mécanisme reste, le message part.
+   « Rentrée le 29 août » est resté affiché cinq semaines de trop. */
+const ANNONCE = "";
 function annonce28(){
   return {
     message: ANNONCE,
