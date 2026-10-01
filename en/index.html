@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="maquette-version" content="5.7+20261001">
-<meta name="maquette-version-lisible" content="v5.7 — 1 octobre 2026">
+<meta name="maquette-version" content="5.8+20261001">
+<meta name="maquette-version-lisible" content="v5.8 — 1 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -440,6 +440,68 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     }
   }
   @media (min-width:1024px){ .jrs-rail{ flex-wrap:wrap; } }
+
+  /* ══ La rangée de cours, compacte sur téléphone ═════════════════════
+     Mesuré le 1er octobre à 390 px : un cours, c'était cinq lignes empilées et
+     169 px. Jeudi en a six, donc un jour ouvert faisait 1 091 px et reprenait
+     l'essentiel de ce que le repli venait tout juste de gagner.
+
+     L'heure devient une colonne à elle seule — c'est ce qu'on balaye — et tout
+     le reste tient à côté, sur deux lignes :
+
+         12h30   Yoga — Initiation
+                 Marvin · 20 crédits · comprise
+
+     900 px et non 1024 : c'est la largeur à laquelle `.row-grid` abandonne
+     déjà ses cinq colonnes. Deux seuils différents pour la même rangée, et
+     elle serait à la fois en colonnes et en zones.
+
+     Les sélecteurs portent `.jr-corps` devant, et ce n'est pas de la
+     décoration : `assets/css/site.css` est chargée APRÈS ce bloc, donc une
+     classe Tailwind de même spécificité l'emporterait — `py-4` et
+     `text-[15px]` en particulier. */
+  /* La clé de tout : sans boîte propre, `.cls-bas` n’existe pas pour la mise en
+     page et ses trois enfants deviennent directement les éléments de grille de
+     `.row-grid` — colonnes 3, 4 et 5, exactement comme avant qu’on les réunisse.
+     Oublier cette ligne fait tomber l’horaire du grand écran de cinq colonnes à
+     trois, ce qui est arrivé et ne s’est vu qu’à la mesure. */
+  .cls-bas{ display:contents; }
+
+  @media (max-width:900px){
+    .jr-corps .cls{
+      grid-template-columns:4.3rem minmax(0,1fr);
+      grid-template-areas:"heure titre" "heure bas";
+      column-gap:.7rem; row-gap:.12rem;
+      /* `baseline` et non `start` : l’heure et la discipline reposent alors sur
+         la même ligne d’écriture, ce qui coûte 2 px et fait tenir la rangée
+         ensemble au lieu de deux blocs posés côte à côte. */
+      align-items:baseline;
+      padding-top:.7rem; padding-bottom:.7rem;
+    }
+    .jr-corps .cls > :nth-child(1){ grid-area:heure; }
+    .jr-corps .cls > :nth-child(2){ grid-area:titre; line-height:1.32; }
+    .jr-corps .cls > .cls-bas{
+      grid-area:bas; display:flex; flex-wrap:wrap; align-items:baseline;
+      column-gap:.26rem; row-gap:0;
+    }
+    .jr-corps .cls > .cls-bas > *{ font-size:13.5px; line-height:1.5; }
+
+    /* Une case sans contenu disparaît au lieu de poser un tiret tout seul. */
+    .jr-corps .cls .cls-vide{ display:none; }
+
+    /* Le point TRAINE derrière sa case, il ne précède pas la suivante. Deux
+       raisons, et la première est visible à l'œil : quand la ligne passe à la
+       suivante — le Zumba du jeudi — un point en tête de ligne ressemble à une
+       coquille, alors qu'un point en fin de ligne est une ponctuation normale.
+
+       La seconde est logique : la dernière case, le marqueur, est TOUJOURS
+       affichée (« comprise » ou « paiement séparé »). `:not(:last-child)` suffit
+       donc à lui seul — une case masquée ne dessine pas son `::after`, et aucune
+       combinaison de cases vides ne peut laisser un point orphelin. */
+    .jr-corps .cls-bas > *:not(:last-child)::after{
+      content:"\00b7"; margin-left:.24rem; color:var(--muted);
+    }
+  }
 </style>
 
 <link rel="stylesheet" href="/assets/css/site.css?v=0f6e361e">
@@ -901,6 +963,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                  : 'No ' + f.toLowerCase() + ' that day.'"></p>
           </template>
 
+          
           <template x-for="c in duJour(j)" :key="c.id">
             <div class="cls row-grid py-4" style="border-top:1px solid var(--hair)">
               <div>
@@ -919,9 +982,11 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                   <span class="text-[13px] ml-2" style="color:var(--clay)">once a month</span>
                 </template>
               </div>
+              <div class="cls-bas">
               <div class="text-[15px]" style="color:var(--mutedink)"
-                   x-text="c.prof ? c.prof : (c.ecole !== 'LDE' ? c.ecole : '—')"></div>
-              <div class="num text-[15px]" x-text="c.lde ? c.credits + ' credits' : '—'"></div>
+                   :class="{ 'cls-vide': (!c.prof && c.ecole === 'LDE') || memeNom(c) }"
+                   x-text="memeNom(c) ? '—' : (c.prof ? c.prof : (c.ecole !== 'LDE' ? c.ecole : '—'))"></div>
+              <div class="num text-[15px]" :class="{ 'cls-vide': !c.lde }" x-text="c.lde ? c.credits + ' credits' : '—'"></div>
               <div class="lg:text-right text-[14px]">
                 <template x-if="c.lde">
                   <span style="color:var(--terra)">included</span>
@@ -934,6 +999,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
                     <template x-if="!lienEcole(c)"><span x-text="c.ecole"></span></template>
                   </span>
                 </template>
+              </div>
               </div>
             </div>
           </template>
@@ -1174,8 +1240,14 @@ details[open] .faq-plus{ transform:rotate(45deg); }
             <p class="text-[15px] mt-1" style="color:var(--mutedink)" x-text="c.niveau"></p>
           </template>
           <p class="mt-4 text-[15px]" style="color:var(--mutedink)">
-            With <span class="font-semibold" x-text="c.prof"></span>
-            <template x-if="!c.lde">
+            With <template x-if="!memeNom(c) || !lienEcole(c)">
+                   <span class="font-semibold" x-text="memeNom(c) ? c.ecole : c.prof"></span>
+                 </template>
+                 <template x-if="memeNom(c) && lienEcole(c)">
+                   <a :href="lienEcole(c)" target="_blank" rel="noopener"
+                      class="lnk font-semibold" x-text="c.ecole"></a>
+                 </template>
+            <template x-if="!c.lde && !memeNom(c)">
               <span> · <a :href="lienEcole(c)" target="_blank" rel="noopener" class="lnk"
                           x-text="c.ecole" x-show="lienEcole(c)"></a></span>
             </template>
@@ -1822,7 +1894,7 @@ function jour28(){
     ligne(c){
       const bouts = [];
       if (c.niveau) bouts.push(c.niveau);
-      if (c.prof)   bouts.push('with ' + c.prof);
+      if (c.prof && !memeNom(c)) bouts.push('with ' + c.prof);
       if (c.ecole && c.ecole !== 'LDE') bouts.push(c.ecole);
       if (c.mensuel) bouts.push('once a month');
       bouts.push(c.lde ? 'LDE card' : 'paid separately');
@@ -1877,6 +1949,18 @@ function jour28(){
    CSS : <details> cache son contenu par le moteur de rendu, pas par une propriété
    qu'on puisse surcharger. Passer par l'attribut garde gratuitement le clavier, le
    lecteur d'écran et le repli natif. */
+/* Nastasia donne le zumba sous son propre nom : le cours porte prof « Nastasia »
+   et école « Nastasia Van Loo ». Imprimer les deux donne « Nastasia · paiement
+   séparé · Nastasia Van Loo » — ça se lit comme une faute de saisie, et sur un
+   téléphone étroit ça pousse la rangée à une troisième ligne. Quand l'école
+   nomme déjà la personne, répéter son prénom n'apprend rien. On garde le nom le
+   plus complet, celui qui porte le lien. */
+function memeNom(c){
+  if (!c.prof || !c.ecole) return false;
+  const n = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  return n(c.ecole).includes(n(c.prof)) || n(c.prof).includes(n(c.ecole));
+}
+
 function grand28(){ return window.matchMedia('(min-width:1024px)').matches; }
 
 /* Un filtre actif ouvre tous les jours : la liste devient courte, et comparer les
@@ -1929,7 +2013,6 @@ function pli28(j, f){
 
 <div class="sans-js">
   <section><h2>This week's timetable at Studio 28</h2><h3>Monday</h3>
-
 <span>
 <span>1 class</span>
 </span>
@@ -1937,12 +2020,12 @@ function pli28(j, f){
 <div>
 <div>
 <div>12:30</div>
-
 </div>
 <div>
 <span>Pilates</span>
 <span> — <span>all levels</span></span>
 </div>
+<div>
 <div>Laura</div>
 <div>20 credits</div>
 <div>
@@ -1950,8 +2033,8 @@ function pli28(j, f){
 </div>
 </div>
 </div>
+</div>
 <h3>Tuesday</h3>
-
 <span>
 <span><span>4</span> classes</span>
 </span>
@@ -1959,63 +2042,63 @@ function pli28(j, f){
 <div>
 <div>
 <div>19:00</div>
-
 </div>
 <div>
 <span>Bachata</span>
 <span> — <span>Absolute beginner</span></span>
 </div>
+<div>
 <div>Ahmedy and Caro</div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>19:30</div>
-
 </div>
 <div>
 <span>Bachata</span>
 <span> — <span>Beginner</span></span>
 </div>
-<div>—</div>
+<div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>20:30</div>
-
 </div>
 <div>
 <span>Bachata</span>
 <span> — <span>Intermediate</span></span>
 </div>
-<div>—</div>
+<div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>21:30</div>
-
 </div>
 <div>
 <span>Bachata</span>
 <span> — <span>Practica</span></span>
 </div>
-<div>—</div>
+<div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
 </div>
 </div>
+</div>
 <h3>Wednesday</h3>
-
 <span>
 <span><span>7</span> classes</span>
 </span>
@@ -2023,110 +2106,109 @@ function pli28(j, f){
 <div>
 <div>
 <div>14:00</div>
-
 </div>
 <div>
 <span>Children</span>
 <span> — <span>Pre-dance, ages 3 to 5</span></span>
 </div>
+<div>
 <div>IMPULS</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://impulsvzw.com/fr/">IMPULS</a>
 </span>
 </div>
+</div>
 </div><div>
 <div>
 <div>15:00</div>
-
 </div>
 <div>
 <span>Children</span>
 <span> — <span>Dance Mix, age 8</span></span>
 </div>
+<div>
 <div>IMPULS</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://impulsvzw.com/fr/">IMPULS</a>
 </span>
 </div>
+</div>
 </div><div>
 <div>
 <div>16:30</div>
-
 <div>→ 18:00</div>
 </div>
 <div>
 <span>Children</span>
 <span> — <span>Dance Mix, age 5</span></span>
 </div>
+<div>
 <div>IMPULS</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://impulsvzw.com/fr/">IMPULS</a>
 </span>
 </div>
+</div>
 </div><div>
 <div>
 <div>18:00</div>
-
 </div>
 <div>
 <span>Tango</span>
 <span> — <span>Tango Barre, women only</span></span>
 </div>
+<div>
 <div>IMPULS</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://impulsvzw.com/fr/">IMPULS</a>
 </span>
 </div>
+</div>
 </div><div>
 <div>
 <div>19:00</div>
-
 </div>
 <div>
 <span>Salsa</span>
 <span> — <span>Beginner</span></span>
 </div>
+<div>
 <div>O'Dance</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://odanceevents.com/">O'Dance</a>
 </span>
 </div>
+</div>
 </div><div>
 <div>
 <div>20:00</div>
-
 </div>
 <div>
 <span>Salsa</span>
 <span> — <span>Intermediate</span></span>
 </div>
+<div>
 <div>O'Dance</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://odanceevents.com/">O'Dance</a>
 </span>
+</div>
 </div>
 </div><div>
 <div>
 <div>21:00</div>
-
 </div>
 <div>
 <span>Kizomba</span>
 </div>
+<div>
 <div>O'Dance</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://odanceevents.com/">O'Dance</a>
@@ -2134,8 +2216,8 @@ function pli28(j, f){
 </div>
 </div>
 </div>
+</div>
 <h3>Thursday</h3>
-
 <span>
 <span><span>6</span> classes</span>
 </span>
@@ -2143,91 +2225,91 @@ function pli28(j, f){
 <div>
 <div>
 <div>12:30</div>
-
 </div>
 <div>
 <span>Yoga</span>
 </div>
+<div>
 <div>Marvin</div>
 <div>20 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>18:00</div>
-
 </div>
 <div>
 <span>Zumba</span>
 </div>
-<div>Nastasia</div>
-<div>—</div>
+<div>
 <div>
 <span>paid separately ·
 <a href="https://www.zumba.com/fr-FR/p/nastasia-van-loo/101312">Nastasia Van Loo</a>
 </span>
 </div>
+</div>
 </div><div>
 <div>
 <div>19:00</div>
-
 </div>
 <div>
 <span>Salsa</span>
 <span> — <span>Absolute beginner</span></span>
 </div>
+<div>
 <div>Ahmedy and Laura</div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>19:30</div>
-
 </div>
 <div>
 <span>Salsa</span>
 <span> — <span>Beginner</span></span>
 </div>
-<div>—</div>
+<div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>20:30</div>
-
 </div>
 <div>
 <span>Salsa</span>
 <span> — <span>Intermediate</span></span>
 </div>
-<div>—</div>
+<div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>21:30</div>
-
 </div>
 <div>
 <span>Salsa</span>
 <span> — <span>Practica</span></span>
 </div>
-<div>—</div>
+<div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
 </div>
 </div>
+</div>
 <h3>Friday</h3>
-
 <span>
 <span><span>2</span> classes</span>
 </span>
@@ -2235,24 +2317,25 @@ function pli28(j, f){
 <div>
 <div>
 <div>12:30</div>
-
 </div>
 <div>
 <span>Afro-Latin Move</span>
 </div>
+<div>
 <div>Ahmedy</div>
 <div>15 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>17:30</div>
-
 </div>
 <div>
 <span>Yoga</span>
 </div>
+<div>
 <div>Andy</div>
 <div>20 credits</div>
 <div>
@@ -2260,8 +2343,8 @@ function pli28(j, f){
 </div>
 </div>
 </div>
+</div>
 <h3>Saturday</h3>
-
 <span>
 <span>1 class</span>
 </span>
@@ -2269,14 +2352,13 @@ function pli28(j, f){
 <div>
 <div>
 <div>14:00</div>
-
 <div>→ 16:00</div>
 </div>
 <div>
 <span>Children</span>
 </div>
+<div>
 <div>IMPULS</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://impulsvzw.com/fr/">IMPULS</a>
@@ -2284,8 +2366,8 @@ function pli28(j, f){
 </div>
 </div>
 </div>
+</div>
 <h3>Sunday</h3>
-
 <span>
 <span><span>4</span> classes</span>
 </span>
@@ -2293,24 +2375,23 @@ function pli28(j, f){
 <div>
 <div>
 <div>14:00</div>
-
 <div>→ 16:00</div>
 </div>
 <div>
 <span>Latin Fusion</span>
 <span>once a month</span>
 </div>
+<div>
 <div>Eva</div>
-<div>—</div>
 <div>
 <span>paid separately ·
 <a href="https://www.pasionlatina.be/latinfusion">Pasión Latina</a>
 </span>
 </div>
+</div>
 </div><div>
 <div>
 <div>16:00</div>
-
 <div>→ 18:00</div>
 </div>
 <div>
@@ -2318,15 +2399,16 @@ function pli28(j, f){
 <span> — <span>Heels &amp; Confidence</span></span>
 <span>once a month</span>
 </div>
+<div>
 <div>Elena</div>
 <div>35 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>16:00</div>
-
 <div>→ 18:00</div>
 </div>
 <div>
@@ -2334,25 +2416,28 @@ function pli28(j, f){
 <span> — <span>Back to Basic</span></span>
 <span>once a month</span>
 </div>
+<div>
 <div>Selasi</div>
 <div>35 credits</div>
 <div>
 <span>included</span>
 </div>
+</div>
 </div><div>
 <div>
 <div>17:00</div>
-
 <div>→ 18:30</div>
 </div>
 <div>
 <span>Cyclodance Fusion</span>
 <span>once a month</span>
 </div>
+<div>
 <div>Jamel and Charline</div>
 <div>10 credits</div>
 <div>
 <span>included</span>
+</div>
 </div>
 </div>
 </div></section>
@@ -2510,7 +2595,6 @@ With <span>Eva</span>
 <p>
 <span>Paid separately · once a month</span>
 </p>
-
 <p>
 <span>Next dates —</span>
 <span>11 October · 15 November (13:00) · 13 December</span>
@@ -2525,7 +2609,6 @@ With <span>Elena</span>
 <p>
 <span><span>35</span> credits · once a month</span>
 </p>
-
 <p>
 <span>Next dates —</span>
 <span>25 October · 29 November · 23 May</span>
@@ -2540,7 +2623,6 @@ With <span>Selasi</span>
 <p>
 <span><span>35</span> credits · once a month</span>
 </p>
-
 <p>
 <span>Next dates —</span>
 <span>18 October · 15 November · 6 December</span>
@@ -2554,7 +2636,6 @@ With <span>Jamel and Charline</span>
 <p>
 <span><span>10</span> credits · once a month</span>
 </p>
-
 <p>
 <span>Next dates —</span>
 <span>4 October · 8 November · 20 December</span>
