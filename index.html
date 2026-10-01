@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="5.4+20261001">
-<meta name="maquette-version-lisible" content="v5.4 — 1 octobre 2026">
+<meta name="maquette-version" content="5.5+20261001">
+<meta name="maquette-version-lisible" content="v5.5 — 1 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -45,14 +45,31 @@
 
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 
+/* Le titre du héros est posé sur une photo : par endroits le fond est clair et
+   le doré tombait à 1,24:1 — mesuré, c'est-à-dire illisible. Le voile donne un
+   plancher, cette ombre rattrape les éclaircies qui restent. Ombre SOMBRE et
+   large, jamais blanche : un halo clair autour d'un doré fait cheap et épaissit
+   le dessin des lettres. */
+.sur-photo{ text-shadow:0 1px 2px rgba(28,24,20,.45), 0 2px 18px rgba(28,24,20,.35); }
+/* Les boutons sur la photo : leur texte passait déjà (6,26:1), c'est le bouton
+   lui-même qui ne se détachait pas du fond.
+   NOM À PART : « btn-onphoto » existait déjà plus bas comme style fantôme, et
+   l'avoir réutilisé a vidé le bouton plein de sa couleur. */
+.ombre-photo{ box-shadow:0 2px 14px rgba(24,20,17,.42); }
+
 /* Le sélecteur de langue. Mesuré sur un téléphone : les liens faisaient 17×20 px,
    bien en dessous des 24 px que demande WCAG 2.2 et des 44 px confortables — et
    la langue active ne se distinguait pas des deux autres. */
 .langues{ display:inline-flex; align-items:center; gap:2px; }
 .langues > *{
   display:inline-flex; align-items:center; justify-content:center;
-  min-width:44px; min-height:44px; padding:0 6px;
-  font-size:13px; letter-spacing:.06em; text-decoration:none; border-radius:4px;
+  padding:3px 7px; font-size:13px; letter-spacing:.06em;
+  text-decoration:none; border-radius:4px;
+}
+/* 44 px est une exigence du DOIGT. Sur un écran à souris, l'imposer élargissait
+   la barre de navigation au point de la faire passer sur deux lignes. */
+@media (hover:none), (max-width:900px){
+  .langues > *{ min-width:44px; min-height:44px; padding:0 6px; }
 }
 /* la langue affichée : un fond, pour qu'on la voie d'un coup d'œil */
 .langues .actif{ background:rgba(140,74,46,.12); font-weight:600; }
@@ -118,7 +135,7 @@ body::after{
   background:linear-gradient(to top,
     rgba(38,35,31,.92) 0%,
     rgba(45,41,36,.68) 28%,
-    rgba(51,48,43,.26) 52%,
+    rgba(51,48,43,.46) 52%,
     rgba(45,41,36,.52) 82%,
     rgba(40,37,32,.66) 100%);
 }
@@ -362,19 +379,19 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 
       <div class="max-w-[880px]">
 
-        <h1 class="d text-[#FBF6EE]" style="font-size:clamp(38px,5.6vw,80px)">
+        <h1 class="d sur-photo text-[#FBF6EE]" style="font-size:clamp(38px,5.6vw,80px)">
           Danser, bouger, respirer.<br>
           Plusieurs écoles.<br>
           <span class="d-it" style="color:var(--oak)">Une seule adresse.</span>
         </h1>
 
-        <p class="mt-6 md:mt-7 text-[17px] md:text-[19px] leading-[1.68] max-w-[560px]" style="color:rgba(251,246,238,.86)">
+        <p class="sur-photo" class="mt-6 md:mt-7 text-[17px] md:text-[19px] leading-[1.68] max-w-[560px]" style="color:rgba(251,246,238,.86)">
           Du chêne au sol, un jardin derrière, et un cours qui commence à 19h.
         </p>
 
         <div class="mt-7 md:mt-9 flex flex-wrap items-center gap-3">
-          <a href="#horaire" class="btn btn-solid">Voir l'horaire</a>
-          <a href="#agenda" class="btn btn-onphoto">Soirées et stages — voir l'agenda</a>
+          <a href="#horaire" class="btn btn-solid ombre-photo">Voir l'horaire</a>
+          <a href="#agenda" class="btn btn-onphoto ombre-photo">Soirées et stages — voir l'agenda</a>
         </div>
       </div>
 
@@ -1340,7 +1357,29 @@ document.querySelectorAll('#drawer a').forEach(function(a){
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  function observer(racine){
+    var liste = [];
+    if (racine.matches && racine.matches('.rv')) liste.push(racine);
+    if (racine.querySelectorAll) liste = liste.concat(Array.prototype.slice.call(racine.querySelectorAll('.rv')));
+    liste.forEach(function(el){ if (!el.classList.contains('in')) io.observe(el); });
+  }
+  observer(document);
+
+  /* Les grilles (professeurs, packs, bootcamps, avis) sont fabriquées par Alpine
+     APRÈS ce balayage : ces éléments-là n'étaient jamais observés, donc jamais
+     révélés. Mesuré le 1er octobre : les dix professeurs restaient à opacity 0,
+     définitivement, pour tout le monde. On observe donc aussi ce qui arrive. */
+  new MutationObserver(function(mutations){
+    mutations.forEach(function(m){
+      Array.prototype.forEach.call(m.addedNodes, function(n){ if (n.nodeType === 1) observer(n); });
+    });
+  }).observe(document.documentElement, { childList: true, subtree: true });
+
+  /* Ceinture et bretelles : une animation qui échoue ne doit JAMAIS laisser du
+     contenu invisible. Passé trois secondes, tout s'affiche, quoi qu'il arrive. */
+  setTimeout(function(){
+    document.querySelectorAll('.rv:not(.in)').forEach(function(el){ el.classList.add('in'); });
+  }, 3000);
 })();
 </script>
 
