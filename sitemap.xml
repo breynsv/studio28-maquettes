@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Studio 28 — trois langues, la même page. Les liens xhtml:link disent à
-     Google que ce sont des traductions et non du contenu dupliqué. -->
+<!-- Écrit par scripts/sitemap.py. Ne pas modifier à la main : la
+     prochaine génération écraserait la correction. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
@@ -35,8 +35,400 @@
   </url>
   <url>
     <loc>https://studio28.be/mentions-legales</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/mentions-legales"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/mentions-legales"/>
     <lastmod>2026-10-02</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-yoga-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-yoga-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/yogalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/yoga-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-yoga-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/yogalessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-yoga-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/yogalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/yoga-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-yoga-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/yoga-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-yoga-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/yogalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/yoga-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-yoga-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-pilates-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-pilates-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/pilateslessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/pilates-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-pilates-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/pilateslessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-pilates-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/pilateslessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/pilates-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-pilates-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/pilates-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-pilates-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/pilateslessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/pilates-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-pilates-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cyclodance-fusion-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cyclodance-fusion-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/cyclodance-fusion-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/cyclodance-fusion-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cyclodance-fusion-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/cyclodance-fusion-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cyclodance-fusion-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/cyclodance-fusion-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/cyclodance-fusion-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cyclodance-fusion-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/cyclodance-fusion-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cyclodance-fusion-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/cyclodance-fusion-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/cyclodance-fusion-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cyclodance-fusion-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-heels-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-heels-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/heelslessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/heels-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-heels-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/heelslessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-heels-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/heelslessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/heels-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-heels-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/heels-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-heels-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/heelslessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/heels-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-heels-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-hip-hop-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-hip-hop-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/hiphoplessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/hip-hop-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-hip-hop-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/hiphoplessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-hip-hop-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/hiphoplessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/hip-hop-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-hip-hop-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/hip-hop-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-hip-hop-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/hiphoplessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/hip-hop-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-hip-hop-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/latin-fusion-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/latin-fusion-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/latin-fusion-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/latin-fusion-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/latin-fusion-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/latin-fusion-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/latin-fusion-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/latin-fusion-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/latin-fusion-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/latin-fusion-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/latin-fusion-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/latin-fusion-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/latin-fusion-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/latin-fusion-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/latin-fusion-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-danse-enfants-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-danse-enfants-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/danslessen-kinderen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/kids-dance-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-danse-enfants-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/danslessen-kinderen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-danse-enfants-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/danslessen-kinderen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/kids-dance-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-danse-enfants-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/kids-dance-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-danse-enfants-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/danslessen-kinderen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/kids-dance-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-danse-enfants-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-tango-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-tango-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/tangolessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/tango-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-tango-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/tangolessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-tango-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/tangolessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/tango-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-tango-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/tango-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-tango-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/tangolessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/tango-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-tango-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-zumba-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-zumba-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/zumbalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/zumba-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-zumba-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/zumbalessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-zumba-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/zumbalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/zumba-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-zumba-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/zumba-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-zumba-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/zumbalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/zumba-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-zumba-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/afro-latin-move-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/afro-latin-move-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/afro-latin-move-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/afro-latin-move-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/afro-latin-move-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/afro-latin-move-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/afro-latin-move-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/afro-latin-move-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/afro-latin-move-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/afro-latin-move-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/afro-latin-move-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/afro-latin-move-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/afro-latin-move-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/afro-latin-move-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/afro-latin-move-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-salsa-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-salsa-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/salsalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/salsa-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-salsa-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/salsalessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-salsa-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/salsalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/salsa-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-salsa-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/salsa-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-salsa-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/salsalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/salsa-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-salsa-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-bachata-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-bachata-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/bachatalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/bachata-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-bachata-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/bachatalessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-bachata-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/bachatalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/bachata-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-bachata-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/bachata-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-bachata-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/bachatalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/bachata-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-bachata-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/cours-kizomba-bruxelles</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-kizomba-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/kizombalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/kizomba-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-kizomba-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/nl/kizombalessen-brussel</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-kizomba-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/kizombalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/kizomba-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-kizomba-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio28.be/en/kizomba-classes-brussels</loc>
+    <xhtml:link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cours-kizomba-bruxelles"/>
+    <xhtml:link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/kizombalessen-brussel"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://studio28.be/en/kizomba-classes-brussels"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://studio28.be/cours-kizomba-bruxelles"/>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

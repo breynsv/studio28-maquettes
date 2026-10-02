@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="maquette-version" content="5.8+20261002">
+<meta name="maquette-version-lisible" content="v5.8 — 2 octobre 2026">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>document.documentElement.className += ' js';</script>
+<title>Cyclodance Fusion à Bruxelles — danser en fauteuil, Studio 28</title>
+<meta name="description" content="La danse à deux en fauteuil roulant ou debout, un dimanche par mois à Bruxelles. Deux heures, tous niveaux, 10 crédits. Rue des Deux Églises 26-28, métro Arts-Loi.">
+
+<link rel="canonical" href="https://studio28.be/cyclodance-fusion-bruxelles">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Studio 28">
+<meta property="og:locale" content="fr_BE">
+<meta property="og:url" content="https://studio28.be/">
+<meta property="og:title" content="Studio 28 — danse, yoga et pilates à Bruxelles">
+<meta property="og:description" content="Une salle de 276 m² rue des Deux Églises, métro Arts-Loi. Salsa, bachata, kizomba, yoga, pilates, heels, hip-hop et cours enfants, par plusieurs écoles indépendantes.">
+<meta property="og:image" content="https://studio28.be/assets/img/og-studio28.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La grande salle du Studio 28 : parquet clair, murs sombres, jardin derrière les baies vitrées">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/logo/studio28-mark-terra.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#F7F2EA; --oat:#EFE6D8; --clay:#B4643F; --terra:#8C4A2E;
+  --oak:#C9A87C; --ink:#33302B; --muted:#7C7468; --mutedink:#6A6357;
+  --hair:rgba(201,168,124,.62);
+  --hair-strong:rgba(201,168,124,.9);
+}
+
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+/* Trois langues côte à côte dans la barre poussaient « Studio 28 » et « Louer la
+   salle » sur deux lignes. Un déroulant ne montre que la langue courante.
+   <details> plutôt qu'un bouton maison : le clavier et les lecteurs d'écran le
+   connaissent déjà, et il fonctionne sans JavaScript. */
+
+/* Sept entrées dans la barre : « Studio 28 » et « Louer la salle » se coupaient
+   en deux lignes et faisaient grandir l'en-tête. Les libellés ne se cassent
+   plus, et l'écart entre eux a été resserré de 28 à 20 px. */
+.nav-princ > a{ white-space:nowrap; }
+/* Le néerlandais a les libellés les plus longs : « Uurrooster », « Zaal huren ».
+   Entre 1280 et 1400 px la barre débordait dans cette langue seulement. */
+@media (max-width:1400px){
+  .nav-princ{ gap:14px; font-size:14px; }
+}
+.lang-dd{ position:relative; }
+.lang-dd > summary{
+  list-style:none; cursor:pointer; user-select:none;
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 9px; border-radius:5px; font-size:13px; letter-spacing:.06em;
+}
+.lang-dd > summary::-webkit-details-marker{ display:none; }
+.lang-dd > summary::after{ content:"⌄"; font-size:13px; line-height:1; transform:translateY(-2px); opacity:.7; }
+.lang-dd[open] > summary{ background:rgba(140,74,46,.12); }
+.lang-menu{
+  position:absolute; right:0; top:calc(100% + 6px); z-index:60;
+  display:flex; flex-direction:column; min-width:72px;
+  background:var(--paper); border:1px solid var(--hair); border-radius:6px;
+  box-shadow:0 8px 24px rgba(28,24,20,.18); overflow:hidden;
+}
+.lang-menu a{
+  padding:10px 14px; font-size:13px; letter-spacing:.06em;
+  color:var(--ink); text-decoration:none;
+}
+.lang-menu a:hover{ background:var(--oat); }
+/* Dans l'en-tête posé sur la photo, le texte est clair tant qu'on n'a pas défilé. */
+#hdr.over .lang-dd > summary{ color:#F6F1E8; }
+
+/* Le titre du héros est posé sur une photo : par endroits le fond est clair et
+   le doré tombait à 1,24:1 — mesuré, c'est-à-dire illisible. Le voile donne un
+   plancher, cette ombre rattrape les éclaircies qui restent. Ombre SOMBRE et
+   large, jamais blanche : un halo clair autour d'un doré fait cheap et épaissit
+   le dessin des lettres. */
+.sur-photo{ text-shadow:0 1px 2px rgba(20,16,12,.55), 0 3px 22px rgba(20,16,12,.50); }
+/* L'italique du héros était en --oak (#C9A87C) : trop proche en luminosité des
+   zones claires de la photo, mesuré à 1,24:1. Un halo blanc a été essayé et
+   rejeté sur image : il rend les lettres floues au lieu de les détacher. C'est
+   la couleur qui devait monter, pas l'entourage. Variante réservée au héros :
+   l'or reste --oak partout ailleurs, sur fond uni, où il est parfait. */
+.hero-or{ color:#E7D3AC; }
+/* Les boutons sur la photo : leur texte passait déjà (6,26:1), c'est le bouton
+   lui-même qui ne se détachait pas du fond.
+   NOM À PART : « btn-onphoto » existait déjà plus bas comme style fantôme, et
+   l'avoir réutilisé a vidé le bouton plein de sa couleur. */
+.ombre-photo{ box-shadow:0 2px 14px rgba(24,20,17,.42); }
+
+/* Le sélecteur de langue. Mesuré sur un téléphone : les liens faisaient 17×20 px,
+   bien en dessous des 24 px que demande WCAG 2.2 et des 44 px confortables — et
+   la langue active ne se distinguait pas des deux autres. */
+.langues{ display:inline-flex; align-items:center; gap:2px; }
+.langues > *{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:3px 7px; font-size:13px; letter-spacing:.06em;
+  text-decoration:none; border-radius:4px;
+}
+/* 44 px est une exigence du DOIGT. Sur un écran à souris, l'imposer élargissait
+   la barre de navigation au point de la faire passer sur deux lignes. */
+@media (hover:none), (max-width:900px){
+  .langues > *{ min-width:44px; min-height:44px; padding:0 6px; }
+}
+/* la langue affichée : un fond, pour qu'on la voie d'un coup d'œil */
+.langues .actif{ background:rgba(140,74,46,.12); font-weight:600; }
+
+/* La copie statique de l'horaire, des profs, des packs et des bootcamps.
+   Visible uniquement quand JavaScript ne répond pas : robots qui ne rendent
+   pas le JS, ou visiteur dont le CDN d'Alpine est bloqué. */
+.js .sans-js{ display:none !important; }
+.sans-js{ max-width:1280px; margin:0 auto; padding:48px 20px; }
+.sans-js h2{ font-family:'Fraunces',Georgia,serif; font-size:26px; margin:32px 0 12px; }
+.sans-js section{ border-top:1px solid var(--hair); padding-top:8px; }
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+@media (min-width:768px){ body{ font-size:17px; } }
+
+/* --- the grain. the whole point of "tactile". --- */
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:60; pointer-events:none;
+  opacity:.05; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- type --- */
+.d{
+  font-family:'Fraunces',Georgia,serif;
+  font-variation-settings:'SOFT' 40,'WONK' 0,'opsz' 120;
+  font-weight:400;
+  letter-spacing:-.018em;
+  line-height:1.06;
+}
+.d-600{ font-weight:600; }
+.d-it{ font-style:italic; font-variation-settings:'SOFT' 45,'WONK' 1,'opsz' 120; }
+.kicker{
+  font-size:11px; font-weight:600; letter-spacing:.19em; text-transform:uppercase;
+  color:var(--terra);
+}
+.num{ font-variant-numeric:tabular-nums; font-feature-settings:'tnum' 1; }
+.lead{ font-size:18px; line-height:1.78; color:var(--mutedink); }
+@media (max-width:640px){ .lead{ font-size:17px; } }
+
+/* --- warm grade on every photograph, so it is one venue, one afternoon --- */
+.ph{ position:relative; overflow:hidden; background:var(--oat); }
+.ph img{
+  display:block; width:100%; height:100%; object-fit:cover;
+  filter:saturate(.88) contrast(1.04) brightness(1.03) sepia(.14);
+  transition:transform 1.1s cubic-bezier(.2,.7,.2,1);
+}
+.ph::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(168deg, rgba(201,168,124,.16), rgba(180,100,63,.10) 60%, rgba(51,48,43,.14));
+}
+.ph-hover:hover img{ transform:scale(1.035); }
+
+.hero-scrim{
+  background:linear-gradient(to top,
+    rgba(38,35,31,.92) 0%,
+    rgba(45,41,36,.68) 28%,
+    rgba(51,48,43,.46) 52%,
+    rgba(45,41,36,.52) 82%,
+    rgba(40,37,32,.66) 100%);
+}
+@media (max-width:900px){
+  .hero-scrim{
+    background:linear-gradient(to top,
+      rgba(36,33,29,.94) 0%,
+      rgba(40,37,32,.82) 42%,
+      rgba(45,41,36,.58) 72%,
+      rgba(45,41,36,.46) 100%);
+  }
+}
+
+/* --- structure lines --- */
+.hair{ border-color:var(--hair); }
+.rule-top{ border-top:1px solid var(--hair); }
+.tick{ display:block; width:34px; height:2px; background:var(--clay); border-radius:2px; }
+
+/* --- controls --- */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  border-radius:5px; font-weight:600; font-size:15px; letter-spacing:.005em;
+  padding:.72rem 1.15rem; transition:.22s ease;
+}
+.btn-solid{ background:var(--terra); color:#FDF8F0; }
+.btn-solid:hover{ background:#793D24; transform:translateY(-1px); }
+.btn-ghost{ border:1px solid var(--hair-strong); color:var(--ink); background:transparent; }
+.btn-ghost:hover{ background:var(--oat); border-color:var(--clay); }
+.btn-onphoto{ border:1px solid rgba(247,242,234,.55); color:#FDF8F0; background:rgba(51,48,43,.30); backdrop-filter:blur(6px); }
+.btn-onphoto:hover{ background:rgba(51,48,43,.55); border-color:rgba(247,242,234,.9); }
+
+.lnk{ color:var(--terra); text-decoration:none; border-bottom:1px solid rgba(140,74,46,.35); padding-bottom:1px; transition:.2s; }
+.lnk:hover{ border-bottom-color:var(--clay); color:var(--clay); }
+
+/* header over the hero photograph vs. header on paper */
+#hdr::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:150px; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(38,35,31,.62), rgba(38,35,31,.28) 45%, rgba(38,35,31,0));
+  opacity:1; transition:opacity .45s ease;
+}
+#hdr.solid::before{ opacity:0; }
+#hdr.over .navlnk{ color:#F6F1E8; }
+#hdr.over .hdr-desc{ color:rgba(246,241,232,.82); border-color:rgba(201,168,124,.5) !important; }
+.hdr-lang{ color:var(--mutedink); }
+.hdr-lang .on{ color:var(--terra); }
+#hdr.over .hdr-lang{ color:rgba(246,241,232,.78); }
+#hdr.over .hdr-lang .on{ color:var(--oak); }
+#hdr.over .hdr-sep{ color:rgba(201,168,124,.55); }
+#hdr.over .hdr-wa{ border-color:rgba(246,241,232,.45) !important; background:rgba(51,48,43,.28); }
+#hdr.over .hdr-wa svg{ color:var(--oak) !important; }
+#hdr .hlogo{ display:none; }
+@media (min-width:640px){
+  #hdr:not(.over) .hlogo.lg-terra{ display:block; }
+  #hdr.over          .hlogo.lg-cream{ display:block; }
+}
+@media (max-width:639px){
+  #hdr:not(.over) .hlogo.sm-terra{ display:block; }
+  #hdr.over          .hlogo.sm-cream{ display:block; }
+}
+#hdr.over .hdr-burg{ border-color:rgba(246,241,232,.45) !important; color:#F6F1E8; }
+
+.navlnk{ position:relative; padding-bottom:3px; color:var(--ink); transition:color .35s ease; }
+.navlnk::after{
+  content:""; position:absolute; left:0; bottom:0; height:1.5px; width:0; background:var(--clay);
+  transition:width .28s cubic-bezier(.2,.7,.2,1);
+}
+.navlnk:hover::after{ width:100%; }
+
+.pill{
+  display:inline-flex; align-items:center; border-radius:999px;
+  border:1px solid rgba(247,242,234,.42); background:rgba(239,230,216,.16);
+  backdrop-filter:blur(7px);
+  color:#FBF6EE; font-size:13.5px; font-weight:500; letter-spacing:.02em;
+  padding:.34rem .82rem; transition:.22s;
+}
+.pill:hover{ background:rgba(239,230,216,.9); color:var(--ink); border-color:transparent; }
+
+.chip{
+  border:1px solid var(--hair); background:transparent; color:var(--mutedink);
+  border-radius:999px; font-size:13px; font-weight:500; padding:.3rem .8rem; transition:.2s;
+}
+.chip:hover{ border-color:var(--clay); color:var(--terra); }
+.chip[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--paper); }
+
+/* --- ceramic tiles for the roster --- */
+.tile{
+  aspect-ratio:1/1; border-radius:6px; display:grid; place-items:center;
+  font-family:'Fraunces',serif; font-variation-settings:'SOFT' 40,'opsz' 144;
+  font-size:clamp(34px,5vw,52px); letter-spacing:-.02em;
+  position:relative; overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(51,48,43,.06);
+}
+/* Un portrait dans une tuile : même traitement chaud que les autres photos, sinon
+   les deux profs qui en ont une jurent avec le reste de la page. */
+.tile img{ width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(.88) contrast(1.04) brightness(1.03) sepia(.14); }
+.tile::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(120% 90% at 28% 18%, rgba(255,255,255,.42), rgba(255,255,255,0) 62%);
+}
+.tile::after{
+  content:""; position:absolute; inset:0; opacity:.35; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+.tile span{ position:relative; z-index:2; }
+
+/* --- reveal --- */
+.rv{ opacity:0; transform:translateY(14px); transition:opacity .85s ease, transform .85s cubic-bezier(.2,.7,.2,1); }
+.rv.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .rv{ opacity:1 !important; transform:none !important; transition:none; }
+  html{ scroll-behavior:auto; }
+  .ph img{ transition:none; }
+}
+
+/* --- schedule --- */
+.row-grid{ display:grid; grid-template-columns: 92px minmax(0,1fr) 150px 108px 132px; align-items:center; gap:1rem; }
+@media (max-width:900px){ .row-grid{ grid-template-columns:1fr; gap:.35rem; } }
+
+details > summary{ list-style:none; cursor:pointer; }
+details > summary::-webkit-details-marker{ display:none; }
+details[open] .faq-plus{ transform:rotate(45deg); }
+.faq-plus{ transition:transform .3s cubic-bezier(.2,.7,.2,1); }
+
+::selection{ background:rgba(180,100,63,.22); }
+:focus-visible{ outline:2px solid var(--clay); outline-offset:3px; border-radius:3px; }
+</style>
+<style>
+  /* ── le rail du jour ─────────────────────────────────────────── */
+  .rail{ position:relative; }
+  .rail::before{
+    content:''; position:absolute; left:0; top:.6rem; bottom:.6rem; width:1px;
+    background:linear-gradient(to bottom, rgba(201,168,124,0), rgba(201,168,124,.9) 8%, rgba(201,168,124,.9) 92%, rgba(201,168,124,0));
+  }
+  .cran{ position:relative; padding-left:1.75rem; }
+  .cran::before{
+    content:''; position:absolute; left:-3.5px; top:1.2rem;
+    width:8px; height:8px; border-radius:9999px;
+    background:var(--paper); border:1px solid var(--oak);
+  }
+  .cran-passe{ opacity:.4; }
+  .cran-live::before{ background:var(--clay); border-color:var(--clay); width:10px; height:10px; left:-4.5px; }
+  .cran-live{ opacity:1; }
+  .now-mark{ position:relative; padding-left:1.75rem; }
+  .now-mark::before{
+    content:''; position:absolute; left:-4.5px; top:50%; transform:translateY(-50%);
+    width:10px; height:10px; border-radius:9999px; background:var(--clay);
+    box-shadow:0 0 0 4px rgba(180,100,63,.16);
+  }
+  .now-rule{ border:0; border-top:1px dashed rgba(180,100,63,.5); }
+  .pulse28{ animation:pulse28 2.6s cubic-bezier(.4,0,.6,1) infinite; }
+  @keyframes pulse28{ 0%,100%{opacity:1} 50%{opacity:.35} }
+  .pastille{
+    display:inline-block; font-size:11.5px; letter-spacing:.06em;
+    padding:.28rem .7rem; border-radius:9999px;
+    background:var(--terra); color:var(--paper); vertical-align:middle;
+  }
+  @media (prefers-reduced-motion: reduce){ .pulse28{ animation:none } }
+
+  /* ══ Le logo aligné sur le texte du héros ════════════════════════════════
+     Les quatre habillages du logo (grand/petit, terre/crème) vivent chacun
+     dans un <picture>. La règle plus haut masque l'<img> — mais le <picture>,
+     lui, restait un élément de la rangée flex : trois boîtes de largeur nulle
+     et, surtout, trois `gap` de 12 px. Le logo partait donc 36 px à droite du
+     bord du titre du héros, mesuré le 1er octobre sur 390 px (56 px au lieu
+     de 20 px). `display:contents` retire la boîte du <picture> sans toucher
+     au choix de la source, qui est fait par l'<img>, pas par la mise en page.
+     Borné au téléphone : au-delà de 640 px c'est le lockup qui s'affiche et
+     l'écart y sépare le logo de sa ligne « Danse · Yoga · Pilates ». */
+  /* `display:contents` promeut AUSSI les <source> au rang d’éléments flex :
+     la réinitialisation de Tailwind leur donne `display:block`, et quatre
+     boîtes vides de plus ajoutaient quatre `gap` — le logo passait de 56 à
+     68 px au lieu de 20. Un <source> ne se dessine jamais : on le dit. */
+  #hdrbar picture > source{ display:none; }
+  @media (max-width:639px){ #hdrbar picture{ display:contents; } }
+
+  /* ══ L'horaire replié, jour par jour ═════════════════════════════════════
+     Mesuré le 1er octobre sur un écran de 390 px : « Cette semaine » faisait
+     5 521 px, un cinquième de la page entière, pour une information dont le
+     visiteur de téléphone ne lit qu'un jour. Chaque jour devient un volet,
+     aujourd'hui ouvert ; à partir de 1024 px les sept volets sont ouverts et
+     l'horaire retrouve exactement l'aperçu de la semaine, qui est tout
+     l'intérêt du grand écran.
+
+     Porté par <details> : le repli, le clavier et l'annonce au lecteur
+     d'écran sont alors le travail du navigateur, pas le nôtre. */
+  .jr-pli{ border-top:1px solid var(--hair); }
+  .jr-tete{
+    display:flex; align-items:center; gap:.75rem;
+    min-height:52px; padding:.85rem 0; cursor:pointer;
+  }
+  .jr-tete > h3{ flex:1 1 auto; }
+  .jr-cpt{ flex:0 0 auto; font-size:13.5px; color:var(--muted); }
+  .jr-fleche{
+    flex:0 0 auto; width:30px; height:30px; display:grid; place-items:center;
+    border-radius:9999px; border:1px solid var(--hair); color:var(--terra);
+    font-size:14px; line-height:1;
+    transition:transform .28s cubic-bezier(.2,.7,.2,1);
+  }
+  .jr-fleche::before{ content:"\2304"; transform:translateY(-1px); }
+  .jr-pli[open] > .jr-tete > .jr-fleche{ transform:rotate(180deg); }
+  .jr-corps{ padding-bottom:1.1rem; }
+  @media (min-width:1024px){
+    .jr-pli{ border-top:0; }
+    .jr-tete{
+      display:block; min-height:0; padding:2rem 0 .5rem;
+      cursor:default; pointer-events:none;
+    }
+    .jr-cpt, .jr-fleche{ display:none; }
+    .jr-corps{ padding-bottom:0; }
+  }
+
+  /* ══ Le filtre replié ════════════════════════════════════════════════════
+     Huit pastilles sur trois lignes coûtaient 200 px juste au-dessus d'une
+     liste de quatre cours, dans les deux sections. Replié, le filtre tient
+     sur une ligne et reste à portée d'un doigt. Ouvert d'office dès 1024 px.
+     Le résumé porte lui-même la cible tactile : 44 px de haut, pleine
+     largeur, bordure visible — un libellé de 12 px en capitales ne se touche
+     pas. */
+  .flt-tete{
+    display:flex; align-items:center; justify-content:space-between; gap:.5rem;
+    min-height:44px; padding:.55rem 1.05rem;
+    border:1px solid var(--hair); border-radius:9999px;
+    font-size:13.5px; color:var(--mutedink); cursor:pointer;
+  }
+  .flt-tete::after{
+    content:"\2304"; font-size:14px; line-height:1; opacity:.75;
+    transition:transform .28s cubic-bezier(.2,.7,.2,1);
+  }
+  details[open] > .flt-tete::after{ transform:rotate(180deg); }
+  /* Les pastilles elles-mêmes sont des cibles tactiles, et elles mesuraient
+     33,5 px de haut. Elles ne grandissent qu’à la largeur où on les touche :
+     sur grand écran l’horaire garde exactement ses chips de toujours. */
+  @media (max-width:1023px){
+    .flt-pli button{ min-height:44px; display:inline-flex; align-items:center; }
+  }
+
+  /* ══ La bande des sept jours ═════════════════════════════════════════════
+     Elle passait sur deux lignes (77 px) et ses pastilles mesuraient 34 px de
+     haut, sous le minimum tactile de 44. Une seule bande qui défile, des
+     cibles de 44 px, et le jour choisi amené dans le champ au chargement par
+     le script du bas — sinon un samedi sélectionné restait hors écran. */
+  .jrs-rail{ display:flex; align-items:center; gap:.5rem; }
+  @media (max-width:1023px){
+    .jrs-rail{
+      flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain;
+      scroll-snap-type:x proximity;
+      scrollbar-width:none; -ms-overflow-style:none;
+      margin-left:-1.25rem; margin-right:-1.25rem; padding:2px 1.25rem;
+    }
+    .jrs-rail::-webkit-scrollbar{ display:none; }
+    /* L’agrandissement est ici et non dans les classes du bouton : au-delà de
+       1024 px la bande doit rester au pixel près celle d’avant. */
+    .jrs-rail > button{
+      flex:0 0 auto; min-height:44px; scroll-snap-align:center;
+      padding-left:1rem; padding-right:1rem; font-size:14px;
+    }
+  }
+  @media (min-width:1024px){ .jrs-rail{ flex-wrap:wrap; } }
+
+  /* ══ La rangée de cours, compacte sur téléphone ═════════════════════
+     Mesuré le 1er octobre à 390 px : un cours, c'était cinq lignes empilées et
+     169 px. Jeudi en a six, donc un jour ouvert faisait 1 091 px et reprenait
+     l'essentiel de ce que le repli venait tout juste de gagner.
+
+     L'heure devient une colonne à elle seule — c'est ce qu'on balaye — et tout
+     le reste tient à côté, sur deux lignes :
+
+         12h30   Yoga — Initiation
+                 Marvin · 20 crédits · comprise
+
+     900 px et non 1024 : c'est la largeur à laquelle `.row-grid` abandonne
+     déjà ses cinq colonnes. Deux seuils différents pour la même rangée, et
+     elle serait à la fois en colonnes et en zones.
+
+     Les sélecteurs portent `.jr-corps` devant, et ce n'est pas de la
+     décoration : `assets/css/site.css` est chargée APRÈS ce bloc, donc une
+     classe Tailwind de même spécificité l'emporterait — `py-4` et
+     `text-[15px]` en particulier. */
+  /* La clé de tout : sans boîte propre, `.cls-bas` n’existe pas pour la mise en
+     page et ses trois enfants deviennent directement les éléments de grille de
+     `.row-grid` — colonnes 3, 4 et 5, exactement comme avant qu’on les réunisse.
+     Oublier cette ligne fait tomber l’horaire du grand écran de cinq colonnes à
+     trois, ce qui est arrivé et ne s’est vu qu’à la mesure. */
+  .cls-bas{ display:contents; }
+
+  @media (max-width:900px){
+    .jr-corps .cls{
+      grid-template-columns:4.3rem minmax(0,1fr);
+      grid-template-areas:"heure titre" "heure bas";
+      column-gap:.7rem; row-gap:.12rem;
+      /* `baseline` et non `start` : l’heure et la discipline reposent alors sur
+         la même ligne d’écriture, ce qui coûte 2 px et fait tenir la rangée
+         ensemble au lieu de deux blocs posés côte à côte. */
+      align-items:baseline;
+      padding-top:.7rem; padding-bottom:.7rem;
+    }
+    .jr-corps .cls > :nth-child(1){ grid-area:heure; }
+    .jr-corps .cls > :nth-child(2){ grid-area:titre; line-height:1.32; }
+    .jr-corps .cls > .cls-bas{
+      grid-area:bas; display:flex; flex-wrap:wrap; align-items:baseline;
+      column-gap:.26rem; row-gap:0;
+    }
+    .jr-corps .cls > .cls-bas > *{ font-size:13.5px; line-height:1.5; }
+
+    /* Une case sans contenu disparaît au lieu de poser un tiret tout seul. */
+    .jr-corps .cls .cls-vide{ display:none; }
+
+    /* Le point TRAINE derrière sa case, il ne précède pas la suivante. Deux
+       raisons, et la première est visible à l'œil : quand la ligne passe à la
+       suivante — le Zumba du jeudi — un point en tête de ligne ressemble à une
+       coquille, alors qu'un point en fin de ligne est une ponctuation normale.
+
+       La seconde est logique : la dernière case, le marqueur, est TOUJOURS
+       affichée (« comprise » ou « paiement séparé »). `:not(:last-child)` suffit
+       donc à lui seul — une case masquée ne dessine pas son `::after`, et aucune
+       combinaison de cases vides ne peut laisser un point orphelin. */
+    .jr-corps .cls-bas > *:not(:last-child)::after{
+      content:"\00b7"; margin-left:.24rem; color:var(--muted);
+    }
+  }
+</style>
+
+<link rel="stylesheet" href="assets/css/site.css?v=0f6e361e">
+<link rel="alternate" hreflang="fr-BE" href="https://studio28.be/cyclodance-fusion-bruxelles">
+<link rel="alternate" hreflang="nl-BE" href="https://studio28.be/nl/cyclodance-fusion-brussel">
+<link rel="alternate" hreflang="en" href="https://studio28.be/en/cyclodance-fusion-brussels">
+<link rel="alternate" hreflang="x-default" href="https://studio28.be/cyclodance-fusion-bruxelles">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "name": "Cyclodance Fusion à Bruxelles", "description": "La danse à deux en fauteuil roulant ou debout, un dimanche par mois à Bruxelles. Deux heures, tous niveaux, 10 crédits. Rue des Deux Églises 26-28, métro Arts-Loi.", "inLanguage": "fr-BE", "url": "https://studio28.be/cyclodance-fusion-bruxelles", "provider": {"@type": "Organization", "name": "Studio 28", "@id": "https://studio28.be/#studio28"}, "offers": {"@type": "Offer", "price": "13", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "hasCourseInstance": [{"@type": "CourseInstance", "courseMode": "onsite", "name": "Cyclodance Fusion", "location": {"@id": "https://studio28.be/#studio28"}, "startDate": "2026-10-04", "courseSchedule": {"@type": "Schedule", "repeatFrequency": "P1M"}}, {"@type": "CourseInstance", "courseMode": "onsite", "name": "Cyclodance Fusion", "location": {"@id": "https://studio28.be/#studio28"}, "startDate": "2026-11-08", "courseSchedule": {"@type": "Schedule", "repeatFrequency": "P1M"}}, {"@type": "CourseInstance", "courseMode": "onsite", "name": "Cyclodance Fusion", "location": {"@id": "https://studio28.be/#studio28"}, "startDate": "2026-12-20", "courseSchedule": {"@type": "Schedule", "repeatFrequency": "P1M"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Studio 28", "item": "https://studio28.be/"}, {"@type": "ListItem", "position": 2, "name": "Cyclodance Fusion à Bruxelles", "item": "https://studio28.be/cyclodance-fusion-bruxelles"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il être en fauteuil pour participer ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Le cours mélange volontairement danseurs assis et debout, et on change de partenaire."}}, {"@type": "Question", "name": "La salle est-elle accessible ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. La grande salle est de plain-pied, avec un parquet lisse sur lequel un fauteuil roule bien."}}, {"@type": "Question", "name": "Faut-il venir à deux ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. On tourne les partenaires pendant le cours."}}, {"@type": "Question", "name": "Combien ça coûte ?", "acceptedAnswer": {"@type": "Answer", "text": "10 crédits, le tarif le plus bas du studio. Les dates sont annoncées sur la page d'accueil."}}]}</script>
+<style>
+ /* Nos propres classes, pas des utilitaires Tailwind. La feuille est COMPILÉE
+    depuis draft-v2.html : une classe que l'accueil n'utilise pas n'existe nulle
+    part. `pt-36` et `py-20` n'y étaient pas, et le titre passait sous l'en-tête
+    sans que rien ne signale l'absence. */
+ .disc-tete{padding:108px 0 50px}
+ .disc-bloc{padding:52px 0}
+ .disc-dedans{max-width:1240px;margin:0 auto;padding:0 20px}
+ .disc-texte{max-width:720px}
+ .disc-fil{font-size:13px;color:var(--muted);margin-bottom:24px}
+ .disc-chapeau{max-width:620px;margin-top:20px}
+ .disc-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+ .disc-tableau{margin-top:28px;max-width:780px}
+ .disc-ligne{display:grid;grid-template-columns:132px 1fr;gap:18px;align-items:start;
+   padding:16px 0;border-top:1px solid var(--hair)}
+ .disc-h{font-family:'Fraunces',Georgia,serif;font-size:20px;letter-spacing:-.01em;
+   padding-top:2px;line-height:1.3}
+ .disc-sous{color:var(--mutedink);font-size:15px;margin-top:3px}
+ .disc-note{margin-top:24px;font-size:15px;color:var(--mutedink)}
+ .disc-titre2{margin:44px 0 0}
+ .disc-titre2:first-child{margin-top:0}
+ .disc-p{margin-top:15px;color:var(--mutedink);line-height:1.8}
+ .disc-bandeau{margin:0;line-height:0}
+ .disc-img{width:100%;height:auto;display:block}
+ .disc-bandeau .disc-img{max-height:400px;object-fit:cover;object-position:center 42%}
+ .disc-deux{display:grid;grid-template-columns:1fr;gap:32px}
+ .disc-cote{margin:0}
+ .disc-cote figcaption{margin-top:10px;font-size:13.5px;color:var(--muted)}
+ .disc-cote .disc-img{border-radius:4px}
+ .disc-faq dt{font-weight:600;margin-top:20px}
+ .disc-faq dd{margin:6px 0 0;color:var(--mutedink);line-height:1.75}
+ @media (min-width:768px){ .disc-tete{padding:140px 0 70px} .disc-bloc{padding:70px 0}
+   .disc-dedans{padding:0 32px}
+   .disc-deux{grid-template-columns:minmax(0,1fr) 330px;gap:50px;align-items:start}
+   .disc-cote{position:sticky;top:112px} }
+ @media (max-width:640px){ .disc-ligne{grid-template-columns:92px 1fr;gap:12px}
+   .disc-h{font-size:17px} }
+</style>
+</head>
+<body class="antialiased">
+<header id="hdr" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+<div x-data="annonce28()" x-show="visible" x-cloak
+     style="background:var(--ink);color:var(--paper)" class="relative">
+  <div class="mx-auto max-w-shell px-5 md:px-8 py-2.5 flex items-center gap-4 text-[14.5px]">
+    <span class="w-[7px] h-[7px] rounded-full shrink-0" style="background:var(--clay)"></span>
+    <p class="flex-1" x-text="message"></p>
+    <button @click="fermer()" aria-label="Fermer l'annonce"
+            class="shrink-0 text-[20px] leading-none" style="color:rgba(247,242,234,.6)">&times;</button>
+  </div>
+</div>
+  <div class="mx-auto max-w-shell px-5 md:px-8">
+    <div id="hdrbar" class="flex items-center justify-between gap-6 py-4 md:py-5 transition-all duration-500">
+
+      <a href="/" class="relative z-10 flex items-center gap-3 md:gap-4 shrink-0" aria-label="Studio 28, accueil">
+        <picture><source srcset="assets/logo/studio28-lockup-terra.webp" type="image/webp"><img src="assets/logo/studio28-lockup-terra.png" alt="Studio 28 — Dance and Lifestyle" class="hlogo lg-terra h-11 md:h-14 w-auto"></picture>
+        <picture><source srcset="assets/logo/studio28-lockup-cream.webp" type="image/webp"><img src="assets/logo/studio28-lockup-cream.png" alt="Studio 28 — Dance and Lifestyle" class="hlogo lg-cream h-11 md:h-14 w-auto"></picture>
+        <picture><source srcset="assets/logo/studio28-mark-terra.webp" type="image/webp"><img src="assets/logo/studio28-mark-terra.png" alt="Studio 28" class="hlogo sm-terra h-12 w-auto"></picture>
+        <picture><source srcset="assets/logo/studio28-mark-cream.webp" type="image/webp"><img src="assets/logo/studio28-mark-cream.png" alt="Studio 28" class="hlogo sm-cream h-12 w-auto"></picture>
+        <span class="hdr-desc hidden lg:block text-[11px] leading-tight tracking-[.16em] uppercase text-mutedink border-l pl-4 transition duration-500" style="border-color:var(--hair)">
+          Danse · Yoga · Pilates<br>Bruxelles
+        </span>
+      </a>
+
+      <nav class="relative z-10 hidden xl:flex items-center gap-5 text-[14.5px] font-medium nav-princ">
+        <a href="/#horaire" class="navlnk">Horaire</a>
+        <a href="/#cours" class="navlnk">Cours</a>
+        <a href="/#bootcamps" class="navlnk">Bootcamps</a>
+        <a href="/#agenda" class="navlnk">Événements</a>
+        <a href="/#lieu" class="navlnk">Studio 28</a>
+        <a href="/#salle" class="navlnk">Louer la salle</a>
+        <a href="/#venir" class="navlnk">Contact</a>
+      </nav>
+
+      <div class="relative z-10 flex items-center gap-3 md:gap-4">
+        <div class="hdr-lang hidden md:flex items-center gap-1.5 text-[12.5px] font-medium tracking-wide transition duration-500">
+          <details class="lang-dd"><summary aria-label="Choisir la langue">FR</summary><div class="lang-menu"><a href="/nl/" hreflang="nl-BE">NL</a><a href="/en/" hreflang="en">EN</a></div></details></div>
+
+        <a href="https://wa.me/32472543027" target="_blank" rel="noopener" aria-label="WhatsApp" class="hdr-wa grid place-items-center h-9 w-9 rounded-full border transition hover:border-clay" style="border-color:var(--hair)">
+          <svg viewBox="0 0 24 24" class="h-[17px] w-[17px]" fill="currentColor" style="color:var(--terra)"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.94 1.35-.5.05-1.13.07-1.83-.11-.42-.11-.96-.29-1.65-.59-2.91-1.26-4.8-4.19-4.95-4.39-.14-.2-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.59.82 2.02.89 2.17.07.14.12.31.02.5-.09.2-.14.31-.27.48-.14.16-.29.36-.41.49-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.06.18-.27.36-.23.61-.14.24.09 1.55.73 1.82.87.27.14.45.2.51.31.07.11.07.64-.17 1.32Z"/></svg>
+        </a>
+
+        <a href="https://www.latindanceevolution.com/" target="_blank" rel="noopener" class="btn btn-solid hidden sm:inline-flex !py-2 !px-4 !text-[14px]">Réserver</a>
+
+        <button id="burg" aria-label="Menu" class="hdr-burg xl:hidden grid place-items-center h-9 w-9 rounded-full border transition duration-500" style="border-color:var(--hair)">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  
+  <div id="drawer" class="relative z-20 xl:hidden hidden border-t" style="background:var(--paper);border-color:var(--hair)">
+    <nav class="mx-auto max-w-shell px-5 py-5 grid gap-1 text-[17px]">
+      <a href="/#cours" class="py-2.5 border-b hair">Cours</a>
+      <a href="/#horaire" class="py-2.5 border-b hair">Horaire</a>
+      <a href="/#lieu" class="py-2.5 border-b hair">Le lieu</a>
+      <a href="/#salle" class="py-2.5 border-b hair">Louer la salle</a>
+      <a href="/#salle" class="py-2.5 border-b hair">Entreprises</a>
+      <a href="/#venir" class="py-2.5">Contact</a>
+      <div class="flex items-center gap-2 pt-3 text-[13px] tracking-wide">
+        <span class="langues"><span class="actif" class="text-terra font-semibold">FR</span><a href="/nl/" hreflang="nl-BE" class="text-mutedink">NL</a><a href="/en/" hreflang="en" class="text-mutedink">EN</a></span></div>
+    </nav>
+  </div>
+</header>
+
+<section class="disc-tete">
+  <div class="disc-dedans">
+    <nav class="disc-fil"><a href="/" class="lnk">Studio 28</a> · Cyclodance Fusion</nav>
+    <h1 class="d" style="font-size:clamp(34px,5.4vw,62px)">Cyclodance Fusion<br><span class="d-it" style="color:var(--clay)">à Bruxelles</span></h1>
+    <p class="lead disc-chapeau">La danse à deux, en fauteuil roulant ou debout, dans le même cours et sur la même piste. Un dimanche par mois, deux heures, avec Jamel et Charline. On y entre sans rien connaître.</p>
+    <div class="disc-actions">
+      <a href="/#horaire" class="btn btn-solid">Voir l'horaire complet</a>
+      <a href="https://wa.me/32472543027" class="btn btn-ghost">Une question ? WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<figure class="disc-bandeau"><picture><source type="image/webp" srcset="/assets/img/cours-cyclo-large-800.webp 800w, /assets/img/cours-cyclo-large-1400.webp 1400w, /assets/img/cours-cyclo-large.webp 1800w" sizes="100vw"><source type="image/jpeg" srcset="/assets/img/cours-cyclo-large-800.jpg 800w, /assets/img/cours-cyclo-large-1400.jpg 1400w, /assets/img/cours-cyclo-large.jpg 1800w" sizes="100vw"><img src="/assets/img/cours-cyclo-large.jpg" alt="Un cours de cyclodance au Studio 28 : des danseurs en fauteuil roulant et debout, ensemble sur le parquet" width="1800" height="1012" loading="eager" decoding="async" class="disc-img"></picture></figure>
+
+<section class="disc-bloc" style="background:var(--oat)">
+  <div class="disc-dedans">
+    <p class="kicker">L'horaire</p>
+    <span class="tick mt-3 mb-5"></span>
+    <h2 class="d" style="font-size:clamp(28px,3.6vw,44px)">Les prochaines dates</h2>
+    <div class="disc-tableau">
+      <div class="disc-ligne">
+        <div class="disc-h num">4 octobre 2026</div>
+        <div><div class="d d-600" style="font-size:19px">une fois par mois</div></div>
+      </div>
+      <div class="disc-ligne">
+        <div class="disc-h num">8 novembre 2026</div>
+        <div><div class="d d-600" style="font-size:19px">une fois par mois</div></div>
+      </div>
+      <div class="disc-ligne">
+        <div class="disc-h num">20 décembre 2026</div>
+        <div><div class="d d-600" style="font-size:19px">une fois par mois</div></div>
+      </div>
+    </div>
+    <p class="disc-note">Un cours coûte 10 crédits, soit 13 € en pré-inscription au lieu de 15 € sur place. <a href="/#tarifs" class="lnk">Voir les packs de crédits</a>.</p>
+  </div>
+</section>
+
+<section class="disc-bloc">
+  <div class="disc-dedans">
+    <div class="disc-deux">
+      <div class="disc-texte">
+        <h2 class="d disc-titre2" style="font-size:clamp(24px,2.8vw,32px)">Ce que c'est, concrètement</h2>
+        <p class="disc-p">Un cours de danse de couple où certains dansent assis et d'autres debout, et où les rôles tournent. Ce n'est pas une activité adaptée organisée à côté du reste : c'est un cours de danse, dans la même salle que les autres, avec la même musique.</p>
+        <p class="disc-p">Jamel et Charline l'animent à deux. Deux heures d'affilée, une fois par mois — assez long pour que la technique entre, assez rare pour que ça reste une fête.</p>
+        <h2 class="d disc-titre2" style="font-size:clamp(24px,2.8vw,32px)">Pour qui</h2>
+        <p class="disc-p">Pour les personnes en fauteuil, bien sûr. Mais aussi pour tous les autres : il faut être deux pour danser à deux, et la moitié de la salle est debout. On vient seul·e, on change de partenaire.</p>
+        <p class="disc-p">Aucune expérience n'est demandée. La plupart des gens qui viennent n'avaient jamais dansé avant.</p>
+        <h2 class="d disc-titre2" style="font-size:clamp(24px,2.8vw,32px)">Le prix, et pourquoi il est bas</h2>
+        <p class="disc-p">10 crédits, soit le cours le moins cher du studio — moitié moins qu'un yoga, un tiers d'un bootcamp. C'est un choix : on ne veut pas que le prix soit la raison pour laquelle on ne vient pas essayer.</p>
+      </div>
+      <figure class="disc-cote"><picture><source type="image/webp" srcset="/assets/img/disc-cyclodanse.webp"><img src="/assets/img/disc-cyclodanse.jpg" alt="Deux danseuses se tiennent la main, l'une en fauteuil roulant, l'autre accroupie à sa hauteur" width="700" height="525" loading="lazy" decoding="async" class="disc-img"></picture>
+        <figcaption>On danse en fauteuil et debout, dans le même cours.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="disc-bloc" style="background:var(--oat)">
+  <div class="disc-dedans disc-texte">
+    <p class="kicker">Questions fréquentes</p>
+    <span class="tick mt-3 mb-5"></span>
+    <dl class="disc-faq">
+      <dt>Faut-il être en fauteuil pour participer ?</dt>
+      <dd>Non. Le cours mélange volontairement danseurs assis et debout, et on change de partenaire.</dd>
+      <dt>La salle est-elle accessible ?</dt>
+      <dd>Oui. La grande salle est de plain-pied, avec un parquet lisse sur lequel un fauteuil roule bien.</dd>
+      <dt>Faut-il venir à deux ?</dt>
+      <dd>Non. On tourne les partenaires pendant le cours.</dd>
+      <dt>Combien ça coûte ?</dt>
+      <dd>10 crédits, le tarif le plus bas du studio. Les dates sont annoncées sur la page d'accueil.</dd>
+    </dl>
+    <p class="disc-note">Toutes les disciplines, l'horaire complet et les tarifs sont sur <a href="/" class="lnk">la page d'accueil</a>.</p>
+  </div>
+</section>
+
+<footer id="venir" class="pt-16 md:pt-24 pb-28 md:pb-14" style="background:var(--ink);color:#F6F1E8">
+  <div class="mx-auto max-w-shell px-5 md:px-8">
+
+    <div class="grid lg:grid-cols-[1.25fr_1fr_1fr] gap-12 lg:gap-16">
+
+      <div>
+        <p class="kicker" style="color:var(--oak)">Venir au Studio 28</p>
+        <h2 class="d mt-4" style="font-size:clamp(27px,3vw,40px);line-height:1.16">Rue des Deux Églises <span class="num" style="white-space:nowrap">26-28</span><br><span class="num">1000 Bruxelles</span></h2>
+        <p class="mt-5 text-[16.5px] leading-[1.75]" style="color:rgba(246,241,232,.78)">
+          Métro <strong style="color:var(--oak)">Arts-Loi</strong> — 3 minutes à pied.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="https://wa.me/32472543027" target="_blank" rel="noopener" class="btn" style="background:var(--oak);color:#2A2721">Une question ? Écrivez-nous sur WhatsApp</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Rue+des+Deux+%C3%89glises+26-28%2C+1000+Bruxelles" target="_blank" rel="noopener" class="btn" style="border:1px solid rgba(201,168,124,.45);color:#F6F1E8">Itinéraire</a>
+        </div>
+        <p class="mt-6 text-[15px]" style="color:rgba(246,241,232,.62)">
+          Téléphone : <a href="tel:+32472543027" class="num hover:text-white transition">+32 472 54 30 27</a><br>
+          Mail : <a href="mailto:info@studio28.be" class="num hover:text-white transition">info@studio28.be</a><br>
+          Informations et inscriptions par WhatsApp ou par mail.
+        </p>
+      </div>
+
+      <div>
+        <p class="kicker mb-5" style="color:var(--oak)">Les cours</p>
+          <ul class="space-y-2.5 text-[15.5px]" style="color:rgba(246,241,232,.78)">
+            <li><a href="/cours-yoga-bruxelles" class="hover:text-white transition">Cours de yoga à Bruxelles</a></li>
+            <li><a href="/cours-pilates-bruxelles" class="hover:text-white transition">Cours de pilates à Bruxelles</a></li>
+            <li><a href="/cyclodance-fusion-bruxelles" class="hover:text-white transition">Cyclodance Fusion à Bruxelles</a></li>
+            <li><a href="/cours-heels-bruxelles" class="hover:text-white transition">Cours de heels à Bruxelles</a></li>
+            <li><a href="/cours-hip-hop-bruxelles" class="hover:text-white transition">Cours de hip-hop à Bruxelles</a></li>
+            <li><a href="/latin-fusion-bruxelles" class="hover:text-white transition">Latin Fusion à Bruxelles</a></li>
+            <li><a href="/cours-danse-enfants-bruxelles" class="hover:text-white transition">Cours de danse enfants à Bruxelles</a></li>
+            <li><a href="/cours-tango-bruxelles" class="hover:text-white transition">Cours de tango à Bruxelles</a></li>
+            <li><a href="/cours-zumba-bruxelles" class="hover:text-white transition">Cours de zumba à Bruxelles</a></li>
+            <li><a href="/afro-latin-move-bruxelles" class="hover:text-white transition">Afro-Latin Move à Bruxelles</a></li>
+            <li><a href="/cours-salsa-bruxelles" class="hover:text-white transition">Cours de salsa à Bruxelles</a></li>
+            <li><a href="/cours-bachata-bruxelles" class="hover:text-white transition">Cours de bachata à Bruxelles</a></li>
+            <li><a href="/cours-kizomba-bruxelles" class="hover:text-white transition">Cours de kizomba à Bruxelles</a></li>
+          </ul>
+      </div>
+
+      <div>
+        <p class="kicker mb-5" style="color:var(--oak)">La maison</p>
+        <ul class="space-y-2.5 text-[15.5px]" style="color:rgba(246,241,232,.78)">
+          <li><a href="/#horaire" class="hover:text-white transition">Horaire de la semaine</a></li>
+          <li><a href="/#tarifs" class="hover:text-white transition">Tarifs et crédits</a></li>
+          <li><a href="/#lieu" class="hover:text-white transition">Le lieu</a></li>
+          <li><a href="/#profs" class="hover:text-white transition">Les professeurs et les écoles</a></li>
+          <li><a href="/#salle" class="hover:text-white transition">Louer la salle</a></li>
+          <li><a href="/#salle" class="hover:text-white transition">Entreprises</a></li>
+          <li><a href="/#faq" class="hover:text-white transition">Questions fréquentes</a></li>
+        </ul>
+
+        <p class="kicker mt-8 mb-4" style="color:var(--oak)">Langue</p>
+        <div class="flex items-center gap-2 text-[14px]">
+          <span class="langues"><span class="actif" class="font-semibold" style="color:var(--oak)">FR</span><a href="/nl/" hreflang="nl-BE" style="color:rgba(246,241,232,.7);margin-left:10px">NL</a><a href="/en/" hreflang="en" style="color:rgba(246,241,232,.7);margin-left:10px">EN</a></span></div>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-7 flex flex-col md:flex-row md:items-center justify-between gap-5" style="border-top:1px solid rgba(201,168,124,.22)">
+      <div class="flex items-center gap-4">
+        <picture><source srcset="assets/logo/studio28-lockup-cream.webp" type="image/webp"><img src="assets/logo/studio28-lockup-cream.png" alt="Studio 28 — Dance and Lifestyle" class="h-10 w-auto"></picture>
+        <span class="text-[12px] tracking-[.15em] uppercase" style="color:rgba(246,241,232,.55)">Danse · Yoga · Pilates · Bruxelles</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-[12.5px]" style="color:rgba(246,241,232,.42)">
+        <a href="https://www.instagram.com/thestudio28_bxl" target="_blank" rel="noopener" class="hover:text-white transition">Instagram</a>
+        <a href="https://www.facebook.com/TheStudioDanceevolution/" target="_blank" rel="noopener" class="hover:text-white transition">Facebook</a>
+        <a href="mentions-legales.html" class="hover:text-white transition">Mentions légales</a>
+        <a href="https://www.latindanceevolution.com/" target="_blank" rel="noopener" class="hover:text-white transition">Collaboration — Latin Dance Evolution</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="md:hidden fixed bottom-0 inset-x-0 z-50 px-3 pb-3 pt-3" style="background:linear-gradient(to top, var(--paper) 62%, rgba(247,242,234,0))">
+  <div class="flex gap-2.5">
+    <a href="/#horaire" class="btn btn-solid flex-1 justify-center">Voir l'horaire</a>
+    <a href="https://wa.me/32472543027" target="_blank" rel="noopener" aria-label="WhatsApp" class="btn btn-ghost !px-4 justify-center" style="background:var(--oat)">
+      <svg viewBox="0 0 24 24" class="h-[19px] w-[19px]" fill="currentColor" style="color:var(--terra)"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.94 1.35-.5.05-1.13.07-1.83-.11-.42-.11-.96-.29-1.65-.59-2.91-1.26-4.8-4.19-4.95-4.39-.14-.2-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.66.5.24.59.82 2.02.89 2.17.07.14.12.31.02.5-.09.2-.14.31-.27.48-.14.16-.29.36-.41.49-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.12.59-.07.16-.2.68-.79.86-1.06.18-.27.36-.23.61-.14.24.09 1.55.73 1.82.87.27.14.45.2.51.31.07.11.07.64-.17 1.32Z"/></svg>
+    </a>
+  </div>
+</div>
+
+<script>
+/* header: a warm scrim over the hero photograph, warm paper once you leave it */
+(function(){
+  var hdr = document.getElementById('hdr');
+  var bar = document.getElementById('hdrbar');
+  function onScroll(){
+    var over = false;  /* pas de photo derrière l'en-tête ici */
+    hdr.classList.toggle('over', over);
+    hdr.classList.toggle('solid', !over);
+    if (over){
+      hdr.style.background = 'transparent';
+      hdr.style.backdropFilter = 'none';
+      hdr.style.borderBottom = '1px solid transparent';
+      bar.classList.remove('py-3'); bar.classList.add('py-4','md:py-5');
+    } else {
+      hdr.style.background = 'rgba(247,242,234,.94)';
+      hdr.style.backdropFilter = 'blur(10px)';
+      hdr.style.borderBottom = '1px solid var(--hair)';
+      bar.classList.add('py-3'); bar.classList.remove('py-4','md:py-5');
+    }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+})();
+
+/* mobile drawer */
+document.getElementById('burg').addEventListener('click', function(){
+  document.getElementById('drawer').classList.toggle('hidden');
+});
+document.querySelectorAll('#drawer a').forEach(function(a){
+  a.addEventListener('click', function(){ document.getElementById('drawer').classList.add('hidden'); });
+});
+
+/* Le filtre de l'horaire est désormais géré par Alpine (semaine28). */
+
+/* gentle reveal */
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+  /* Un déroulant qui ne se referme pas est pire que pas de déroulant. */
+  document.addEventListener('click', function(e){
+    document.querySelectorAll('details.lang-dd[open]').forEach(function(d){
+      if (!d.contains(e.target)) d.removeAttribute('open');
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') document.querySelectorAll('details.lang-dd[open]').forEach(function(d){ d.removeAttribute('open'); });
+  });
+
+  function observer(racine){
+    var liste = [];
+    if (racine.matches && racine.matches('.rv')) liste.push(racine);
+    if (racine.querySelectorAll) liste = liste.concat(Array.prototype.slice.call(racine.querySelectorAll('.rv')));
+    liste.forEach(function(el){ if (!el.classList.contains('in')) io.observe(el); });
+  }
+  observer(document);
+
+  /* Les grilles (professeurs, packs, bootcamps, avis) sont fabriquées par Alpine
+     APRÈS ce balayage : ces éléments-là n'étaient jamais observés, donc jamais
+     révélés. Mesuré le 1er octobre : les dix professeurs restaient à opacity 0,
+     définitivement, pour tout le monde. On observe donc aussi ce qui arrive. */
+  new MutationObserver(function(mutations){
+    mutations.forEach(function(m){
+      Array.prototype.forEach.call(m.addedNodes, function(n){ if (n.nodeType === 1) observer(n); });
+    });
+  }).observe(document.documentElement, { childList: true, subtree: true });
+
+  /* Ceinture et bretelles : une animation qui échoue ne doit JAMAIS laisser du
+     contenu invisible. Passé trois secondes, tout s'affiche, quoi qu'il arrive. */
+  setTimeout(function(){
+    document.querySelectorAll('.rv:not(.in)').forEach(function(el){ el.classList.add('in'); });
+  }, 3000);
+})();
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<script>
+/* ═══════ horaire réel — saison 2026-2027 ═══════
+   Source : l'affiche d'Ahmedy (« Programme saison 2026-2027, rentrée le 29 août 2026 »)
+   et ses trois corrections du 23 septembre : enfants IMPULS de 14h à 16h,
+   kizomba à 21h le mercredi, Afro-Latin Move à 12h30.
+
+   lde: true  → compris dans la carte LDE (le badge noir sur son affiche)
+   mensuel    → une fois par mois seulement (les rendez-vous du dimanche)
+   ═══════════════════════════════════════════════ */
+const OUVERTURE = { debut:'12:00', fin:'22:30' };
+
+/* Les danses coûtent 15 crédits ; seules ces trois-là font exception. */
+/* Ce que coûte un cours. Ahmedy donne les mêmes chiffres en euros le 28 septembre
+   (danse 15 €, yoga et pilates 20 €, bootcamp 35 €), donc un crédit vaut un euro —
+   mais il ne l'a jamais écrit noir sur blanc, et la page ne l'affirme pas. */
+const CREDITS = { 'Yoga':20, 'Pilates':20, 'Cyclodance Fusion':10, 'Heels':35, 'Hip-hop':35 };
+
+const HORAIRE = {
+  /* Lundi — un cours du soir a existé une journée ici, ajouté puis retiré sur
+     demande du client les 28 et 29 septembre. Ne reste que le pilates. */
+  1: [
+    {h:'12:30', fin:'13:30', disc:'Pilates', niveau:'tous niveaux', prof:'Laura', ecole:'LDE', lde:true}
+  ],
+  2: [
+    {h:'19:00', fin:'20:00', disc:'Bachata', niveau:'Initiation', prof:'Ahmedy et Caro', ecole:'LDE', lde:true},
+    {h:'19:30', fin:'20:30', disc:'Bachata', niveau:'Débutant',    ecole:'LDE', lde:true},
+    {h:'20:30', fin:'21:30', disc:'Bachata', niveau:'Intermédiaire', ecole:'LDE', lde:true},
+    {h:'21:30', fin:'22:30', disc:'Bachata', niveau:'Practica',    ecole:'LDE', lde:true}
+  ],
+  /* Mercredi — le détail des cours enfants vient de son message du 28 septembre.
+     Il avait d'abord écrit « 14h à 16h » ; c'est en réalité trois créneaux jusqu'à 18h. */
+  3: [
+    {h:'14:00', fin:'15:00', disc:'Enfants', niveau:'Pré-danse, 3 à 5 ans', ecole:'IMPULS', lde:false},
+    {h:'15:00', fin:'16:00', disc:'Enfants', niveau:'Danse Mix, 8 ans',     ecole:'IMPULS', lde:false},
+    {h:'16:30', fin:'18:00', disc:'Enfants', niveau:'Danse Mix, 5 ans',     ecole:'IMPULS', lde:false},
+    {h:'18:00', fin:'19:00', disc:'Tango',   niveau:'Tango Barre, entre femmes', ecole:'IMPULS', lde:false},
+    {h:'19:00', fin:'20:00', disc:'Salsa',   niveau:'Débutant',      ecole:"O'Dance", lde:false},
+    {h:'20:00', fin:'21:00', disc:'Salsa',   niveau:'Intermédiaire', ecole:"O'Dance", lde:false},
+    {h:'21:00', fin:'22:00', disc:'Kizomba', ecole:"O'Dance", lde:false}
+  ],
+  4: [
+    {h:'12:30', fin:'13:30', disc:'Yoga',  prof:'Marvin',   ecole:'LDE', lde:true},
+    {h:'18:00', fin:'19:00', disc:'Zumba', prof:'Nastasia', ecole:'Nastasia Van Loo', lde:false},
+    {h:'19:00', fin:'20:00', disc:'Salsa', niveau:'Initiation',    prof:'Ahmedy et Laura', ecole:'LDE', lde:true},
+    {h:'19:30', fin:'20:30', disc:'Salsa', niveau:'Débutant',      ecole:'LDE', lde:true},
+    {h:'20:30', fin:'21:30', disc:'Salsa', niveau:'Intermédiaire', ecole:'LDE', lde:true},
+    {h:'21:30', fin:'22:30', disc:'Salsa', niveau:'Practica',      ecole:'LDE', lde:true}
+  ],
+  5: [
+    {h:'12:30', fin:'13:30', disc:'Afro-Latin Move', prof:'Ahmedy', ecole:'LDE', lde:true},
+    {h:'17:30', fin:'18:30', disc:'Yoga', prof:'Andy', ecole:'LDE', lde:true}
+  ],
+  /* Samedi — vide jusqu'au 28 septembre, où il donne ce cours. Cela rejoint sa
+     remarque 32 du 20 (« samedi 14.00 impulse danse pour les enfants »), que son
+     affiche contredisait. C'est donc son affiche qui était incomplète. */
+  6: [
+    {h:'14:00', fin:'16:00', disc:'Enfants', ecole:'IMPULS', lde:false}
+  ],
+  /* Les quatre rendez-vous mensuels du dimanche. Heures et prix confirmés le 29. */
+  0: [
+    {h:'14:00', fin:'16:00', disc:'Latin Fusion', prof:'Eva', ecole:'Pasión Latina', lde:false, mensuel:true},
+    {h:'16:00', fin:'18:00', disc:'Heels',   niveau:'Heels & Confidence', prof:'Elena',  ecole:'LDE', lde:true, mensuel:true},
+    {h:'16:00', fin:'18:00', disc:'Hip-hop', niveau:'Back to Basic',      prof:'Selasi', ecole:'LDE', lde:true, mensuel:true},
+    {h:'17:00', fin:'18:30', disc:'Cyclodance Fusion', prof:'Jamel et Charline', ecole:'LDE', lde:true, mensuel:true}
+  ]
+};
+
+const J28  = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+const JA28 = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+const M28  = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+function toMin28(x){ const p = x.split(':'); return (+p[0])*60 + (+p[1]); }
+function cap28(x){ return x.charAt(0).toUpperCase() + x.slice(1); }
+
+/* Les dates du hip-hop viennent de l'affiche « Back to Basic » que Selasi nous a
+   envoyée le 28 septembre. Les quatre tombent bien un dimanche en 2026, vérifié.
+   Les heels et la Cyclodance Fusion n'ont pas encore livré les leurs. */
+const DATES_BOOTCAMP = {
+  'Hip-hop':           [{d:'2026-10-18'}, {d:'2026-11-15'}, {d:'2026-12-06'}],
+  'Heels':             [{d:'2026-10-25'}, {d:'2026-11-29'}, {d:'2027-05-23'}],
+  'Cyclodance Fusion': [{d:'2026-10-04'}, {d:'2026-11-08'}, {d:'2026-12-20'}],
+  /* Eva change d'heure d'un mois à l'autre, d'où l'heure par date. */
+  'Latin Fusion':      [{d:'2026-10-11', h:'14:00', fin:'16:00'},
+                        {d:'2026-11-15', h:'13:00', fin:'15:00'},
+                        {d:'2026-12-13', h:'14:00', fin:'16:00'}]
+};
+
+/* Les sites des écoles invitées. Leurs élèves s'inscrivent chez elles, pas ici :
+   le lien est donc l'information utile, pas un ornement. */
+const ECOLES = {
+  'IMPULS':          'https://impulsvzw.com/fr/',
+  "O'Dance":         'https://odanceevents.com/',
+  'Nastasia Van Loo':'https://www.zumba.com/fr-FR/p/nastasia-van-loo/101312',
+  'Pasión Latina':   'https://www.pasionlatina.be/latinfusion'
+};
+
+const ORDRE = ['Yoga','Pilates','Cyclodance Fusion','Heels','Hip-hop','Latin Fusion','Enfants','Tango','Zumba','Afro-Latin Move','Salsa','Bachata','Kizomba'];
+const DISCIPLINES = (function(){
+  const vues = new Set();
+  for (let d = 0; d < 7; d++) for (const c of (HORAIRE[d]||[])) vues.add(c.disc);
+  const ordonnees = ORDRE.filter(x => vues.has(x));
+  for (const x of vues) if (!ordonnees.includes(x)) ordonnees.push(x);
+  return ordonnees;
+})();
+
+const IDX28 = {};
+for (let d = 0; d < 7; d++){
+  IDX28[d] = (HORAIRE[d]||[]).map(function(c,i){
+    return Object.assign({}, c, {
+      id: d+'-'+i, jour: d,
+      debut: toMin28(c.h),
+      fin:   toMin28(c.fin || c.h) + (c.fin ? 0 : 60),
+      credits: CREDITS[c.disc] != null ? CREDITS[c.disc] : 15,
+      fin_h: (c.fin || '').replace(':','h')
+    });
+  }).sort(function(a,b){ return a.debut - b.debut; });
+}
+
+/* L'annonce en haut de page. Changer le texte ici ; mettre ANNONCE à '' la retire.
+   La clef de mémorisation contient le message, donc un nouveau texte se réaffiche
+   même chez quelqu'un qui avait fermé le précédent. */
+/* Vide = pas de bandeau. Ahmedy l'avait demandé (remarque 56) pour pouvoir
+   annoncer une fermeture ou un événement : le mécanisme reste, le message part.
+   Le message précédent était resté affiché cinq semaines après sa date. */
+const ANNONCE = "";
+function annonce28(){
+  return {
+    message: ANNONCE,
+    visible: false,
+    init(){
+      if (!ANNONCE) return;
+      try { this.visible = localStorage.getItem('annonce28') !== ANNONCE; }
+      catch(e){ this.visible = true; }
+    },
+    fermer(){
+      this.visible = false;
+      try { localStorage.setItem('annonce28', ANNONCE); } catch(e){}
+    }
+  };
+}
+
+/* Les packs de crédits. Les prix restent à confirmer par Ahmedy ; les crédits,
+   eux, viennent de sa remarque 34 (20 le yoga et le pilates, 15 les danses,
+   10 la cyclodance fusion). */
+/* Prix et crédits viennent d'Ahmedy (28 et 29 septembre). Un crédit ne vaut PAS un
+   euro : 65 € donnent 75 crédits, 210 € en donnent 300. C'est là qu'est la remise, et
+   c'est pour ça que le nombre de cours est écrit noir sur blanc — un visiteur ne fait
+   pas la division de tête. */
+const PACKS = [
+  { nom:'Dance Essential', prix:'65 €',  credits:'75',  populaire:false,
+    lignes:['5 cours de danse, ou 3 de yoga', 'toutes les disciplines de la carte LDE'] },
+  { nom:'Dance Passion',   prix:'120 €', credits:'150', populaire:true,
+    lignes:['10 cours de danse, ou 7 de yoga', 'toutes les disciplines de la carte LDE'] },
+  { nom:'Dance Prestige',  prix:'210 €', credits:'300', populaire:false,
+    lignes:['20 cours de danse, ou 15 de yoga', 'toutes les disciplines de la carte LDE'] }
+];
+function packs28(){ return { packs: PACKS }; }
+
+/* Les avis viennent de la fiche Google de Latin Dance Evolution : Ahmedy les a
+   choisis parce qu'ils parlent des cours et des profs de la maison. */
+const AVIS = [
+  { texte:"Professionnalisme, bonne humeur et gentillesse sont les maîtres mots de cette école de danse\u00a0! Rejoignez-nous dans cette grande famille pour bouger, danser, vous amuser et progresser.",
+    nom:'Sandrine V.', quand:'il y a 3 ans' },
+  { texte:"Best party in town\u00a0!",
+    nom:'Marisa Van Andel', quand:'il y a 1 an' },
+  { texte:"Une très bonne ambiance.",
+    nom:'Nath L.', quand:'il y a 3 ans' }
+];
+function avis28(){ return { avis: AVIS }; }
+
+/* Les professeurs et leur présentation. Les textes viennent d'Ahmedy (28 septembre),
+   resserrés : sa version complète fait deux cents mots par prof, ce qui noie la
+   grille. Un prof sans texte affiche « présentation à venir » plutôt qu'un vide. */
+const PROFS = [
+  { nom:'Laura',   disc:'Pilates · Salsa', teinte:'#D9C3A4', encre:'#5E4A33',
+    bio:"Pour elle, le pilates est autant une introspection qu'un exercice : posture, respiration consciente, alignement, mobilité. On y gagne en force centrale et on y perd des douleurs." },
+  { nom:'Marvin',  disc:'Yoga', teinte:'#C9A87C', encre:'#4C3A26',
+    bio:"Quinze ans de pratique, dix d'enseignement. Formé en Inde, il a enseigné en Allemagne, en France, à Singapour, en Thaïlande et au Nigeria. Des enchaînements construits, l'alignement, le souffle." },
+  { nom:'Selasi',  disc:'Hip-hop', photo:'assets/img/prof-selasi.jpg',
+    bio:"Selasi Dogbatse : le classique à 4 ans, le hip-hop à 12, Los Angeles à 20. A dansé pour Rihanna, Beyoncé, Missy Elliott, Cardi B et Drake. Son spectacle A Piece of Me est passé par Bozar." },
+  { nom:'Elena',   disc:'Heels', photo:'assets/img/prof-elena.jpg',
+    bio:"Elena Gambardella, pionnière du heels en Belgique et créatrice de la méthode Heels &amp; Confidence. X Factor, Eurovision, The Voice, Nike ; Booba, Angèle, Oscar and the Wolf." },
+  { nom:'Andy',    disc:'Yoga', teinte:'#8C4A2E', encre:'#F7F2EA' },
+  { nom:'Charline',disc:'Cyclodance Fusion', teinte:'#D9C3A4', encre:'#5E4A33' },
+  { nom:'Jamel',   disc:'Cyclodance Fusion', teinte:'#C9A87C', encre:'#4C3A26' },
+  { nom:'Ahmedy',  disc:'Salsa · Bachata', teinte:'#E4D6C0', encre:'#6B5540',
+    bio:"Les danses urbaines, puis la salsa en 2006 et la bachata moderna en 2012. Il fonde Latin Dance Evolution en 2016 ; la troupe court le World Bachata Masters dès 2017. Certifié Bachazouk depuis 2025." },
+  { nom:'Eva',     disc:'Latin Fusion', teinte:'#E4D6C0', encre:'#6B5540',
+    bio:"Elle anime le Latin Fusion un dimanche par mois, avec Pasión Latina. Cours hors carte LDE : l'inscription se fait chez elle." },
+  { nom:'Caro',    disc:'Salsa · Bachata · Lady Styling', teinte:'#B4643F', encre:'#F7F2EA',
+    bio:"Caroline enseigne la salsa et la bachata avec Ahmedy depuis 2019, en Belgique et à l'étranger. Le street jazz et le hip-hop girly nourrissent son styling ; elle anime les stages de Lady Styling de la maison." }
+];
+function profs28(){ return { profs: PROFS, initiale(p){ return p.nom.charAt(0); } }; }
+
+/* Les bootcamps du dimanche, avec leurs dates quand elles sont connues. Une date
+   déjà passée n'est plus proposée : une liste qui garde le mois dernier vieillit
+   toute seule et donne l'impression d'un site abandonné. */
+function bootcamps28(){
+  return {
+    liste: IDX28[0],
+    lienEcole(c){ return ECOLES[c.ecole] || null; },
+    /* Les prochaines dates. Une date passée disparaît d'elle-même : une liste qui
+       garde le mois dernier vieillit toute seule et fait croire à un site abandonné.
+       L'heure n'est écrite que quand elle sort de l'ordinaire — sinon elle répète
+       celle déjà affichée en haut de la carte. */
+    dates(c){
+      const today = new Date(); today.setHours(0,0,0,0);
+      return (DATES_BOOTCAMP[c.disc] || [])
+        .map(x => ({ ...x, jour: new Date(x.d + 'T00:00:00') }))
+        .filter(x => x.jour >= today)
+        .map(x => {
+          const jour = x.jour.getDate() + ' ' + M28[x.jour.getMonth()];
+          const heure = (x.h && x.h !== c.h) ? ' (' + x.h.replace(':','h') + ')' : '';
+          return jour + heure;
+        });
+    }
+  };
+}
+
+/* L'horaire de la semaine lit exactement les mêmes données que le direct :
+   une seule source, donc impossible que les deux se contredisent. */
+function semaine28(){
+  return {
+    f: 'tout',
+    /* Les écoles invitées gèrent leurs propres inscriptions : leur site est
+       l'information utile, pas un ornement. */
+    lienEcole(c){ return ECOLES[c.ecole] || null; },
+    disciplines: DISCIPLINES,
+    J28,
+    ordreJours: [1,2,3,4,5,6,0],          /* la semaine commence le lundi */
+    cap: cap28,
+    duJour(j){
+      const l = IDX28[j] || [];
+      return this.f === 'tout' ? l : l.filter(c => c.disc === this.f);
+    }
+  };
+}
+
+function jour28(){
+  return {
+    tick: Date.now(),
+    jourActif: new Date().getDay(),
+    filtre: 'tout',
+    joursAbbr: JA28,
+    
+    disciplines: DISCIPLINES,
+    init(){ setInterval(() => { this.tick = Date.now(); }, 1000); },
+    get maintenant(){ return new Date(this.tick); },
+    get jour(){ return this.maintenant.getDay(); },
+    get min(){ const m = this.maintenant; return m.getHours()*60 + m.getMinutes(); },
+    get horloge(){ const m = this.maintenant;
+      return String(m.getHours()).padStart(2,'0')+':'+String(m.getMinutes()).padStart(2,'0')+':'+String(m.getSeconds()).padStart(2,'0'); },
+    get horlogeCourte(){ const m = this.maintenant;
+      return String(m.getHours()).padStart(2,'0')+'h'+String(m.getMinutes()).padStart(2,'0'); },
+    get dateLongue(){ const m = this.maintenant;
+      return cap28(J28[this.jour])+' '+m.getDate()+' '+M28[m.getMonth()]; },
+    get ouvert(){ return this.min >= toMin28(OUVERTURE.debut) && this.min < toMin28(OUVERTURE.fin); },
+    hm(m){ const h = Math.floor(m/60)%24, x = m%60; return h+'h'+String(x).padStart(2,'0'); },
+    J28,
+
+    /* Une seule ligne qui dit l'essentiel : le niveau, qui donne le cours, quelle
+       école, et si c'est compris dans la carte LDE. */
+    ligne(c){
+      const bouts = [];
+      if (c.niveau) bouts.push(c.niveau);
+      if (c.prof && !memeNom(c)) bouts.push('avec ' + c.prof);
+      if (c.ecole && c.ecole !== 'LDE') bouts.push(c.ecole);
+      if (c.mensuel) bouts.push('une fois par mois');
+      bouts.push(c.lde ? 'carte LDE' : 'paiement séparé');
+      return bouts.join(' · ');
+    },
+
+    /* Le lundi et le samedi sont vides : plutôt que le silence, on annonce le
+       prochain rendez-vous de la semaine. */
+    get suivantSemaine(){
+      for (let i = 1; i <= 7; i++){
+        const d = (this.jourActif + i) % 7;
+        const l = (IDX28[d] || []).filter(c => this.filtre === 'tout' || c.disc === this.filtre);
+        if (l.length) return l[0];
+      }
+      return null;
+    },
+    get estAujourdhui(){ return this.jourActif === this.jour; },
+    get coursDuJour(){ return IDX28[this.jourActif] || []; },
+    /* Le filtre ne change que la liste du jour. « En ce moment » et « Ensuite »
+       continuent de dire ce qui se passe réellement dans la salle — sinon filtrer
+       sur le yoga annoncerait un parquet libre pendant un cours de salsa. */
+    get coursAffiches(){
+      const l = this.coursDuJour;
+      return this.filtre === 'tout' ? l : l.filter(c => c.disc === this.filtre);
+    },
+    /* Les rendez-vous du dimanche n'ont lieu qu'une fois par mois : on ne peut pas
+       affirmer qu'ils se donnent aujourd'hui, donc ils ne pilotent pas le direct. */
+    get enCours(){ if (!this.estAujourdhui) return [];
+      return this.coursDuJour.filter(c => !c.mensuel && c.debut <= this.min && this.min < c.fin); },
+    get enCoursIds(){ return this.enCours.map(c => c.id); },
+    get prochain(){
+      const l = this.coursDuJour.filter(c => !c.mensuel);
+      if (!this.estAujourdhui) return l[0] || null;
+      return l.find(c => c.debut > this.min) || null;
+    },
+    get marqueurAvant(){ if (!this.estAujourdhui) return null;
+      const n = this.coursAffiches.find(c => c.debut > this.min); return n ? n.id : null; },
+    get titreItal(){
+      if (!this.estAujourdhui) return 'le ' + J28[this.jourActif];
+      return this.enCours.length ? 'maintenant' : "aujourd'hui";
+    }
+  };
+}
+
+/* ═══════ les volets de l'horaire ═══════
+   Mesuré le 1er octobre 2026 sur un écran de 390 px : « Cette semaine » faisait
+   5 521 px — un cinquième de la page entière — et « Ce qui se passe aujourd'hui »
+   1 669 px, dont 200 pour les seules pastilles du filtre. Sur téléphone on ne lit
+   qu'un jour ; les sept jours dépliés sont une qualité du grand écran, pas du petit.
+
+   L'état est décidé ici et posé par Alpine sur l'attribut `open`, jamais masqué en
+   CSS : <details> cache son contenu par le moteur de rendu, pas par une propriété
+   qu'on puisse surcharger. Passer par l'attribut garde gratuitement le clavier, le
+   lecteur d'écran et le repli natif. */
+/* Nastasia donne le zumba sous son propre nom : le cours porte prof « Nastasia »
+   et école « Nastasia Van Loo ». Imprimer les deux donne « Nastasia · paiement
+   séparé · Nastasia Van Loo » — ça se lit comme une faute de saisie, et sur un
+   téléphone étroit ça pousse la rangée à une troisième ligne. Quand l'école
+   nomme déjà la personne, répéter son prénom n'apprend rien. On garde le nom le
+   plus complet, celui qui porte le lien. */
+function memeNom(c){
+  if (!c.prof || !c.ecole) return false;
+  const n = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  return n(c.ecole).includes(n(c.prof)) || n(c.prof).includes(n(c.ecole));
+}
+
+function grand28(){ return window.matchMedia('(min-width:1024px)').matches; }
+
+/* Un filtre actif ouvre tous les jours : la liste devient courte, et comparer les
+   jours entre eux est précisément à quoi sert le filtre. Sinon, aujourd'hui seul. */
+function pli28(j, f){
+  if (grand28()) return true;
+  if (f && f !== 'tout') return true;
+  return j === new Date().getDay();
+}
+
+/* Changer de largeur — une tablette qu'on tourne — doit refaire l'état des volets.
+   La liaison Alpine, elle, ne se réévalue que si le filtre bouge. On écoute donc la
+   requête de média, et seulement elle : un MutationObserver rouvrirait les volets
+   à chaque battement de l'horloge, donc annulerait le geste du visiteur. */
+(function(){
+  var large = window.matchMedia('(min-width:1024px)');
+  large.addEventListener('change', function(e){
+    document.querySelectorAll('details.jr-pli').forEach(function(d){
+      d.open = e.matches || d.dataset.jr === String(new Date().getDay());
+    });
+    document.querySelectorAll('details.flt-pli').forEach(function(d){ d.open = e.matches; });
+  });
+})();
+
+/* Le jour choisi doit être dans le champ. La bande des sept jours défile sur
+   téléphone, et un samedi sélectionné se trouvait hors écran — invisible, donc le
+   visiteur croyait que la bande commençait au dimanche. Au chargement seulement :
+   recentrer à chaque clic ferait sauter la bande sous le doigt.
+
+   La bande est remplie par Alpine, donc elle n'existe pas encore quand ce script
+   s'exécute : on réessaie jusqu'à trouver le bouton actif, trois secondes au plus. */
+(function(){
+  var essais = 0;
+  function viser(){
+    var trouve = false;
+    document.querySelectorAll('.jrs-rail').forEach(function(r){
+      var a = r.querySelector('[aria-pressed="true"]');
+      if (!a) return;
+      trouve = true;
+      if (r.scrollWidth > r.clientWidth + 1){
+        var cr = r.getBoundingClientRect(), ca = a.getBoundingClientRect();
+        r.scrollLeft += (ca.left - cr.left) - (cr.width - ca.width) / 2;
+      }
+    });
+    if (!trouve && ++essais < 20) setTimeout(viser, 150);
+  }
+  viser();
+})();
+</script>
+
+</body>
+</html>
