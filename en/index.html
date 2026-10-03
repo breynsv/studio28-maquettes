@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="maquette-version" content="5.14+20261003">
-<meta name="maquette-version-lisible" content="v5.14 — 3 octobre 2026">
+<meta name="maquette-version" content="5.15+20261003">
+<meta name="maquette-version-lisible" content="v5.15 — 3 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -248,6 +248,12 @@ body::after{
    On remplit donc la bande. Ce pseudo-élément prolonge la barre vers le haut sur
    250 px, avec EXACTEMENT sa couleur : transparent au-dessus de la photo du
    héros, papier dès qu'on défile. Ce qui dépasse de l'écran ne coûte rien. */
+/* Plancher en CSS pour la hauteur de l'en-tête. Le script la mesure au pixel
+   près et écrase ces valeurs, mais s'il ne tourne pas — JavaScript coupé, erreur
+   en amont — la marge négative du héros retomberait sur une seule valeur, juste
+   sur mobile et seize pixels trop courte sur grand écran. */
+:root{ --h-hdr:81px; }
+@media (min-width:768px){ :root{ --h-hdr:97px; } }
 #hdr{ background:var(--fond-hdr, transparent);
   /* `position` en CSS et PAS via la classe Tailwind `sticky` : la feuille est
      compilée depuis la source, et `sticky` n'y figurait nulle part — la classe
