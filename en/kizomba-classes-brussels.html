@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="maquette-version" content="5.9+20261003">
-<meta name="maquette-version-lisible" content="v5.9 — 3 octobre 2026">
+<meta name="maquette-version" content="5.10+20261003">
+<meta name="maquette-version-lisible" content="v5.10 — 3 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -378,14 +378,15 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   .jr-fleche::before{ content:"\2304"; transform:translateY(-1px); }
   .jr-pli[open] > .jr-tete > .jr-fleche{ transform:rotate(180deg); }
   .jr-corps{ padding-bottom:1.1rem; }
+  /* Le grand écran gardait les sept jours dépliés : le résumé n'y était qu'un
+     titre, sans compte, sans flèche, et `pointer-events:none` l'empêchait d'être
+     cliqué. Le jour où le grand écran s'est mis à se plier comme le téléphone,
+     ces trois lignes ont transformé la semaine en sept noms de jours sans rien
+     dessous — et sans aucun moyen de les ouvrir. Le résumé est donc le même
+     partout ; seules les marges respirent davantage. */
   @media (min-width:1024px){
-    .jr-pli{ border-top:0; }
-    .jr-tete{
-      display:block; min-height:0; padding:2rem 0 .5rem;
-      cursor:default; pointer-events:none;
-    }
-    .jr-cpt, .jr-fleche{ display:none; }
-    .jr-corps{ padding-bottom:0; }
+    .jr-tete{ min-height:60px; padding:1.15rem 0; }
+    .jr-corps{ padding-bottom:1.4rem; }
   }
 
   /* ══ Le filtre replié ════════════════════════════════════════════════════
@@ -775,8 +776,12 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       hdr.style.borderBottom = '1px solid transparent';
       bar.classList.remove('py-3'); bar.classList.add('py-4','md:py-5');
     } else {
-      hdr.style.background = 'rgba(247,242,234,.94)';
-      hdr.style.backdropFilter = 'blur(10px)';
+      // Opaque, pas « presque ». À 94 % le texte de la page restait visible
+      // à travers la barre : sur un téléphone, les grands titres en Fraunces
+      // défilaient en transparence derrière le logo. Le flou coûtait en plus
+      // cher à iOS pour un effet que personne n'avait demandé.
+      hdr.style.background = 'var(--paper)';
+      hdr.style.backdropFilter = 'none';
       hdr.style.borderBottom = '1px solid var(--hair)';
       bar.classList.add('py-3'); bar.classList.remove('py-4','md:py-5');
     }
