@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="maquette-version" content="5.11+20261003">
-<meta name="maquette-version-lisible" content="v5.11 — 3 octobre 2026">
+<meta name="maquette-version" content="5.12+20261003">
+<meta name="maquette-version-lisible" content="v5.12 — 3 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -235,6 +235,19 @@ body::after{
 #hdr.over .hdr-sep{ color:rgba(201,168,124,.55); }
 #hdr.over .hdr-wa{ border-color:rgba(246,241,232,.45) !important; background:rgba(51,48,43,.28); }
 #hdr.over .hdr-wa svg{ color:var(--oak) !important; }
+/* Sur iPhone, une bande de page reste visible AU-DESSUS de la barre pendant le
+   défilement : Safari place `position:fixed` par rapport à un repère qui ne
+   coïncide pas avec le haut de l'écran. On a essayé de supprimer la cause —
+   transparence, hauteur, conteneur de défilement du body — sans y arriver, et
+   Chromium ne reproduit rien de tout cela.
+   On remplit donc la bande. Ce pseudo-élément prolonge la barre vers le haut sur
+   250 px, avec EXACTEMENT sa couleur : transparent au-dessus de la photo du
+   héros, papier dès qu'on défile. Ce qui dépasse de l'écran ne coûte rien. */
+#hdr{ background:var(--fond-hdr, transparent); }
+#hdr::before{
+  content:""; position:absolute; left:0; right:0; bottom:100%; height:250px;
+  background:var(--fond-hdr, transparent); pointer-events:none;
+}
 #hdr .hlogo{ display:none; }
 @media (min-width:640px){
   #hdr:not(.over) .hlogo.lg-terra{ display:block; }
@@ -796,7 +809,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     hdr.classList.toggle('over', over);
     hdr.classList.toggle('solid', !over);
     if (over){
-      hdr.style.background = 'transparent';
+      hdr.style.setProperty('--fond-hdr', 'transparent');
       hdr.style.backdropFilter = 'none';
       hdr.style.borderBottom = '1px solid transparent';
       bar.classList.remove('py-3'); bar.classList.add('py-4','md:py-5');
@@ -805,7 +818,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       // à travers la barre : sur un téléphone, les grands titres en Fraunces
       // défilaient en transparence derrière le logo. Le flou coûtait en plus
       // cher à iOS pour un effet que personne n'avait demandé.
-      hdr.style.background = 'var(--paper)';
+      hdr.style.setProperty('--fond-hdr', 'var(--paper)');
       hdr.style.backdropFilter = 'none';
       hdr.style.borderBottom = '1px solid var(--hair)';
       bar.classList.add('py-3'); bar.classList.remove('py-4','md:py-5');
