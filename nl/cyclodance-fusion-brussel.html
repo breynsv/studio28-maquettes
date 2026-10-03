@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
 <head>
-<meta name="maquette-version" content="5.8+20261002">
-<meta name="maquette-version-lisible" content="v5.8 — 2 octobre 2026">
+<meta name="maquette-version" content="5.9+20261003">
+<meta name="maquette-version-lisible" content="v5.9 — 3 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -1184,8 +1184,13 @@ function grand28(){ return window.matchMedia('(min-width:1024px)').matches; }
 /* Un filtre actif ouvre tous les jours : la liste devient courte, et comparer les
    jours entre eux est précisément à quoi sert le filtre. Sinon, aujourd'hui seul. */
 function pli28(j, f){
-  if (grand28()) return true;
+  // Un filtre actif n'affiche plus que les jours concernés : ils s'ouvrent tous,
+  // la liste est courte par construction.
   if (f && f !== 'tout') return true;
+  // Sans filtre, le jour même — sur grand écran comme sur téléphone. Les sept
+  // jours dépliés faisaient 2 766 px, trois écrans pour une semaine qu'on ne lit
+  // jamais d'un bloc. Le compte dans chaque résumé dit où il se passe quelque
+  // chose : rien n'est caché, c'est replié.
   return j === new Date().getDay();
 }
 
@@ -1197,7 +1202,7 @@ function pli28(j, f){
   var large = window.matchMedia('(min-width:1024px)');
   large.addEventListener('change', function(e){
     document.querySelectorAll('details.jr-pli').forEach(function(d){
-      d.open = e.matches || d.dataset.jr === String(new Date().getDay());
+      d.open = d.dataset.jr === String(new Date().getDay());
     });
     document.querySelectorAll('details.flt-pli').forEach(function(d){ d.open = e.matches; });
   });
