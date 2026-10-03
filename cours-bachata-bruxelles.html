@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="maquette-version" content="5.10+20261003">
-<meta name="maquette-version-lisible" content="v5.10 — 3 octobre 2026">
+<meta name="maquette-version" content="5.11+20261003">
+<meta name="maquette-version-lisible" content="v5.11 — 3 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -126,7 +126,16 @@ body{
   font-size:17px;
   line-height:1.7;
   -webkit-font-smoothing:antialiased;
+  /* `overflow-x:hidden` sur body fait du body un CONTENEUR DE DÉFILEMENT :
+     overflow-y passe alors à auto. Sur iOS Safari, `position:fixed` se cale
+     dès lors sur ce conteneur et plus sur la fenêtre — l'en-tête se retrouvait
+     une quarantaine de pixels trop bas pendant le défilement, et on voyait la
+     page passer au-dessus du logo. Chromium ne le reproduit pas : toutes les
+     mesures restaient vertes pendant que le défaut était bien là.
+     `clip` coupe de la même façon SANS créer de conteneur de défilement ;
+     `hidden` reste en repli pour les navigateurs qui l'ignorent. */
   overflow-x:hidden;
+  overflow-x:clip;
 }
 @media (min-width:768px){ body{ font-size:17px; } }
 
@@ -376,15 +385,21 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   .jr-fleche::before{ content:"\2304"; transform:translateY(-1px); }
   .jr-pli[open] > .jr-tete > .jr-fleche{ transform:rotate(180deg); }
   .jr-corps{ padding-bottom:1.1rem; }
-  /* Le grand écran gardait les sept jours dépliés : le résumé n'y était qu'un
-     titre, sans compte, sans flèche, et `pointer-events:none` l'empêchait d'être
-     cliqué. Le jour où le grand écran s'est mis à se plier comme le téléphone,
-     ces trois lignes ont transformé la semaine en sept noms de jours sans rien
-     dessous — et sans aucun moyen de les ouvrir. Le résumé est donc le même
-     partout ; seules les marges respirent davantage. */
+  /* Sur grand écran les sept jours sont dépliés : le résumé n'est plus un bouton
+     mais un titre de section. Compte et flèche n'auraient rien à dire, et un
+     curseur « main » sur quelque chose qui ne s'ouvre pas est un mensonge.
+     ATTENTION : ces règles supposent que pli28() renvoie toujours vrai au-dessus
+     de 1 024 px. Si ce comportement change, elles transforment la semaine en
+     sept noms de jours sans rien dessous et sans moyen de les ouvrir — c'est
+     exactement ce qui est arrivé en v5.9. */
   @media (min-width:1024px){
-    .jr-tete{ min-height:60px; padding:1.15rem 0; }
-    .jr-corps{ padding-bottom:1.4rem; }
+    .jr-pli{ border-top:0; }
+    .jr-tete{
+      display:block; min-height:0; padding:2rem 0 .5rem;
+      cursor:default; pointer-events:none;
+    }
+    .jr-cpt, .jr-fleche{ display:none; }
+    .jr-corps{ padding-bottom:0; }
   }
 
   /* ══ Le filtre replié ════════════════════════════════════════════════════
@@ -1197,13 +1212,14 @@ function grand28(){ return window.matchMedia('(min-width:1024px)').matches; }
 /* Un filtre actif ouvre tous les jours : la liste devient courte, et comparer les
    jours entre eux est précisément à quoi sert le filtre. Sinon, aujourd'hui seul. */
 function pli28(j, f){
-  // Un filtre actif n'affiche plus que les jours concernés : ils s'ouvrent tous,
-  // la liste est courte par construction.
+  // Grand écran : la semaine entière, dépliée. Essayé replié en v5.9 pour gagner
+  // de la hauteur ; le client l'a trouvé pire — sept noms de jours valent moins
+  // qu'un tableau qu'on parcourt des yeux. Le gain de place vient maintenant du
+  // filtre, qui masque les jours sans cours.
+  if (grand28()) return true;
+  // Un filtre actif n'affiche que les jours concernés : ils s'ouvrent tous.
   if (f && f !== 'tout') return true;
-  // Sans filtre, le jour même — sur grand écran comme sur téléphone. Les sept
-  // jours dépliés faisaient 2 766 px, trois écrans pour une semaine qu'on ne lit
-  // jamais d'un bloc. Le compte dans chaque résumé dit où il se passe quelque
-  // chose : rien n'est caché, c'est replié.
+  // Téléphone sans filtre : le jour même.
   return j === new Date().getDay();
 }
 
@@ -1215,7 +1231,7 @@ function pli28(j, f){
   var large = window.matchMedia('(min-width:1024px)');
   large.addEventListener('change', function(e){
     document.querySelectorAll('details.jr-pli').forEach(function(d){
-      d.open = d.dataset.jr === String(new Date().getDay());
+      d.open = e.matches || d.dataset.jr === String(new Date().getDay());
     });
     document.querySelectorAll('details.flt-pli').forEach(function(d){ d.open = e.matches; });
   });
