@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="maquette-version" content="5.12+20261003">
-<meta name="maquette-version-lisible" content="v5.12 — 3 octobre 2026">
+<meta name="maquette-version" content="5.13+20261003">
+<meta name="maquette-version-lisible" content="v5.13 — 3 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -244,7 +244,13 @@ body::after{
    250 px, avec EXACTEMENT sa couleur : transparent au-dessus de la photo du
    héros, papier dès qu'on défile. Ce qui dépasse de l'écran ne coûte rien. */
 #hdr{ background:var(--fond-hdr, transparent); }
-#hdr::before{
+/* ::after, PAS ::before : `#hdr::before` existe déjà plus haut — c'est le voile
+   sombre posé sur la photo du héros, et `#hdr.solid::before{opacity:0}` l'efface
+   dès qu'on défile. En réutilisant ::before, cette bande héritait de cette
+   règle : elle disparaissait exactement quand on en avait besoin, et le voile du
+   héros était écrasé au passage. Vérifier qu'un crochet est libre avant de s'en
+   servir — c'est la deuxième fois dans ce projet. */
+#hdr::after{
   content:""; position:absolute; left:0; right:0; bottom:100%; height:250px;
   background:var(--fond-hdr, transparent); pointer-events:none;
 }
