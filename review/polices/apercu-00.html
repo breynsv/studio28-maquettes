@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
 <meta name="robots" content="noindex, nofollow">
-<meta name="maquette-version" content="5.13+20261003">
-<meta name="maquette-version-lisible" content="v5.13 — 3 octobre 2026">
+<meta name="maquette-version" content="5.14+20261003">
+<meta name="maquette-version-lisible" content="v5.14 — 3 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -133,7 +133,16 @@ body{
   font-size:17px;
   line-height:1.7;
   -webkit-font-smoothing:antialiased;
+  /* `overflow-x:hidden` sur body fait du body un CONTENEUR DE DÉFILEMENT :
+     overflow-y passe alors à auto. Sur iOS Safari, `position:fixed` se cale
+     dès lors sur ce conteneur et plus sur la fenêtre — l'en-tête se retrouvait
+     une quarantaine de pixels trop bas pendant le défilement, et on voyait la
+     page passer au-dessus du logo. Chromium ne le reproduit pas : toutes les
+     mesures restaient vertes pendant que le défaut était bien là.
+     `clip` coupe de la même façon SANS créer de conteneur de défilement ;
+     `hidden` reste en repli pour les navigateurs qui l'ignorent. */
   overflow-x:hidden;
+  overflow-x:clip;
 }
 @media (min-width:768px){ body{ font-size:17px; } }
 
@@ -231,6 +240,29 @@ body::after{
 #hdr.over .hdr-sep{ color:rgba(201,168,124,.55); }
 #hdr.over .hdr-wa{ border-color:rgba(246,241,232,.45) !important; background:rgba(51,48,43,.28); }
 #hdr.over .hdr-wa svg{ color:var(--oak) !important; }
+/* Sur iPhone, une bande de page reste visible AU-DESSUS de la barre pendant le
+   défilement : Safari place `position:fixed` par rapport à un repère qui ne
+   coïncide pas avec le haut de l'écran. On a essayé de supprimer la cause —
+   transparence, hauteur, conteneur de défilement du body — sans y arriver, et
+   Chromium ne reproduit rien de tout cela.
+   On remplit donc la bande. Ce pseudo-élément prolonge la barre vers le haut sur
+   250 px, avec EXACTEMENT sa couleur : transparent au-dessus de la photo du
+   héros, papier dès qu'on défile. Ce qui dépasse de l'écran ne coûte rien. */
+#hdr{ background:var(--fond-hdr, transparent);
+  /* `position` en CSS et PAS via la classe Tailwind `sticky` : la feuille est
+     compilée depuis la source, et `sticky` n'y figurait nulle part — la classe
+     n'existe donc pas. Troisième fois que ce piège mord dans ce projet. */
+  position:sticky; top:0; }
+/* ::after, PAS ::before : `#hdr::before` existe déjà plus haut — c'est le voile
+   sombre posé sur la photo du héros, et `#hdr.solid::before{opacity:0}` l'efface
+   dès qu'on défile. En réutilisant ::before, cette bande héritait de cette
+   règle : elle disparaissait exactement quand on en avait besoin, et le voile du
+   héros était écrasé au passage. Vérifier qu'un crochet est libre avant de s'en
+   servir — c'est la deuxième fois dans ce projet. */
+#hdr::after{
+  content:""; position:absolute; left:0; right:0; bottom:100%; height:250px;
+  background:var(--fond-hdr, transparent); pointer-events:none;
+}
 #hdr .hlogo{ display:none; }
 @media (min-width:640px){
   #hdr:not(.over) .hlogo.lg-terra{ display:block; }
@@ -383,6 +415,13 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   .jr-fleche::before{ content:"\2304"; transform:translateY(-1px); }
   .jr-pli[open] > .jr-tete > .jr-fleche{ transform:rotate(180deg); }
   .jr-corps{ padding-bottom:1.1rem; }
+  /* Sur grand écran les sept jours sont dépliés : le résumé n'est plus un bouton
+     mais un titre de section. Compte et flèche n'auraient rien à dire, et un
+     curseur « main » sur quelque chose qui ne s'ouvre pas est un mensonge.
+     ATTENTION : ces règles supposent que pli28() renvoie toujours vrai au-dessus
+     de 1 024 px. Si ce comportement change, elles transforment la semaine en
+     sept noms de jours sans rien dessous et sans moyen de les ouvrir — c'est
+     exactement ce qui est arrivé en v5.9. */
   @media (min-width:1024px){
     .jr-pli{ border-top:0; }
     .jr-tete{
@@ -526,7 +565,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 
 <body class="antialiased">
 
-<header id="hdr" class="over fixed top-0 inset-x-0 z-50 transition-all duration-500">
+<header id="hdr" class="over z-50 transition-all duration-500">
 <div x-data="annonce28()" x-show="visible" x-cloak
      style="background:var(--ink);color:var(--paper)" class="relative">
   <div class="mx-auto max-w-shell px-5 md:px-8 py-2.5 flex items-center gap-4 text-[14.5px]">
@@ -591,7 +630,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
   </div>
 </header>
 
-<section class="relative">
+<section id="heros" class="relative" style="margin-top:calc(-1 * var(--h-hdr, 81px))">
   <div class="ph relative w-full" style="height:clamp(660px,82svh,800px)">
     <picture><source type="image/webp" srcset="/assets/img/studio-28-27-800.webp 800w, /assets/img/studio-28-27-1200.webp 1200w, /assets/img/studio-28-27.webp 1800w" sizes="100vw"><source type="image/jpeg" srcset="/assets/img/studio-28-27-800.jpg 800w, /assets/img/studio-28-27-1200.jpg 1200w, /assets/img/studio-28-27.jpg 1800w" sizes="100vw"><img src="/assets/img/studio-28-27.jpg" alt="La grande salle du Studio 28 : parquet en chêne clair, murs sombres, et le jardin visible derrière les baies vitrées" width="1800" height="1200" fetchpriority="high" decoding="async"></picture>
   </div>
@@ -623,13 +662,13 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       
       <div class="mt-8 md:mt-11 pt-6 md:pt-7 border-t" style="border-color:rgba(201,168,124,.35)">
         <div class="flex flex-wrap items-center gap-2 md:gap-2.5">
-          <a href="#cours" class="pill">Yoga</a>
-          <a href="#cours" class="pill">Pilates</a>
-          <a href="#cours" class="pill">Cyclodance Fusion</a>
-          <a href="#cours" class="pill">Hip-hop</a>
-          <a href="#cours" class="pill">Heels</a>
-          <a href="#cours" class="pill">Salsa</a>
-          <a href="#cours" class="pill">Bachata</a>
+          <a href="/cours-yoga-bruxelles" class="pill">Yoga</a>
+          <a href="/cours-pilates-bruxelles" class="pill">Pilates</a>
+          <a href="/cyclodance-fusion-bruxelles" class="pill">Cyclodance Fusion</a>
+          <a href="/cours-hip-hop-bruxelles" class="pill">Hip-hop</a>
+          <a href="/cours-heels-bruxelles" class="pill">Heels</a>
+          <a href="/cours-salsa-bruxelles" class="pill">Salsa</a>
+          <a href="/cours-bachata-bruxelles" class="pill">Bachata</a>
         </div>
         <p class="mt-4 text-[13.5px] num" style="color:rgba(251,246,238,.72)">
           Rue des Deux Églises 26-28, 1000 Bruxelles — métro <strong class="font-semibold" style="color:var(--oak)">Arts-Loi</strong>, 3 min à pied.
@@ -959,7 +998,9 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     </div>
 
     <div id="sched" class="rv">
+      
       <template x-for="j in ordreJours" :key="j">
+        <template x-if="f === 'tout' || duJour(j).length > 0">
         <details class="jr-pli" :open="pli28(j, f)" :data-jr="j">
           <summary class="jr-tete">
             <h3 class="d d-it text-[24px] md:text-[26px]" style="color:var(--terra)" x-text="cap(J28[j])"></h3>
@@ -1022,6 +1063,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
           </template>
           </div>
         </details>
+        </template>
       </template>
     </div>
 
@@ -1500,7 +1542,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 
       <div>
         <p class="kicker" style="color:var(--oak)">Venir au Studio 28</p>
-        <h2 class="d mt-4" style="font-size:clamp(30px,3.4vw,44px)">Rue des Deux Églises 26-28<br><span class="num">1000 Bruxelles</span></h2>
+        <h2 class="d mt-4" style="font-size:clamp(27px,3vw,40px);line-height:1.16">Rue des Deux Églises <span class="num" style="white-space:nowrap">26-28</span><br><span class="num">1000 Bruxelles</span></h2>
         <p class="mt-5 text-[16.5px] leading-[1.75]" style="color:rgba(246,241,232,.78)">
           Métro <strong style="color:var(--oak)">Arts-Loi</strong> — 3 minutes à pied.
         </p>
@@ -1517,15 +1559,21 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 
       <div>
         <p class="kicker mb-5" style="color:var(--oak)">Les cours</p>
-        <ul class="space-y-2.5 text-[15.5px]" style="color:rgba(246,241,232,.78)">
-          <li><a href="#cours" class="hover:text-white transition">Cours de yoga à Bruxelles</a></li>
-          <li><a href="#cours" class="hover:text-white transition">Cours de pilates à Bruxelles</a></li>
-          <li><a href="#cours" class="hover:text-white transition">Cyclodance Fusion à Bruxelles</a></li>
-          <li><a href="#cours" class="hover:text-white transition">Cours de hip-hop à Bruxelles</a></li>
-          <li><a href="#cours" class="hover:text-white transition">Cours de heels à Bruxelles</a></li>
-          <li><a href="#cours" class="hover:text-white transition">Cours de salsa à Bruxelles</a></li>
-          <li><a href="#cours" class="hover:text-white transition">Cours de bachata à Bruxelles</a></li>
-        </ul>
+          <ul class="space-y-2.5 text-[15.5px]" style="color:rgba(246,241,232,.78)">
+            <li><a href="/cours-yoga-bruxelles" class="hover:text-white transition">Cours de yoga à Bruxelles</a></li>
+            <li><a href="/cours-pilates-bruxelles" class="hover:text-white transition">Cours de pilates à Bruxelles</a></li>
+            <li><a href="/cyclodance-fusion-bruxelles" class="hover:text-white transition">Cyclodance Fusion à Bruxelles</a></li>
+            <li><a href="/cours-heels-bruxelles" class="hover:text-white transition">Cours de heels à Bruxelles</a></li>
+            <li><a href="/cours-hip-hop-bruxelles" class="hover:text-white transition">Cours de hip-hop à Bruxelles</a></li>
+            <li><a href="/latin-fusion-bruxelles" class="hover:text-white transition">Latin Fusion à Bruxelles</a></li>
+            <li><a href="/cours-danse-enfants-bruxelles" class="hover:text-white transition">Cours de danse enfants à Bruxelles</a></li>
+            <li><a href="/cours-tango-bruxelles" class="hover:text-white transition">Cours de tango à Bruxelles</a></li>
+            <li><a href="/cours-zumba-bruxelles" class="hover:text-white transition">Cours de zumba à Bruxelles</a></li>
+            <li><a href="/afro-latin-move-bruxelles" class="hover:text-white transition">Afro-Latin Move à Bruxelles</a></li>
+            <li><a href="/cours-salsa-bruxelles" class="hover:text-white transition">Cours de salsa à Bruxelles</a></li>
+            <li><a href="/cours-bachata-bruxelles" class="hover:text-white transition">Cours de bachata à Bruxelles</a></li>
+            <li><a href="/cours-kizomba-bruxelles" class="hover:text-white transition">Cours de kizomba à Bruxelles</a></li>
+          </ul>
       </div>
 
       <div>
@@ -1580,19 +1628,33 @@ details[open] .faq-plus{ transform:rotate(45deg); }
     hdr.classList.toggle('over', over);
     hdr.classList.toggle('solid', !over);
     if (over){
-      hdr.style.background = 'transparent';
+      hdr.style.setProperty('--fond-hdr', 'transparent');
       hdr.style.backdropFilter = 'none';
       hdr.style.borderBottom = '1px solid transparent';
-      bar.classList.remove('py-3'); bar.classList.add('py-4','md:py-5');
     } else {
-      hdr.style.background = 'rgba(247,242,234,.94)';
-      hdr.style.backdropFilter = 'blur(10px)';
+      // Opaque, pas « presque ». À 94 % le texte de la page restait visible
+      // à travers la barre : sur un téléphone, les grands titres en Fraunces
+      // défilaient en transparence derrière le logo. Le flou coûtait en plus
+      // cher à iOS pour un effet que personne n'avait demandé.
+      hdr.style.setProperty('--fond-hdr', 'var(--paper)');
+      hdr.style.backdropFilter = 'none';
       hdr.style.borderBottom = '1px solid var(--hair)';
-      bar.classList.add('py-3'); bar.classList.remove('py-4','md:py-5');
     }
   }
   onScroll();
   window.addEventListener('scroll', onScroll, {passive:true});
+  /* En sticky, l'en-tête occupe de la place dans le flux : le héros doit
+     remonter d'exactement sa hauteur, bandeau d'annonce compris. */
+  function majHauteur(){
+    document.documentElement.style.setProperty('--h-hdr', Math.ceil(hdr.getBoundingClientRect().height) + 'px');
+  }
+  majHauteur();
+  if (window.ResizeObserver) new ResizeObserver(majHauteur).observe(hdr);
+  window.addEventListener('resize', majHauteur);
+  // Les polices web changent la hauteur de ligne après coup : mesurer une
+  // seule fois au démarrage donne 80 px là où la barre en fera 81.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(majHauteur);
+  window.addEventListener('load', majHauteur);
 })();
 
 /* mobile drawer */
@@ -1984,8 +2046,14 @@ function grand28(){ return window.matchMedia('(min-width:1024px)').matches; }
 /* Un filtre actif ouvre tous les jours : la liste devient courte, et comparer les
    jours entre eux est précisément à quoi sert le filtre. Sinon, aujourd'hui seul. */
 function pli28(j, f){
+  // Grand écran : la semaine entière, dépliée. Essayé replié en v5.9 pour gagner
+  // de la hauteur ; le client l'a trouvé pire — sept noms de jours valent moins
+  // qu'un tableau qu'on parcourt des yeux. Le gain de place vient maintenant du
+  // filtre, qui masque les jours sans cours.
   if (grand28()) return true;
+  // Un filtre actif n'affiche que les jours concernés : ils s'ouvrent tous.
   if (f && f !== 'tout') return true;
+  // Téléphone sans filtre : le jour même.
   return j === new Date().getDay();
 }
 

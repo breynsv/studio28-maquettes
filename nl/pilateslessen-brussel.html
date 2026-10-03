@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
 <head>
-<meta name="maquette-version" content="5.13+20261003">
-<meta name="maquette-version-lisible" content="v5.13 — 3 octobre 2026">
+<meta name="maquette-version" content="5.14+20261003">
+<meta name="maquette-version-lisible" content="v5.14 — 3 octobre 2026">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -243,7 +243,11 @@ body::after{
    On remplit donc la bande. Ce pseudo-élément prolonge la barre vers le haut sur
    250 px, avec EXACTEMENT sa couleur : transparent au-dessus de la photo du
    héros, papier dès qu'on défile. Ce qui dépasse de l'écran ne coûte rien. */
-#hdr{ background:var(--fond-hdr, transparent); }
+#hdr{ background:var(--fond-hdr, transparent);
+  /* `position` en CSS et PAS via la classe Tailwind `sticky` : la feuille est
+     compilée depuis la source, et `sticky` n'y figurait nulle part — la classe
+     n'existe donc pas. Troisième fois que ce piège mord dans ce projet. */
+  position:sticky; top:0; }
 /* ::after, PAS ::before : `#hdr::before` existe déjà plus haut — c'est le voile
    sombre posé sur la photo du héros, et `#hdr.solid::before{opacity:0}` l'efface
    dès qu'on défile. En réutilisant ::before, cette bande héritait de cette
@@ -582,7 +586,7 @@ details[open] .faq-plus{ transform:rotate(45deg); }
 </style>
 </head>
 <body class="antialiased">
-<header id="hdr" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+<header id="hdr" class="over z-50 transition-all duration-500">
 <div x-data="annonce28()" x-show="visible" x-cloak
      style="background:var(--ink);color:var(--paper)" class="relative">
   <div class="mx-auto max-w-shell px-5 md:px-8 py-2.5 flex items-center gap-4 text-[14.5px]">
@@ -811,7 +815,6 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       hdr.style.setProperty('--fond-hdr', 'transparent');
       hdr.style.backdropFilter = 'none';
       hdr.style.borderBottom = '1px solid transparent';
-      bar.classList.remove('py-3'); bar.classList.add('py-4','md:py-5');
     } else {
       // Opaque, pas « presque ». À 94 % le texte de la page restait visible
       // à travers la barre : sur un téléphone, les grands titres en Fraunces
@@ -820,11 +823,22 @@ details[open] .faq-plus{ transform:rotate(45deg); }
       hdr.style.setProperty('--fond-hdr', 'var(--paper)');
       hdr.style.backdropFilter = 'none';
       hdr.style.borderBottom = '1px solid var(--hair)';
-      bar.classList.add('py-3'); bar.classList.remove('py-4','md:py-5');
     }
   }
   onScroll();
   window.addEventListener('scroll', onScroll, {passive:true});
+  /* En sticky, l'en-tête occupe de la place dans le flux : le héros doit
+     remonter d'exactement sa hauteur, bandeau d'annonce compris. */
+  function majHauteur(){
+    document.documentElement.style.setProperty('--h-hdr', Math.ceil(hdr.getBoundingClientRect().height) + 'px');
+  }
+  majHauteur();
+  if (window.ResizeObserver) new ResizeObserver(majHauteur).observe(hdr);
+  window.addEventListener('resize', majHauteur);
+  // Les polices web changent la hauteur de ligne après coup : mesurer une
+  // seule fois au démarrage donne 80 px là où la barre en fera 81.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(majHauteur);
+  window.addEventListener('load', majHauteur);
 })();
 
 /* mobile drawer */
