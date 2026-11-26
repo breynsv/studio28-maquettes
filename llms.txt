@@ -19,12 +19,12 @@ Exploitant : ASBL Danse Creativity & Event, BE 0672.841.389.
 - Jeudi : 12h30 · Yoga · Marvin · 20 crédits · comprise · 18h00 · Zumba · Nastasia · — · paiement séparé · Nastasia Van Loo · 19h00 · Salsa — Initiation · Ahmedy et Caro · 15 crédits · comprise · 19h30 · Salsa — Débutant · — · 15 crédits · comprise · 20h30 · Salsa — Intermédiaire · — · 15 crédits · comprise · 21h30 · Salsa — Practica · — · 15 crédits · comprise
 - Vendredi : 12h30 · Afro-Latin Move · — · 15 crédits · comprise · 17h30 · Yoga · Andy · 20 crédits · comprise
 - Samedi : 14h00 · → 16h00 · Enfants · IMPULS · — · paiement séparé · IMPULS
-- Dimanche : 14h00 · → 16h00 · Latin Fusion une fois par mois · Eva · — · paiement séparé · Pasión Latina · 16h00 · → 18h00 · Heels — Heels & Confidence une fois par mois · Elena · 35 crédits · comprise · 16h00 · → 18h00 · Hip-hop — Back to Basic une fois par mois · Selasi · 35 crédits · comprise · 17h00 · → 18h30 · Cyclodance Fusion une fois par mois · Jamel et Charline · 10 crédits · comprise
+- Dimanche : 14h00 · → 16h00 · Latin Fusion une fois par mois · Eva · — · paiement séparé · Pasión Latina · 16h00 · → 18h00 · Heels une fois par mois · — · 35 crédits · comprise · 16h00 · → 18h00 · Hip-hop — Back to Basic une fois par mois · Selasi · 35 crédits · comprise · 17h00 · → 18h30 · Cyclodance Fusion une fois par mois · Jamel et Charline · 10 crédits · comprise
 
 ## Les rendez-vous mensuels du dimanche
 
 - 14h00 — 16h00 · Latin Fusion · Avec Eva · Pasión Latina · Paiement séparé · une fois par mois · Prochaines dates — 11 octobre · 15 novembre (13h00) · 13 décembre
-- 16h00 — 18h00 · Heels · Heels & Confidence · Avec Elena · 35 crédits · une fois par mois · Prochaines dates — 25 octobre · 29 novembre · 23 mai
+- 16h00 — 18h00 · Heels · 35 crédits · une fois par mois · Prochaines dates — 25 octobre · 29 novembre · 23 mai
 - 16h00 — 18h00 · Hip-hop · Back to Basic · Avec Selasi · 35 crédits · une fois par mois · Prochaines dates — 18 octobre · 15 novembre · 6 décembre
 - 17h00 — 18h30 · Cyclodance Fusion · Avec Jamel et Charline · 10 crédits · une fois par mois · Prochaines dates — 4 octobre · 8 novembre · 20 décembre
 
@@ -47,7 +47,6 @@ O'Dance, Pasión Latina, Nastasia Van Loo) se paient séparément, chez elles.
 - L — Laura
 - M — Marvin
 - Selasi — Hip-hop
-- Elena — Heels
 - A — Andy
 - C — Charline
 - J — Jamel
